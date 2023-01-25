@@ -1,11 +1,16 @@
+<route lang="yaml">
+meta:
+  layout: authLayout
+</route>
+
 <template>
-  <div class="login">
+  <div class="register">
     <div class="flex w-full flex-col gap-0.5 pb-6">
       <div class="flex items-end gap-2">
-        <h3 class="inline-block">Login</h3>
+        <h3 class="inline-block">Register</h3>
         <p class="inline-block text-white/70">
           Or
-          <a href="#" class="text-base">Register</a>
+          <a href="#" class="text-base">Login</a>
         </p>
       </div>
       <p class="text-sm text-white/50">
@@ -44,35 +49,37 @@
             </clipPath>
           </defs>
         </svg>
-        Sign in with Google
+        Sign Up with Google
       </BaseButton>
       <p class="text-sm font-medium text-zinc-500">Or</p>
       <div class="form">
         <BaseFormInput
-          v-model="login.username"
+          v-model="register.username"
           name="username"
           placeholder="Username or Email"
           :icon="{ icon: UserIcon, direction: 'left' }"
         />
         <BaseFormInput
-          v-model="login.password"
+          v-model="register.password"
           name="current-password"
           placeholder="Password"
           type="password"
         />
-        <div class="flex w-full justify-between">
-          <BaseFormCheckbox name="remember" label="Remember Me" />
-          <a href="#">Forgot Password?</a>
-        </div>
+        <BaseFormInput
+          v-model="register.checkPassword"
+          name="repeat-password"
+          placeholder="Password"
+          type="password"
+        />
       </div>
       <div class="actions">
-        <BaseButton size="sm" ref="button" @click="test">Login</BaseButton>
+        <BaseButton size="sm">Register</BaseButton>
         <BaseButton
           size="sm"
           variant="secondary"
-          @click="router.push('/register')"
+          @click="router.push('/auth/login')"
         >
-          Register
+          Login
         </BaseButton>
       </div>
     </form>
@@ -80,27 +87,21 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { reactive } from 'vue';
 import { UserIcon } from '@heroicons/vue/20/solid';
+import { useRouter } from 'vue-router';
 
 const router = useRouter();
-
-const login = reactive({
+const register = reactive({
   username: '',
   password: '',
+  checkPassword: '',
   remember: false,
 });
-
-const button = ref<any>(null);
-
-const test = (): void => {
-  button.value?.setLoad(true);
-};
 </script>
 
 <style lang="postcss" scoped>
-.login {
+.register {
   @apply flex flex-col justify-center items-center w-full max-w-xs;
   .auth {
     @apply w-full flex flex-col gap-4 select-none;

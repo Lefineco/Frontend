@@ -21,7 +21,7 @@ module.exports = {
     'tailwindcss/no-contradicting-classname': 'error',
   },
   plugins: ['tailwindcss'],
-  ignorePatterns: ['**/*.css'],
+  ignorePatterns: ['**/*.css', '**/*.d.ts'],
   parserOptions: {
     ecmaVersion: 'latest',
   },

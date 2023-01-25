@@ -16,12 +16,23 @@
     ],
     "skipLibCheck": true,
     "noEmit": true,
+    "paths": {
+      "@/*": [
+        "./src/*",
+        "./dist/*"
+      ]
+    },
+    "types": [
+      "vite/client",
+      "vite-plugin-vue-layouts/client"
+    ]
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "./components.d.ts"
+    "./components.d.ts",
+    "./env.d.ts"
   ]
 }
