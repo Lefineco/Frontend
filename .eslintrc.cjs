@@ -9,6 +9,7 @@ module.exports = {
     '@vue/eslint-config-prettier',
     'plugin:tailwindcss/recommended',
     'plugin:css/standard',
+    './.eslintrc-auto-import.json',
   ],
   rules: {
     'vue/multi-word-component-names': 'off',

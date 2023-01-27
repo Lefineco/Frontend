@@ -40,9 +40,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
-import { EyeIcon, EyeSlashIcon } from '@heroicons/vue/20/solid';
-
 const props = defineProps({
   label: { type: String, default: '' },
   type: { type: String, default: 'text' },

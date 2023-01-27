@@ -22,7 +22,17 @@ export default defineConfig({
     Pages(),
     Layouts(),
     AutoImport({
-      imports: ['vue', 'vue-router', 'pinia'],
+      dts: true,
+      imports: [
+        'vue',
+        'vue-router',
+        'pinia',
+        {
+          '@heroicons/vue/20/solid': ['UserIcon', 'EyeIcon', 'EyeSlashIcon'],
+        },
+      ],
+      eslintrc: { enabled: true },
+      vueTemplate: true,
     }),
   ],
   resolve: {
