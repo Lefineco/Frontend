@@ -27,8 +27,7 @@
 </style>
 
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue';
-import { Switch } from '@headlessui/vue';
+import { Switch } from '@headlessui/vue'; //TODO: remove
 
 const props = defineProps({
   modelValue: { type: Boolean, default: false },

@@ -1,13 +1,12 @@
+<route lang="yaml">
+meta:
+  layout: authLayout
+</route>
+
 <template>
   <div class="login">
     <div class="flex w-full flex-col gap-0.5 pb-6">
-      <div class="flex items-end gap-2">
-        <h3 class="inline-block">Login</h3>
-        <p class="inline-block text-white/70">
-          Or
-          <a href="#" class="text-base">Register</a>
-        </p>
-      </div>
+      <h3 class="inline-block">Login</h3>
       <p class="text-sm text-white/50">
         How do i get started blazein dolor at?
       </p>
@@ -70,7 +69,7 @@
         <BaseButton
           size="sm"
           variant="secondary"
-          @click="router.push('/register')"
+          @click="router.push({ name: 'auth-register' })"
         >
           Register
         </BaseButton>
@@ -80,10 +79,6 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { UserIcon } from '@heroicons/vue/20/solid';
-
 const router = useRouter();
 
 const login = reactive({

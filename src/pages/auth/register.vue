@@ -1,13 +1,12 @@
+<route lang="yaml">
+meta:
+  layout: authLayout
+</route>
+
 <template>
   <div class="register">
     <div class="flex w-full flex-col gap-0.5 pb-6">
-      <div class="flex items-end gap-2">
-        <h3 class="inline-block">Register</h3>
-        <p class="inline-block text-white/70">
-          Or
-          <a href="#" class="text-base">Login</a>
-        </p>
-      </div>
+      <h3 class="inline-block">Register</h3>
       <p class="text-sm text-white/50">
         How do i get started blazein dolor at?
       </p>
@@ -57,13 +56,13 @@
         <BaseFormInput
           v-model="register.password"
           name="current-password"
-          placeholder="Password"
+          placeholder="Your Password"
           type="password"
         />
         <BaseFormInput
           v-model="register.checkPassword"
           name="repeat-password"
-          placeholder="Password"
+          placeholder="Confirm Password"
           type="password"
         />
       </div>
@@ -72,7 +71,7 @@
         <BaseButton
           size="sm"
           variant="secondary"
-          @click="router.push('/login')"
+          @click="router.push({ name: 'auth-login' })"
         >
           Login
         </BaseButton>
@@ -82,10 +81,6 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue';
-import { UserIcon } from '@heroicons/vue/20/solid';
-import { useRouter } from 'vue-router';
-
 const router = useRouter();
 const register = reactive({
   username: '',
