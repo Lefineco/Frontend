@@ -17,5 +17,8 @@
     "@types/node": "^18.17.1",
     "eslint": "^8.46.0",
     "nuxt": "^3.6.5"
+  },
+  "dependencies": {
+    "@productdevbook/motion": "^1.0.3"
   }
 }

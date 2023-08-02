@@ -2,8 +2,15 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
-    "@nuxthq/ui",
-    "@pinia/nuxt",
-    "@pinia-plugin-persistedstate/nuxt"
-  ]
+    '@nuxthq/ui',
+    '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
+    '@productdevbook/motion/nuxt',
+  ],
+  pinia: {
+    autoImports: [
+      'defineStore',
+      ['defineStore', 'definePiniaStore'],
+    ],
+  },
 })
