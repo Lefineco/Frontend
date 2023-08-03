@@ -1,3 +1,4 @@
+// TODO: default textarea da focus olunduğunda bg-transparent çalışmıyor
 const textarea = {
   wrapper: 'relative',
   base: 'relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0',
@@ -56,7 +57,7 @@ const textarea = {
     },
   },
   variant: {
-    default: 'shadow-sm bg-gray-200 dark:bg-gray-800 text-black dark:text-white dark:focus:bg-transparent focus:ring-2 focus:ring-{color}-500 dark:focus:ring-{color}-400',
+    default: 'shadow-sm bg-gray-100 dark:bg-gray-800 text-black dark:text-white focus:!bg-transparent focus:ring-2 focus:ring-{color}-500 dark:focus:ring-{color}-400',
     outline: 'shadow-sm bg-transparent text-gray-900 dark:text-white ring-1 ring-inset ring-{color}-500 dark:ring-{color}-400 focus:ring-2 focus:ring-{color}-500 dark:focus:ring-{color}-400',
     none: 'bg-transparent focus:ring-0 focus:shadow-none',
   },
