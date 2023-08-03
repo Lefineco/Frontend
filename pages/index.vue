@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+const preference = ['system', 'light', 'dark', 'sepia']
 </script>
 
 <template>
@@ -7,6 +7,12 @@
     <UButton label="Button" />
     <UButton label="Button" loading />
     <UButton label="Button" variant="soft" />
+    <UInput variant="default" />
+    <UInput variant="outline" trailing icon="i-heroicons-magnifying-glass-20-solid" />
+    <USelectMenu v-model="$colorMode.value" :options="preference" />
+  </div>
+  <div>
+    <UTextarea  variant="default" />
   </div>
 </template>
 

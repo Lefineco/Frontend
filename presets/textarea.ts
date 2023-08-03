@@ -1,4 +1,4 @@
-const input = {
+const textarea = {
   wrapper: 'relative',
   base: 'relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0',
   rounded: 'rounded-md',
@@ -7,9 +7,9 @@ const input = {
     '2xs': 'text-xs',
     'xs': 'text-xs',
     'sm': 'text-sm',
-    'md': 'text-md',
-    'lg': 'text-md',
-    'xl': 'text-xl',
+    'md': 'text-sm',
+    'lg': 'text-sm',
+    'xl': 'text-base',
   },
   gap: {
     '2xs': 'gap-x-1',
@@ -25,7 +25,7 @@ const input = {
     'sm': 'px-2.5 py-1.5',
     'md': 'px-3 py-2',
     'lg': 'px-3.5 py-2.5',
-    'xl': 'px-4 py-2.5',
+    'xl': 'px-3.5 py-2.5',
   },
   leading: {
     padding: {
@@ -56,7 +56,7 @@ const input = {
     },
   },
   variant: {
-    default: 'shadow-sm bg-gray-200 text-gray-900 dark:text-black focus:ring-2 focus:ring-{color}-500 dark:focus:ring-{color}-400',
+    default: 'shadow-sm bg-gray-200 dark:bg-gray-800 text-black dark:text-white dark:focus:bg-transparent focus:ring-2 focus:ring-{color}-500 dark:focus:ring-{color}-400',
     outline: 'shadow-sm bg-transparent text-gray-900 dark:text-white ring-1 ring-inset ring-{color}-500 dark:ring-{color}-400 focus:ring-2 focus:ring-{color}-500 dark:focus:ring-{color}-400',
     none: 'bg-transparent focus:ring-0 focus:shadow-none',
   },
@@ -98,10 +98,10 @@ const input = {
   },
   default: {
     size: 'sm',
-    color: 'solid',
+    color: 'white',
     variant: 'outline',
-    loadingIcon: 'i-ph-circle-dashed',
   },
+
 }
 
-export default input
+export default textarea

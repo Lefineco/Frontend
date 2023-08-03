@@ -7,7 +7,7 @@ const button = {
     'xs': 'text-xs',
     'sm': 'text-sm',
     'md': 'text-sm',
-    'lg': 'text-sm',
+    'lg': 'text-lg',
     'xl': 'text-base',
   },
   gap: {

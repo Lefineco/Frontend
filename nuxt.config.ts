@@ -1,7 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   css: ['~/assets/main.css'],
-  devtools: { enabled: true },
+  devtools: {
+    enabled: true,
+
+    timeline: {
+      enabled: true,
+    },
+  },
   modules: [
     '@nuxthq/ui',
     '@pinia/nuxt',
@@ -13,6 +19,14 @@ export default defineNuxtConfig({
   },
   ui: {
     icons: ['ph'],
+  },
+  tailwindcss: {
+    config: {
+      safelist: [
+        'i-ph-circle-dashed',
+      ],
+    },
+    viewer: false,
   },
   experimental: {
     typedPages: true,
