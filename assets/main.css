@@ -3,3 +3,7 @@
 * {
   @apply font-['Manrope',sans-serif]
 }
+
+html, body, #lefine {
+  @apply h-full w-full
+}
