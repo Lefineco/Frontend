@@ -21,6 +21,9 @@ export default defineNuxtConfig({
   ui: {
     icons: ['ph'],
   },
+  supabase: {
+    redirect: false,
+  },
   tailwindcss: {
     config: {
       safelist: [
