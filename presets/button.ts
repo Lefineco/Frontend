@@ -7,7 +7,7 @@ const button = {
     'xs': 'text-xs',
     'sm': 'text-sm',
     'md': 'text-sm',
-    'lg': 'text-lg',
+    'lg': 'text-md',
     'xl': 'text-base',
   },
   gap: {
@@ -23,8 +23,8 @@ const button = {
     'xs': 'px-4 py-1.5',
     'sm': 'px-4 py-1.5',
     'md': 'px-4 py-2',
-    'lg': 'px-5 py-2.5',
-    'xl': 'px-5 py-2.5',
+    'lg': 'px-4 py-2.5',
+    'xl': 'px-4 py-2.5',
   },
   square: {
     '2xs': 'p-1',
