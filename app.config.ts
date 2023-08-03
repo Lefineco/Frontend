@@ -1,11 +1,9 @@
+import presets from '~/presets'
+
 export default defineAppConfig({
-  primary: 'pink',
-  gray: 'cool',
   ui: {
-    button: {
-      default: {
-        color: 'blue',
-      },
-    },
+    primary: 'indigo',
+    gray: 'cool',
+    ...presets,
   },
 })

@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  css: ['~/assets/main.css'],
   devtools: { enabled: true },
   modules: [
     '@nuxthq/ui',
@@ -8,9 +9,13 @@ export default defineNuxtConfig({
     '@productdevbook/motion/nuxt',
   ],
   pinia: {
-    autoImports: [
-      'defineStore',
-      ['defineStore', 'definePiniaStore'],
-    ],
+    autoImports: ['defineStore', ['defineStore', 'definePiniaStore']],
+  },
+  ui: {
+    icons: ['ph'],
+  },
+  experimental: {
+    typedPages: true,
+    watcher: 'parcel',
   },
 })
