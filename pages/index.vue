@@ -8,8 +8,10 @@ const preference = ['system', 'light', 'dark', 'sepia']
     <UButton label="Button" loading />
     <UButton label="Button" variant="soft" />
     <UInput variant="default" />
-    <UInput variant="outline" trailing icon="i-heroicons-magnifying-glass-20-solid" />
-    <USelectMenu v-model="$colorMode.value" :options="preference" />
+    <UInput variant="outline" icon="i-heroicons-magnifying-glass-20-solid" />
+    <ClientOnly>
+      <USelectMenu v-model="$colorMode.value" :options="preference" />
+    </ClientOnly>
   </div>
   <div>
     <UTextarea variant="default" />
