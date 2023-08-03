@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     '@productdevbook/motion/nuxt',
+    '@nuxtjs/supabase',
   ],
   pinia: {
     autoImports: ['defineStore', ['defineStore', 'definePiniaStore']],

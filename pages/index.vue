@@ -12,7 +12,7 @@ const preference = ['system', 'light', 'dark', 'sepia']
     <USelectMenu v-model="$colorMode.value" :options="preference" />
   </div>
   <div>
-    <UTextarea  variant="default" />
+    <UTextarea variant="default" />
   </div>
 </template>
 
