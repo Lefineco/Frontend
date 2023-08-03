@@ -26,8 +26,8 @@ export default defineNuxtConfig({
   },
   tailwindcss: {
     config: {
-      safelist: [
-        'i-ph-circle-dashed',
+      content: [
+        'presets/**/**.{js,ts}',
       ],
     },
     viewer: false,
