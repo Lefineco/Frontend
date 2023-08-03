@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const preference = ['system', 'light', 'dark', 'sepia']
+const preference = ["system", "light", "dark", "sepia"];
 </script>
 
 <template>
@@ -16,8 +16,18 @@ const preference = ['system', 'light', 'dark', 'sepia']
   <div>
     <UTextarea variant="default" />
   </div>
+  <div>
+    <h2>Toggles</h2>
+    <div class="flex gap-2">
+      <UToggle :model-value="true" />
+      <UToggle :model-value="true" on-icon="i-heroicons-moon-20-solid" />
+      <UToggle :model-value="true" disabled />
+
+      <UToggle />
+      <UToggle off-icon="i-heroicons-sun-20-solid" />
+      <UToggle disabled />
+    </div>
+  </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
