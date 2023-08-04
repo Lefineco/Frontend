@@ -49,15 +49,18 @@ const input = {
   },
   color: {
     white: {
-      outline: 'shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400',
+      solid: 'shadow-sm bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:!bg-transparent focus:ring-primary-500 dark:focus:ring-primary-400',
+      outline: 'shadow-sm bg-transparent text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400',
     },
     gray: {
-      outline: 'shadow-sm bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400',
+      solid: 'shadow-sm bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:!bg-transparent focus:ring-primary-500 dark:focus:ring-primary-400',
+      outline: 'shadow-sm bg-transparent text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400',
     },
   },
+
   variant: {
-    default: 'shadow-sm bg-gray-100 dark:bg-gray-800 text-black dark:text-white focus:!bg-transparent focus:ring-2 focus:ring-{color}-500 dark:focus:ring-{color}-400',
-    outline: 'shadow-sm bg-transparent text-gray-900 dark:text-white ring-1 ring-inset ring-{color}-500 dark:ring-{color}-400 focus:ring-2 focus:ring-{color}-500 dark:focus:ring-{color}-400',
+    solid: 'shadow-sm bg-gray-100 dark:bg-gray-800 text-black dark:text-white focus:!bg-transparent focus:ring-2 focus:ring-{color}-500 dark:focus:ring-{color}-400',
+    outline: 'shadow-sm bg-transparent text-gray-900 dark:text-white focus:ring-2 focus:ring-{color}-500 dark:focus:ring-{color}-400',
     none: 'bg-transparent focus:ring-0 focus:shadow-none',
   },
   icon: {
@@ -99,7 +102,7 @@ const input = {
   default: {
     size: 'sm',
     color: 'white',
-    variant: 'outline',
+    variant: 'solid',
     loadingIcon: 'i-ph-circle-dashed',
   },
 }

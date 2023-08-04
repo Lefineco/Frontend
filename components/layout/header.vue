@@ -8,7 +8,7 @@ import logo from '@/assets/logo.svg'
       <img :src="logo" class="h-10">
     </div>
     <div class="w-[500px]">
-      <UInput size="md" placeholder="Search Video, Lefiner or Room" icon="i-heroicons-magnifying-glass-20-solid" color="primary" variant="default" />
+      <UInput size="md" color="gray"  placeholder="Search Video, Lefiner or Room" icon="i-heroicons-magnifying-glass-20-solid"  variant="solid" />
     </div>
     <div>
       <UButton class="m-3" label="Button">
