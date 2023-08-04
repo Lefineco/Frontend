@@ -68,7 +68,7 @@ const button = {
     },
   },
   default: {
-    size: 'sm',
+    size: 'xs',
     variant: 'solid',
     color: 'primary',
     loadingIcon: 'i-ph-circle-dashed',

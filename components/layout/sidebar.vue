@@ -3,13 +3,14 @@ import type { VerticalNavigationLink } from '@nuxthq/ui/dist/runtime/types'
 
 const links: VerticalNavigationLink[] = [{
   label: '',
-  icon: 'i-heroicons-home',
-  activeClass: '',
+  custom: true,
+  icon: 'i-ph-play-circle-fill',
+  activeClass: '!text-red-500',
   to: '/',
 }, {
   label: '',
-  icon: 'i-heroicons-chart-bar',
-  to: '/',
+  icon: 'i-ph-users-three-light',
+  to: '/community',
 }, {
   label: '',
   icon: 'i-heroicons-command-line',
@@ -19,10 +20,18 @@ const links: VerticalNavigationLink[] = [{
 
 <template>
   <div class="dark:bg-black !bg-opacity-50 flex h-full items-center flex-col">
-    <!-- <UButton size="xl" color="white" icon="i-ph-play-circle-fill" variant="link" />
-    <UButton size="xl" color="white" icon="i-ph-users-three-light" variant="link" />
-    <UButton size="xl" color="white" icon="i-ph-chat-teardrop-dots" variant="link" /> -->
-    <UVerticalNavigation :links="links" />
+    <span class="sr-only h-12 w-12" />
+    <UVerticalNavigation
+      :ui="{
+        wrapper: 'relative space-y-3',
+        padding: 'p-3',
+        icon: {
+          base: 'flex-shrink-0 w-6 h-6',
+          active: 'text-gray-700 dark:text-gray-200',
+          inactive: 'text-gray-400 dark:text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-200',
+        },
+      }" :links="links"
+    />
   </div>
 </template>
 

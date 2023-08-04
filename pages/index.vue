@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const preference = ["system", "light", "dark", "sepia"];
+const preference = ['system', 'light', 'dark', 'sepia']
+
+const toggleTest = ref(false)
 </script>
 
 <template>
@@ -15,17 +17,14 @@ const preference = ["system", "light", "dark", "sepia"];
   </div>
   <div>
     <UTextarea variant="default" />
+    <UTextarea variant="outline" />
   </div>
   <div>
     <h2>Toggles</h2>
     <div class="flex gap-2">
-      <UToggle :model-value="true" />
-      <UToggle :model-value="true" on-icon="i-heroicons-moon-20-solid" />
-      <UToggle :model-value="true" disabled />
-
-      <UToggle />
-      <UToggle off-icon="i-heroicons-sun-20-solid" />
-      <UToggle disabled />
+      <UToggle v-model="toggleTest" />
+      <UToggle v-model="toggleTest" on-icon="i-heroicons-moon-20-solid" off-icon="i-heroicons-sun-20-solid" />
+      <UToggle v-model="toggleTest" disabled />
     </div>
   </div>
 </template>
