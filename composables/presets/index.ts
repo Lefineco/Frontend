@@ -3,5 +3,6 @@ import input from './input'
 import textarea from './textarea'
 import toast from './toast'
 import toggle from './toggle'
+import avatar from './avatar'
 
-export default { button, input, textarea, toast, toggle }
+export default { button, input, textarea, toast, toggle, avatar }
