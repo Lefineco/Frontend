@@ -1,9 +1,11 @@
 <script setup lang="ts">
-
+definePageMeta({
+  layout: 'blank',
+})
 </script>
 
 <template>
-  <div />
+  <AuthLoginOrRegister action="register" />
 </template>
 
 <style scoped>

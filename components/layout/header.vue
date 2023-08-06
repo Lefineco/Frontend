@@ -8,15 +8,19 @@ import logo from '@/assets/logo.svg'
       <img :src="logo" class="h-9">
     </div>
     <div class="w-[500px]">
-      <UInput size="md" color="gray"  placeholder="Search Video, Lefiner or Room" icon="i-heroicons-magnifying-glass-20-solid"  variant="solid" />
+      <UInput size="md" color="gray" placeholder="Search Video, Lefiner or Room" icon="i-heroicons-magnifying-glass-20-solid" variant="solid" />
     </div>
     <div class="space-x-4">
-      <UButton label="Button">
-        Login
-      </UButton>
-      <UButton label="Button" variant="soft">
-        Register
-      </UButton>
+      <NuxtLink to="/auth/login">
+        <UButton label="Button">
+          Login
+        </UButton>
+      </NuxtLink>
+      <NuxtLink to="/auth/register">
+        <UButton label="Button" variant="soft">
+          Register
+        </UButton>
+      </NuxtLink>
     </div>
   </div>
 </template>
