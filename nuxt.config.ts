@@ -23,7 +23,7 @@ export default defineNuxtConfig({
     autoImports: ['defineStore', ['defineStore', 'definePiniaStore']],
   },
   ui: {
-    icons: ['ph'],
+    icons: ['ph', 'devicon'],
   },
   supabase: {
     redirect: false,

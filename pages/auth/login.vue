@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+  layout: 'blank',
+})
+
 const supabase = useSupabaseClient()
 const email = ref('')
 const toast = useToast()
@@ -24,13 +28,12 @@ async function signInWithOtp() {
 </script>
 
 <template>
-  <div>
-    <button @click="signInWithOtp">
-      Sign In with E-Mail
-    </button>
-    <input
-      v-model="email"
-      type="email"
-    >
-  </div>
+  <AuthLoginOrRegister action="login" />
+  <!-- <button @click="signInWithOtp">
+    Sign In with E-Mail
+  </button>
+  <input
+    v-model="email"
+    type="email"
+  > -->
 </template>
