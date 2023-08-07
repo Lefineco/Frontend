@@ -13,7 +13,7 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="w-72 flex flex-col relative justify-start">
+  <div class="w-72 flex flex-col relative justify-start ">
     <div class="relative overflow-hidden rounded-2xl w-full after:content-[''] after:absolute after:inset-0 after:bg-black/60">
       <img class="w-full h-full object-cover" src="../../assets/testimage.svg">
       <img class="absolute bottom-4 right-1 px-3 z-20" src="../../assets/youtube.svg">

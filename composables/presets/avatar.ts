@@ -14,6 +14,8 @@ const avatar = {
     'xl': 'h-14 w-14 text-xl',
     '2xl': 'h-16 w-16 text-2xl',
     '3xl': 'h-20 w-20 text-3xl',
+    '4xl': 'h-24 w-24 text-3xl',
+
   },
   chip: {
     base: 'absolute rounded-full ring-1 ring-white dark:ring-gray-900 flex items-center justify-center text-white dark:text-gray-900 font-medium',
