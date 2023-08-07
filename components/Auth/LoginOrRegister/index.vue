@@ -29,15 +29,15 @@ const destination = props.action === 'login' ? 'register' : 'login'
         How do I get started blazein dolor at?
       </p>
 
-      <UButton icon="i-devicon-google" size="xl" variant="solid" label="Sign in with Google" block class="text-sm font-light bg-[#FFFFFF33]" />
+      <UButton icon="i-devicon-google" size="xl" variant="solid" label="Sign in with Google" block class="text-sm font-light !bg-[#FFFFFF33] hover:!bg-[#FFFFFF50] transition" />
 
       <p class="text-sm text-gray-400">
         or
       </p>
 
-      <UInput icon="i-ph-user-fill" size="xl" variant="none" placeholder="Username or Email" class="bg-[#ffffff1a] !text-xs py-4" />
-      <UInput icon="i-ph-lock" size="xl" variant="none" placeholder="Password" class="bg-[#ffffff1a] !text-xs py-4" />
-      <UInput v-if="action === 'register'" icon="i-ph-lock" size="xl" variant="none" placeholder="Confirm Password" class="bg-[#ffffff1a] !text-xs py-4" />
+      <UInput icon="i-ph-user-fill" size="xl" variant="none" placeholder="Username or Email" class="!bg-[#ffffff1a] !text-xs py-4" />
+      <UInput icon="i-ph-lock" size="xl" variant="none" placeholder="Password" class="!bg-[#ffffff1a] !text-xs py-4" />
+      <UInput v-if="action === 'register'" icon="i-ph-lock" size="xl" variant="none" placeholder="Confirm Password" class="!bg-[#ffffff1a] !text-xs py-4" />
 
       <div class="flex items-center justify-between text-sm">
         <UCheckbox label="Remember me" />
