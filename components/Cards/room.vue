@@ -24,10 +24,10 @@ withDefaults(defineProps<Props>(), {
     </div>
     <div class="relative w-full ">
       <div class="relative overflow-hidden rounded-2xl w-full after:content-[''] after:absolute after:inset-0 after:bg-black/60 ">
-        <img class="w-full h-full   object-cover rounded-[20px] " src="../../assets/testimage.svg">
+        <img class="w-full h-full object-cover rounded-[20px] " src="../../assets/testimage.svg">
       </div>
-      <UAvatarGroup class="absolute bottom-4 right-1 px-3" size="sm" max="4">
-        <UAvatar class=" border border-1 border-solid border-blue-500 !border-opacity-[0.4]" src="https://avatars.githubusercontent.com/u/739984?v=4" alt="benjamincanac"  />
+      <UAvatarGroup class="absolute bottom-4 right-1 px-3 -space-x-2" size="sm" :max="4">
+        <UAvatar class=" border border-1 border-solid border-blue-500 !border-opacity-[0.4]" src="https://avatars.githubusercontent.com/u/739984?v=4" alt="benjamincanac" />
         <UAvatar class=" border border-1 border-solid border-blue-500 !border-opacity-[0.4]" src="https://avatars.githubusercontent.com/u/904724?v=4" alt="Atinux" />
         <UAvatar class=" border border-1 border-solid border-blue-500 !border-opacity-[0.4]" src="https://avatars.githubusercontent.com/u/7547335?v=4" alt="smarroufin" />
         <UAvatar class=" border border-1 border-solid border-blue-500 !border-opacity-[0.4]" src="https://avatars.githubusercontent.com/u/739984?v=4" alt="benjamincanac" />

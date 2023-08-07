@@ -5,5 +5,9 @@
 }
 
 html, body, #lefine {
-  @apply h-full w-full
+  @apply h-full w-full dark:bg-black
+}
+
+.page {
+  @apply w-full h-full mx-auto max-w-[1500px];
 }

@@ -13,13 +13,13 @@ const links: VerticalNavigationLink[] = [{
   to: '/community',
 }, {
   label: '',
-  icon: 'i-heroicons-command-line',
-  to: '/',
+  icon: 'i-ph-chat-teardrop-dots',
+  to: '/messages',
 }]
 </script>
 
 <template>
-  <div class="hidden md:block dark:bg-black !bg-opacity-50 flex h-full items-center flex-col">
+  <div class="sticky top-16 hidden md:flex items-center flex-col">
     <span class="sr-only h-12 w-12" />
     <UVerticalNavigation
       :ui="{

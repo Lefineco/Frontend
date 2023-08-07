@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const preference = ['system', 'light', 'dark', 'sepia']
+// const preference = ['system', 'light', 'dark', 'sepia']
 const data = [
   { name: 'Berke Kayada' },
   { name: 'Furkan Erdoğan' },
@@ -9,7 +9,7 @@ const data = [
 </script>
 
 <template>
-  <div class="w-full">
+  <div class="page">
     <div class="p-5 w-full">
       <HomeBanner />
     </div>
