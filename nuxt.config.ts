@@ -19,6 +19,14 @@ export default defineNuxtConfig({
     '@productdevbook/motion/nuxt',
     '@nuxtjs/supabase',
   ],
+  vite: {
+    vue: {
+      script: {
+        defineModel: true,
+        propsDestructure: true,
+      },
+    },
+  },
   pinia: {
     autoImports: ['defineStore', ['defineStore', 'definePiniaStore']],
   },

@@ -15,16 +15,11 @@ async function submit() {
 }
 
 const escaped = (html: string) => `data:text/html;charset=utf-8,${escape(JSON.stringify(html))}`
-
-computed(() => {
-  if (iframe.value && result.value)
-    iframe.value.srcdoc = result.value
-})
 </script>
 
 <template>
   <div class="w-full h-full flex flex-col gap-2 justify-center items-center">
-    <iframe ref="iframe" class="h-96 w-96" src="javascript:void(0);" frameborder="0" />
+    <iframe ref="iframe" class="h-96 w-96" :srcdoc="JSON.stringify(result.value)" frameborder="0" />
     <UInput v-model="url" />
     <UButton label="submit" @click="submit()" />
   </div>

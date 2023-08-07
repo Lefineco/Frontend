@@ -15,6 +15,8 @@ withDefaults(defineProps<Props>(), {
   source: '',
   viewers: '',
 })
+
+const crateVideoModal = ref(false)
 </script>
 
 <template>
@@ -30,7 +32,10 @@ withDefaults(defineProps<Props>(), {
       <p class="text-sm text-gray-500 font-bold">
         Watch alone or share with loved ones
       </p>
-      <UButton icon="i-ph-plus">Start Follow</UButton>
+      <UButton icon="i-ph-plus" @click="crateVideoModal = !crateVideoModal">
+        Start Follow
+      </UButton>
+      <CreateVideo v-model="crateVideoModal" />
     </div>
   </div>
 </template>
