@@ -19,7 +19,7 @@ const links: VerticalNavigationLink[] = [{
 </script>
 
 <template>
-  <div class="dark:bg-black !bg-opacity-50 flex h-full items-center flex-col">
+  <div class="hidden md:block dark:bg-black !bg-opacity-50 flex h-full items-center flex-col">
     <span class="sr-only h-12 w-12" />
     <UVerticalNavigation
       :ui="{

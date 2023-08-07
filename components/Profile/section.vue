@@ -1,0 +1,34 @@
+<script setup lang="ts">
+
+</script>
+
+<template>
+  <div class="w-full ">
+    <div class="relative w-full h-60 flex flex-col items-start justify-start  rounded-[20px] ">
+      <div class="relative overflow-hidden rounded-2xl w-full after:content-[''] after:absolute after:inset-0 after:bg-black/60 ">
+        <img class="h-full w-full object-cover rounded-[20px]" src="../../assets/testimage.svg">
+      </div>
+    </div>
+    <div class="-mt-6 w-full  flex justify-between items-center px-12">
+      <div class="flex  items-center justify-center gap-4">
+        <div class="bg-black rounded-full flex items-center justify-center p-1 z-10">
+          <UAvatar src="https://avatars.githubusercontent.com/u/739984?v=4" size="4xl" />
+        </div>
+        <div class="flex flex-col gap-2 mt-5">
+          <span class="text-lg">Berke</span>
+          <span class="text-xs text-gray-500 font-bold">@Zort</span>
+        </div>
+      </div>
+      <div class="flex gap-2">
+        <UButton variant="gray" color="white">
+          Cancel
+        </UButton>
+        <UButton>Save All</UButton>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+
+</style>

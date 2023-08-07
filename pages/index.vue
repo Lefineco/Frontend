@@ -5,8 +5,6 @@ const data = [
   { name: 'Furkan Erdoğan' },
   { name: 'Cansu Altun' },
   { name: 'Fatih Yıldız' },
-  { name: 'Emin Mehmet' },
-  { name: 'Emin Mehmet' },
 ]
 </script>
 
@@ -15,44 +13,44 @@ const data = [
     <div class="p-5 w-full">
       <HomeBanner />
     </div>
-    <div class="p-5 w-full">
-      <div class="flex justify-between">
-        <p class="text-2xl">
+    <div class="p-5  w-full">
+      <div class="flex justify-between items-start">
+        <p class="text-md md:text-xl">
           Popular Live Rooms
         </p>
         <UButton trailing icon="i-ph-arrow-right">
           Daha Fazla
         </UButton>
       </div>
-      <div class="py-7 grid grid-cols-6  gap-4">
+      <div class="py-7 grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-4">
         <CardsRoom v-for="(item, idx) in data" :key="idx" :name="item.name" />
       </div>
     </div>
 
     <div class="p-5 w-full">
-      <div class="flex justify-between">
-        <p class="text-2xl">
+      <div class="flex justify-between items-start">
+        <p class="text-md md:text-xl">
           Recommended Lefiners
         </p>
         <UButton trailing icon="i-ph-arrow-right">
           Daha Fazla
         </UButton>
       </div>
-      <div class="py-7  grid grid-cols-4   gap-4">
+      <div class="py-7 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4  gap-4">
         <CardsProfile />
       </div>
     </div>
 
-    <div class="p-5 w-full">
-      <div class="flex justify-between">
-        <p class="text-2xl">
+    <div class="p-5  w-full">
+      <div class="flex justify-between items-start">
+        <p class="text-md md:text-xl break-words tracking-wide">
           Recommended Videos
         </p>
         <UButton trailing icon="i-ph-arrow-right">
           Daha Fazla
         </UButton>
       </div>
-      <div class="py-7  grid grid-cols-4   gap-4">
+      <div class=" py-7 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-4">
         <CardsVideos />
       </div>
     </div>
