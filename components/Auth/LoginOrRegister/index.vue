@@ -36,8 +36,8 @@ const destination = props.action === 'login' ? 'register' : 'login'
       </p>
 
       <UInput icon="i-ph-user-fill" size="xl" variant="none" placeholder="Username or Email" class="!bg-[#ffffff1a] !text-xs py-4" />
-      <UInput icon="i-ph-lock" size="xl" variant="none" placeholder="Password" class="!bg-[#ffffff1a] !text-xs py-4" />
-      <UInput v-if="action === 'register'" icon="i-ph-lock" size="xl" variant="none" placeholder="Confirm Password" class="!bg-[#ffffff1a] !text-xs py-4" />
+      <UInputPassword size="xl" variant="none" placeholder="Password" class="!bg-[#ffffff1a] !text-xs py-4" />
+      <UInputPassword v-if="action === 'register'" size="xl" variant="none" placeholder="Confirm Password" class="!bg-[#ffffff1a] !text-xs py-4" />
 
       <div class="flex items-center justify-between text-sm">
         <UCheckbox label="Remember me" />
