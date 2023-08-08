@@ -4,6 +4,25 @@
   @apply font-['Manrope',sans-serif]
 }
 
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: white; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: transparent; 
+}
+
 html, body, #lefine {
   @apply h-full w-full dark:bg-black
 }
