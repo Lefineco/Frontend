@@ -10,7 +10,7 @@ const links: VerticalNavigationLink[] = [{
 }, {
   label: '',
   icon: 'i-ph-users-three-light',
-  to: '/community',
+  to: '/community-feeds',
 }, {
   label: '',
   icon: 'i-heroicons-command-line',
