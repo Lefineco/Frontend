@@ -1,15 +1,17 @@
 <script setup lang="ts">
-import type Props from './interface'
+import type { Form } from '@nuxthq/ui/dist/runtime/types'
+import type { Schema } from './schema'
 
-const props = withDefaults(defineProps<Props>(), {
-  action: 'login',
+const form = ref<Form<Schema>>()
+const values = ref<Partial<Schema>>({
+  email: undefined,
+  password: undefined,
+  passwordConfirm: undefined,
 })
-
-const destination = props.action === 'login' ? 'register' : 'login'
 </script>
 
 <template>
-  <div class="relative w-full h-full flex items-center justify-center bg-black text-white z-0">
+  <UForm ref="form" :state="values" class="relative w-full h-full flex items-center justify-center bg-black text-white z-0">
     <img src="~assets/auth-background.png" class="absolute top-0 right-0 left-0 w-full -z-10">
     <NuxtLink to="/" class="mx-auto absolute top-20">
       <img src="~assets/logo.svg">
@@ -17,11 +19,11 @@ const destination = props.action === 'login' ? 'register' : 'login'
     <div class="w-1/4 flex flex-col gap-4">
       <div class="flex gap-2 items-end">
         <h1 class="text-3xl font-bold capitalize">
-          {{ action }}
+          Register
         </h1>
         <span class="text-sm text-gray-400">or</span>
-        <NuxtLink :to="destination" class="text-[#BFA8FC] underline font-semibold capitalize">
-          {{ destination }}
+        <NuxtLink to="register" class="text-[#BFA8FC] underline font-semibold capitalize">
+          Login
         </NuxtLink>
       </div>
 
@@ -35,9 +37,15 @@ const destination = props.action === 'login' ? 'register' : 'login'
         or
       </p>
 
-      <UInput icon="i-ph-user-fill" size="xl" variant="none" placeholder="Username or Email" class="!bg-[#ffffff1a] !text-xs py-4" />
-      <UInputPassword size="xl" variant="none" placeholder="Password" class="!bg-[#ffffff1a] !text-xs py-4" />
-      <UInputPassword v-if="action === 'register'" size="xl" variant="none" placeholder="Confirm Password" class="!bg-[#ffffff1a] !text-xs py-4" />
+      <UFormGroup name="email">
+        <UInput v-model="values.email" icon="i-ph-user-fill" size="xl" variant="none" placeholder="Username or Email" class="!bg-[#ffffff1a] !text-xs py-4" />
+      </UFormGroup>
+      <UFormGroup name="password">
+        <UInputPassword v-model="values.password" size="xl" variant="none" placeholder="Password" class="!bg-[#ffffff1a] !text-xs py-4" />
+      </UFormGroup>
+      <UFormGroup name="passwordConfirm">
+        <UInputPassword size="xl" variant="none" placeholder="Confirm Password" class="!bg-[#ffffff1a] !text-xs py-4" />
+      </UFormGroup>
 
       <div class="flex items-center justify-between text-sm">
         <UCheckbox label="Remember me" />
@@ -47,7 +55,6 @@ const destination = props.action === 'login' ? 'register' : 'login'
       </div>
 
       <UButton size="xl" variant="solid" label="Sign In" block class="font-light" />
-      <UButton size="xl" variant="solid" color="black" label="Sign Up" block class="font-light" />
     </div>
-  </div>
+  </UForm>
 </template>
