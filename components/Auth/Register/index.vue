@@ -12,7 +12,6 @@ const values = ref<Partial<Schema>>({
 
 <template>
   <UForm ref="form" :state="values" class="relative w-full h-full flex items-center justify-center bg-black text-white z-0">
-    <img src="~assets/auth-background.png" class="absolute top-0 right-0 left-0 w-full -z-10">
     <NuxtLink to="/" class="mx-auto absolute top-20">
       <img src="~assets/logo.svg">
     </NuxtLink>
