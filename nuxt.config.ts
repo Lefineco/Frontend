@@ -16,8 +16,9 @@ export default defineNuxtConfig({
     '@nuxthq/ui',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
-    '@productdevbook/motion/nuxt',
     '@nuxtjs/supabase',
+    '@hypernym/nuxt-anime',
+    '@vueuse/nuxt',
   ],
   vite: {
     vue: {

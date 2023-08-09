@@ -18,7 +18,7 @@ const data = [
         <p class="text-md md:text-xl">
           Popular Live Rooms
         </p>
-        <UButton trailing icon="i-ph-arrow-right">
+        <UButton trailing variant="secondary" icon="i-ph-arrow-right">
           Daha Fazla
         </UButton>
       </div>
@@ -32,7 +32,7 @@ const data = [
         <p class="text-md md:text-xl">
           Recommended Lefiners
         </p>
-        <UButton trailing icon="i-ph-arrow-right">
+        <UButton trailing variant="secondary" icon="i-ph-arrow-right">
           Daha Fazla
         </UButton>
       </div>
@@ -46,7 +46,7 @@ const data = [
         <p class="text-md md:text-xl break-words tracking-wide">
           Recommended Videos
         </p>
-        <UButton trailing icon="i-ph-arrow-right">
+        <UButton trailing variant="secondary" icon="i-ph-arrow-right">
           Daha Fazla
         </UButton>
       </div>

@@ -15,7 +15,7 @@
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: white; 
+  @apply bg-white/10
 }
 
 /* Handle on hover */
@@ -28,5 +28,5 @@ html, body, #lefine {
 }
 
 .page {
-  @apply w-full h-full mx-auto max-w-[1500px];
+  @apply w-full h-full mx-auto max-w-[1500px] pt-14;
 }
