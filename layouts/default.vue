@@ -12,9 +12,6 @@ onMounted(() => {
     height: () => {
       return $anime.random(0, 1000)
     },
-    width: () => {
-      return $anime.random(0, 1000)
-    },
   })
 
   $anime({
@@ -49,7 +46,7 @@ onMounted(() => {
     @apply inset-0 absolute overflow-hidden;
 
     .blob {
-      @apply absolute bg-primary-500/5 rounded-full w-56;
+      @apply absolute bg-primary-500/5 aspect-[1/1] rounded-full w-auto;
     }
   }
 </style>

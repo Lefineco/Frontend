@@ -1,12 +1,12 @@
 const input = {
   wrapper: 'relative',
-  base: 'relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0',
+  base: 'relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none',
   rounded: 'rounded-md',
   placeholder: 'placeholder-gray-400 dark:placeholder-gray-500',
   size: {
     '2xs': 'text-xs',
     'xs': 'text-xs',
-    'sm': 'text-sm',
+    'sm': 'text-xs',
     'md': 'text-md',
     'lg': 'text-md',
     'xl': 'text-xl',
@@ -21,9 +21,9 @@ const input = {
   },
   padding: {
     '2xs': 'px-2 py-1',
-    'xs': 'px-2.5 py-1.5',
-    'sm': 'px-2.5 py-1.5',
-    'md': 'px-3 py-2',
+    'xs': 'px-2.5 py-2',
+    'sm': 'px-2.5 py-2.5',
+    'md': 'px-3 py-2.5',
     'lg': 'px-3.5 py-2.5',
     'xl': 'px-4 py-2.5',
   },
@@ -49,17 +49,17 @@ const input = {
   },
   color: {
     white: {
-      solid: 'shadow-sm bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:!bg-transparent focus:ring-primary-500 dark:focus:ring-primary-400',
-      outline: 'shadow-sm bg-transparent text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400',
+      solid: 'shadow-sm bg-white/10 text-gray-900 dark:text-white focus:ring-2 focus:!bg-transparent focus:ring-primary-500 focus:ring-opacity-30 border border-transparent focus:border-primary-500',
+      outline: 'shadow-sm bg-transparent text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500',
     },
     gray: {
-      solid: 'shadow-sm bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:!bg-transparent focus:ring-primary-500 dark:focus:ring-primary-400',
+      solid: 'shadow-sm bg-white/10 text-gray-900 dark:text-white focus:ring-2 focus:!bg-transparent focus:ring-primary-500 dark:focus:ring-primary-400',
       outline: 'shadow-sm bg-transparent text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400',
     },
   },
 
   variant: {
-    solid: 'shadow-sm bg-gray-100 dark:bg-gray-800 text-black dark:text-white focus:!bg-transparent focus:ring-2 focus:ring-{color}-500 dark:focus:ring-{color}-400',
+    solid: 'shadow-sm bg-white/10 text-black dark:text-white focus:!bg-transparent focus:ring-{color}-500 focus:border-{color}-500',
     outline: 'shadow-sm bg-transparent text-gray-900 dark:text-white focus:ring-2 focus:ring-{color}-500 dark:focus:ring-{color}-400',
     none: 'bg-transparent focus:ring-0 focus:shadow-none',
   },

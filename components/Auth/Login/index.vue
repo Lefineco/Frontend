@@ -10,10 +10,9 @@ const values = ref<Partial<Schema>>({
 </script>
 
 <template>
-  <UForm ref="form" :state="values" class="relative w-full h-full flex items-center justify-center bg-black text-white z-0">
-    <img src="~assets/auth-background.png" class="absolute top-0 right-0 left-0 w-full -z-10">
-    <NuxtLink to="/" class="mx-auto absolute top-20">
-      <img src="~assets/logo.svg">
+  <UForm ref="form" :state="values" class="relative w-full h-full flex flex-col items-center justify-center bg-black text-white z-0">
+    <NuxtLink to="/" class="mx-auto pb-24">
+      <img src="~assets/logo.svg" class="h-8">
     </NuxtLink>
     <div class="w-1/4 flex flex-col gap-4">
       <div class="flex gap-2 items-end">
@@ -30,27 +29,27 @@ const values = ref<Partial<Schema>>({
         How do I get started blazein dolor at?
       </p>
 
-      <UButton icon="i-devicon-google" size="xl" variant="solid" label="Sign in with Google" block class="text-sm font-light !bg-[#FFFFFF33] hover:!bg-[#FFFFFF50] transition" />
+      <UButton icon="i-devicon-google" label="Sign in with Google" variant="secondary" block />
 
       <p class="text-sm text-gray-400">
         or
       </p>
 
       <UFormGroup name="email">
-        <UInput v-model="values.email" icon="i-ph-user-fill" size="xl" variant="none" placeholder="Username or Email" class="!bg-[#ffffff1a] !text-xs py-4" />
+        <UInput v-model="values.email" icon="i-ph-user-fill" placeholder="Username or Email" />
       </UFormGroup>
       <UFormGroup name="password">
-        <UInputPassword v-model="values.password" size="xl" variant="none" placeholder="Password" class="!bg-[#ffffff1a] !text-xs py-4" />
+        <UInputPassword v-model="values.password" placeholder="Password" />
       </UFormGroup>
 
       <div class="flex items-center justify-between text-sm">
         <UCheckbox label="Remember me" />
-        <NuxtLink to="/auth/forgot" class="text-[#BFA8FC]">
+        <NuxtLink to="/auth/forgot" class="text-primary-500">
           Forgot Password?
         </NuxtLink>
       </div>
 
-      <UButton size="xl" variant="solid" label="Sign In" block class="font-light" />
+      <UButton variant="solid" label="Sign In" block />
     </div>
   </UForm>
 </template>

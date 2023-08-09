@@ -11,7 +11,7 @@ function togglePassword() {
       <UButton
         color="gray"
         variant="link"
-        :icon="showPassword ? 'i-ph-eye-slash' : 'i-ph-eye'"
+        :icon="showPassword ? 'i-ph-eye-slash-fill' : 'i-ph-eye-fill'"
         :padded="false"
         @click="togglePassword"
       />
