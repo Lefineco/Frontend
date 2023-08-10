@@ -14,9 +14,9 @@ const values = ref<Partial<LoginSchema>>({
   password: undefined,
 })
 
-function onSubmit() {
+async function onSubmit() {
+  await form.value!.validate()
   makeAsyncOperation(async () => {
-    await form.value!.validate()
     await signIn(values.value as LoginSchema)
   })
 }
@@ -24,10 +24,10 @@ function onSubmit() {
 
 <template>
   <UForm ref="form" :schema="loginSchema" :state="values" class="relative w-full h-full flex flex-col items-center justify-center bg-black text-white z-0" @submit.prevent="onSubmit">
-    <NuxtLink to="/" class="mx-auto pb-24">
-      <img src="~assets/logo.svg" class="h-8">
+    <NuxtLink to="/" class="mx-auto absolute top-20">
+      <img src="~assets/logo.svg">
     </NuxtLink>
-    <div class="w-1/4 flex flex-col gap-4">
+    <div class="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 px-4 flex flex-col gap-4">
       <div class="flex gap-2 items-end">
         <h1 class="text-3xl font-bold capitalize">
           Login
