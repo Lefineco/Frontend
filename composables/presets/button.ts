@@ -9,6 +9,7 @@ const button = {
     'md': 'text-sm',
     'lg': 'text-md',
     'xl': 'text-base',
+    'custom': '',
   },
   gap: {
     '2xs': 'gap-x-1',
@@ -17,6 +18,7 @@ const button = {
     'md': 'gap-x-2',
     'lg': 'gap-x-2.5',
     'xl': 'gap-x-2.5',
+    'custom': '',
   },
   padding: {
     '2xs': 'px-3 py-1',
@@ -25,6 +27,8 @@ const button = {
     'md': 'px-4 py-2',
     'lg': 'px-4 py-2.5',
     'xl': 'px-4 py-2.5',
+    'custom': '',
+
   },
   square: {
     '2xs': 'p-1',
@@ -33,6 +37,8 @@ const button = {
     'md': 'p-2',
     'lg': 'p-2.5',
     'xl': 'p-2.5',
+    'custom': '',
+
   },
   color: {
     white: {

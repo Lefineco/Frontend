@@ -15,6 +15,7 @@ const avatar = {
     '2xl': 'h-16 w-16 text-2xl',
     '3xl': 'h-20 w-20 text-3xl',
     '4xl': 'h-24 w-24 text-3xl',
+    'custom': 'h-24 w-24 text-3xl',
 
   },
   chip: {
