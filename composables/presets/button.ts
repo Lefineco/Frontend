@@ -9,6 +9,7 @@ const button = {
     'md': 'text-sm',
     'lg': 'text-md',
     'xl': 'text-base',
+    'custom': '',
   },
   gap: {
     '2xs': 'gap-x-1',
@@ -17,6 +18,7 @@ const button = {
     'md': 'gap-x-2',
     'lg': 'gap-x-2.5',
     'xl': 'gap-x-2.5',
+    'custom': '',
   },
   padding: {
     '2xs': 'px-3 py-1',
@@ -33,6 +35,8 @@ const button = {
     'md': 'p-2',
     'lg': 'p-2.5',
     'xl': 'p-2.5',
+    'custom': '',
+
   },
   variant: {
     primary: 'shadow-sm text-white dark:text-white bg-{color}-500 hover:bg-{color}-600 focus-visible:outline focus-visible:outline-2',
