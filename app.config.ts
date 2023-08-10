@@ -5,7 +5,7 @@ import presets from '~/composables/presets'
 export default defineAppConfig({
   // @ts-ignore
   ui: {
-    primary: 'indigo',
+    primary: 'violet',
     gray: 'zinc',
     ...presets,
   },

@@ -4,10 +4,29 @@
   @apply font-['Manrope',sans-serif]
 }
 
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-white/10
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: transparent; 
+}
+
 html, body, #lefine {
   @apply h-full w-full dark:bg-black
 }
 
 .page {
-  @apply w-full h-full mx-auto max-w-[1500px];
+  @apply w-full h-full mx-auto max-w-[1500px] pt-14;
 }

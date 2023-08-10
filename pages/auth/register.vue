@@ -5,7 +5,7 @@ definePageMeta({
 </script>
 
 <template>
-  <AuthLoginOrRegister action="register" />
+  <AuthRegister />
 </template>
 
 <style scoped>
