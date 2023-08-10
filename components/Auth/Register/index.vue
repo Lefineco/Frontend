@@ -45,14 +45,14 @@ async function onSubmit() {
         or
       </p>
 
-      <UFormGroup name="email">
+      <UFormGroup name="email" size="xs">
         <UInput v-model="values.email" icon="i-ph-user-fill" placeholder="Username or Email" />
       </UFormGroup>
-      <UFormGroup name="password">
+      <UFormGroup name="password" size="xs">
         <UInputPassword v-model="values.password" placeholder="Password" />
       </UFormGroup>
-      <UFormGroup name="passwordConfirm">
-        <UInputPassword placeholder="Confirm Password" />
+      <UFormGroup name="passwordConfirm" size="xs">
+        <UInputPassword v-model="values.passwordConfirm" placeholder="Confirm Password" />
       </UFormGroup>
 
       <div class="flex items-center justify-between text-sm">
