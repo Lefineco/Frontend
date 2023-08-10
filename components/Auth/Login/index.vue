@@ -1,16 +1,25 @@
 <script setup lang="ts">
 import type { Form } from '@nuxthq/ui/dist/runtime/types'
-import type { Schema } from './schema'
+import { loginSchema } from './schema'
+import type { LoginSchema } from './schema'
+import useAuth from '@/composables/auth'
 
-const form = ref<Form<Schema>>()
-const values = ref<Partial<Schema>>({
+const { signIn } = useAuth()
+
+const form = ref<Form<LoginSchema>>()
+const values = ref<Partial<LoginSchema>>({
   email: undefined,
   password: undefined,
 })
+
+async function onSubmit() {
+  await form.value!.validate()
+  signIn(values.value as LoginSchema)
+}
 </script>
 
 <template>
-  <UForm ref="form" :state="values" class="relative w-full h-full flex flex-col items-center justify-center bg-black text-white z-0">
+  <UForm ref="form" :schema="loginSchema" :state="values" class="relative w-full h-full flex flex-col items-center justify-center bg-black text-white z-0" @submit.prevent="onSubmit">
     <NuxtLink to="/" class="mx-auto pb-24">
       <img src="~assets/logo.svg" class="h-8">
     </NuxtLink>
@@ -49,7 +58,7 @@ const values = ref<Partial<Schema>>({
         </NuxtLink>
       </div>
 
-      <UButton variant="solid" label="Sign In" block />
+      <UButton label="Sign In" block type="submit" />
     </div>
   </UForm>
 </template>

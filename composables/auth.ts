@@ -1,9 +1,7 @@
 import type { AuthError } from '@supabase/supabase-js'
 
-interface ILoginOrRegisterPayload {
-  email: string
-  password: string
-}
+import type { LoginSchema } from 'components/Auth/Login/schema'
+import type { RegisterSchema } from 'components/Auth/Register/schema'
 
 function useAuth() {
   const supabase = useSupabaseClient()
@@ -29,7 +27,7 @@ function useAuth() {
     color: 'green',
   })
 
-  const signIn = async (payload: ILoginOrRegisterPayload) => {
+  const signIn = async (payload: LoginSchema) => {
     const { error } = await supabase.auth.signInWithPassword(payload)
 
     if (error) {
@@ -42,7 +40,7 @@ function useAuth() {
     }
   }
 
-  const signUp = async (payload: ILoginOrRegisterPayload) => {
+  const signUp = async (payload: RegisterSchema) => {
     const { error } = await supabase.auth.signUp(payload)
 
     if (error) {
