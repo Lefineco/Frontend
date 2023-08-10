@@ -7,6 +7,7 @@ function useAuth() {
   const supabase = useSupabaseClient()
   const toast = useToast()
   const router = useRouter()
+  const loading = ref(false)
 
   const errorToast = (error: AuthError | null) => {
     return toast.add({
@@ -28,6 +29,7 @@ function useAuth() {
   })
 
   const signIn = async (payload: LoginSchema) => {
+    loading.value = true
     const { error } = await supabase.auth.signInWithPassword(payload)
 
     if (error) {
@@ -38,9 +40,11 @@ function useAuth() {
       successToast('Signed in successfully!')
       router.push('/')
     }
+    loading.value = false
   }
 
   const signUp = async (payload: RegisterSchema) => {
+    loading.value = true
     const { error } = await supabase.auth.signUp(payload)
 
     if (error) {
@@ -51,6 +55,7 @@ function useAuth() {
       successToast('Signed up successfully!')
       router.push('/')
     }
+    loading.value = false
   }
 
   return { signIn, signUp }

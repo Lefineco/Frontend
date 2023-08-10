@@ -3,8 +3,10 @@ import type { Form } from '@nuxthq/ui/dist/runtime/types'
 import { registerSchema } from './schema'
 import type { RegisterSchema } from './schema'
 import useAuth from '@/composables/auth'
+import useAsync from '@/composables/async'
 
 const { signUp } = useAuth()
+const { loading, makeAsyncOperation } = useAsync()
 
 const form = ref<Form<RegisterSchema>>()
 const values = ref<Partial<RegisterSchema>>({
@@ -13,9 +15,11 @@ const values = ref<Partial<RegisterSchema>>({
   passwordConfirm: undefined,
 })
 
-async function onSubmit() {
-  await form.value!.validate()
-  signUp(values.value as RegisterSchema)
+function onSubmit() {
+  makeAsyncOperation(async () => {
+    await form.value!.validate()
+    await signUp(values.value as RegisterSchema)
+  })
 }
 </script>
 
@@ -62,7 +66,7 @@ async function onSubmit() {
         </NuxtLink>
       </div>
 
-      <UButton label="Sign Up" block type="submit" />
+      <UButton label="Sign Up" block type="submit" :loading="loading" />
     </div>
   </UForm>
 </template>
