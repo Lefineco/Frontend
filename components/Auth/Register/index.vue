@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Form } from '@nuxthq/ui/dist/runtime/types'
+import type { Form } from 'node_modules/@nuxthq/ui/dist/runtime/types'
 import type { Schema } from './schema'
 
 const form = ref<Form<Schema>>()
@@ -11,7 +11,7 @@ const values = ref<Partial<Schema>>({
 </script>
 
 <template>
-  <UForm ref="form" :state="values" class="relative w-full h-full flex items-center justify-center bg-black text-white z-0">
+  <UForm ref="form" :state="values" class="relative w-full h-full flex items-center justify-center text-white z-0">
     <NuxtLink to="/" class="mx-auto absolute top-20">
       <img src="~assets/logo.svg">
     </NuxtLink>
