@@ -14,16 +14,25 @@ defineProps<Props>()
 </script>
 
 <template>
-  <div v-if="previewData?.pending" class="flex gap-2 rounded-md overflow-hidden bg-white/5">
-    <img class="w-24 aspect-video object-cover" :src="previewData?.data?.image" :alt="previewData?.data?.title">
-    <div class="flex flex-col gap-1 py-1">
-      <div class="text-xl truncate">
-        {{ previewData?.data?.title }}
+  <div class="flex items-center gap-2 rounded-md overflow-hidden bg-white/5">
+    <template v-if="previewData?.data">
+      <img class="w-24 aspect-video object-cover bg-white/5" :src="previewData?.data?.image" :alt="previewData?.data?.title">
+      <div class="flex flex-col gap-1 py-1">
+        <div class="text-lg truncate">
+          {{ previewData?.data?.title }}
+        </div>
+        <div class="text-sm opacity-50 w-full">
+          {{ previewData?.data?.description }}
+        </div>
       </div>
-      <div class="text-sm opacity-50 w-full">
-        {{ previewData?.data?.description }}
+    </template>
+    <template v-else>
+      <USkeleton class="w-24 h-24 aspect-video" />
+      <div class="space-y-2">
+        <USkeleton :ui="{ background: 'bg-white/5' }" class="h-4 w-[250px]" />
+        <USkeleton :ui="{ background: 'bg-white/5' }" class="h-4 w-[200px]" />
       </div>
-    </div>
+    </template>
   </div>
 </template>
 

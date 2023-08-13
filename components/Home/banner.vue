@@ -33,7 +33,7 @@ const crateVideoModal = ref(false)
         Watch alone or share with loved ones
       </p>
       <UButton icon="i-ph-plus" size="xs" class="backdrop-blur-sm" variant="secondary" @click="crateVideoModal = !crateVideoModal">
-        Start Follow
+        Create Room
       </UButton>
       <CreateVideo v-model="crateVideoModal" />
     </div>

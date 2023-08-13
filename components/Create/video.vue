@@ -48,7 +48,7 @@ function urlPreview(url: string) {
             />
           </div>
         </template>
-        <CreatePreview v-if="deboundedUrl" class="mb-4" :preview-data="urlPreview(deboundedUrl)" />
+        <CreatePreview v-if="url.length" class="mb-4" :preview-data="urlPreview(deboundedUrl)" />
         <div class="flex flex-col gap-4">
           <UFormGroup name="name">
             <UInput placeholder="Room Name" />
