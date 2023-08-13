@@ -23,7 +23,7 @@ async function onSubmit() {
 </script>
 
 <template>
-  <UForm ref="form" :schema="loginSchema" :state="values" class="relative w-full h-full flex flex-col items-center justify-center bg-black text-white z-0" @submit.prevent="onSubmit">
+  <UForm ref="form" :schema="loginSchema" :state="values" class="relative w-full h-full flex flex-col items-center justify-center text-white z-0" @submit.prevent="onSubmit">
     <NuxtLink to="/" class="mx-auto absolute top-20">
       <img src="~assets/logo.svg">
     </NuxtLink>
