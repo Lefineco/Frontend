@@ -28,5 +28,5 @@ html, body, #lefine {
 }
 
 .page {
-  @apply w-full h-full mx-auto max-w-[1500px] pt-14;
+  @apply w-full h-full mx-auto max-w-[1500px] pt-20;
 }

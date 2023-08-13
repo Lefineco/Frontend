@@ -13,25 +13,46 @@ const data2 = [
 </script>
 
 <template>
-  <div class="grid grid-cols-12">
-    <div class="p-5 col-span-8 max-w-7xl mx-auto space-y-6">
-      <Feeds
-        v-for="(item, idx) in data2"
-        :key="idx"
-        :name="item.name"
-        :create-date="item.createDate"
-      />
-    </div>
-    <div class="col-span-3 flex flex-col space-y-4">
-      <div class="flex flex-col space-y-2">
-        <h2 class="font-bold font-base">
-          Recomennded Lefiners
-        </h2>
-        <CardsProfile
-          v-for="(item, idx) in data"
-          :key="idx"
-          :name="item.name"
-        />
+  <div class="page">
+    <div class="grid grid-cols-12 gap-12">
+      <div class="col-span-12 lg:col-span-9 flex flex-col gap-8">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h1 class="font-bold text-xl">
+              Community Feeds
+            </h1>
+            <div class="flex items-center justify-between gap-2">
+              <UButton variant="secondary">
+                All
+              </UButton>
+              <UButton variant="secondary" icon="i-ph-funnel-simple-bold" />
+            </div>
+          </div>
+          <FeedsFormCreate />
+        </div>
+
+        <div class="flex flex-col gap-8">
+          <CardsFeed
+            v-for="(item, idx) in data2"
+            :key="idx"
+            :name="item.name"
+            :create-date="item.createDate"
+          />
+        </div>
+      </div>
+      <div class="col-span-12 lg:col-span-3 flex flex-col">
+        <div class="flex flex-col">
+          <h2 class="font-bold text-xl mb-4">
+            Recommended Lefiners
+          </h2>
+          <div class="flex flex-col gap-8">
+            <CardsProfile
+              v-for="(item, idx) in data"
+              :key="idx"
+              :name="item.name"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </div>
