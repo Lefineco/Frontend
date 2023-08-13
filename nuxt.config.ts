@@ -48,5 +48,6 @@ export default defineNuxtConfig({
   experimental: {
     typedPages: true,
     watcher: 'parcel',
+    typescriptBundlerResolution: true,
   },
 })
