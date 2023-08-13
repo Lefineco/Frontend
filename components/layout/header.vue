@@ -3,7 +3,7 @@ import logo from '@/assets/logo.svg'
 </script>
 
 <template>
-  <div class="bg-black/5 border-b border-white/5 shadow-sm backdrop-blur-md fixed inset-x-0 top-0 z-10 flex justify-between items-center px-6 py-3">
+  <div class="bg-black/5 border-b border-white/5 shadow-sm backdrop-blur-md fixed inset-x-0 top-0 z-10 flex justify-between items-center px-6 py-3 h-16">
     <div class="flex items-center gap-3">
       <img :src="logo" class="h-9">
     </div>
