@@ -4,7 +4,7 @@
 
 <template>
   <div class="w-full ">
-    <div class="relative w-full max-sm:h-full h-60 flex flex-col items-start justify-start  rounded-[20px] ">
+    <div class="relative w-full h-60 flex flex-col items-start justify-start  max-md:pt-6  rounded-[20px] ">
       <div class="relative overflow-hidden rounded-2xl w-full after:content-[''] after:absolute after:inset-0 after:bg-black/60 ">
         <img class="h-full w-full object-cover rounded-[20px]" src="../../assets/testimage.svg">
         <div class="flex gap-2 absolute z-50 bottom-4 right-5 lg:hidden">
