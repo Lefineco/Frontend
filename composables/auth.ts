@@ -20,13 +20,14 @@ function useAuth() {
     })
   }
 
-  const successToast = (title: string) => toast.add({
-    id: 'success',
-    title,
-    icon: 'i-octicon-desktop-download-24',
-    timeout: 2000,
-    color: 'green',
-  })
+  const successToast = (title: string) =>
+    toast.add({
+      id: 'success',
+      title,
+      icon: 'i-octicon-desktop-download-24',
+      timeout: 2000,
+      color: 'green',
+    })
 
   const signIn = async (payload: LoginSchema) => {
     loading.value = true
@@ -35,7 +36,6 @@ function useAuth() {
     if (error) {
       errorToast(error)
     }
-
     else {
       successToast('Signed in successfully!')
       router.push('/')
@@ -50,7 +50,6 @@ function useAuth() {
     if (error) {
       errorToast(error)
     }
-
     else {
       successToast('Signed up successfully!')
       router.push('/')
@@ -58,7 +57,18 @@ function useAuth() {
     loading.value = false
   }
 
-  return { signIn, signUp }
+  const signOut = async () => {
+    const { error } = await supabase.auth.signOut()
+    if (error) {
+      errorToast(error)
+    }
+    else {
+      successToast('Sign Out successfully!')
+      router.push('/')
+    }
+  }
+
+  return { signIn, signUp, signOut }
 }
 
 export default useAuth
