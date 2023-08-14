@@ -10,7 +10,10 @@ import logo from '@/assets/logo.svg'
     <div class="w-[500px]">
       <UInput size="sm" placeholder="Search Video, Lefiner or Room" icon="i-heroicons-magnifying-glass-20-solid" />
     </div>
-    <div class=" space-x-4">
+    <div class="lg:hidden">
+     <UButton icon="i-ph-text-align-justify" variant="ghost"></UButton>
+    </div>
+    <div class=" max-lg:hidden space-x-4">
       <UButton to="/auth/login" label="Button">
         Login
       </UButton>

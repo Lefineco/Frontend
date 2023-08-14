@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="flex flex-col w-full  p-0 md:p-7">
+  <div class=" page flex flex-col w-full  h-full  p-4 md:!pt-20">
     <ProfileSection />
     <ProfileSettings />
   </div>
