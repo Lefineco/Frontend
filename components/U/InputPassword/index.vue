@@ -18,7 +18,3 @@ function togglePassword() {
     </template>
   </UInput>
 </template>
-
-<style scoped>
-
-</style>

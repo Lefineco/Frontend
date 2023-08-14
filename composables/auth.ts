@@ -1,14 +1,13 @@
 import type { AuthError } from '@supabase/supabase-js'
 
-interface ILoginOrRegisterPayload {
-  email: string
-  password: string
-}
+import type { LoginSchema } from 'components/Auth/Login/schema'
+import type { RegisterSchema } from 'components/Auth/Register/schema'
 
 function useAuth() {
   const supabase = useSupabaseClient()
   const toast = useToast()
   const router = useRouter()
+  const loading = ref(false)
 
   const errorToast = (error: AuthError | null) => {
     return toast.add({
@@ -29,7 +28,8 @@ function useAuth() {
     color: 'green',
   })
 
-  const signIn = async (payload: ILoginOrRegisterPayload) => {
+  const signIn = async (payload: LoginSchema) => {
+    loading.value = true
     const { error } = await supabase.auth.signInWithPassword(payload)
 
     if (error) {
@@ -40,9 +40,11 @@ function useAuth() {
       successToast('Signed in successfully!')
       router.push('/')
     }
+    loading.value = false
   }
 
-  const signUp = async (payload: ILoginOrRegisterPayload) => {
+  const signUp = async (payload: RegisterSchema) => {
+    loading.value = true
     const { error } = await supabase.auth.signUp(payload)
 
     if (error) {
@@ -53,6 +55,7 @@ function useAuth() {
       successToast('Signed up successfully!')
       router.push('/')
     }
+    loading.value = false
   }
 
   return { signIn, signUp }

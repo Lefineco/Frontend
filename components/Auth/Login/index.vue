@@ -1,20 +1,33 @@
 <script setup lang="ts">
 import type { Form } from '@nuxthq/ui/dist/runtime/types'
-import type { Schema } from './schema'
+import { loginSchema } from './schema'
+import type { LoginSchema } from './schema'
+import useAuth from '@/composables/auth'
+import useAsync from '@/composables/async'
 
-const form = ref<Form<Schema>>()
-const values = ref<Partial<Schema>>({
+const { signIn } = useAuth()
+const { loading, makeAsyncOperation } = useAsync()
+
+const form = ref<Form<LoginSchema>>()
+const values = ref<Partial<LoginSchema>>({
   email: undefined,
   password: undefined,
 })
+
+async function onSubmit() {
+  await form.value!.validate()
+  makeAsyncOperation(async () => {
+    await signIn(values.value as LoginSchema)
+  })
+}
 </script>
 
 <template>
-  <UForm ref="form" :state="values" class="relative w-full h-full flex flex-col items-center justify-center bg-black text-white z-0">
-    <NuxtLink to="/" class="mx-auto pb-24">
-      <img src="~assets/logo.svg" class="h-8">
+  <UForm ref="form" :schema="loginSchema" :state="values" class="relative w-full h-full flex flex-col items-center justify-center text-white z-0" @submit.prevent="onSubmit">
+    <NuxtLink to="/" class="mx-auto absolute top-20">
+      <img src="~assets/logo.svg">
     </NuxtLink>
-    <div class="w-1/4 flex flex-col gap-4">
+    <div class="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 px-4 flex flex-col gap-4">
       <div class="flex gap-2 items-end">
         <h1 class="text-3xl font-bold capitalize">
           Login
@@ -35,10 +48,10 @@ const values = ref<Partial<Schema>>({
         or
       </p>
 
-      <UFormGroup name="email">
+      <UFormGroup name="email" size="xs">
         <UInput v-model="values.email" icon="i-ph-user-fill" placeholder="Username or Email" />
       </UFormGroup>
-      <UFormGroup name="password">
+      <UFormGroup name="password" size="xs">
         <UInputPassword v-model="values.password" placeholder="Password" />
       </UFormGroup>
 
@@ -49,7 +62,7 @@ const values = ref<Partial<Schema>>({
         </NuxtLink>
       </div>
 
-      <UButton variant="solid" label="Sign In" block />
+      <UButton label="Sign In" block type="submit" :loading="loading" />
     </div>
   </UForm>
 </template>

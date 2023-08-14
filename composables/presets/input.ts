@@ -1,6 +1,6 @@
 const input = {
   wrapper: 'relative',
-  base: 'relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none',
+  base: 'border-transparent relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none',
   rounded: 'rounded-md',
   placeholder: 'placeholder-gray-400 dark:placeholder-gray-500',
   size: {
@@ -49,12 +49,16 @@ const input = {
   },
   color: {
     white: {
-      solid: 'shadow-sm bg-white/10 text-gray-900 dark:text-white focus:ring-2 focus:!bg-transparent focus:ring-primary-500 focus:ring-opacity-30 border border-transparent focus:border-primary-500',
+      solid: 'shadow-sm bg-white/10 text-gray-900 dark:text-white focus:ring-2 focus:!bg-transparent focus:ring-primary-500 focus:ring-opacity-30 border focus:border-primary-500',
       outline: 'shadow-sm bg-transparent text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500',
     },
     gray: {
       solid: 'shadow-sm bg-white/10 text-gray-900 dark:text-white focus:ring-2 focus:!bg-transparent focus:ring-primary-500 dark:focus:ring-primary-400',
       outline: 'shadow-sm bg-transparent text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400',
+    },
+    red: {
+      solid: 'shadow-sm bg-red-500/10 text-gray-900 dark:text-red-500 focus:ring-2 focus:!bg-transparent focus:ring-red-500 dark:focus:ring-red-400',
+      outline: 'shadow-sm bg-transparent text-gray-900 dark:text-red-500 ring-1 ring-inset ring-red-300 dark:ring-red-700 focus:ring-2 focus:ring-red-500 dark:focus:ring-red-400',
     },
   },
 

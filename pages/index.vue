@@ -13,7 +13,7 @@ const data = [
     <div class="p-5 w-full">
       <HomeBanner />
     </div>
-    <div class="p-5  w-full">
+    <div class="p-5 w-full">
       <div class="flex justify-between items-start">
         <p class="text-md md:text-xl">
           Popular Live Rooms
@@ -41,7 +41,7 @@ const data = [
       </div>
     </div>
 
-    <div class="p-5  w-full">
+    <div class="p-5 w-full">
       <div class="flex justify-between items-start">
         <p class="text-md md:text-xl break-words tracking-wide">
           Recommended Videos
