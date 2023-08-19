@@ -1,5 +1,6 @@
 <script setup lang="ts">
 interface Props {
+  name: string
   avatar: string
   feature: string
 }
@@ -20,7 +21,7 @@ withDefaults(defineProps<Props>(), {
     </div>
     <div class="pb-5 px-2 pt-2.5">
       <p class="text-[20px] font-bold">
-        Kuzey Işıkları
+        {{ name }}
       </p>
       <p class=" text-xs text-gray-400">
         Avaible on <span class="text-white">Youtube</span>
