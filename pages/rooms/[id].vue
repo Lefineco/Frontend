@@ -20,7 +20,7 @@ const crateVideoModal = ref(false)
           <UAvatar src="https://avatars.githubusercontent.com/u/739984?v=4" alt="benjamincanac" />
           <UAvatar src="https://avatars.githubusercontent.com/u/7547335?v=4" alt="smarroufin" />
         </UAvatarGroup>
-        <UButton @click="crateVideoModal = !crateVideoModal" class="!text-gray-600" :ui="{ size: { custom: 'text-4xl' } }" variant="ghost" size="custom" icon="i-ph-plus-circle"  />
+        <UButton class="!text-gray-600" :ui="{ size: { custom: 'text-4xl' } }" variant="ghost" size="custom" icon="i-ph-plus-circle" @click="crateVideoModal = !crateVideoModal" />
       </div>
     </div>
     <div class="h-full flex w-full">

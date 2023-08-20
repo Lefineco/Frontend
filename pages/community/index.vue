@@ -6,9 +6,7 @@ const data = [
   { name: 'Emin Mehmet' },
 ]
 const data2 = [
-  { name: 'Cans', createDate: '2 Days Ago', description: 'Deneme Canim' },
-  { name: 'Cans', createDate: '2 Days Ago', description: 'Deneme Canim' },
-  { name: 'Cans', createDate: '2 Days Ago', description: 'Deneme Canim' },
+  { name: 'Cans', createDate: '2 Days Ago', description: 'Deneme Canim', avatar: 'https', viewers: 't' },
 ]
 </script>
 
@@ -19,6 +17,8 @@ const data2 = [
         v-for="(item, idx) in data2"
         :key="idx"
         :name="item.name"
+        :avatar="item.avatar"
+        :viewers="item.viewers"
         :create-date="item.createDate"
       />
     </div>

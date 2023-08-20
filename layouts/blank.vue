@@ -3,7 +3,9 @@
 </script>
 
 <template>
-  <slot />
+  <div class="h-full w-full">
+    <slot />
+  </div>
 </template>
 
 <style scoped>

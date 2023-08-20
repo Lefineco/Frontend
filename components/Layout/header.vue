@@ -59,6 +59,7 @@ function handleInputBlur() {
     class="bg-black/5 border-b border-white/5 shadow-sm backdrop-blur-md fixed inset-x-0 top-0 z-10 flex justify-between items-center md:px-6 py-3 max-md: px-3"
   >
     <div v-if="isClicked" class="w-full">
+      <!-- TODO: component haline getirilmeli -->
       <UInput
         ref="inputRef"
         v-model="q"
