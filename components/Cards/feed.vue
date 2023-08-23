@@ -18,9 +18,7 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div
-    class="w-full p-5 flex flex-col gap-4 rounded-3xl bg-white/5 border border-white/5"
-  >
+  <div class="w-full p-5 flex flex-col gap-4 rounded-3xl bg-white/5 border border-white/5">
     <div class="flex justify-between">
       <div class="flex gap-2 items-center">
         <UAvatar
