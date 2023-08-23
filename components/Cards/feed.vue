@@ -1,12 +1,12 @@
 <script setup lang="ts">
 interface Props {
   name: string
-  avatar: string
+  avatar?: string
   source: string
   createDate: string
   description: string
 }
-// defineProps<Props>()
+
 withDefaults(defineProps<Props>(), {
   name: 'Cansu Altun',
   avatar: '',
@@ -44,11 +44,11 @@ withDefaults(defineProps<Props>(), {
     <div class="flex flex-wrap items-center justify-center gap-4">
       <img
         class="h-60 flex-1 object-cover rounded-3xl"
-        src="../../assets/testimage.svg"
+        src="@/assets/testimage.svg"
       >
       <img
         class="h-60 flex-1 object-cover rounded-3xl"
-        src="../../assets/testimage.svg"
+        src="@/assets/testimage.svg"
       >
     </div>
     <div>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { VerticalNavigationLink } from '@nuxthq/ui/dist/runtime/types'
+import type { VerticalNavigationLink } from 'node_modules/@nuxthq/ui/dist/runtime/types'
 
 const links: VerticalNavigationLink[] = [{
   label: '',
@@ -10,7 +10,7 @@ const links: VerticalNavigationLink[] = [{
 }, {
   label: '',
   icon: 'i-ph-users-three-light',
-  to: '/community-feeds',
+  to: '/community',
 }, {
   label: '',
   icon: 'i-ph-chat-teardrop-dots',

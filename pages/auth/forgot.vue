@@ -1,9 +1,11 @@
 <script setup lang="ts">
-
+definePageMeta({
+  layout: 'blank',
+})
 </script>
 
 <template>
-  <div />
+  <AuthForgotEmail />
 </template>
 
 <style scoped>

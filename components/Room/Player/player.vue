@@ -3,8 +3,9 @@
 </script>
 
 <template>
-  <div class="h-full w-full">
-    <slot />
+  <div>
+   
+    <img class="h-[650px] " src="../../../assets/player.svg">
   </div>
 </template>
 

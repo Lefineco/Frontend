@@ -30,3 +30,24 @@ html, body, #lefine {
 .page {
   @apply w-full h-full mx-auto max-w-[1500px] pt-20;
 }
+
+
+.page-enter-active,
+.page-leave-active {
+  transition: all var(--transiton-time) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0.2;
+  transform: translateY(5rem);
+}
+
+.layout-enter-active,
+.layout-leave-active {
+  transition: all var(--transiton-time) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.layout-enter-from,
+.layout-leave-to {
+  opacity: 0;
+  transform: translateX(5rem);
+}

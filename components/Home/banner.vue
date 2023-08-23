@@ -1,21 +1,6 @@
 <script setup lang="ts">
 import logo from '@/assets/logo.svg'
 
-interface Props {
-  name: string
-  avatar: string
-  source: string
-  viewers: string
-}
-// defineProps<Props>()
-
-withDefaults(defineProps<Props>(), {
-  name: 'Berke',
-  avatar: '',
-  source: '',
-  viewers: '',
-})
-
 const crateVideoModal = ref(false)
 </script>
 
@@ -39,10 +24,3 @@ const crateVideoModal = ref(false)
     </div>
   </div>
 </template>
-
-<style scoped>
- .custom-gradient {
-  background: black;
-  opacity: 0.4;
- }
-</style>
