@@ -26,7 +26,7 @@ const data = [
       </div>
     </div>
 
-    <div class="p-5 w-full">
+    <!-- <div class="p-5 w-full">
       <div class="flex justify-between items-start">
         <p class="text-md md:text-xl">
           Recommended Lefiners
@@ -52,7 +52,7 @@ const data = [
       <div class=" py-7 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-4">
         <CardsVideos />
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 

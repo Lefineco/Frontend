@@ -4,6 +4,7 @@ import logo from '@/assets/logo.svg'
 
 const user = useSupabaseUser()
 const supabase = useSupabaseClient()
+const router = useRouter()
 
 const items = [
   [
@@ -40,82 +41,40 @@ const items = [
 ]
 
 const isClicked = ref(false)
-const inputRef = ref<HTMLInputElement | null>(null)
-
-function handleClick() {
-  isClicked.value = !isClicked.value
-
-  if (isClicked.value && inputRef.value)
-    inputRef.value.focus()
-}
-const q = ref('')
-function handleInputBlur() {
-  isClicked.value = false
-}
+const search = ref('')
 </script>
 
 <template>
-  <div class="bg-black/80 backdrop-blur-md border-b border-white/5 shadow-sm fixed inset-x-0 top-0 z-10 flex justify-between items-center md:px-6 py-3">
+  <div
+    class="bg-black/80 backdrop-blur-md border-b border-white/5 shadow-sm fixed inset-x-0 top-0 z-10 flex justify-between items-center px-6 py-3 space-x-5"
+  >
     <div v-if="isClicked" class="w-full">
-      <!-- TODO: component haline getirilmeli -->
-      <UInput
-        ref="inputRef"
-        v-model="q"
-        name="q"
-        autofocus
-        size="sm"
+      <UInputSearch
+        v-model="search"
+        name="search"
         placeholder="Search Video, Lefiner or Room"
-        icon="i-heroicons-magnifying-glass-20-solid"
-        :ui="{ icon: { trailing: { pointer: '' } } }"
-        @blur="handleInputBlur"
-      >
-        <template #trailing>
-          <UButton
-            color="gray"
-            variant="link"
-            icon="i-heroicons-x-mark-20-solid"
-            :padded="false"
-            @click="q = ''"
-          />
-        </template>
-      </UInput>
+        autofocus
+        @blur="() => isClicked = false"
+      />
     </div>
-
     <template v-else>
-      <div class="flex items-center gap-3">
+      <button class="flex flex-shrink-0 items-center gap-3" @click="router.push('/')">
         <img :src="logo" class="h-9">
-      </div>
-      <div class="w-9/12 lg:w-[500px] max-md:hidden max-lg:px-8">
-        <UInput
-          v-model="q"
-          name="q"
-          autofocus
-          size="sm"
+      </button>
+      <div class="w-full lg:w-[500px] hidden md:block">
+        <UInputSearch
+          v-model="search"
+          class="w-full"
+          name="search"
           placeholder="Search Video, Lefiner or Room"
-          :ui="{ icon: { trailing: { pointer: '' } } }"
-          icon="i-heroicons-magnifying-glass-20-solid"
-          @blur="handleInputBlur"
-        >
-          <template #trailing>
-            <UButton
-              color="gray"
-              variant="link"
-              icon="i-heroicons-x-mark-20-solid"
-              :padded="false"
-              @click="q = ''"
-            />
-          </template>
-        </UInput>
+        />
       </div>
-      <div
-        class="space-x-2 flex items-center justify-center"
-        :class="{ hidden: isClicked }"
-      >
+      <div class="space-x-6 flex items-center justify-center" :class="{ hidden: isClicked }">
         <UIcon
-          class="md:hidden w-6 h-6"
+          class="md:hidden w-6 h-6 cursor-pointer"
           :class="{ hidden: isClicked }"
           name="i-heroicons-magnifying-glass-20-solid"
-          @click="handleClick"
+          @click="isClicked = true"
         />
         <div v-if="user" class="flex gap-2">
           <UDropdown
@@ -123,7 +82,11 @@ function handleInputBlur() {
             :ui="{ item: { disabled: 'cursor-text select-text' } }"
             :popper="{ placement: 'bottom-end' }"
           >
-            <UAvatar variant="ghost" :src="user.user_metadata.picture" :alt="user.picture" />
+            <UAvatar
+              variant="ghost"
+              :src="user.user_metadata.picture"
+              :alt="user.picture"
+            />
 
             <template #account="{ item }">
               <div class="text-left">
