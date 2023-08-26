@@ -55,9 +55,7 @@ function handleInputBlur() {
 </script>
 
 <template>
-  <div
-    class="bg-black/5 border-b border-white/5 shadow-sm backdrop-blur-md fixed inset-x-0 top-0 z-10 flex justify-between items-center md:px-6 py-3 max-md: px-3"
-  >
+  <div class="bg-black/80 backdrop-blur-md border-b border-white/5 shadow-sm fixed inset-x-0 top-0 z-10 flex justify-between items-center md:px-6 py-3">
     <div v-if="isClicked" class="w-full">
       <!-- TODO: component haline getirilmeli -->
       <UInput
@@ -125,7 +123,7 @@ function handleInputBlur() {
             :ui="{ item: { disabled: 'cursor-text select-text' } }"
             :popper="{ placement: 'bottom-end' }"
           >
-            <UAvatar variant="ghost" :src="user.picture" :alt="user.email" />
+            <UAvatar variant="ghost" :src="user.user_metadata.picture" :alt="user.picture" />
 
             <template #account="{ item }">
               <div class="text-left">

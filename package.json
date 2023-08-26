@@ -21,7 +21,7 @@
     "@types/node": "^18.17.1",
     "@vueuse/nuxt": "^10.3.0",
     "eslint": "^8.46.0",
-    "nuxt": "^3.6.5"
+    "nuxt": "^3.7.0"
   },
   "dependencies": {
     "cheerio": "1.0.0-rc.12",

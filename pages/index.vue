@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// const preference = ['system', 'light', 'dark', 'sepia']
 const data = [
   { name: 'Berke Kayada' },
   { name: 'Furkan Erdoğan' },

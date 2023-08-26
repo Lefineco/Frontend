@@ -1,6 +1,6 @@
 const button = {
-  base: 'font-semibold transition-all active:scale-90 disabled:cursor-not-allowed disabled:opacity-75 disabled:active:scale-100 outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0',
-  font: 'font-semibold',
+  base: 'transition-all active:scale-90 disabled:cursor-not-allowed disabled:opacity-75 disabled:active:scale-100 outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0',
+  font: 'font-bold',
   rounded: 'rounded-md',
   size: {
     '2xs': 'text-xs',

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { VideoPreviewContent } from 'server/types'
+import type { VideoPreviewContent } from '@/server/types'
 
 const isOpen = defineModel<boolean>()
 const url = ref('')
