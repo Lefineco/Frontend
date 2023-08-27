@@ -1,13 +1,17 @@
 import fetch from 'node-fetch'
 import cheerio from 'cheerio'
+
 import type { VideoPreviewContent } from '../types'
 
 async function scrapeData(url: string) {
   try {
     const response = await fetch(url)
 
-    if (!response.ok)
-      throw new Error(`Sayfa yüklenirken bir hata oluştu. Durum Kodu:${response.status}`)
+    if (!response.ok) {
+      throw new Error(
+        `An error occurred while loading the page. Status code:${response.status}`,
+      )
+    }
 
     const html = await response.text()
     const $ = cheerio.load(html)
@@ -22,7 +26,7 @@ async function scrapeData(url: string) {
     return content
   }
   catch (error) {
-    console.error('Hata oluştu:', error)
+    console.error('An error occurred:', error)
     return error
   }
 }

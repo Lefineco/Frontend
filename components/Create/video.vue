@@ -5,8 +5,10 @@ const isOpen = defineModel<boolean>()
 const url = ref('')
 const deboundedUrl = refDebounced(url, 1000)
 
+const previewData = ref()
+
 function urlPreview(url: string) {
-  if (!url)
+  if (!url.length)
     return null
 
   const { data, pending, error, refresh }
@@ -17,7 +19,7 @@ function urlPreview(url: string) {
       }),
     })
 
-  return {
+  previewData.value = {
     data: data.value,
     pending: pending.value,
     error: error.value?.message,
@@ -48,13 +50,14 @@ function urlPreview(url: string) {
             />
           </div>
         </template>
-        <CreatePreview v-if="url.length" class="mb-4" :preview-data="urlPreview(deboundedUrl)" />
+        <CreatePreview class="mb-4" :preview-data="previewData" />
         <div class="flex flex-col gap-4">
           <UFormGroup name="name">
-            <UInput placeholder="Room Name" />
+            <UInput placeholder="Room Name (Optional)" />
           </UFormGroup>
           <UFormGroup name="url">
-            <UInput v-model="url" placeholder="Video URL" />
+            <!-- TODO: duzenlenmesi gerek -->
+            <UInput v-model="url" placeholder="Video URL" @keydown="urlPreview(deboundedUrl)" />
           </UFormGroup>
           <UButton
             class="disabled:!opacity-50 disabled:!cursor-not-allowed"
@@ -67,5 +70,3 @@ function urlPreview(url: string) {
     </UModal>
   </Teleport>
 </template>
-
-<style scoped></style>

@@ -37,6 +37,7 @@ onMounted(() => {
     </div>
     <div class="h-full bg-black/5 backdrop-blur-3xl ">
       <NuxtLayout>
+        <NuxtLoadingIndicator color="#6366f1" :throttle="1" :height="1" />
         <NuxtPage />
       </NuxtLayout>
     </div>

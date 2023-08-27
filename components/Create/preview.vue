@@ -16,12 +16,12 @@ defineProps<Props>()
 <template>
   <div class="flex items-center gap-2 rounded-md overflow-hidden bg-white/5">
     <template v-if="previewData?.data">
-      <img class="w-24 aspect-video object-cover bg-white/5" :src="previewData?.data?.image" :alt="previewData?.data?.title">
-      <div class="flex flex-col gap-1 py-1">
-        <div class="text-lg truncate">
+      <img class="w-24 h-24 aspect-video object-cover bg-white/5" :src="previewData?.data?.image" :alt="previewData?.data?.title">
+      <div class="flex flex-col space-y-2">
+        <div class="text-lg w-72 truncate">
           {{ previewData?.data?.title }}
         </div>
-        <div class="text-sm opacity-50 w-full">
+        <div class="text-sm opacity-50 w-72 truncate">
           {{ previewData?.data?.description }}
         </div>
       </div>
@@ -35,7 +35,3 @@ defineProps<Props>()
     </template>
   </div>
 </template>
-
-<style scoped>
-
-</style>
