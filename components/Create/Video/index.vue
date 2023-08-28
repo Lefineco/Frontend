@@ -1,23 +1,37 @@
 <script setup lang="ts">
-import type { VideoPreviewContent } from '@/server/types'
+import type { PreviewData } from './types'
+import type { VideoPreviewContent } from '~/server/types'
+
+const youtubeRegExp = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+const vimeoRegExp = /^(?:https?:\/\/)?(?:www\.)?(?:vimeo\.com\/)([0-9]+)(?:\/)?$/
+
+function checkVideoPlatform(url: string): string | undefined | null {
+  if (url.length)
+    return null
+
+  if (youtubeRegExp.test(url))
+    return url.match(youtubeRegExp)?.[1]
+  else if (vimeoRegExp.test(url))
+    return url.match(vimeoRegExp)?.[1]
+
+  return null
+}
 
 const isOpen = defineModel<boolean>()
 const url = ref('')
-const deboundedUrl = refDebounced(url, 1000)
+const deboundedUrl = refDebounced(url, 2000)
+const previewData = ref<PreviewData | null>(null)
 
-const previewData = ref()
-
-function urlPreview(url: string) {
-  if (!url.length)
+const previewVideo = watch([deboundedUrl], async () => {
+  if (checkVideoPlatform(url.value)?.length && (url.value === deboundedUrl.value))
     return null
 
-  const { data, pending, error, refresh }
-    = useFetch<VideoPreviewContent | null>('/api/video', {
-      method: 'POST',
-      body: JSON.stringify({
-        url,
-      }),
-    })
+  const { data, pending, error, refresh } = await useFetch<VideoPreviewContent | null>('/api/video', {
+    method: 'POST',
+    body: JSON.stringify({
+      url: deboundedUrl.value,
+    }),
+  })
 
   previewData.value = {
     data: data.value,
@@ -25,7 +39,9 @@ function urlPreview(url: string) {
     error: error.value?.message,
     refresh,
   }
-}
+})
+
+onUnmounted(previewVideo)
 </script>
 
 <template>
@@ -50,14 +66,13 @@ function urlPreview(url: string) {
             />
           </div>
         </template>
-        <CreatePreview class="mb-4" :preview-data="previewData" />
+        <CreateVideoPreview v-if="deboundedUrl" class="mb-4" :preview-data="previewData" />
         <div class="flex flex-col gap-4">
           <UFormGroup name="name">
             <UInput placeholder="Room Name (Optional)" />
           </UFormGroup>
           <UFormGroup name="url">
-            <!-- TODO: duzenlenmesi gerek -->
-            <UInput v-model="url" placeholder="Video URL" @keydown="urlPreview(deboundedUrl)" />
+            <UInput v-model="url" placeholder="Video URL" />
           </UFormGroup>
           <UButton
             class="disabled:!opacity-50 disabled:!cursor-not-allowed"
