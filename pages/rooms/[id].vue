@@ -1,5 +1,8 @@
-<script setup>
+<script setup lang="ts">
+import { ref } from 'vue'
+
 const crateVideoModal = ref(false)
+const player = ref()
 </script>
 
 <template>
@@ -26,7 +29,8 @@ const crateVideoModal = ref(false)
     <div class="h-full flex w-full">
       <div class="w-3/5">
         <!-- Player kısmı %60 -->
-        <RoomPlayer />
+        <!-- <UPlayer type="YOUTUBE" video-id="wmP3MBjsx20" /> -->
+        <UPlayer ref="player" type="VIMEO" video-id="76979871" />
       </div>
       <div class="w-2/5">
         <!-- Chat kısmı %40 -->
