@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     rootTag: 'main',
     rootId: 'lefine',
   },
-  css: ['~/assets/main.css'],
+  css: ['~/assets/main.css', 'plyr/dist/plyr.css'],
   devtools: {
     enabled: true,
 
@@ -15,6 +15,7 @@ export default defineNuxtConfig({
     },
   },
   modules: [
+    '@vue-macros/nuxt',
     '@nuxthq/ui',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
@@ -22,6 +23,10 @@ export default defineNuxtConfig({
     '@hypernym/nuxt-anime',
     '@vueuse/nuxt',
   ],
+  macros: {
+    setupSFC: true,
+    defineModels: true,
+  },
   vite: {
     vue: {
       script: {
