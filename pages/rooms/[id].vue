@@ -27,12 +27,12 @@ const player = ref()
       </div>
     </div>
     <div class="h-full flex w-full">
-      <div class="w-3/5">
+      <div class="w-3/5 h-full">
         <!-- Player kısmı %60 -->
         <!-- <UPlayer type="YOUTUBE" video-id="wmP3MBjsx20" /> -->
         <UPlayer ref="player" type="VIMEO" video-id="76979871" />
       </div>
-      <div class="w-2/5">
+      <div class="w-2/5 h-full">
         <!-- Chat kısmı %40 -->
         <RoomChatorPlayList />
       </div>

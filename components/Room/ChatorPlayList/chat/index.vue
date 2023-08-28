@@ -1,36 +1,42 @@
 <script setup lang="ts">
-const timeAgo = useTimeAgo(new Date(2021, 0, 1))
+const messageData = reactive([
+  {
+    message: 'heleley',
+    uuid: 'berke',
+  },
+  {
+    message: 'heleley',
+    uuid: 'berke',
+  },
+  {
+    message: 'heleley',
+    uuid: 'asd',
+  },
+])
+const chatContainerRef = ref<HTMLElement | null>(null)
 
+onMounted(() => {
+  if (chatContainerRef.value)
+    chatContainerRef.value.scrollTop = chatContainerRef.value.scrollHeight
+})
+
+function scrollToBottom() {
+  if (chatContainerRef.value)
+    chatContainerRef.value.scrollTop = chatContainerRef.value.scrollHeight
+}
+
+function veriyiAl(veri: { message: string; uuid: string }) {
+  messageData.push({ ...veri })
+  scrollToBottom()
+}
 </script>
 
 <template>
-  <div class="flex flex-col justify-between h-[680px] ">
-    <div class="relative flex flex-col gap-10">
-      <div
-        :data-current-time="timeAgo" class=" relative flex text-sm items-center after:absolute after:right-5 after:bottom-[-20px] after:text-gray-500 after:text-xs after:content-[attr(data-current-time)]
-  w-fit gap-2 px-5 py-[15px] rounded-3xl bg-gray-700/80"
-      >
-        Lorem ipsum dolor sit amet.
-      </div>
-      <div class="flex justify-end">
-        <div
-          :data-current-time="timeAgo"
-          class=" relative flex text-sm items-center before:absolute before:left-5 before:bottom-[-20px] before:text-gray-500 before:text-xs before:content-[attr(data-current-time)] w-fit gap-2 px-5 py-[15px] rounded-3xl bg-purple-400/20"
-        >
-          Lorem ipsum dolor sit amet.
-        </div>
-      </div>
+  <div class="flex flex-col justify-between max-h-[600px] h-full  ">
+    <div ref="chatContainerRef" class="relative flex flex-col gap-7 overflow-scroll">
+      <RoomChatorPlayListChatMessage v-for="(item, idx) in messageData" :key="idx" class=".chat-container" :message="item.message" :uuid="item.uuid" />
     </div>
-    <div>
-      <UInput variant="solid" placeholder="Write Something..." class="!px-12">
-        <template #leading>
-          <UButton class="!text-gray-600" variant="ghost" icon="i-ph-smiley" />
-        </template>
-        <template #trailing>
-          <UButton class="!text-gray-600" variant="ghost" icon="i-ph-paper-plane-tilt-fill" />
-        </template>
-      </UInput>
-    </div>
+    <RoomChatorPlayListChatInput @message="veriyiAl" />
   </div>
 </template>
 
