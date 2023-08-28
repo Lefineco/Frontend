@@ -9,8 +9,8 @@ const items = [{
 </script>
 
 <template>
-  <div class="px-4">
-    <UTabs class="h-full" :items="items">
+  <div class="flex flex-col px-4 h-full">
+    <UTabs class="h-full" :items="items" :ui="{ container: 'relative w-full h-full', base: 'w-full h-full' }">
       <template #Chat>
         <RoomChatorPlayListChat />
       </template>
