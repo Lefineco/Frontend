@@ -1,9 +1,8 @@
 import type { AuthError } from '@supabase/supabase-js'
-import type { ForgotPasswordEmailSchema } from 'components/Auth/Forgot/Email/schema'
-import type { ForgotPasswordSchema } from 'components/Auth/Forgot/PasswordReset/schema'
-
-import type { LoginSchema } from 'components/Auth/Login/schema'
-import type { RegisterSchema } from 'components/Auth/Register/schema'
+import type { LoginSchema } from '@/composables/schemas/auth'
+import type { RegisterSchema } from '@/components/Auth/Register/schema'
+import type { ForgotPasswordSchema } from '@/components/Auth/Forgot/PasswordReset/schema'
+import type { ForgotPasswordEmailSchema } from '@/components/Auth/Forgot/Email/schema'
 
 function useAuth() {
   const supabase = useSupabaseClient()

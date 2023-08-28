@@ -1,6 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   layout: 'blank',
+  middleware: 'auth',
 })
 </script>
 
@@ -8,6 +9,4 @@ definePageMeta({
   <AuthForgotEmail />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

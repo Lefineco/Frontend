@@ -1,8 +1,8 @@
 <script setup lang="ts">
 interface Props {
   name: string
-  avatar: string
-  feature: string
+  avatar?: string
+  feature?: string
 }
 // defineProps<Props>()
 

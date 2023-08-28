@@ -18,14 +18,16 @@
     "@nuxtjs/supabase": "^1.0.1",
     "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
     "@pinia/nuxt": "^0.4.11",
+    "@types/fluent-ffmpeg": "^2.1.21",
     "@types/node": "^18.17.1",
     "@vueuse/nuxt": "^10.3.0",
     "eslint": "^8.46.0",
-    "nuxt": "^3.6.5"
+    "nuxt": "^3.7.0"
   },
   "dependencies": {
     "cheerio": "1.0.0-rc.12",
     "node-fetch": "^3.3.2",
+    "ytdl-core": "^4.11.5",
     "zod": "^3.21.4"
   }
 }

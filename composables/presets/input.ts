@@ -1,6 +1,6 @@
 const input = {
   wrapper: 'relative',
-  base: 'border-transparent relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none',
+  base: 'border-transparent relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none font-semibold',
   rounded: 'rounded-md',
   placeholder: 'placeholder-gray-400 dark:placeholder-gray-500',
   size: {
