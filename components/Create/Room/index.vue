@@ -66,7 +66,7 @@ onUnmounted(previewVideo)
             />
           </div>
         </template>
-        <CreateVideoPreview v-if="deboundedUrl" class="mb-4" :preview-data="previewData" />
+        <CreateRoomPreview v-if="deboundedUrl" class="mb-4" :preview-data="previewData" />
         <div class="flex flex-col gap-4">
           <UFormGroup name="name">
             <UInput placeholder="Room Name (Optional)" />
@@ -78,8 +78,9 @@ onUnmounted(previewVideo)
             class="disabled:!opacity-50 disabled:!cursor-not-allowed"
             block
             label="Create Room"
-            :disabled="!url"
+            :disabled="!url && previewData?.data"
           />
+          {{ previewData?.data }}
         </div>
       </UCard>
     </UModal>

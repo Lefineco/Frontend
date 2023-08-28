@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import logo from '@/assets/logo.svg'
 
-const crateVideoModal = ref(false)
+const crateRoomModal = ref(false)
 </script>
 
 <template>
@@ -17,10 +17,10 @@ const crateVideoModal = ref(false)
       <p class=" text-xs lg:text-sm text-gray-500 font-bold">
         Watch alone or share with loved ones
       </p>
-      <UButton icon="i-ph-plus" size="xs" class="backdrop-blur-sm" variant="secondary" @click="crateVideoModal = !crateVideoModal">
+      <UButton icon="i-ph-plus" size="xs" class="backdrop-blur-sm" variant="secondary" @click="crateRoomModal = !crateRoomModal">
         Create Room
       </UButton>
-      <CreateVideo v-model="crateVideoModal" />
+      <CreateRoom v-model="crateRoomModal" />
     </div>
   </div>
 </template>
