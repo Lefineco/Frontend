@@ -35,7 +35,7 @@ onMounted(() => {
     <div class="blobs">
       <div v-for="blob in 20" :key="blob" class="blob" />
     </div>
-    <div class="h-full bg-black/5 backdrop-blur-3xl ">
+    <div class="h-full bg-black/5">
       <NuxtLayout>
         <NuxtLoadingIndicator color="#6366f1" :throttle="1" :height="1" />
         <NuxtPage />
@@ -46,11 +46,11 @@ onMounted(() => {
 </template>
 
 <style lang="postcss" scoped>
-  .blobs {
-    @apply inset-0 absolute overflow-hidden;
+.blobs {
+  @apply inset-0 absolute overflow-hidden pointer-events-none;
 
-    .blob {
-      @apply absolute bg-primary-500/5 aspect-[1/1] rounded-full w-auto;
-    }
+  .blob {
+    @apply absolute bg-primary-500/5 aspect-[1/1] rounded-full w-auto blur-3xl;
   }
+}
 </style>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { Form } from 'node_modules/@nuxthq/ui/dist/runtime/types'
+// eslint-disable-next-line antfu/no-import-node-modules-by-path
+import type { Form } from '../../../node_modules/@nuxthq/ui/dist/runtime/types'
 import { loginSchema } from './schema'
 import type { LoginSchema } from './schema'
 import useAuth from '@/composables/auth'

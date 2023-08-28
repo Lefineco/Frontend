@@ -58,7 +58,7 @@ const search = ref('')
 
 <template>
   <div
-    class="bg-black/80 backdrop-blur-md border-b border-white/5 shadow-sm fixed inset-x-0 top-0 z-10 flex justify-between items-center px-6 py-3 space-x-5"
+    class="bg-black/20 backdrop-blur-xl border-b border-white/5 shadow-xl fixed inset-x-0 top-0 z-10 flex justify-between items-center px-6 py-3 space-x-5"
   >
     <div v-if="isClicked" class="w-full">
       <UInputSearch

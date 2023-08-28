@@ -52,4 +52,7 @@ export default defineNuxtConfig({
     watcher: 'parcel',
     typescriptBundlerResolution: true,
   },
+  typescript: {
+    strict: true,
+  },
 })

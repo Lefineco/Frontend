@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import type { IframeHTMLAttributes } from 'node_modules/nuxt/dist/app/compat/vue-demi'
 import Plyr from 'plyr'
-
 import type { Options } from 'plyr/src/js/plyr'
+
+// eslint-disable-next-line antfu/no-import-node-modules-by-path
+import type { IframeHTMLAttributes } from '../../../node_modules/nuxt/dist/app/compat/vue-demi'
 
 interface Props {
   videoId: string
