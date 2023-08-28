@@ -4,7 +4,6 @@
 
 <template>
   <div>
-   
     <img class="h-[650px] " src="../../../assets/player.svg">
   </div>
 </template>
