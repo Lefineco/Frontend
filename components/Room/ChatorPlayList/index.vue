@@ -4,16 +4,20 @@ const items = [{
   slot: 'Chat',
 }, {
   label: 'Play List',
-  content: 'Play List',
+  slot: 'PlayList',
 }]
 </script>
 
+<!-- h-[calc(100%-48px)] -->
+<!-- , list: { base: '!h-[10%]' } -->
 <template>
-  <div class="flex flex-col px-4 h-full">
-    <UTabs class="h-full" :items="items" :ui="{ container: 'relative w-full h-full', base: 'w-full h-full' }">
-      <template #Chat>
-        <RoomChatorPlayListChat />
-      </template>
-    </UTabs>
-  </div>
+  <UTabs class="flex flex-col h-full gap-2 justify-between" :items="items" :ui="{ container: 'relative w-full h-full !m-0', base: 'h-full' }">
+    <template #Chat>
+      <RoomChatorPlayListChat />
+    </template>
+
+    <template #PlayList>
+      <RoomChatorPlayListPlayList />
+    </template>
+  </UTabs>
 </template>

@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { useElementSize } from '@vueuse/core'
 
 const crateVideoModal = ref(false)
 const player = ref()
+
+const { height } = useElementSize(player)
 </script>
 
 <template>
@@ -26,15 +28,16 @@ const player = ref()
         <UButton class="!text-gray-600" :ui="{ size: { custom: 'text-4xl' } }" variant="ghost" size="custom" icon="i-ph-plus-circle" @click="crateVideoModal = !crateVideoModal" />
       </div>
     </div>
-    <div class="h-full flex w-full">
-      <div class="w-3/5 h-full">
-        <!-- Player kısmı %60 -->
+    <div class="flex w-full gap-4">
+      <div class="w-3/5">
         <!-- <UPlayer type="YOUTUBE" video-id="wmP3MBjsx20" /> -->
         <UPlayer ref="player" type="VIMEO" video-id="76979871" />
       </div>
-      <div class="w-2/5 h-full">
-        <!-- Chat kısmı %40 -->
+      <div v-if="height" class="w-2/5" :style="{ height: `${height}px` }">
         <RoomChatorPlayList />
+      </div>
+      <div v-else class="h-full w-2/5">
+        <USpin />
       </div>
     </div>
   </div>
