@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const crateVideoModal = ref(false)
 const player = ref()
+const isOpen = ref(false)
 </script>
 
 <template>
+  <UModal v-model="isOpen">
+    <RoomInvite @closeModals="isOpen = false" />
+  </UModal>
   <div class="page h-full flex flex-col w-full">
     <div class="flex justify-between w-full">
       <div class="flex flex-col lg:flex-row items-center pb-4 gap-3">
@@ -23,7 +26,7 @@ const player = ref()
           <UAvatar src="https://avatars.githubusercontent.com/u/739984?v=4" alt="benjamincanac" />
           <UAvatar src="https://avatars.githubusercontent.com/u/7547335?v=4" alt="smarroufin" />
         </UAvatarGroup>
-        <UButton class="!text-gray-600" :ui="{ size: { custom: 'text-4xl' } }" variant="ghost" size="custom" icon="i-ph-plus-circle" @click="crateVideoModal = !crateVideoModal" />
+        <UButton class="!text-gray-600" :ui="{ size: { custom: 'text-4xl' } }" variant="ghost" size="custom" icon="i-ph-plus-circle" @click="isOpen = true" />
       </div>
     </div>
     <div class="h-full flex w-full">
