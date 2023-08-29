@@ -29,6 +29,11 @@ const previewVideo = watch([deboundedUrl], async () => {
   }
 })
 
+const values = ref<Partial<any>>({
+  name: undefined,
+  url: undefined,
+})
+
 onUnmounted(previewVideo)
 </script>
 
@@ -55,7 +60,7 @@ onUnmounted(previewVideo)
           </div>
         </template>
         <CreateRoomPreview v-if="deboundedUrl && checkVideoPlatform(url)" class="mb-4" :preview-data="previewData" />
-        <UForm>
+        <UForm :state="values">
           <div class="flex flex-col gap-4">
             <UFormGroup name="name">
               <UInput placeholder="Room Name (Optional)" />
