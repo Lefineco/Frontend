@@ -10,14 +10,14 @@ const { signIn } = useAuth()
 const { loading, makeAsyncOperation } = useAsync()
 const supabase = useSupabaseClient()
 
-const form = ref<Form<LoginSchema>>()
+const form = ref<Form<LoginSchema> | null>(null)
 const values = ref<Partial<LoginSchema>>({
   email: undefined,
   password: undefined,
 })
 
 async function onSubmit() {
-  await form.value!.validate()
+  await form.value?.validate()
   makeAsyncOperation(async () => {
     await signIn(values.value as LoginSchema)
   })
