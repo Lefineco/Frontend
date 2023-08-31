@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "cheerio": "1.0.0-rc.12",
+    "fuse.js": "^6.6.2",
     "node-fetch": "^3.3.2",
     "plyr": "^3.7.8",
     "zod": "^3.21.4"
