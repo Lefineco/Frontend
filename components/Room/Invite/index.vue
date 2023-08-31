@@ -4,7 +4,9 @@ const isOpen = false
 function closeModal() {
   emit('closeModals', isOpen)
 }
-const inputValues = ref('http://localhost:3000/rooms/1')
+const route = useRoute()
+const currentURL = ref(route.fullPath)
+const inputValues = ref(currentURL)
 const copiedText = ref('')
 function copied() {
   navigator.clipboard.writeText(inputValues.value)
@@ -15,6 +17,8 @@ function copied() {
       console.error('Copy failed:', error)
     })
 }
+
+const search = ref('')
 </script>
 
 <template>
@@ -44,13 +48,15 @@ function copied() {
             You can copy this room link and share with friends.
           </p>
           <div class="flex  justify-between items-center bg-gray-700 py-1 px-2 rounded-xl">
-            <p class="text-sm">{{ inputValues }}</p>
+            <p class="text-sm">
+              {{ inputValues }}
+            </p>
             <UButton variant="text" icon="i-ph-copy" @click="copied" />
           </div>
         </div>
-   
-        <div class="flex relative gap-5 flex-col overflow-scroll max-h-[350px] ">
-          <RoomInviteUser />
+        <UInput v-model="search" class="mb-5" placeholder="Find Friends" />
+        <div class="flex relative gap-5 flex-col overflow-scroll max-h-[350px] min-h-[350px] bg-gray-950 rounded-xl p-3 mb-4">
+          <RoomInviteUser :search="search" />
         </div>
         <div class="flex  justify-end gap-3">
           <UButton>Invite</UButton>
