@@ -1,35 +1,23 @@
 <script setup lang="ts">
 import type { PreviewData } from './types'
 import type { VideoPreviewContent } from '~/server/types'
-
-const youtubeRegExp = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
-const vimeoRegExp = /^(?:https?:\/\/)?(?:www\.)?(?:vimeo\.com\/)([0-9]+)(?:\/)?$/
-
-function checkVideoPlatform(url: string): string | undefined | null {
-  if (url.length)
-    return null
-
-  if (youtubeRegExp.test(url))
-    return url.match(youtubeRegExp)?.[1]
-  else if (vimeoRegExp.test(url))
-    return url.match(vimeoRegExp)?.[1]
-
-  return null
-}
+import { checkVideoPlatform } from '@/composables/helper'
 
 const isOpen = defineModel<boolean>()
 const url = ref('')
-const deboundedUrl = refDebounced(url, 2000)
+const deboundedUrl = refDebounced(url, 1000)
 const previewData = ref<PreviewData | null>(null)
 
 const previewVideo = watch([deboundedUrl], async () => {
-  if (checkVideoPlatform(url.value)?.length && (url.value === deboundedUrl.value))
+  previewData.value = null
+
+  if (!checkVideoPlatform(url.value))
     return null
 
   const { data, pending, error, refresh } = await useFetch<VideoPreviewContent | null>('/api/video', {
     method: 'POST',
     body: JSON.stringify({
-      url: deboundedUrl.value,
+      url: url.value,
     }),
   })
 
@@ -41,6 +29,11 @@ const previewVideo = watch([deboundedUrl], async () => {
   }
 })
 
+const values = ref<Partial<any>>({
+  name: undefined,
+  url: undefined,
+})
+
 onUnmounted(previewVideo)
 </script>
 
@@ -48,7 +41,7 @@ onUnmounted(previewVideo)
   <Teleport to="body">
     <UModal id="video" v-model="isOpen" class="relative">
       <UCard
-        :ui="{ divide: 'divide-y divide-gray-100 dark:divide-gray-800' }"
+        :ui="{ divide: 'divide-y divide-gray-100 dark:divide-gray-800/50' }"
       >
         <template #header>
           <div class="flex items-center justify-between">
@@ -66,22 +59,24 @@ onUnmounted(previewVideo)
             />
           </div>
         </template>
-        <CreateRoomPreview v-if="deboundedUrl" class="mb-4" :preview-data="previewData" />
-        <div class="flex flex-col gap-4">
-          <UFormGroup name="name">
-            <UInput placeholder="Room Name (Optional)" />
-          </UFormGroup>
-          <UFormGroup name="url">
-            <UInput v-model="url" placeholder="Video URL" />
-          </UFormGroup>
-          <UButton
-            class="disabled:!opacity-50 disabled:!cursor-not-allowed"
-            block
-            label="Create Room"
-            :disabled="!url && previewData?.data"
-          />
-          {{ previewData?.data }}
-        </div>
+        <CreateRoomPreview v-if="deboundedUrl && checkVideoPlatform(url)" class="mb-4" :preview-data="previewData" />
+        <UForm :state="values">
+          <div class="flex flex-col gap-4">
+            <UFormGroup name="name">
+              <UInput placeholder="Room Name (Optional)" />
+            </UFormGroup>
+            <UFormGroup name="url">
+              <UInput v-model="url" placeholder="Video URL" />
+            </UFormGroup>
+            <UButton
+              class="disabled:!opacity-50 disabled:!cursor-not-allowed"
+              block
+              label="Create Room"
+              :disabled="Boolean(!url.length || !deboundedUrl || !previewData?.data || !checkVideoPlatform(url))"
+              :loading="Boolean(url.length && deboundedUrl && checkVideoPlatform(url) && !previewData?.data)"
+            />
+          </div>
+        </UForm>
       </UCard>
     </UModal>
   </Teleport>

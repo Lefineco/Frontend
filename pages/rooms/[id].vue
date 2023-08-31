@@ -1,13 +1,16 @@
 <script setup lang="ts">
 const isLargeScreen = useMediaQuery('(min-width: 768px)')
 
-const crateVideoModal = ref(false)
 const player = ref()
 
 const { height } = useElementSize(player)
+
 </script>
 
 <template>
+  <UModal v-model="isOpen">
+    <RoomInvite @closeModals="isOpen = false" />
+  </UModal>
   <div class="page h-full flex flex-col w-full">
     <div class="flex justify-between w-full">
       <div class="flex flex-col lg:flex-row items-center pb-4 gap-3">
@@ -25,7 +28,7 @@ const { height } = useElementSize(player)
           <UAvatar src="https://avatars.githubusercontent.com/u/739984?v=4" alt="benjamincanac" />
           <UAvatar src="https://avatars.githubusercontent.com/u/7547335?v=4" alt="smarroufin" />
         </UAvatarGroup>
-        <UButton class="!text-gray-600" :ui="{ size: { custom: 'text-4xl' } }" variant="ghost" size="custom" icon="i-ph-plus-circle" @click="crateVideoModal = !crateVideoModal" />
+        <UButton class="!text-gray-600" :ui="{ size: { custom: 'text-4xl' } }" variant="ghost" size="custom" icon="i-ph-plus-circle" @click="isOpen = true" />
       </div>
     </div>
     <div class="flex flex-col md:flex-row w-full gap-4">
