@@ -4,16 +4,18 @@ const items = [{
   slot: 'Chat',
 }, {
   label: 'Play List',
-  content: 'Play List',
+  slot: 'PlayList',
 }]
 </script>
 
 <template>
-  <div class="flex flex-col px-4 h-full">
-    <UTabs class="h-full" :items="items" :ui="{ container: 'relative w-full h-full', base: 'w-full h-full' }">
-      <template #Chat>
-        <RoomChatorPlayListChat />
-      </template>
-    </UTabs>
-  </div>
+  <UTabs class="flex flex-col h-full gap-2" :items="items" :ui="{ container: '!m-0 h-[calc(100%-48px)]', base: 'h-full' }">
+    <template #Chat>
+      <RoomChatorPlayListChat />
+    </template>
+
+    <template #PlayList>
+      <RoomChatorPlayListPlayList />
+    </template>
+  </UTabs>
 </template>

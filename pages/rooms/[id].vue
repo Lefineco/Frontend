@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+const isLargeScreen = useMediaQuery('(min-width: 768px)')
 
 const player = ref()
-const isOpen = ref(false)
+
+const { height } = useElementSize(player)
+
 </script>
 
 <template>
@@ -29,15 +31,16 @@ const isOpen = ref(false)
         <UButton class="!text-gray-600" :ui="{ size: { custom: 'text-4xl' } }" variant="ghost" size="custom" icon="i-ph-plus-circle" @click="isOpen = true" />
       </div>
     </div>
-    <div class="h-full flex w-full">
-      <div class="w-3/5 h-full">
-        <!-- Player kısmı %60 -->
+    <div class="flex flex-col md:flex-row w-full gap-4">
+      <div class="w-full md:w-3/5">
         <!-- <UPlayer type="YOUTUBE" video-id="wmP3MBjsx20" /> -->
         <UPlayer ref="player" type="VIMEO" video-id="76979871" />
       </div>
-      <div class="w-2/5 h-full">
-        <!-- Chat kısmı %40 -->
+      <div v-if="height" class="w-full md:w-2/5" :style="{ height: isLargeScreen ? `${height}px` : '30rem' }">
         <RoomChatorPlayList />
+      </div>
+      <div v-else class="h-full w-2/5">
+        <USpin />
       </div>
     </div>
   </div>

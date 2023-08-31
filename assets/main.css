@@ -28,7 +28,7 @@ html, body, #lefine {
 }
 
 .page {
-  @apply w-full h-full mx-auto max-w-[1500px] pt-20;
+  @apply w-full h-full mx-auto max-w-[1500px] pt-20 px-4;
 }
 
 
@@ -50,4 +50,14 @@ html, body, #lefine {
 .layout-leave-to {
   opacity: 0;
   transform: translateX(5rem);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }

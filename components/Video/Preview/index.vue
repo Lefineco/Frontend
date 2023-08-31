@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { PreviewData } from './types'
+import type { VideoPreviewContent } from '~/server/types'
 
 interface Props {
-  previewData: PreviewData | null | undefined
+  previewData: VideoPreviewContent | null
 }
 
 defineProps<Props>()
@@ -10,14 +10,14 @@ defineProps<Props>()
 
 <template>
   <div class="flex items-center gap-2 rounded-md overflow-hidden bg-white/5">
-    <template v-if="previewData?.data">
-      <img class="w-24 h-20 aspect-video object-cover bg-white/5" :src="previewData?.data?.image" :alt="previewData?.data?.title">
+    <template v-if="previewData">
+      <img class="w-24 h-20 aspect-video object-cover bg-white/5" :src="previewData?.image" :alt="previewData?.title">
       <div class="flex flex-col space-y-2 pl-2">
         <div class="text-lg w-72 truncate capitalize">
-          {{ previewData?.data?.title }}
+          {{ previewData?.title }}
         </div>
         <div class="text-sm opacity-50 w-72 truncate">
-          {{ previewData?.data?.description }}
+          {{ previewData?.description }}
         </div>
       </div>
     </template>
