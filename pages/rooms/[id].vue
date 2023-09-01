@@ -2,9 +2,8 @@
 const isLargeScreen = useMediaQuery('(min-width: 768px)')
 
 const player = ref()
-
+const isOpen = ref(false)
 const { height } = useElementSize(player)
-
 </script>
 
 <template>
