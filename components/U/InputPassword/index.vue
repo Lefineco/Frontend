@@ -10,6 +10,7 @@ function togglePassword() {
     <template #trailing>
       <UButton
         color="gray"
+        class="opacity-50 hover:opacity-100"
         variant="link"
         :icon="showPassword ? 'i-ph-eye-slash-fill' : 'i-ph-eye-fill'"
         :padded="false"

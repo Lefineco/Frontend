@@ -31,7 +31,8 @@ const previewVideo = watch([deboundedUrl], async () => {
 
 const values = ref<Partial<any>>({
   name: undefined,
-  url: undefined,
+  video_url: undefined,
+  participants: [],
 })
 
 onUnmounted(previewVideo)

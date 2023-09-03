@@ -1,10 +1,16 @@
 <script setup lang="ts">
-const data = [
-  { name: 'Berke Kayada' },
-  { name: 'Furkan Erdoğan' },
-  { name: 'Cansu Altun' },
-  { name: 'Fatih Yıldız' },
-]
+const rooms = ref<any>([])
+const supabase = useSupabaseClient()
+
+async function fetchParticipants() {
+  const { data } = await supabase
+    .from('rooms')
+    .select('*, participants(*)')
+
+  rooms.value = data
+}
+
+onMounted(fetchParticipants)
 </script>
 
 <template>
@@ -27,7 +33,7 @@ const data = [
         </UButton>
       </div>
       <div class="py-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        <CardsRoom v-for="(item, idx) in data" :key="idx" :name="item.name" />
+        <CardsRoom v-for="(item, idx) in rooms" :key="idx" :data="item" />
       </div>
     </div>
     <!-- <div class="p-5 w-full">

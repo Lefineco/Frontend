@@ -25,10 +25,10 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "workbench.colorCustomizations": {
     "commandCenter.border": "#15202b99",
-    "titleBar.activeBackground": "#814fff",
-    "titleBar.activeForeground": "#15202b",
-    "titleBar.inactiveBackground": "#8c37fbda",
-    "titleBar.inactiveForeground": "#15202b99",
-    "sash.hoverBorder": "#af65c8"
+    "titleBar.activeBackground": null,
+    "titleBar.activeForeground": null,
+    "titleBar.inactiveBackground": null,
+    "titleBar.inactiveForeground": null,
+    "sash.hoverBorder": null
   },
 }

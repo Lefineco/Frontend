@@ -3,8 +3,8 @@
 import type { Form } from '../../node_modules/@nuxthq/ui/dist/runtime/types'
 import useAuth from '@/composables/auth'
 import useAsync from '@/composables/async'
-import { loginSchema } from '~/components/Auth/Login/schema'
-import type { LoginSchema } from '~/components/Auth/Login/schema'
+import { loginSchema } from '~/composables/schemas/auth'
+import type { LoginSchema } from '~/composables/schemas/auth'
 
 definePageMeta({
   layout: 'blank',
@@ -26,7 +26,10 @@ async function onSubmit() {
   makeAsyncOperation(async () => {
     await signIn(values.value as LoginSchema)
   })
+  // reloadNuxtApp({ force: true })
 }
+
+// TODO: giris yapildiktan sonra componentleri rerender et
 
 function signInWithGoogle() {
   supabase.auth.signInWithOAuth({
@@ -90,7 +93,7 @@ function signInWithGoogle() {
 
       <div class="flex items-center justify-between text-sm">
         <UCheckbox label="Remember me" />
-        <NuxtLink to="/auth/forgot" class="text-primary-500">
+        <NuxtLink to="/auth/forgot" class="text-primary-300 font-medium text-xs">
           Forgot Password?
         </NuxtLink>
       </div>
