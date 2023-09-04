@@ -14,7 +14,7 @@ const previewVideo = watch([deboundedUrl], async () => {
   if (!checkVideoPlatform(url.value))
     return null
 
-  const { data, pending, error, refresh } = await useFetch<VideoPreviewContent | null>('/api/video', {
+  const { data, pending, error, refresh } = await useFetch<VideoPreviewContent | null>('/api/scrape/video', {
     method: 'POST',
     body: JSON.stringify({
       url: url.value,

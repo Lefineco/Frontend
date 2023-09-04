@@ -1,6 +1,6 @@
 import fetch from 'node-fetch'
 import cheerio from 'cheerio'
-import { Platform, type VideoPreviewContent } from '../types'
+import { Platform, type VideoPreviewContent } from '../../types'
 
 async function scrapeData(url: string): Promise<VideoPreviewContent> {
   try {
