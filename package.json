@@ -18,7 +18,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.40.0",
     "@hypernym/nuxt-anime": "^2.1.0",
-    "@iconify-json/devicon": "^1.1.15",
+    "@iconify-json/logos": "^1.1.35",
     "@iconify-json/ph": "^1.1.5",
     "@nuxt/devtools": "latest",
     "@nuxthq/ui": "npm:@nuxthq/ui-edge@latest",

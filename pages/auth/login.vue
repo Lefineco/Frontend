@@ -69,7 +69,7 @@ function signInWithGoogle() {
       </p>
 
       <UButton
-        icon="i-devicon-google"
+        icon="i-logos-google-icon"
         label="Sign in with Google"
         variant="secondary"
         block

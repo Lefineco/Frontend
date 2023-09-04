@@ -60,7 +60,7 @@ async function onSubmit() {
       </p>
 
       <UButton
-        icon="i-devicon-google"
+        icon="i-logos-google-icon"
         variant="secondary"
         label="Sign in with Google"
         block

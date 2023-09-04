@@ -2,15 +2,11 @@
 const rooms = ref<any>([])
 const supabase = useSupabaseClient()
 
-async function fetchParticipants() {
-  const { data } = await supabase
-    .from('rooms')
-    .select('*, participants(*)')
+const { data } = await supabase
+  .from('rooms')
+  .select('*, participants(*)')
 
-  rooms.value = data
-}
-
-onMounted(fetchParticipants)
+rooms.value = data
 </script>
 
 <template>

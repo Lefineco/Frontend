@@ -28,9 +28,9 @@ devDependencies:
   '@hypernym/nuxt-anime':
     specifier: ^2.1.0
     version: 2.1.0
-  '@iconify-json/devicon':
-    specifier: ^1.1.15
-    version: 1.1.15
+  '@iconify-json/logos':
+    specifier: ^1.1.35
+    version: 1.1.35
   '@iconify-json/ph':
     specifier: ^1.1.5
     version: 1.1.6
@@ -39,7 +39,7 @@ devDependencies:
     version: 0.8.2(nuxt@3.7.0)(vite@4.4.9)
   '@nuxthq/ui':
     specifier: npm:@nuxthq/ui-edge@latest
-    version: /@nuxthq/ui-edge@2.7.0-28223581.ead87a9(vue@3.3.4)(webpack@5.88.2)
+    version: /@nuxthq/ui-edge@2.7.0-28230471.52ff120(vue@3.3.4)(webpack@5.88.2)
   '@nuxtjs/supabase':
     specifier: ^1.0.1
     version: 1.0.2
@@ -1047,14 +1047,14 @@ packages:
       animejs: 3.2.1
     dev: true
 
-  /@iconify-json/devicon@1.1.15:
-    resolution: {integrity: sha512-74EAkBDEAjx7L0YiVEU4Hud0Erx9G0bjcWwBCIhkXM3Cfy46QeQ/1y/4YnSlDeDwgW2SZm5aPS70/aNxjQFrkA==}
+  /@iconify-json/heroicons@1.1.12:
+    resolution: {integrity: sha512-9tsn/xUU+HX56OngEDRTej4LzVm2qcMVLvEJ+q+1ZJBO4sjMDxycmbHq16HGl1LOeVG21fq4jNZHslVveVCwSQ==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/heroicons@1.1.12:
-    resolution: {integrity: sha512-9tsn/xUU+HX56OngEDRTej4LzVm2qcMVLvEJ+q+1ZJBO4sjMDxycmbHq16HGl1LOeVG21fq4jNZHslVveVCwSQ==}
+  /@iconify-json/logos@1.1.35:
+    resolution: {integrity: sha512-yJPNSKNgfMGeE6dP9/drkS2PVaBBqcUW5lsSfTG6qps/Yc3W3KfP2oLcZcUwMZujkJ881Q8/AqKOxEahc2kWxw==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
@@ -1539,8 +1539,8 @@ packages:
       - vue-tsc
     dev: true
 
-  /@nuxthq/ui-edge@2.7.0-28223581.ead87a9(vue@3.3.4)(webpack@5.88.2):
-    resolution: {integrity: sha512-HdFkiIZqxn5h0uIsyW6W9tAvNVxy1kkF7rb48P99FdTPap47+EL0w7Bdb91Q1Wl93QWIXKZkJFjU6iNcu1eTNw==}
+  /@nuxthq/ui-edge@2.7.0-28230471.52ff120(vue@3.3.4)(webpack@5.88.2):
+    resolution: {integrity: sha512-TctCMtt+/QVYZv8ycnvAMLxM3g6ZbzVzV4syYbsQcAX1HxiU2ULP5uoU0KCRnAKLt8RzRX2jx3anjY1LSRaTSQ==}
     engines: {node: '>=v16.20.2'}
     dependencies:
       '@egoist/tailwindcss-icons': 1.1.0(tailwindcss@3.3.3)
@@ -1724,6 +1724,7 @@ packages:
     dependencies:
       is-glob: 4.0.3
       micromatch: 4.0.5
+      napi-wasm: 1.1.0
     dev: true
     bundledDependencies:
       - napi-wasm
@@ -6976,6 +6977,10 @@ packages:
     resolution: {integrity: sha512-7ZtY5KTCNheRGfEFxnedV5zFiORN1+Y1N6zvPTnHQd8ENUvfaDBeuJDZb2bN/oXwXxu3qkTXDzy57W5vAmDTBw==}
     engines: {node: ^14 || ^16 || >=18}
     hasBin: true
+    dev: true
+
+  /napi-wasm@1.1.0:
+    resolution: {integrity: sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==}
     dev: true
 
   /natural-compare@1.4.0:

@@ -1,18 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
-    // pageTransition: { name: 'page', mode: 'out-in' },
-    layoutTransition: { name: 'layout', mode: 'out-in' },
     rootTag: 'main',
     rootId: 'lefine',
   },
   css: ['~/assets/main.css', 'plyr/dist/plyr.css'],
   devtools: {
     enabled: true,
-
-    timeline: {
-      enabled: true,
-    },
   },
   modules: [
     '@vue-macros/nuxt',
@@ -39,7 +33,7 @@ export default defineNuxtConfig({
     autoImports: ['defineStore', ['defineStore', 'definePiniaStore']],
   },
   ui: {
-    icons: ['ph', 'devicon'],
+    icons: ['ph', 'logos'],
   },
   supabase: {
     redirect: false,
