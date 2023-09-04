@@ -23,12 +23,4 @@
   ],
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "workbench.colorCustomizations": {
-    "commandCenter.border": "#15202b99",
-    "titleBar.activeBackground": null,
-    "titleBar.activeForeground": null,
-    "titleBar.inactiveBackground": null,
-    "titleBar.inactiveForeground": null,
-    "sash.hoverBorder": null
-  },
 }
