@@ -58,8 +58,9 @@ const search = ref('')
 
 <template>
   <div
-    class="bg-gradient-to-b from-black sm:bg-black/20 sm:backdrop-blur-xl sm:border-b sm:border-white/5 sm:shadow-xl fixed inset-x-0 top-0 z-10 flex justify-between items-center px-6 py-5 sm:py-3 space-x-5"
+    class="bg-gradient-to-b from-black sm:from-black/5 sm:backdrop-blur-xl sm:border-b sm:border-white/5 sm:shadow-xl fixed top-0.5 inset-x-0 z-10 flex justify-between items-center py-5 px-4 sm:px-0 sm:py-3 space-x-5"
   >
+    <div class="absolute inset-x-0 h-0.5 -top-0.5 bg-violet-950" />
     <div v-if="isClicked" class="w-full">
       <UInputSearch
         v-model="search"
@@ -120,7 +121,7 @@ const search = ref('')
             </template>
           </UDropdown>
         </div>
-        <div v-else class="space-x-4">
+        <div v-else class="space-x-4 pr-6">
           <UButton to="/auth/login" label="Button">
             Login
           </UButton>
