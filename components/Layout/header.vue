@@ -58,7 +58,7 @@ const search = ref('')
 
 <template>
   <div
-    class="bg-black/20 backdrop-blur-xl border-b border-white/5 shadow-xl fixed inset-x-0 top-0 z-10 flex justify-between items-center px-6 py-3 space-x-5"
+    class="bg-gradient-to-b from-black sm:bg-black/20 sm:backdrop-blur-xl sm:border-b sm:border-white/5 sm:shadow-xl fixed inset-x-0 top-0 z-10 flex justify-between items-center px-6 py-5 sm:py-3 space-x-5"
   >
     <div v-if="isClicked" class="w-full">
       <UInputSearch
@@ -76,7 +76,7 @@ const search = ref('')
       >
         <img :src="logo" class="h-9">
       </button>
-      <div class="w-full lg:w-[500px] hidden md:block">
+      <div class="w-full lg:w-[500px] hidden lg:block">
         <UInputSearch
           v-model="search"
           class="w-full"
@@ -89,7 +89,7 @@ const search = ref('')
         :class="{ hidden: isClicked }"
       >
         <UIcon
-          class="md:hidden w-6 h-6 cursor-pointer"
+          class="lg:hidden w-6 h-6 cursor-pointer"
           :class="{ hidden: isClicked }"
           name="i-heroicons-magnifying-glass-20-solid"
           @click="isClicked = true"

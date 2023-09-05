@@ -50,7 +50,7 @@ onMounted(() => {
   @apply inset-0 absolute overflow-hidden pointer-events-none;
 
   .blob {
-    @apply absolute bg-primary-700/5 aspect-[1/1] rounded-full w-auto blur-3xl;
+    @apply hidden sm:block absolute bg-primary-700/5 aspect-[1/1] rounded-full w-auto blur-3xl;
   }
 }
 </style>

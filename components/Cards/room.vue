@@ -16,7 +16,7 @@ defineProps<Props>()
 </script>
 
 <template>
-  <button class="transition-transform duration-300 w-90 h-90 flex flex-col items-center justify-center active:scale-90">
+  <button class="w-90 h-90 flex flex-col items-center justify-center">
     <div class="w-full flex justify-between py-2 px-2">
       <div class="flex items-center justify-center gap-3">
         <UAvatar src="https://avatars.githubusercontent.com/u/739984?v=4" size="sm" /><span class="text-sm font-medium">{{ data.title }}</span>
