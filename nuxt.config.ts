@@ -17,6 +17,9 @@ export default defineNuxtConfig({
     '@hypernym/nuxt-anime',
     '@vueuse/nuxt',
   ],
+  resolutions: {
+    '@supabase/gotrue-js': '2.43.1',
+  },
   macros: {
     setupSFC: true,
     defineModels: true,

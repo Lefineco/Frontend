@@ -8,7 +8,7 @@ import type { RegisterSchema } from '~/composables/schemas/auth'
 
 definePageMeta({
   layout: 'blank',
-  middleware: 'auth',
+  // middleware: 'auth',
 })
 
 const { signUp } = useAuth()

@@ -28,6 +28,11 @@
 //     easing: 'easeInOutQuad',
 //   })
 // })
+const user = useSupabaseUser()
+watchEffect(() => {
+  if (user.value)
+    reloadNuxtApp({ force: true })
+})
 </script>
 
 <template>

@@ -95,7 +95,7 @@ const search = ref('')
           name="i-heroicons-magnifying-glass-20-solid"
           @click="isClicked = true"
         />
-        <div v-if="user" class="flex gap-2">
+        <div v-if="user" class="flex gap-2 pr-6">
           <UDropdown
             :items="items"
             :ui="{ item: { disabled: 'cursor-text select-text' } }"
