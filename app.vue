@@ -29,7 +29,7 @@
 //   })
 // })
 const user = useSupabaseUser()
-watchEffect(() => {
+computed(() => {
   if (user.value)
     reloadNuxtApp({ force: true })
 })
