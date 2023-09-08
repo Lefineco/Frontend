@@ -4,7 +4,7 @@ const supabase = useSupabaseClient()
 
 const { data } = await supabase
   .from('rooms')
-  .select('*, participants(*)')
+  .select('*, participants(is_owner, users(*))')
 
 rooms.value = data
 </script>
