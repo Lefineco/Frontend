@@ -86,7 +86,7 @@ const search = ref('')
         />
       </div>
       <div
-        class="space-x-6 flex items-center justify-center"
+        class="space-x-6 flex items-center justify-center pr-6"
         :class="{ hidden: isClicked }"
       >
         <UIcon
@@ -121,7 +121,7 @@ const search = ref('')
             </template>
           </UDropdown>
         </div>
-        <div v-else class="space-x-4 pr-6">
+        <div v-else class="space-x-4">
           <UButton to="/auth/login" label="Button">
             Login
           </UButton>
