@@ -8,7 +8,7 @@ import type { LoginSchema } from '~/composables/schemas/auth'
 
 definePageMeta({
   layout: 'blank',
-  middleware: 'auth',
+  // middleware: 'auth',
 })
 
 const { signIn } = useAuth()
