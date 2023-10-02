@@ -11,7 +11,7 @@ defineProps<Props>()
 <template>
   <div class="flex items-center gap-2 rounded-md overflow-hidden bg-white/5">
     <template v-if="previewData?.data">
-      <img class="w-24 h-20 aspect-video object-cover bg-white/5" :src="previewData?.data?.image" :alt="previewData?.data?.title">
+      <img class="w-24 h-20 aspect-video object-cover bg-white/5" :src="previewData?.data?.thumbnail" :alt="previewData?.data?.title">
       <div class="flex flex-col space-y-2 pl-2">
         <div class="text-lg w-72 truncate capitalize">
           {{ previewData?.data?.title }}

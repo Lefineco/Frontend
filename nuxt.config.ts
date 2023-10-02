@@ -10,16 +10,13 @@ export default defineNuxtConfig({
   },
   modules: [
     '@vue-macros/nuxt',
-    '@nuxthq/ui',
+    '@nuxt/ui',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/supabase',
     '@hypernym/nuxt-anime',
     '@vueuse/nuxt',
   ],
-  resolutions: {
-    '@supabase/gotrue-js': '2.43.1',
-  },
   macros: {
     setupSFC: true,
     defineModels: true,

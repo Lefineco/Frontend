@@ -2,11 +2,14 @@
 import type { PreviewData } from './types'
 import type { VideoPreviewContent } from '~/server/types'
 import { checkVideoPlatform } from '@/composables/helper'
+import type { RoomSchema } from '~/server/validation'
 
 const isOpen = defineModel<boolean>()
 const url = ref('')
 const deboundedUrl = refDebounced(url, 1000)
 const previewData = ref<PreviewData | null>(null)
+
+const router = useRouter()
 
 const previewVideo = watch([deboundedUrl], async () => {
   previewData.value = null
@@ -29,11 +32,27 @@ const previewVideo = watch([deboundedUrl], async () => {
   }
 })
 
-const values = ref<Partial<any>>({
-  name: undefined,
-  video_url: undefined,
-  participants: [],
+const values = ref<Partial<RoomSchema>>({
+  title: undefined,
+  url: undefined,
+  // participants: [],
 })
+
+async function createRoom() {
+  const { data } = await useFetch('/api/create/room', {
+    method: 'POST',
+    body: JSON.stringify({
+      ...previewData.value?.data,
+      title: values.value.title || previewData.value?.data?.title,
+    }),
+  })
+
+  if (data.value) {
+    isOpen.value = false
+
+    router.push(`/rooms/${(data.value.data as any).id}`)
+  }
+}
 
 onUnmounted(previewVideo)
 </script>
@@ -63,7 +82,7 @@ onUnmounted(previewVideo)
         <CreateRoomPreview v-if="deboundedUrl && checkVideoPlatform(url)" class="mb-4" :preview-data="previewData" />
         <UForm :state="values">
           <div class="flex flex-col gap-4">
-            <UFormGroup name="name">
+            <UFormGroup name="title">
               <UInput placeholder="Room Name (Optional)" />
             </UFormGroup>
             <UFormGroup name="url">
@@ -75,6 +94,7 @@ onUnmounted(previewVideo)
               label="Create Room"
               :disabled="Boolean(!url.length || !deboundedUrl || !previewData?.data || !checkVideoPlatform(url))"
               :loading="Boolean(url.length && deboundedUrl && checkVideoPlatform(url) && !previewData?.data)"
+              @click="createRoom"
             />
           </div>
         </UForm>

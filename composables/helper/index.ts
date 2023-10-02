@@ -17,4 +17,10 @@ function getVideoID(url: string): string | null {
   return null
 }
 
+// type ZodType<T> = z.ZodType<T, any, any>
+
+// function createValidationType<T>(type: ZodType<T>): ZodType<T> {
+//   return type
+// }
+
 export { checkVideoPlatform, getVideoID }

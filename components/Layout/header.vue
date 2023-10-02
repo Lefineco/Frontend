@@ -21,7 +21,7 @@ async function signOut() {
 const items = [
   [
     {
-      label: user.value ? (user.value.email) : '',
+      label: user.value ? user.value.email : '',
       slot: 'account',
       disabled: true,
     },
@@ -58,7 +58,7 @@ const search = ref('')
 
 <template>
   <div
-    class="bg-gradient-to-b from-black sm:from-black/5 sm:backdrop-blur-xl sm:border-b sm:border-white/5 sm:shadow-xl fixed top-0.5 inset-x-0 z-10 flex justify-between items-center py-5 px-4 sm:px-0 sm:py-3 space-x-5"
+    class="bg-gradient-to-b from-black sm:bg-gradient-to-l sm:from-white/5 sm:backdrop-blur-xl sm:border-b sm:border-white/5 sm:shadow-xl fixed top-0.5 inset-x-0 z-10 flex justify-between items-center py-5 px-4 sm:px-0 sm:py-3 space-x-5"
   >
     <div class="absolute inset-x-0 h-0.5 -top-0.5 bg-violet-950" />
     <div v-if="isClicked" class="w-full">

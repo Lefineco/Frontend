@@ -1,9 +1,9 @@
 export interface VideoPreviewContent {
-  type: string | undefined
+  platform: string | undefined
   title: string | undefined
   description: string | undefined
-  image: string | undefined
-  video: string | undefined
+  thumbnail: string | undefined
+  url: string | undefined
 }
 
 export enum Platform {

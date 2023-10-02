@@ -11,9 +11,10 @@
   "dependencies": {
     "cheerio": "1.0.0-rc.12",
     "fuse.js": "^6.6.2",
+    "h3-zod": "^0.5.1",
     "node-fetch": "^3.3.2",
     "plyr": "^3.7.8",
-    "zod": "^3.21.4"
+    "zod": "^3.22.2"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.40.0",
@@ -21,7 +22,7 @@
     "@iconify-json/logos": "^1.1.35",
     "@iconify-json/ph": "^1.1.5",
     "@nuxt/devtools": "latest",
-    "@nuxthq/ui": "npm:@nuxthq/ui-edge@latest",
+    "@nuxt/ui": "^2.8.1",
     "@nuxtjs/supabase": "^1.0.2",
     "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
     "@pinia/nuxt": "^0.4.11",
@@ -29,6 +30,6 @@
     "@vue-macros/nuxt": "^1.7.12",
     "@vueuse/nuxt": "^10.3.0",
     "eslint": "^8.46.0",
-    "nuxt": "^3.7.0"
+    "nuxt": "^3.7.3"
   }
 }

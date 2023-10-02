@@ -3,6 +3,7 @@ import type { Platform } from '~/server/types'
 
 interface Props {
   data: {
+    id: string
     title: string
     description: string
     thumbnail: string
@@ -13,10 +14,12 @@ interface Props {
 }
 
 defineProps<Props>()
+
+const router = useRouter()
 </script>
 
 <template>
-  <button class="w-90 h-90 flex flex-col items-center justify-center">
+  <button class="w-90 h-90 flex flex-col items-center justify-center" @click="router.push(`/rooms/${data.id}`)">
     <div class="w-full flex justify-between py-2 px-2">
       <div class="flex items-center justify-center gap-3">
         <UAvatar src="https://avatars.githubusercontent.com/u/739984?v=4" size="sm" /><span class="text-sm font-medium">{{ data.title }}</span>

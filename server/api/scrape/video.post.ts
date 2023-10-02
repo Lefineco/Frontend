@@ -13,14 +13,14 @@ async function scrapeData(url: string): Promise<VideoPreviewContent> {
     const $ = cheerio.load(html)
 
     const content: VideoPreviewContent = {
-      type: $('meta[property="og:site_name"]').attr('content')?.toUpperCase(),
+      platform: $('meta[property="og:site_name"]').attr('content')?.toUpperCase(),
       title: $('meta[property="og:title"]').attr('content'),
       description: $('meta[property="og:description"]').attr('content'),
-      image: $('meta[property="og:image"]').attr('content'),
-      video: $('meta[property="og:video"]').attr('content'),
+      thumbnail: $('meta[property="og:image"]').attr('content'),
+      url,
     }
 
-    if (Object.values(Platform).includes(content.type as Platform))
+    if (Object.values(Platform).includes(content.platform as Platform))
       return content
 
     else
