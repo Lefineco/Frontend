@@ -61,15 +61,3 @@ yarn preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
-
-
-
-## Must know for React developers
-- components import and export
-- props
-- state
-- lifecycle methods
-- hooks
-- routing
-- async data fetching
-- styling
