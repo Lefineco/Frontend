@@ -35,7 +35,6 @@ const previewVideo = watch([deboundedUrl], async () => {
 const values = ref<Partial<RoomSchema>>({
   title: undefined,
   url: undefined,
-  // participants: [],
 })
 
 async function createRoom() {
@@ -49,7 +48,8 @@ async function createRoom() {
 
   if (data.value) {
     isOpen.value = false
-
+    // await supabase.
+    joinRoom(data.value.data.id)
     router.push(`/rooms/${(data.value.data as any).id}`)
   }
 }

@@ -1,32 +1,31 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+
+// BUG: The following import is not working @nuxt/ui #528
+// import type { FormSubmitEvent } from '@nuxt/ui/dist/runtime/types'
 import type { ForgotPasswordEmailSchema } from './schema'
 import { forgotPasswordEmailSchema } from './schema'
 
-import type { Form } from '@/nuxthq/ui/dist/runtime/types'
-import useAsync from '@/composables/async'
+import useAsync from '@/composables/helper/async'
 import useAuth from '@/composables/auth'
 
 const { forgotPasswordEmailSchemas } = useAuth()
 const { loading, makeAsyncOperation } = useAsync()
 
-const form = ref<Form<ForgotPasswordEmailSchema>>(null)
 const values = ref<Partial<ForgotPasswordEmailSchema>>({
   email: undefined,
 })
 
-async function onSubmit() {
-  if (form.value) {
-    await form.value.validate()
-    makeAsyncOperation(async () => {
-      await forgotPasswordEmailSchemas(values.value as ForgotPasswordEmailSchema)
-    })
-  }
+// async function onSubmit(e: FormSubmitEvent<ForgotPasswordEmailSchema>) {
+async function onSubmit(e: any) {
+  makeAsyncOperation(async () => {
+    await forgotPasswordEmailSchemas(e.data)
+  })
 }
 </script>
 
 <template>
-  <UForm ref="form" :schema="forgotPasswordEmailSchema" :state="values" class="relative w-full h-full flex flex-col items-center justify-center text-white z-0" @submit.prevent="onSubmit">
+  <UForm :schema="forgotPasswordEmailSchema" :state="values" class="relative w-full h-full flex flex-col items-center justify-center text-white z-0" @submit.prevent="onSubmit">
     <NuxtLink to="/" class="mx-auto absolute top-20">
       <img src="~assets/logo.svg">
     </NuxtLink>

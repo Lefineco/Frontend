@@ -4,7 +4,7 @@ import type { Form } from '@nuxthq/ui/dist/runtime/types'
 import { useRouter } from 'vue-router'
 import { forgotPasswordSchema } from './schema'
 import type { ForgotPasswordSchema } from './schema'
-import useAsync from '@/composables/async'
+import useAsync from '@/composables/helper/async'
 import useAuth from '@/composables/auth'
 
 const { forgotPassword } = useAuth()

@@ -23,4 +23,5 @@
   ],
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
+  "tailwindCSS.experimental.configFile": "tailwind.config.ts"
 }

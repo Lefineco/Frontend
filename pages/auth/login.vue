@@ -2,7 +2,7 @@
 // eslint-disable-next-line antfu/no-import-node-modules-by-path
 import type { Form } from '../../node_modules/@nuxthq/ui/dist/runtime/types'
 import useAuth from '@/composables/auth'
-import useAsync from '@/composables/async'
+import useAsync from '@/composables/helper/async'
 import { loginSchema } from '~/composables/schemas/auth'
 import type { LoginSchema } from '~/composables/schemas/auth'
 

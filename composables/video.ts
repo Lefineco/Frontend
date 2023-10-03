@@ -1,3 +1,4 @@
+import { checkVideoPlatform } from './helper'
 import type { VideoPreviewContent } from '~/server/types'
 
 export interface PreviewData {
@@ -14,7 +15,7 @@ function useVideo() {
 
   const previewVideo = watch([deboundedUrl], async () => {
     previewData.value = null
-    if (checkVideoPlatform(url.value)?.length && (url.value === deboundedUrl.value))
+    if (checkVideoPlatform(url.value) && (url.value === deboundedUrl.value))
       return null
 
     const { data, pending, error, refresh } = await useFetch<VideoPreviewContent | null>('/api/scrape/video', {
