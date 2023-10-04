@@ -12,7 +12,7 @@ export async function useJoinRoom(room_id: string, user_id: string, is_owner: bo
   if (error) {
     toast.add({
       id: 'error',
-      title: error,
+      title: error.message,
       description: error?.message,
       icon: 'i-ph-warning-fill',
       timeout: 2000,

@@ -25,6 +25,7 @@ const router = useRouter()
 const PLATFORM = {
   YOUTUBE: 'i-mdi-youtube',
   VIMEO: 'i-mdi-vimeo',
+  TWITCH: 'i-mdi-twitch',
 }
 </script>
 
