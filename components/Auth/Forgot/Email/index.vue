@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-// BUG: The following import is not working @nuxt/ui #528
-// import type { FormSubmitEvent } from '@nuxt/ui/dist/runtime/types'
 import type { ForgotPasswordEmailSchema } from './schema'
 import { forgotPasswordEmailSchema } from './schema'
+import type { FormSubmitEvent } from '#ui/types'
 
 import useAsync from '@/composables/helper/async'
 import useAuth from '@/composables/auth'
@@ -16,8 +15,7 @@ const values = ref<Partial<ForgotPasswordEmailSchema>>({
   email: undefined,
 })
 
-// async function onSubmit(e: FormSubmitEvent<ForgotPasswordEmailSchema>) {
-async function onSubmit(e: any) {
+async function onSubmit(e: FormSubmitEvent<ForgotPasswordEmailSchema>) {
   makeAsyncOperation(async () => {
     await forgotPasswordEmailSchemas(e.data)
   })

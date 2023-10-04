@@ -49,7 +49,7 @@ async function createRoom() {
   if (data.value) {
     isOpen.value = false
     // await supabase.
-    joinRoom(data.value.data.id)
+    // joinRoom(data.value.data.id)
     router.push(`/rooms/${(data.value.data as any).id}`)
   }
 }
