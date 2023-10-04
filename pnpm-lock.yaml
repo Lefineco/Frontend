@@ -34,6 +34,9 @@ devDependencies:
   '@iconify-json/logos':
     specifier: ^1.1.35
     version: 1.1.37
+  '@iconify-json/mdi':
+    specifier: ^1.1.54
+    version: 1.1.54
   '@iconify-json/ph':
     specifier: ^1.1.5
     version: 1.1.6
@@ -42,7 +45,7 @@ devDependencies:
     version: 1.0.0-beta.0(nuxt@3.7.4)(vite@4.4.10)
   '@nuxt/ui':
     specifier: npm:@nuxt/ui-edge@latest
-    version: /@nuxt/ui-edge@2.9.0-28272297.c3e51b6(vue@3.3.4)(webpack@5.88.2)
+    version: /@nuxt/ui-edge@2.9.0-28273475.76b1e89(vue@3.3.4)(webpack@5.88.2)
   '@nuxtjs/supabase':
     specifier: ^1.0.2
     version: 1.1.2
@@ -1076,6 +1079,12 @@ packages:
       '@iconify/types': 2.0.0
     dev: true
 
+  /@iconify-json/mdi@1.1.54:
+    resolution: {integrity: sha512-3QAsxte90EalbN2e8J30OqSSZz9qN2x+kmykQwsPahoW2dOtSvj+BR9YdiUd9A5XKk2nuU4UH5Gj/cq6WZ6CzQ==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
   /@iconify-json/ph@1.1.6:
     resolution: {integrity: sha512-dexzEndlXQX/sbQhnEpA94Pby6JCGV2tZToSGcPPQpbilDGyk5VMd0ymusYoocRAn6+qLpGRvMoz5XFKGqP+VA==}
     dependencies:
@@ -1483,8 +1492,8 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxt/ui-edge@2.9.0-28272297.c3e51b6(vue@3.3.4)(webpack@5.88.2):
-    resolution: {integrity: sha512-hziUZlqiG85ToHHlGXA9eMYLluGoEcX5FR3js5IlQk4l2rCeKHpSSZCD7LBWUTZA0XTlHRwRaFfcTG4pyM1PaQ==}
+  /@nuxt/ui-edge@2.9.0-28273475.76b1e89(vue@3.3.4)(webpack@5.88.2):
+    resolution: {integrity: sha512-phLUGkhUkxARVjlHVgMNixs+s8QgzgOcS5tT438xcH4cU/OCofW7LlEOL5jYxqHr1exaEO8Gtt+2vYs6gME2bA==}
     engines: {node: '>=v16.20.2'}
     dependencies:
       '@egoist/tailwindcss-icons': 1.3.3(tailwindcss@3.3.3)
@@ -1737,6 +1746,7 @@ packages:
     dependencies:
       is-glob: 4.0.3
       micromatch: 4.0.5
+      napi-wasm: 1.1.0
     dev: true
     bundledDependencies:
       - napi-wasm
@@ -6589,6 +6599,10 @@ packages:
     resolution: {integrity: sha512-7ZtY5KTCNheRGfEFxnedV5zFiORN1+Y1N6zvPTnHQd8ENUvfaDBeuJDZb2bN/oXwXxu3qkTXDzy57W5vAmDTBw==}
     engines: {node: ^14 || ^16 || >=18}
     hasBin: true
+    dev: true
+
+  /napi-wasm@1.1.0:
+    resolution: {integrity: sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==}
     dev: true
 
   /natural-compare@1.4.0:
