@@ -5,7 +5,7 @@
 <template>
   <div class="flex  flex-col  justify-center divide-y divide-gray-700">
     <div
-    class="flex gap-5  lg:gap-0 flex-col  lg:flex-row items-start md:items-center w-full justify-between py-12 px-7  lg:px-14"
+      class="flex gap-5  lg:gap-0 flex-col  lg:flex-row items-start md:items-center w-full justify-between py-12 px-7 lg:px-14"
     >
       <div class="md:text-center  lg:text-start">
         <p class="text-sm">

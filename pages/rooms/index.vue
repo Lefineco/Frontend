@@ -1,26 +1,5 @@
 <script setup lang="ts">
-const data = [
-  { firstName: 'Aylin Kaya' },
-  { firstName: 'Emre Yılmaz' },
-  { firstName: 'Elif Demir' },
-  { firstName: 'Burak Şahin' },
-  { firstName: 'Zeynep Avcı' },
-  { firstName: 'Ahmet Çelik' },
-  { firstName: 'Deniz Arslan' },
-  { firstName: 'Esra Öztürk' },
-  { firstName: 'Barış Karadağ' },
-  { firstName: 'Gamze Kocaman' },
-  { firstName: 'Can Yıldırım' },
-  { firstName: 'İpek Taş' },
-  { firstName: 'Mert Sönmez' },
-  { firstName: 'Yasemin Özkan' },
-  { firstName: 'Cem Şeker' },
-  { firstName: 'Nazlı Akgün' },
-  { firstName: 'Ali Tuna' },
-  { firstName: 'Nil Kılıç' },
-  { firstName: 'Kaan Eren' },
-  { firstName: 'Melike Koç' },
-]
+
 </script>
 
 <template>

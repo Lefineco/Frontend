@@ -1,11 +1,12 @@
-// FIXME: supabase type definitions are missing
+import type { Database } from '~/server/types/supabase'
+
 export async function useJoinRoom(room_id: string, user_id: string, is_owner: boolean) {
-  const supabase = useSupabaseClient()
+  const supabase = useSupabaseClient<Database>()
   const toast = useToast()
 
   const { error } = await supabase
     .from('participants')
-    .insert({ user_id, room_id, is_owner } as any)
+    .insert({ user_id, room_id, is_owner })
     .select()
     .single()
 

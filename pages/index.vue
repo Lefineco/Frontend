@@ -16,13 +16,13 @@ rooms.value = data
     </div>
     <div class="p-5 w-full">
       <div class="flex justify-between items-start">
-        <p class="text-md md:text-xl">
+        <p class="text-md md:text-xl font-medium">
           Popular Live Rooms
         </p>
         <UButton
           to="/rooms"
           trailing
-          variant="secondary"
+          variant="soft"
           icon="i-ph-arrow-right"
         >
           Daha Fazla
