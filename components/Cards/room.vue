@@ -16,8 +16,9 @@ interface Props {
 
 defineProps<Props>()
 
+// FIXME: any
 function isOwner(participants: any[]) {
-  return participants.find(participant => participant.is_owner)
+  return participants?.find(participant => participant.is_owner) || []
 }
 
 const router = useRouter()
@@ -38,7 +39,7 @@ const PLATFORM = {
       <div class="flex items-center justify-center gap-3">
         <UAvatar :src="isOwner(data.participants).users.avatar_url" size="sm" :alt="isOwner(data.participants).users.name || 'Le'" />
         <span class="text-sm font-medium">{{
-          isOwner(data.participants).users.name
+          isOwner(data.participants).users?.name
         }}</span>
       </div>
       <UIcon :name="PLATFORM[data.platform]" class="h-6 w-6" />
@@ -61,9 +62,9 @@ const PLATFORM = {
           v-for="participant in data.participants"
           :key="participant.id"
           :src="participant.users.avatar_url"
-          :alt="participant.users?.name || 'Le'"
+          :alt="participant.users.name || 'Le'"
         />
-        <template v-if="data.participants.length <= 2">
+        <template v-if="data.participants?.length <= 2">
           <UAvatar
             v-for="i in 3 - data.participants.length"
             :key="i"

@@ -1,6 +1,8 @@
 <script setup lang="ts">
-const rooms = ref<any>([])
-const supabase = useSupabaseClient()
+import type { Database } from '~/server/types/supabase'
+
+const supabase = useSupabaseClient<Database>()
+const rooms = ref()
 
 const { data } = await supabase
   .from('rooms')

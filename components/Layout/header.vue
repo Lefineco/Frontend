@@ -1,14 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import logo from '@/assets/logo.svg'
+import type { DropdownItem } from '#ui/types'
 
-const user: any = ref(null)
-
-const { data } = await useFetch('/api/me', {
-  headers: useRequestHeaders(['cookie']),
-})
-
-user.value = data.value
+const user = useSupabaseUser()
 
 const supabase = useSupabaseClient()
 const router = useRouter()
@@ -18,7 +13,8 @@ async function signOut() {
   reloadNuxtApp({ force: true })
 }
 
-const items = [
+// TODO: Fix this
+const items: DropdownItem[] | any = [
   [
     {
       label: user.value ? user.value.email : '',
@@ -53,7 +49,12 @@ const items = [
 ]
 
 const isClicked = ref(false)
+const isMounted = ref(false)
 const search = ref('')
+
+onMounted(() => {
+  isMounted.value = true
+})
 </script>
 
 <template>
@@ -95,40 +96,43 @@ const search = ref('')
           name="i-heroicons-magnifying-glass-20-solid"
           @click="isClicked = true"
         />
-        <div v-if="user" class="flex gap-2 pr-6">
-          <UDropdown
-            :items="items"
-            :ui="{ item: { disabled: 'cursor-text select-text' } }"
-            :popper="{ placement: 'bottom-end' }"
-          >
-            <UAvatar
-              variant="ghost"
-              :src="user.user_metadata.picture"
-              :alt="user.picture"
-            />
+        <ClientOnly v-if="isMounted">
+          <div v-if="user" class="flex gap-2">
+            <UDropdown
+              :items="items"
+              :ui="{ item: { disabled: 'cursor-text select-text' } }"
+              :popper="{ placement: 'bottom-end' }"
+            >
+              <UAvatar
+                variant="ghost"
+                :src="user.user_metadata.picture"
+                :alt="user.aud"
+              />
 
-            <template #account="{ item }">
-              <div class="text-left">
-                <p class="text-xs">
-                  Signed in as
-                </p>
-                <p
-                  class="truncate w-36 font-medium text-gray-900 dark:text-white"
-                >
-                  {{ item.label }}
-                </p>
-              </div>
-            </template>
-          </UDropdown>
-        </div>
-        <div v-else class="space-x-4">
-          <UButton to="/auth/login" label="Button">
-            Login
-          </UButton>
-          <UButton to="/auth/register" label="Button" variant="secondary">
-            Register
-          </UButton>
-        </div>
+              <template #account="{ item }">
+                <div class="text-left">
+                  <p class="text-xs">
+                    Signed in as
+                  </p>
+                  <p
+                    class="truncate w-36 font-medium text-gray-900 dark:text-white"
+                  >
+                    {{ item.label }}
+                  </p>
+                </div>
+              </template>
+            </UDropdown>
+          </div>
+          <div v-else class="space-x-4">
+            <UButton to="/auth/login" label="Button">
+              Login
+            </UButton>
+            <UButton to="/auth/register" label="Button" variant="soft">
+              Register
+            </UButton>
+          </div>
+        </ClientOnly>
+        <USkeleton v-else class="h-8 w-8" :ui="{ rounded: 'rounded-full' }" />
       </div>
     </template>
   </div>
