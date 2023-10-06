@@ -71,7 +71,7 @@ function signInWithGoogle() {
       <UButton
         icon="i-logos-google-icon"
         label="Sign in with Google"
-        variant="secondary"
+        variant="soft"
         block
         @click="signInWithGoogle()"
       />

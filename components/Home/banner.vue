@@ -17,7 +17,7 @@ const crateRoomModal = ref(false)
       <p class=" text-xs lg:text-sm text-gray-500 font-bold">
         Watch alone or share with loved ones
       </p>
-      <UButton icon="i-ph-plus" class="backdrop-blur-sm" variant="secondary" @click="crateRoomModal = !crateRoomModal">
+      <UButton icon="i-ph-plus" class="backdrop-blur-sm" variant="soft" @click="crateRoomModal = !crateRoomModal">
         Create Room
       </UButton>
       <CreateRoom v-model="crateRoomModal" />

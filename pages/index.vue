@@ -39,7 +39,7 @@ rooms.value = data
         <p class="text-md md:text-xl">
           Recommended Lefiners
         </p>
-        <UButton to="/lefiners"  trailing variant="secondary" icon="i-ph-arrow-right">
+        <UButton to="/lefiners"  trailing variant="soft" icon="i-ph-arrow-right">
           Daha Fazla
         </UButton>
       </div>
@@ -53,7 +53,7 @@ rooms.value = data
         <p class="text-md md:text-xl break-words tracking-wide">
           Recommended Videos
         </p>
-        <UButton to="/videos" trailing variant="secondary" icon="i-ph-arrow-right">
+        <UButton to="/videos" trailing variant="soft" icon="i-ph-arrow-right">
           Daha Fazla
         </UButton>
       </div>

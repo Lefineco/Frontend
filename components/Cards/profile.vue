@@ -35,7 +35,7 @@ withDefaults(defineProps<Props>(), {
           <span class="text-xs text-gray-500  font-bold">Recommended</span>
         </div>
       </div> -->
-      <UButton :ui="{ size: { custom: 'text-xs' }, gap: { custom: 'max-lg:gap-x-2 lg:gap-x-2.5' }, padding: { custom: 'max-lg:px-12 py-1.5 lg:px-4 py-2' } }" class="m-3 backdrop-blur-sm " variant="secondary" size="custom">
+      <UButton :ui="{ size: { custom: 'text-xs' }, gap: { custom: 'max-lg:gap-x-2 lg:gap-x-2.5' }, padding: { custom: 'max-lg:px-12 py-1.5 lg:px-4 py-2' } }" class="m-3 backdrop-blur-sm " variant="soft" size="custom">
         Follow
       </UButton>
     </div>

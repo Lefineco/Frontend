@@ -36,13 +36,15 @@ const button = {
     'lg': 'p-2.5',
     'xl': 'p-2.5',
     'custom': '',
-
   },
   variant: {
-    primary: 'shadow-sm text-white dark:text-white bg-{color}-500 hover:bg-{color}-600 focus-visible:outline focus-visible:outline-2',
-    soft: 'text-white bg-white/20 hover:bg-white/30 disabled:bg-white/5 disabled:text-white/30 focus-visible:ring-2 focus-visible:ring-inset',
-    outline: 'ring-1 ring-inset ring-current text-{color}-500 dark:text-{color}-400 hover:bg-{color}-50 disabled:bg-transparent dark:hover:bg-{color}-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-{color}-500 dark:focus-visible:ring-{color}-400',
-    ghost: 'text-{color}-500 dark:text-{color}-400 hover:bg-{color}-50 disabled:bg-transparent dark:hover:bg-{color}-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-{color}-500 dark:focus-visible:ring-{color}-400',
+    primary:
+      'shadow-sm text-white dark:text-white bg-{color}-500 hover:bg-{color}-600 focus-visible:outline focus-visible:outline-2',
+    soft: '!text-white !bg-white/20 hover:bg-white/30 disabled:bg-white/5 disabled:text-white/30 focus-visible:ring-2 focus-visible:ring-inset',
+    outline:
+      'ring-1 ring-inset ring-current text-{color}-500 dark:text-{color}-400 hover:bg-{color}-50 disabled:bg-transparent dark:hover:bg-{color}-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-{color}-500 dark:focus-visible:ring-{color}-400',
+    ghost:
+      'text-{color}-500 dark:text-{color}-400 hover:bg-{color}-50 disabled:bg-transparent dark:hover:bg-{color}-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-{color}-500 dark:focus-visible:ring-{color}-400',
     link: 'text-{color}-500 hover:text-{color}-600 disabled:text-{color}-500 dark:text-{color}-400 dark:hover:text-{color}-500 dark:disabled:text-{color}-400 underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-{color}-500 dark:focus-visible:ring-{color}-400',
   },
   icon: {

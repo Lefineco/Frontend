@@ -10,7 +10,6 @@ const router = useRouter()
 
 async function signOut() {
   await supabase.auth.signOut()
-  reloadNuxtApp({ force: true })
 }
 
 // TODO: Fix this

@@ -17,7 +17,6 @@ const roomSchema = z.object({
     .string()
     .url({ message: 'Geçersiz video URL.' })
     .nonempty({ message: 'Video URL gereklidir.' }),
-  // participants: z.array(z.string()).nullable(),
   platform: z.nativeEnum(Platform),
 })
 

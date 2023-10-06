@@ -60,7 +60,7 @@ const search = ref('')
         </div>
         <div class="flex  justify-end gap-3">
           <UButton>Invite</UButton>
-          <UButton class="backdrop-blur-sm" variant="secondary" @click="closeModal">
+          <UButton class="backdrop-blur-sm" variant="soft" @click="closeModal">
             Cancel
           </UButton>
         </div>
