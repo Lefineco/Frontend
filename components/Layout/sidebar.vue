@@ -1,6 +1,5 @@
 <script setup lang="ts">
-// eslint-disable-next-line antfu/no-import-node-modules-by-path
-import type { VerticalNavigationLink } from '../../node_modules/@nuxthq/ui/dist/runtime/types'
+import type { VerticalNavigationLink } from '#ui/types'
 
 const links: VerticalNavigationLink[] = [
   {

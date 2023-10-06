@@ -1,4 +1,5 @@
 export interface VideoPreviewContent {
+  image: string | undefined
   platform: string | undefined
   title: string | undefined
   description: string | undefined

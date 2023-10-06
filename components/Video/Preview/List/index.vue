@@ -10,7 +10,7 @@ defineProps<Props>()
 
 <template>
   <ul class="flex flex-col gap-2 h-full overflow-y-scroll">
-    <li v-for="item in videoList" :key="item.video">
+    <li v-for="(item, idx) in videoList" :key="idx">
       <VideoPreview :preview-data="item" />
     </li>
   </ul>
