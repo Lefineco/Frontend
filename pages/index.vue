@@ -1,27 +1,36 @@
 <script setup lang="ts">
+import type { Room } from '~/server/types'
 import type { Database } from '~/server/types/supabase'
+import { useHomeStore } from '~/store'
 
 const supabase = useSupabaseClient<Database>()
-const rooms = ref()
 
-const { data } = await supabase
+const store = useHomeStore()
+
+const { data: supabaseRooms } = await supabase
   .from('rooms')
   .select('*, participants(is_owner, users(*))')
 
-rooms.value = data
+const { data: supabaseLefiner } = await supabase
+  .from('users')
+  .select('*')
+  .filter('name', 'neq', null)
+
+// FIXME: maybe Fix this
+store.rooms = supabaseRooms as Room[]
+store.lefiners = supabaseLefiner
 </script>
 
 <template>
   <div class="page">
-    <div class="p-5 w-full">
-      <HomeBanner />
-    </div>
+    <HomeBanner />
     <div class="p-5 w-full">
       <div class="flex justify-between items-start">
         <p class="text-md md:text-xl font-medium">
           Popular Live Rooms
         </p>
         <UButton
+          v-if="store.rooms?.length ?? 0 > 4"
           to="/rooms"
           trailing
           variant="soft"
@@ -30,24 +39,40 @@ rooms.value = data
           Daha Fazla
         </UButton>
       </div>
-      <div class="py-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        <CardsRoom v-for="(item, idx) in rooms" :key="idx" :data="item" />
+      <div
+        class="py-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+      >
+        <CardsRoom
+          v-for="(item, idx) in store.rooms?.slice(0, 4)"
+          :key="idx"
+          :data="item"
+        />
       </div>
     </div>
-    <!-- <div class="p-5 w-full">
+    <div class="p-5 w-full">
       <div class="flex justify-between items-start">
-        <p class="text-md md:text-xl">
+        <p class="text-md md:text-xl font-medium">
           Recommended Lefiners
         </p>
-        <UButton to="/lefiners"  trailing variant="soft" icon="i-ph-arrow-right">
+        <UButton
+          v-if="store.rooms?.length ?? 0 > 4"
+          to="/lefiners"
+          trailing
+          variant="soft"
+          icon="i-ph-arrow-right"
+        >
           Daha Fazla
         </UButton>
       </div>
-      <div class="py-7 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4  gap-4">
-        <CardsProfile />
+      <div class="py-7 flex gap-6">
+        <CardsProfile
+          v-for="(item, idx) in store.lefiners?.slice(0, 4)"
+          :key="idx"
+          :data="item"
+        />
       </div>
     </div>
-
+    <!--
     <div class="p-5 w-full">
       <div class="flex justify-between items-start">
         <p class="text-md md:text-xl break-words tracking-wide">

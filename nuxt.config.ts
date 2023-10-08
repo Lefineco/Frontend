@@ -7,6 +7,10 @@ export default defineNuxtConfig({
   css: ['~/assets/main.css', 'plyr/dist/plyr.css'],
   devtools: {
     enabled: true,
+
+    timeline: {
+      enabled: true,
+    },
   },
   modules: [
     '@vue-macros/nuxt',

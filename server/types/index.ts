@@ -1,3 +1,11 @@
+import type { Database } from './supabase'
+
+export type TableRows<T extends keyof Database['public']['Tables']> = Database['public']['Tables'][T]['Row']
+
+export enum Platform {
+  YOUTUBE = 'YOUTUBE',
+  VIMEO = 'VIMEO',
+}
 export interface VideoPreviewContent {
   image: string | undefined
   platform: string | undefined
@@ -15,7 +23,10 @@ export interface CreateRoomBody {
   participants: string[]
 }
 
-export enum Platform {
-  YOUTUBE = 'YOUTUBE',
-  VIMEO = 'VIMEO',
+export interface Participants extends TableRows<'participants'> {
+  users: TableRows<'users'>
+}
+
+export interface Room extends TableRows<'rooms'> {
+  participants: Participants[]
 }

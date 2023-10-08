@@ -1,6 +1,5 @@
 <script setup lang="ts">
-// eslint-disable-next-line antfu/no-import-node-modules-by-path
-import type { Form } from '../../node_modules/@nuxthq/ui/dist/runtime/types'
+import type { Form } from '#ui/types'
 import useAuth from '@/composables/auth'
 import useAsync from '@/composables/helper/async'
 import { loginSchema } from '~/composables/schemas/auth'
@@ -8,7 +7,7 @@ import type { LoginSchema } from '~/composables/schemas/auth'
 
 definePageMeta({
   layout: 'blank',
-  // middleware: 'auth',
+  middleware: 'auth',
 })
 
 const { signIn } = useAuth()
@@ -26,10 +25,7 @@ async function onSubmit() {
   makeAsyncOperation(async () => {
     await signIn(values.value as LoginSchema)
   })
-  // reloadNuxtApp({ force: true })
 }
-
-// TODO: giris yapildiktan sonra componentleri rerender et
 
 function signInWithGoogle() {
   supabase.auth.signInWithOAuth({

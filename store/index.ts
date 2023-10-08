@@ -1,5 +1,13 @@
+import type { Room, TableRows } from '~/server/types'
+
+interface State {
+  rooms: Room[] | null
+  lefiners: TableRows<'users'>[] | null
+}
+
 export const useHomeStore = defineStore('home', {
-  state: () => ({
-    hello: '',
+  state: (): State => ({
+    rooms: [],
+    lefiners: [],
   }),
 })
