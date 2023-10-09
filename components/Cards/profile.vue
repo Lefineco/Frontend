@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { TableRows } from '~/server/types'
+import { useFollow } from '@/composables/service/profile'
 
 interface Props {
   data: TableRows<'users'>
@@ -9,7 +10,9 @@ defineProps<Props>()
 </script>
 
 <template>
-  <div class="relative h-36 w-full flex flex-col items-center justify-center rounded-[20px]">
+  <div
+    class="relative h-36 w-full flex flex-col items-center justify-center rounded-[20px]"
+  >
     <div
       class="relative overflow-hidden rounded-2xl w-full after:content-[''] after:absolute after:inset-0 after:bg-black/60"
     >
@@ -23,13 +26,22 @@ defineProps<Props>()
       class="absolute max-lg:items-center w-full flex-col flex lg:flex-row justify-between bottom-1 py-2 px-5"
     >
       <div class="flex flex-col lg:flex-row items-center justify-center gap-3">
-        <UAvatar :src="data.avatar_url || ''" size="md" :alt="data?.name || ''" />
+        <UAvatar
+          :src="data.avatar_url || ''"
+          size="md"
+          :alt="data?.name || ''"
+        />
         <div class="flex flex-col items-center lg:items-start">
           <span class="text-sm font-medium capitalize">{{ data.name }}</span>
           <span class="text-xs text-zinc-400">Recommended</span>
         </div>
       </div>
-      <UButton class="m-3 backdrop-blur-sm" variant="soft" size="sm">
+      <UButton
+        class="m-3 backdrop-blur-sm"
+        variant="soft"
+        size="sm"
+        @click="useFollow(data?.id)"
+      >
         Follow
       </UButton>
     </div>

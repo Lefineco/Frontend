@@ -1,18 +1,34 @@
 <script setup lang="ts">
-const data = [
-  { name: 'Berke Kayada' },
-  { name: 'Furkan Erdoğan' },
-  { name: 'Cansu Altun' },
-  { name: 'Emin Mehmet' },
-]
+import type { Database } from '~/server/types/supabase'
+import { useGeneralStore } from '~/store'
+
+const supabase = useSupabaseClient<Database>()
+const store = useGeneralStore()
+
+if (!store.lefiners?.length) {
+  const { data } = await supabase
+    .from('users')
+    .select('*')
+    .filter('name', 'neq', null)
+
+  store.lefiners = data
+}
+
 const data2 = [
-  { name: 'Cans', createDate: '2 Days Ago', description: 'Deneme Canim', avatar: 'https', viewers: 't' },
+  {
+    name: 'Cans',
+    createDate: '2 Days Ago',
+    description: 'Deneme Canim',
+    avatar: 'https',
+    viewers: 't',
+  },
 ]
 </script>
 
 <template>
   <div class="page grid grid-cols-12">
     <div class="p-5 col-span-8 max-w-7xl mx-auto space-y-6">
+      <FeedsFormCreate />
       <Feeds
         v-for="(item, idx) in data2"
         :key="idx"
@@ -28,9 +44,9 @@ const data2 = [
           Recomennded Lefiners
         </h2>
         <CardsProfile
-          v-for="(item, idx) in data"
+          v-for="(item, idx) in store.lefiners?.slice(0, 4)"
           :key="idx"
-          :name="item.name"
+          :data="item"
         />
       </div>
     </div>

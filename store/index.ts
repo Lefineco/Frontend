@@ -5,7 +5,7 @@ interface State {
   lefiners: TableRows<'users'>[] | null
 }
 
-export const useHomeStore = defineStore('home', {
+export const useGeneralStore = defineStore('general', {
   state: (): State => ({
     rooms: [],
     lefiners: [],

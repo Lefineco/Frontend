@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { Room } from '~/server/types'
 import type { Database } from '~/server/types/supabase'
-import { useHomeStore } from '~/store'
+import { useGeneralStore } from '~/store'
 
 const supabase = useSupabaseClient<Database>()
 
-const store = useHomeStore()
+const store = useGeneralStore()
 
 const { data: supabaseRooms } = await supabase
   .from('rooms')
@@ -16,7 +16,7 @@ const { data: supabaseLefiner } = await supabase
   .select('*')
   .filter('name', 'neq', null)
 
-// FIXME: maybe Fix this
+// TODO: maybe Fix this
 store.rooms = supabaseRooms as Room[]
 store.lefiners = supabaseLefiner
 </script>
@@ -30,7 +30,7 @@ store.lefiners = supabaseLefiner
           Popular Live Rooms
         </p>
         <UButton
-          v-if="store.rooms?.length ?? 0 > 4"
+          v-if="(store.rooms?.length ?? 0) > 4"
           to="/rooms"
           trailing
           variant="soft"
@@ -55,7 +55,7 @@ store.lefiners = supabaseLefiner
           Recommended Lefiners
         </p>
         <UButton
-          v-if="store.rooms?.length ?? 0 > 4"
+          v-if="(store.lefiners?.length ?? 0) > 4"
           to="/lefiners"
           trailing
           variant="soft"
