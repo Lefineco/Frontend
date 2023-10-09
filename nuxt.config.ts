@@ -3,13 +3,12 @@ export default defineNuxtConfig({
   app: {
     rootTag: 'main',
     rootId: 'lefine',
-    Headers: {
-      'title': 'Lefine',
-      'X-Frame-Options': 'SAMEORIGIN',
-      'X-XSS-Protection': '1; mode=block',
-      'X-Content-Type-Options': 'nosniff',
-      'Referrer-Policy': 'no-referrer-when-downgrade',
-      'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
+    head: {
+      title: 'Lefine',
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width,initial-scale=1' },
+      ],
     },
   },
   css: ['~/assets/main.css', 'plyr/dist/plyr.css'],

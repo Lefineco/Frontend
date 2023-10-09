@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import type { TableRows } from '~/server/types'
-import { useFollow } from '@/composables/service/profile'
+import type { Lefiners } from '~/server/types'
+import { useFollow, useUnfollow } from '@/composables/service/profile'
 
 interface Props {
-  data: TableRows<'users'>
+  data: Lefiners
 }
+const props = defineProps<Props>()
 
-defineProps<Props>()
+const user = useSupabaseUser()
+
+const isFollower = computed(() => props.data.follows.at(0)?.follower_id === user.value?.id)
 </script>
 
 <template>
@@ -38,11 +41,11 @@ defineProps<Props>()
       </div>
       <UButton
         class="m-3 backdrop-blur-sm"
-        variant="soft"
+        :variant="isFollower ? 'outline' : 'soft'"
         size="sm"
-        @click="useFollow(data?.id)"
+        @click="() => isFollower ? useUnfollow(data?.id) : useFollow(data?.id)"
       >
-        Follow
+        {{ isFollower ? 'Unfollow' : 'Follow' }}
       </UButton>
     </div>
   </div>

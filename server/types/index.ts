@@ -30,3 +30,7 @@ export interface Participants extends TableRows<'participants'> {
 export interface Room extends TableRows<'rooms'> {
   participants: Participants[]
 }
+
+export interface Lefiners extends TableRows<'users'> {
+  follows: TableRows<'follows'>[]
+}

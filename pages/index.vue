@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { Room } from '~/server/types'
+import type { Lefiners, Room } from '~/server/types'
 import type { Database } from '~/server/types/supabase'
 import { useGeneralStore } from '~/store'
 
 const supabase = useSupabaseClient<Database>()
-
+const user = useSupabaseUser()
 const store = useGeneralStore()
 
 const { data: supabaseRooms } = await supabase
@@ -13,12 +13,13 @@ const { data: supabaseRooms } = await supabase
 
 const { data: supabaseLefiner } = await supabase
   .from('users')
-  .select('*')
+  .select('*, follows!follows_following_id_fkey(follower_id)')
   .filter('name', 'neq', null)
+  .filter('follows.follower_id', 'eq', user.value?.id)
 
 // TODO: maybe Fix this
 store.rooms = supabaseRooms as Room[]
-store.lefiners = supabaseLefiner
+store.lefiners = supabaseLefiner as Lefiners[]
 </script>
 
 <template>
@@ -66,7 +67,9 @@ store.lefiners = supabaseLefiner
       </div>
       <div class="py-7 flex gap-6">
         <CardsProfile
-          v-for="(item, idx) in store.lefiners?.slice(0, 4)"
+          v-for="(item, idx) in store.lefiners
+            ?.slice(0, 4)
+            .filter((item) => item.id !== user?.id)"
           :key="idx"
           :data="item"
         />

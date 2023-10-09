@@ -15,9 +15,9 @@ export async function useFollow(following_id: string) {
     .single()
 
   if (error)
-    toast(error.message, error.message, 'error')
+    toast('Error!', error.message, 'error')
   else
-    toast('Successfully!', 'Joined room successfully!', 'success')
+    toast('Successfully!', 'User following successfully!', 'success')
 }
 
 export async function useUnfollow(following_id: string) {
@@ -33,7 +33,7 @@ export async function useUnfollow(following_id: string) {
     .match({ follower_id: user.value?.id, following_id })
 
   if (error)
-    toast(error.message, error.message, 'error')
+    toast('Error', error.message, 'error')
   else
-    toast('Successfully!', 'Joined room successfully!', 'success')
+    toast('Successfully!', 'Successfully Unfollowed', 'success')
 }
