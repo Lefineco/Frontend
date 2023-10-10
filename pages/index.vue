@@ -15,7 +15,7 @@ const { data: supabaseLefiner } = await supabase
   .from('users')
   .select('*, follows!follows_following_id_fkey(follower_id)')
   .filter('name', 'neq', null)
-  .filter('follows.follower_id', 'eq', user.value?.id)
+  .filter('follows.follower_id', 'eq', user.value?.id || '')
 
 // TODO: maybe Fix this
 store.rooms = supabaseRooms as Room[]
