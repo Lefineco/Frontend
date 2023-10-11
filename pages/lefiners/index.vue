@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Lefiners } from '~/server/types'
 import type { Database } from '~/server/types/supabase'
 import { useGeneralStore } from '~/store'
 
@@ -11,7 +12,7 @@ if (!store.lefiners?.length) {
     .select('*')
     .filter('name', 'neq', null)
 
-  store.lefiners = data
+  store.lefiners = data as Lefiners[]
 }
 </script>
 
@@ -22,7 +23,7 @@ if (!store.lefiners?.length) {
         All Lefiners
       </p>
 
-      <div class="py-7 grid grid-cols-1  md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3  gap-4">
+      <div class="py-7 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3  gap-4">
         <CardsProfile v-for="(item, idx) in store.lefiners" :key="idx" :data="item" />
       </div>
     </div>
