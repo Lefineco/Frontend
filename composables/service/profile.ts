@@ -1,12 +1,14 @@
 import type { Database } from '~/server/types/supabase'
 import { toast } from '@/composables/helper/toast'
 
-export async function useFollow(following_id: string) {
+type FollowCallback = (isFollow: boolean) => void
+
+export async function useFollow(following_id: string, callback?: FollowCallback) {
   const supabase = useSupabaseClient<Database>()
   const user = useSupabaseUser()
 
   if (!user.value?.id)
-    return toast('Error!', 'You must login to join room!', 'error')
+    return toast('Error!', 'You must login to follow Lefiner!', 'error')
 
   const { error } = await supabase
     .from('follows')
@@ -16,16 +18,16 @@ export async function useFollow(following_id: string) {
 
   if (error)
     toast('Error!', error.message, 'error')
-  else
-    toast('Successfully!', 'User following successfully!', 'success')
+
+  callback && callback(true)
 }
 
-export async function useUnfollow(following_id: string) {
+export async function useUnfollow(following_id: string, callback?: FollowCallback) {
   const supabase = useSupabaseClient<Database>()
   const user = useSupabaseUser()
 
   if (!user.value?.id)
-    return toast('Error!', 'You must login to join room!', 'error')
+    return toast('Error!', 'You must login to follow Lefiner!', 'error')
 
   const { error } = await supabase
     .from('follows')
@@ -34,6 +36,6 @@ export async function useUnfollow(following_id: string) {
 
   if (error)
     toast('Error', error.message, 'error')
-  else
-    toast('Successfully!', 'Successfully Unfollowed', 'success')
+
+  callback && callback(false)
 }

@@ -7,7 +7,7 @@ import type { LoginSchema } from '~/composables/schemas/auth'
 
 definePageMeta({
   layout: 'blank',
-  middleware: 'auth',
+  // middleware: 'auth',
 })
 
 const { signIn } = useAuth()
@@ -21,6 +21,7 @@ const values = ref<Partial<LoginSchema>>({
 })
 
 async function onSubmit() {
+  //  FIXME: Fix this
   await form.value?.validate()
   makeAsyncOperation(async () => {
     await signIn(values.value as LoginSchema)

@@ -8,8 +8,14 @@ interface Props {
 const props = defineProps<Props>()
 
 const user = useSupabaseUser()
+const isFollower = computed(() =>
+  Boolean(
+    props.data.follows.at(0)?.follower_id === user.value?.id && user.value?.id,
+  ),
+)
 
-const isFollower = computed(() => props.data.follows.at(0)?.follower_id === user.value?.id)
+const follow = ref(isFollower.value)
+const setFollow = (val: boolean) => (follow.value = val)
 </script>
 
 <template>
@@ -41,11 +47,16 @@ const isFollower = computed(() => props.data.follows.at(0)?.follower_id === user
       </div>
       <UButton
         class="m-3 backdrop-blur-sm"
-        :variant="isFollower ? 'outline' : 'soft'"
+        :variant="follow ? 'outline' : 'soft'"
         size="sm"
-        @click="() => isFollower ? useUnfollow(data?.id) : useFollow(data?.id)"
+        @click="
+          () =>
+            follow
+              ? useUnfollow(data?.id, setFollow)
+              : useFollow(data?.id, setFollow)
+        "
       >
-        {{ isFollower ? 'Unfollow' : 'Follow' }}
+        {{ follow ? 'Unfollow' : 'Follow' }}
       </UButton>
     </div>
   </div>
