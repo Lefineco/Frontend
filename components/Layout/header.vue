@@ -82,7 +82,7 @@ onMounted(() => {
       <div class="w-full lg:w-[500px] hidden lg:block">
         <UInputSearch
           v-model="search"
-          class="w-full"
+          class="w-full placeholder:text-white/50"
           name="search"
           placeholder="Search Video, Lefiner or Room"
         />

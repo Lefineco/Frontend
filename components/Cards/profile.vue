@@ -61,7 +61,10 @@ const setFollow = (val: boolean) => (follow.value = val)
           {{ follow ? 'Unfollow' : 'Follow' }}
         </UButton>
         <template #fallback>
-          <USkeleton class="h-8 w-16 m-3" :ui="{ background: '!bg-white/10' }" />
+          <USkeleton
+            class="h-8 w-16 m-3"
+            :ui="{ background: '!bg-white/10' }"
+          />
         </template>
       </ClientOnly>
     </div>
