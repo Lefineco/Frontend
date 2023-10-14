@@ -6,7 +6,6 @@ const links: VerticalNavigationLink[] = [
     label: '',
     custom: true,
     icon: 'i-ph-play-circle-fill',
-    activeClass: '!text-red-500',
     to: '/',
   },
   {
@@ -30,13 +29,11 @@ const links: VerticalNavigationLink[] = [
       :ui="{
         wrapper: 'relative space-y-3',
         base: 'pl-6 before:!bg-transparent',
-        active:
-          'before:border-l-2 before:rounded-none before:!border-l-primary',
+        active: 'before:border-l-2 before:rounded-none before:!border-l-white',
         icon: {
           base: 'flex-shrink-0 w-6 h-6 m-1',
-          active: 'text-gray-700 dark:text-gray-200',
           inactive:
-            'text-gray-400 dark:text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-200',
+            '!text-white/50 group-hover:!text-white/50 dark:group-hover:text-gray-200',
         },
       }"
       :links="links"

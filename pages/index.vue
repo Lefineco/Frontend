@@ -25,15 +25,15 @@ store.lefiners = supabaseLefiner as Lefiners[]
   <div class="main">
     <HomeBanner />
     <div class="wrapper">
-      <div class="page -mt-[36em]">
-        <SharedCategory class="px-5" title="Popular Live Rooms" to="/rooms">
+      <div class="page sm:-mt-[36em]">
+        <SharedCategory class="px-5" title="Popular Live Rooms" to="/rooms" :data="store.rooms">
           <CardsRoom
             v-for="(item, idx) in store.rooms?.slice(0, 4)"
             :key="idx"
             :data="item"
           />
         </SharedCategory>
-        <SharedCategory class="px-5" title="Popular Live Rooms" to="/lefiners">
+        <SharedCategory class="px-5" title="Popular Live Rooms" to="/lefiners" :data="store.lefiners">
           <CardsProfile
             v-for="(item, idx) in store.lefiners
               ?.slice(0, 4)

@@ -2,7 +2,7 @@ const input = {
   wrapper: 'relative',
   base: 'border-transparent relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none font-semibold',
   rounded: 'rounded-md',
-  placeholder: 'placeholder-gray-400 dark:placeholder-gray-500',
+  placeholder: '!placeholder-white/60',
   size: {
     '2xs': 'text-xs',
     'xs': 'text-xs',
@@ -68,7 +68,7 @@ const input = {
     none: 'bg-transparent focus:ring-0 focus:shadow-none',
   },
   icon: {
-    base: 'flex-shrink-0 text-gray-400 dark:text-gray-500',
+    base: 'flex-shrink-0 !text-white/50',
     color: 'text-{color}-500 dark:text-{color}-400',
     size: {
       '2xs': 'h-4 w-4',

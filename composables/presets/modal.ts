@@ -5,8 +5,7 @@ const modal = {
   padding: 'p-4 sm:p-0',
   base: 'relative text-left rtl:text-right overflow-hidden sm:my-8 w-full flex flex-col',
   overlay: {
-    base: 'fixed inset-0 transition-opacity',
-    background: 'bg-black/70',
+    base: 'fixed bg-black/50 backdrop-blur-sm inset-0 transition-opacity',
     transition: {
       enter: 'ease-out duration-300',
       enterFrom: 'opacity-0',
@@ -17,7 +16,7 @@ const modal = {
     },
   },
   background: 'bg-surface',
-  ring: '',
+  ring: 'ring ring-2 ring-primary',
   rounded: 'rounded-lg',
   shadow: 'shadow-xl',
   width: 'sm:max-w-lg',

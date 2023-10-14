@@ -1,7 +1,9 @@
 <script setup lang="ts">
 interface Props {
+  data?: any // FIXME: any
   title: string
   to: string // TODO: route path type
+  all?: boolean
 }
 
 defineProps<Props>()
@@ -9,12 +11,12 @@ defineProps<Props>()
 
 <template>
   <div class="category">
-    <div class="head">
+    <div class="head" :class="all && 'justify-start'">
       <p class="title">
         {{ title }}
       </p>
       <UButton
-        v-if="(data?.length ?? 0) > 4"
+        v-if="!all && (data?.length ?? 0) > 4"
         trailing
         variant="soft"
         icon="i-ph-arrow-right"
@@ -40,7 +42,6 @@ defineProps<Props>()
         @apply md:text-xl font-medium;
     }
   }
-
   .content {
     @apply py-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4;
   }

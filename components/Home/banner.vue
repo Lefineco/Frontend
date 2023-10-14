@@ -13,6 +13,7 @@ onMounted(() => {
   })
   player.setVolume(0)
   player.setLoop(true)
+  player.setCurrentTime(40)
   player.play()
 })
 </script>
@@ -22,7 +23,7 @@ onMounted(() => {
     <iframe
       src="https://player.vimeo.com/video/871122886?h=bdd8c927a7&autoplay=1&loop=1&title=0&byline=0&portrait=0"
       frameborder="0"
-      class="absolute top-0 left-0 w-full h-full"
+      class="absolute bg-black top-0 left-0 w-full h-full"
     />
     <div class="absolute top-0 left-0 w-full h-full bg-black/30 backdrop-blur-sm" />
     <div class="absolute inset-0 bg-gradient-to-t from-black" />
