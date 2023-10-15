@@ -59,7 +59,7 @@ devDependencies:
     specifier: ^0.4.11
     version: 0.4.11(typescript@5.2.2)(vue@3.3.4)
   '@types/node':
-    specifier: ^18.17.5
+    specifier: ^18.17.1
     version: 18.18.3
   '@types/vimeo__player':
     specifier: ^2.18.1
