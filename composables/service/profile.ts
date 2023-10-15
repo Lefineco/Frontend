@@ -9,8 +9,10 @@ export async function useFollow(following_id: string, callback?: FollowCallback)
 
   callback && callback(undefined, true)
 
-  if (!user.value?.id)
+  if (!user.value?.id) {
+    callback && callback(undefined, false)
     return toast('Error!', 'You must login to follow Lefiner!', 'error')
+  }
 
   const { error } = await supabase
     .from('follows')
@@ -30,8 +32,10 @@ export async function useUnfollow(following_id: string, callback?: FollowCallbac
 
   callback && callback(undefined, true)
 
-  if (!user.value?.id)
+  if (!user.value?.id) {
+    callback && callback(undefined, true)
     return toast('Error!', 'You must login to follow Lefiner!', 'error')
+  }
 
   const { error } = await supabase
     .from('follows')
