@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Lefiners } from '~/server/types'
 import type { Database } from '~/server/types/supabase'
 import { useGeneralStore } from '~/store'
 
@@ -11,7 +12,7 @@ if (!store.lefiners?.length) {
     .select('*')
     .filter('name', 'neq', null)
 
-  store.lefiners = data
+  store.lefiners = data as Lefiners[]
 }
 
 const data2 = [
@@ -43,11 +44,13 @@ const data2 = [
         <h2 class="font-bold font-base">
           Recomennded Lefiners
         </h2>
-        <CardsProfile
-          v-for="(item, idx) in store.lefiners?.slice(0, 4)"
-          :key="idx"
-          :data="item"
-        />
+        <div class="space-y-6">
+          <CardsProfile
+            v-for="(item, idx) in store.lefiners?.slice(0, 4)"
+            :key="idx"
+            :data="item"
+          />
+        </div>
       </div>
     </div>
   </div>

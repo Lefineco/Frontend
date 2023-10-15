@@ -10,12 +10,18 @@ const props = defineProps<Props>()
 const user = useSupabaseUser()
 const isFollower = computed(() =>
   Boolean(
-    props.data.follows.at(0)?.follower_id === user.value?.id && user.value?.id,
+    props.data.follows?.at(0)?.follower_id === user.value?.id && user.value?.id,
   ),
 )
 
 const follow = ref(isFollower.value)
-const setFollow = (val: boolean) => (follow.value = val)
+const followLoad = ref(false)
+
+function setFollow(val: boolean | undefined, load: boolean) {
+  if (val !== undefined)
+    follow.value = val
+  followLoad.value = load
+}
 </script>
 
 <template>
@@ -45,19 +51,26 @@ const setFollow = (val: boolean) => (follow.value = val)
           <span class="text-xs text-zinc-400">Recommended</span>
         </div>
       </div>
-      <UButton
-        class="m-3 backdrop-blur-sm"
-        :variant="follow ? 'outline' : 'soft'"
-        size="sm"
-        @click="
-          () =>
-            follow
-              ? useUnfollow(data?.id, setFollow)
-              : useFollow(data?.id, setFollow)
-        "
-      >
-        {{ follow ? 'Unfollow' : 'Follow' }}
-      </UButton>
+      <ClientOnly>
+        <UButton
+          class="m-3 backdrop-blur-sm"
+          :variant="follow ? 'outline' : 'soft'"
+          :color="follow ? 'white' : 'zinc'"
+          size="sm"
+          :loading="followLoad"
+          @click="() => {
+            follow ? useUnfollow(data?.id, setFollow) : useFollow(data?.id, setFollow)
+          }"
+        >
+          {{ follow ? 'Unfollow' : 'Follow' }}
+        </UButton>
+        <template #fallback>
+          <USkeleton
+            class="h-8 w-16 m-3"
+            :ui="{ background: '!bg-white/10' }"
+          />
+        </template>
+      </ClientOnly>
     </div>
   </div>
 </template>

@@ -50,6 +50,7 @@ const items: DropdownItem[] | any = [
 
 const isClicked = ref(false)
 const isMounted = ref(false)
+const crateRoomModal = ref(false)
 const search = ref('')
 
 onMounted(() => {
@@ -59,7 +60,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="bg-gradient-to-b from-black sm:bg-gradient-to-l sm:from-white/5 sm:backdrop-blur-xl sm:border-b sm:border-white/5 sm:shadow-xl fixed top-0.5 inset-x-0 z-10 flex justify-between items-center py-5 px-4 sm:px-0 sm:py-3 space-x-5"
+    class="bg-gradient-to-b from-black sm:bg-gradient-to-l sm:from-white/5 sm:backdrop-blur-xl sm:border-b sm:border-white/5 sm:shadow-xl fixed top-0.5 inset-x-0 z-30 flex justify-between items-center py-5 px-4 sm:px-0 sm:py-3 space-x-5"
   >
     <div class="absolute inset-x-0 h-0.5 -top-0.5 bg-violet-950" />
     <div v-if="isClicked" class="w-full">
@@ -97,7 +98,11 @@ onMounted(() => {
           @click="isClicked = true"
         />
         <ClientOnly v-if="isMounted">
-          <div v-if="user" class="flex gap-2">
+          <div v-if="user" class="flex gap-4 items-center">
+            <UButton icon="i-ph-plus" size="xs" variant="soft" @click="crateRoomModal = !crateRoomModal">
+              Create Room
+            </UButton>
+            <CreateRoom v-model="crateRoomModal" />
             <UDropdown
               :items="items"
               :ui="{ item: { disabled: 'cursor-text select-text' } }"

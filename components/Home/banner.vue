@@ -1,28 +1,31 @@
 <script setup lang="ts">
-import logo from '@/assets/logo.svg'
+import Vimeo from '@vimeo/player'
+import { onMounted } from 'vue'
 
-const crateRoomModal = ref(false)
+onMounted(() => {
+  const iframe = document.querySelector('iframe')
+  if (!iframe)
+    return
+  const player = new Vimeo(iframe)
+  player.getPictureInPicture().then((supported) => {
+    if (supported)
+      player.requestPictureInPicture()
+  })
+  player.setVolume(0)
+  player.setLoop(true)
+  player.setCurrentTime(40)
+  player.play()
+})
 </script>
 
 <template>
-  <div class="p-5 w-full">
-    <div class="relative w-full h-52 flex flex-col items-start lg:justify-start justify-center rounded-[20px]">
-      <div class="relative overflow-hidden rounded-2xl w-full after:content-[''] after:absolute after:inset-0 after:bg-black/60 ">
-        <img class="  h-full w-full object-cover rounded-[20px]" src="https://images.unsplash.com/photo-1693697117720-c5e098ecf350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80">
-      </div>
-      <div class="absolute flex flex-col gap-3 items-start  p-4 lg:p-8">
-        <img :src="logo" class="h-5 grayscale">
-        <h2 class="text-2xl font-medium">
-          Watch and have fun together
-        </h2>
-        <p class=" text-xs lg:text-sm text-gray-500 font-bold">
-          Watch alone or share with loved ones
-        </p>
-        <UButton icon="i-ph-plus" class="backdrop-blur-sm" variant="soft" @click="crateRoomModal = !crateRoomModal">
-          Create Room
-        </UButton>
-        <CreateRoom v-model="crateRoomModal" />
-      </div>
-    </div>
+  <div class="relative p-[21vw] lg:-mt-36 bg-black h-56 bg-black mx-auto w-full">
+    <iframe
+      src="https://player.vimeo.com/video/871122886?h=bdd8c927a7&autoplay=1&loop=1&title=0&byline=0&portrait=0"
+      frameborder="0"
+      class="absolute bg-black top-0 left-0 w-full h-full"
+    />
+    <div class="absolute top-0 left-0 w-full h-full bg-black/30 backdrop-blur-sm" />
+    <div class="absolute inset-0 bg-gradient-to-t from-black" />
   </div>
 </template>

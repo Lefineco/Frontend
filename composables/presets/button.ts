@@ -62,7 +62,7 @@ const button = {
     size: 'sm',
     variant: 'primary',
     color: 'primary',
-    loadingIcon: 'i-ph-circle-dashed',
+    loadingIcon: 'i-ph-circle-notch',
   },
 }
 

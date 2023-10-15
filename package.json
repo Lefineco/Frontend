@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@vimeo/player": "^2.20.1",
     "cheerio": "1.0.0-rc.12",
     "fuse.js": "^6.6.2",
     "h3-zod": "^0.5.1",
@@ -29,10 +30,12 @@
     "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
     "@pinia/nuxt": "^0.4.11",
     "@types/node": "^18.17.1",
+    "@types/vimeo__player": "^2.18.1",
     "@vue-macros/nuxt": "^1.7.12",
     "@vueuse/nuxt": "^10.3.0",
     "eslint": "^8.46.0",
     "nuxt": "^3.7.4",
-    "supabase": ">=1.8.1"
+    "supabase": ">=1.8.1",
+    "vue-tsc": "^1.8.19"
   }
 }

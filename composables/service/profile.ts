@@ -1,11 +1,13 @@
 import type { Database } from '~/server/types/supabase'
 import { toast } from '@/composables/helper/toast'
 
-type FollowCallback = (isFollow: boolean) => void
+type FollowCallback = (isFollow: boolean | undefined, loader: boolean) => void
 
 export async function useFollow(following_id: string, callback?: FollowCallback) {
   const supabase = useSupabaseClient<Database>()
   const user = useSupabaseUser()
+
+  callback && callback(undefined, true)
 
   if (!user.value?.id)
     return toast('Error!', 'You must login to follow Lefiner!', 'error')
@@ -19,12 +21,14 @@ export async function useFollow(following_id: string, callback?: FollowCallback)
   if (error)
     toast('Error!', error.message, 'error')
 
-  callback && callback(true)
+  callback && callback(true, false)
 }
 
 export async function useUnfollow(following_id: string, callback?: FollowCallback) {
   const supabase = useSupabaseClient<Database>()
   const user = useSupabaseUser()
+
+  callback && callback(undefined, true)
 
   if (!user.value?.id)
     return toast('Error!', 'You must login to follow Lefiner!', 'error')
@@ -37,5 +41,5 @@ export async function useUnfollow(following_id: string, callback?: FollowCallbac
   if (error)
     toast('Error', error.message, 'error')
 
-  callback && callback(false)
+  callback && callback(false, false)
 }

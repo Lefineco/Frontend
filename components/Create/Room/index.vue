@@ -19,18 +19,26 @@ const previewVideo = watch([deboundedUrl], async () => {
   if (!checkVideoPlatform(url.value))
     return null
 
-  const { data, pending, error, refresh } = await useFetch<VideoPreviewContent | null>('/api/scrape/video', {
-    method: 'POST',
-    body: JSON.stringify({
-      url: url.value,
-    }),
-  })
+  const { data, pending, error, refresh }
+    = await useFetch<VideoPreviewContent | null>('/api/scrape/video', {
+      method: 'POST',
+      body: JSON.stringify({
+        url: url.value,
+      }),
+    })
 
   previewData.value = {
     data: data.value,
     pending: pending.value,
     error: error.value?.message,
     refresh,
+  }
+})
+
+const watchOpen = watch([isOpen], (isOpen) => {
+  if (isOpen) {
+    url.value = ''
+    previewData.value = null
   }
 })
 
@@ -50,12 +58,19 @@ async function createRoom() {
 
   if (data.value) {
     isOpen.value = false
-    await useJoinRoom((data.value.data as any)?.id, (user.value?.id as string), true)
+    await useJoinRoom(
+      (data.value.data as any)?.id,
+      user.value?.id as string,
+      true,
+    )
     router.push(`/rooms/${(data.value.data as any).id}`)
   }
 }
 
-onUnmounted(previewVideo)
+onUnmounted(() => {
+  previewVideo()
+  watchOpen()
+})
 </script>
 
 <template>
@@ -80,7 +95,11 @@ onUnmounted(previewVideo)
             />
           </div>
         </template>
-        <CreateRoomPreview v-if="deboundedUrl && checkVideoPlatform(url)" class="mb-4" :preview-data="previewData" />
+        <CreateRoomPreview
+          v-if="deboundedUrl && checkVideoPlatform(deboundedUrl)"
+          class="mb-4"
+          :preview-data="previewData"
+        />
         <UForm :state="values">
           <div class="flex flex-col gap-4">
             <UFormGroup name="title">
@@ -93,8 +112,22 @@ onUnmounted(previewVideo)
               class="disabled:!opacity-50 disabled:!cursor-not-allowed"
               block
               label="Create Room"
-              :disabled="Boolean(!url.length || !deboundedUrl || !previewData?.data || !checkVideoPlatform(url))"
-              :loading="Boolean(url.length && deboundedUrl && checkVideoPlatform(url) && !previewData?.data)"
+              :disabled="
+                Boolean(
+                  !url.length
+                    || !deboundedUrl
+                    || !previewData?.data
+                    || !checkVideoPlatform(url),
+                )
+              "
+              :loading="
+                Boolean(
+                  url.length
+                    && deboundedUrl
+                    && checkVideoPlatform(url)
+                    && !previewData?.data,
+                )
+              "
               @click="createRoom"
             />
           </div>
