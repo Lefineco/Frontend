@@ -15,7 +15,13 @@ const isFollower = computed(() =>
 )
 
 const follow = ref(isFollower.value)
-const setFollow = (val: boolean) => (follow.value = val)
+const followLoad = ref(false)
+
+function setFollow(val: boolean | undefined, load: boolean) {
+  if (val !== undefined)
+    follow.value = val
+  followLoad.value = load
+}
 </script>
 
 <template>
@@ -51,12 +57,10 @@ const setFollow = (val: boolean) => (follow.value = val)
           :variant="follow ? 'outline' : 'soft'"
           :color="follow ? 'white' : 'zinc'"
           size="sm"
-          @click="
-            () =>
-              follow
-                ? useUnfollow(data?.id, setFollow)
-                : useFollow(data?.id, setFollow)
-          "
+          :loading="followLoad"
+          @click="() => {
+            follow ? useUnfollow(data?.id, setFollow) : useFollow(data?.id, setFollow)
+          }"
         >
           {{ follow ? 'Unfollow' : 'Follow' }}
         </UButton>

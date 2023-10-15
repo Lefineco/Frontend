@@ -19,7 +19,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="relative p-[21vw] -mt-36 bg-black h-56 bg-black mx-auto w-full">
+  <div class="relative p-[21vw] lg:-mt-36 bg-black h-56 bg-black mx-auto w-full">
     <iframe
       src="https://player.vimeo.com/video/871122886?h=bdd8c927a7&autoplay=1&loop=1&title=0&byline=0&portrait=0"
       frameborder="0"

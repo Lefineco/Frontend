@@ -107,7 +107,7 @@ const input = {
     size: 'sm',
     color: 'white',
     variant: 'solid',
-    loadingIcon: 'i-ph-circle-dashed',
+    loadingIcon: 'i-ph-circle-notch',
   },
 }
 

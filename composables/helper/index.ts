@@ -5,7 +5,10 @@ function checkVideoPlatform(url: string): boolean {
   return youtubeRegExp.test(url) || vimeoRegExp.test(url)
 }
 
-function getVideoID(url: string): string | null {
+function getVideoID(url: string | null): string | null {
+  if (!url)
+    return null
+
   const youtubeMatch = url.match(youtubeRegExp)
   if (youtubeMatch)
     return youtubeMatch[1]

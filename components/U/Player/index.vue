@@ -6,7 +6,7 @@ import type { Options } from 'plyr/src/js/plyr'
 import type { IframeHTMLAttributes } from '../../../node_modules/nuxt/dist/app/compat/vue-demi'
 
 interface Props {
-  videoId: string
+  videoId: string | null
   type: 'YOUTUBE' | 'VIMEO'
   playerOptions?: Options
   iframeOptions?: IframeHTMLAttributes
