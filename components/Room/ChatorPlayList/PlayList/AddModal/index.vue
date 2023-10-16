@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import useVideo from '@/composables/video'
+import useVideo from '@/composables/service/video'
 import type { PreviewData } from '~/components/Create/Room/types'
 
 interface Props {

@@ -1,4 +1,4 @@
-import { checkVideoPlatform } from './helper'
+import { checkVideoPlatform } from '@/composables/helper/index'
 import type { VideoPreviewContent } from '~/server/types'
 
 export interface PreviewData {

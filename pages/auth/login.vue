@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Form } from '#ui/types'
-import useAuth from '@/composables/auth'
+import useAuth from '@/composables/service/auth'
 import useAsync from '@/composables/helper/async'
 import { loginSchema } from '~/composables/schemas/auth'
 import type { LoginSchema } from '~/composables/schemas/auth'

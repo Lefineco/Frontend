@@ -6,7 +6,7 @@ import { forgotPasswordEmailSchema } from './schema'
 import type { FormSubmitEvent } from '#ui/types'
 
 import useAsync from '@/composables/helper/async'
-import useAuth from '@/composables/auth'
+import useAuth from '@/composables/service/auth'
 
 const { forgotPasswordEmailSchemas } = useAuth()
 const { loading, makeAsyncOperation } = useAsync()
