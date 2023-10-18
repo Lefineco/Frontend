@@ -18,7 +18,7 @@ definePageMeta({
 
 const { data } = await supabase
   .from('rooms')
-  .select('*, participants(is_owner, users(*))')
+  .select('*, participants(id, is_owner, users(*))')
   .filter('id', 'eq', (route.params as any).id)
   .single()
 
@@ -29,54 +29,48 @@ onMounted(() => {
     playerInstance.autoplay = true
   }
 })
+
+const roomOwner = data?.participants.find((p) => p.is_owner)?.users
 </script>
 
 <template>
   <UModal v-model="isOpen">
     <RoomInvite @close-modals="isOpen = false" />
   </UModal>
-  <div class="page h-full flex flex-col w-full">
-    <div class="flex justify-between w-full">
+  <div class="mt-24 h-full flex flex-col w-full">
+    <div class="flex px-4 justify-between w-full">
       <div class="flex flex-col lg:flex-row items-center pb-4 gap-3">
         <UAvatar
-          src="https://avatars.githubusercontent.com/u/739984?v=4"
+          :src="roomOwner?.avatar_url || ''"
+          :alt="roomOwner?.name || 'AN'"
           size="md"
         />
         <div class="flex flex-col items-center lg:items-start">
-          <span class="text-sm">Berke</span>
+          <span class="text-sm">{{ roomOwner?.name }}</span>
           <span class="text-xs text-gray-500 font-medium">Room Owner</span>
         </div>
       </div>
       <div class="flex items-center justify-center gap-2">
         <UAvatarGroup size="sm" :max="3">
           <UAvatar
-            src="https://avatars.githubusercontent.com/u/739984?v=4"
-            alt="benjamincanac"
+            v-for="participant in data?.participants"
+            :key="participant.id"
+            :src="participant.users?.avatar_url || ''"
+            :alt="participant.users?.name || 'Le'"
           />
-          <UAvatar
-            src="https://avatars.githubusercontent.com/u/904724?v=4"
-            alt="Atinux"
-          />
-          <UAvatar
-            src="https://avatars.githubusercontent.com/u/7547335?v=4"
-            alt="smarroufin"
-          />
-          <UAvatar
-            src="https://avatars.githubusercontent.com/u/739984?v=4"
-            alt="benjamincanac"
-          />
-          <UAvatar
-            src="https://avatars.githubusercontent.com/u/7547335?v=4"
-            alt="smarroufin"
-          />
+          <template v-if="data?.participants?.length ?? 0 <= 2">
+            <UAvatar
+              v-for="i in 3 - (data?.participants?.length ?? 0)"
+              :key="i"
+            />
+          </template>
         </UAvatarGroup>
-        <UButton
+        <!-- <UButton
           class="!text-gray-600"
           variant="ghost"
-          size="xl"
           icon="i-ph-plus-circle"
           @click="isOpen = true"
-        />
+        /> -->
       </div>
     </div>
     <div class="flex flex-col md:flex-row w-full gap-4">

@@ -1,7 +1,6 @@
 <script setup lang="ts">
-// eslint-disable-next-line antfu/no-import-node-modules-by-path
-import type { Form } from '../../node_modules/@nuxthq/ui/dist/runtime/types'
-import useAuth from '@/composables/auth'
+import type { Form } from '#ui/types'
+import useAuth from '@/composables/service/auth'
 import useAsync from '@/composables/helper/async'
 import { registerSchema } from '~/composables/schemas/auth'
 import type { RegisterSchema } from '~/composables/schemas/auth'

@@ -49,13 +49,8 @@ const items: DropdownItem[] | any = [
 ]
 
 const isClicked = ref(false)
-const isMounted = ref(false)
 const crateRoomModal = ref(false)
 const search = ref('')
-
-onMounted(() => {
-  isMounted.value = true
-})
 </script>
 
 <template>
@@ -92,12 +87,12 @@ onMounted(() => {
         :class="{ hidden: isClicked }"
       >
         <UIcon
-          class="lg:hidden w-6 h-6 cursor-pointer"
+          class="hidden sm:block lg:hidden w-6 h-6 cursor-pointer"
           :class="{ hidden: isClicked }"
           name="i-heroicons-magnifying-glass-20-solid"
           @click="isClicked = true"
         />
-        <ClientOnly v-if="isMounted">
+        <ClientOnly>
           <div v-if="user" class="flex gap-4 items-center">
             <UButton icon="i-ph-plus" size="xs" variant="soft" @click="crateRoomModal = !crateRoomModal">
               Create Room
@@ -128,7 +123,7 @@ onMounted(() => {
               </template>
             </UDropdown>
           </div>
-          <div v-else class="space-x-4">
+          <div v-else class="space-x-4 flex">
             <UButton to="/auth/login" label="Button">
               Login
             </UButton>
@@ -136,8 +131,10 @@ onMounted(() => {
               Register
             </UButton>
           </div>
+          <template #fallback>
+            <USkeleton class="h-8 w-8" :ui="{ rounded: 'rounded-full' }" />
+          </template>
         </ClientOnly>
-        <USkeleton v-else class="h-8 w-8" :ui="{ rounded: 'rounded-full' }" />
       </div>
     </template>
   </div>

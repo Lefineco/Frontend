@@ -27,6 +27,7 @@ export default defineNuxtConfig({
     '@nuxtjs/supabase',
     '@hypernym/nuxt-anime',
     '@vueuse/nuxt',
+    '@nuxtjs/storybook',
   ],
   macros: {
     setupSFC: true,

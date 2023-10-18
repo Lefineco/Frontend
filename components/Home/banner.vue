@@ -7,10 +7,6 @@ onMounted(() => {
   if (!iframe)
     return
   const player = new Vimeo(iframe)
-  player.getPictureInPicture().then((supported) => {
-    if (supported)
-      player.requestPictureInPicture()
-  })
   player.setVolume(0)
   player.setLoop(true)
   player.setCurrentTime(40)

@@ -21,7 +21,6 @@ const values = ref<Partial<LoginSchema>>({
 })
 
 async function onSubmit() {
-  //  FIXME: Fix this
   await form.value?.validate()
   makeAsyncOperation(async () => {
     await signIn(values.value as LoginSchema)
