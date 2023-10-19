@@ -1,16 +1,15 @@
-// TODO: default textarea da focus olunduğunda bg-transparent çalışmıyor
 const textarea = {
   wrapper: 'relative',
   base: 'relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0',
   rounded: 'rounded-md',
-  placeholder: 'placeholder-gray-400 dark:placeholder-gray-500',
+  placeholder: 'placeholder:text-white/50 dark:placeholder:text-white/50',
   size: {
     '2xs': 'text-xs',
     'xs': 'text-xs',
-    'sm': 'text-sm',
-    'md': 'text-sm',
-    'lg': 'text-sm',
-    'xl': 'text-base',
+    'sm': 'text-xs',
+    'md': 'text-md',
+    'lg': 'text-md',
+    'xl': 'text-xl',
   },
   gap: {
     '2xs': 'gap-x-1',
@@ -50,15 +49,21 @@ const textarea = {
   },
   color: {
     white: {
-      outline: 'shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400',
+      default: 'dark:border-transparent focus:dark:border-primary-500 bg-white/10 text-gray-900 dark:text-white focus:ring-2 focus:dark:bg-transparent focus:ring-primary-500 focus:ring-opacity-30 border focus:border-primary-500',
+      outline: 'dark:border-transparent focus:dark:border-primary-500 dark:text-white focus:ring-2 dark:ring-white/10 dark:bg-transparent focus:dark:ring-primary-500 focus:dark:ring-opacity-30 border focus:dark:border-primary-500',
     },
     gray: {
-      outline: 'shadow-sm bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400',
+      default: 'dark:border-transparent focus:dark:border-primary-500 bg-white/20 text-gray-900 dark:text-white focus:ring-2 focus:dark:bg-transparent focus:ring-primary-500 focus:ring-opacity-30 border focus:border-primary-500',
+      outline: 'dark:border-transparent focus:dark:border-primary-500 dark:text-white focus:ring-2 dark:ring-white/20 dark:bg-transparent focus:dark:ring-primary-500 focus:dark:ring-opacity-30 border focus:dark:border-primary-500',
+    },
+    red: {
+      default: 'dark:border-transparent focus:dark:border-red-500 bg-red-500/20 text-gray-900 dark:text-white focus:ring-2 focus:dark:bg-transparent focus:ring-red-500 focus:ring-opacity-30 border focus:border-red-500',
+      outline: 'dark:text-white border dark:border-red-500/30 focus:ring-2 dark:ring-red-500/30 dark:bg-transparent focus:dark:ring-red-500 focus:dark:ring-opacity-30 border focus:dark:border-red-500',
     },
   },
   variant: {
-    default: 'shadow-sm bg-transparent text-gray-900 dark:text-white ring-1 ring-inset ring-{color}-500 dark:ring-{color}-400 focus:ring-2 focus:ring-{color}-500 dark:focus:ring-{color}-400',
-    outline: 'shadow-sm bg-transparent text-gray-900 dark:text-white ring-1 ring-inset ring-{color}-500 dark:ring-{color}-400 focus:ring-2 focus:ring-{color}-500 dark:focus:ring-{color}-400',
+    default: 'shadow-sm dark:text-white ring-0',
+    outline: 'shadow-sm bg-transparent',
     none: 'bg-transparent focus:ring-0 focus:shadow-none',
   },
   icon: {

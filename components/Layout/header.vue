@@ -55,7 +55,7 @@ const search = ref('')
 
 <template>
   <div
-    class="bg-gradient-to-b from-black sm:bg-gradient-to-l sm:from-white/5 sm:backdrop-blur-xl sm:border-b sm:border-white/5 sm:shadow-xl fixed top-0.5 inset-x-0 z-30 flex justify-between items-center py-5 px-4 sm:px-0 sm:py-3 space-x-5"
+    class="fixed top-0.5 inset-x-0 z-30 flex justify-between items-center py-5 px-4 sm:px-0 sm:py-3 space-x-5"
   >
     <div class="absolute inset-x-0 h-0.5 -top-0.5 bg-violet-950" />
     <div v-if="isClicked" class="w-full">
@@ -94,7 +94,7 @@ const search = ref('')
         />
         <ClientOnly>
           <div v-if="user" class="flex gap-4 items-center">
-            <UButton icon="i-ph-plus" size="xs" variant="soft" @click="crateRoomModal = !crateRoomModal">
+            <UButton icon="i-ph-plus" color="white" variant="soft" @click="crateRoomModal = !crateRoomModal">
               Create Room
             </UButton>
             <CreateRoom v-model="crateRoomModal" />

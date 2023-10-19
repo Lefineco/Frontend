@@ -1,8 +1,8 @@
 const input = {
   wrapper: 'relative',
-  base: 'border-transparent relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none font-semibold',
+  base: 'border-transparent relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none',
   rounded: 'rounded-md',
-  placeholder: '!placeholder-white/60',
+  placeholder: 'placeholder:text-white/50 dark:placeholder:text-white/50',
   size: {
     '2xs': 'text-xs',
     'xs': 'text-xs',
@@ -49,27 +49,27 @@ const input = {
   },
   color: {
     white: {
-      solid: 'shadow-sm bg-white/10 text-gray-900 dark:text-white focus:ring-2 focus:!bg-transparent focus:ring-primary-500 focus:ring-opacity-30 border focus:border-primary-500',
-      outline: 'shadow-sm bg-transparent text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500',
+      solid: 'bg-white/10 text-gray-900 dark:text-white focus:ring-2 focus:dark:bg-transparent focus:ring-primary-500 focus:ring-opacity-30 border focus:border-primary-500',
+      outline: 'dark:text-white focus:ring-2 dark:ring-white/10 dark:bg-transparent focus:dark:ring-primary-500 focus:dark:ring-opacity-30 border focus:dark:border-primary-500',
     },
     gray: {
-      solid: 'shadow-sm bg-white/10 text-gray-900 dark:text-white focus:ring-2 focus:!bg-transparent focus:ring-primary-500 dark:focus:ring-primary-400',
-      outline: 'shadow-sm bg-transparent text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400',
+      solid: 'bg-white/20 text-gray-900 dark:text-white focus:ring-2 focus:dark:bg-transparent focus:ring-primary-500 focus:ring-opacity-30 border focus:border-primary-500',
+      outline: 'dark:text-white focus:ring-2 dark:ring-white/20 dark:bg-transparent focus:dark:ring-primary-500 focus:dark:ring-opacity-30 border focus:dark:border-primary-500',
     },
     red: {
-      solid: 'shadow-sm bg-red-500/10 text-gray-900 dark:text-red-500 focus:ring-2 focus:!bg-transparent focus:border-transparent focus:ring-red-500 dark:focus:ring-red-400',
-      outline: 'shadow-sm bg-transparent text-gray-900 dark:text-red-500 ring-1 ring-inset ring-red-300 dark:ring-red-700 focus:ring-2 focus:ring-red-500 dark:focus:ring-red-400',
+      solid: 'bg-red-500/20 text-gray-900 dark:text-white focus:ring-2 focus:dark:bg-transparent focus:ring-red-500 focus:ring-opacity-30 border focus:border-red-500',
+      outline: 'dark:text-white border dark:border-red-500/30 focus:ring-2 dark:ring-red-500/30 dark:bg-transparent focus:dark:ring-red-500 focus:dark:ring-opacity-30 border focus:dark:border-red-500',
     },
   },
 
   variant: {
-    solid: 'shadow-sm bg-white/10 text-black dark:text-white focus:!bg-transparent focus:ring-{color}-500 focus:border-{color}-500',
-    outline: 'shadow-sm bg-transparent text-gray-900 dark:text-white focus:ring-2 focus:ring-{color}-500 dark:focus:ring-{color}-400',
+    solid: 'shadow-sm text-black dark:text-white',
+    outline: 'shadow-sm text-black dark:text-white',
     none: 'bg-transparent focus:ring-0 focus:shadow-none',
   },
   icon: {
-    base: 'flex-shrink-0 !text-white/50',
-    color: 'text-{color}-500 dark:text-{color}-400',
+    base: 'flex-shrink-0',
+    color: 'text-{color}-500 dark:text-{color}-500',
     size: {
       '2xs': 'h-4 w-4',
       'xs': 'h-4 w-4',

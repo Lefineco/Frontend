@@ -55,7 +55,7 @@ function setFollow(val: boolean | undefined, load: boolean) {
         <UButton
           class="m-3 backdrop-blur-sm"
           :variant="follow ? 'outline' : 'soft'"
-          :color="follow ? 'white' : 'zinc'"
+          color="white"
           size="sm"
           :loading="followLoad"
           @click="() => {

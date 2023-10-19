@@ -19,6 +19,7 @@ defineProps<Props>()
         v-if="!all && (data?.length ?? 0) > 4"
         trailing
         variant="soft"
+        color="white"
         icon="i-ph-arrow-right"
         v-bind="{ to }"
       >

@@ -36,7 +36,7 @@ const navigationLinks = computed<VerticalNavigationLink[]>(() => {
 
 <template>
   <div
-    class="fixed z-20 top-0 border-r border-white/5 h-full pt-20 px-0 hidden md:flex items-start flex-col"
+    class="fixed z-20 top-0 h-full pt-20 px-0 hidden md:flex items-start flex-col"
   >
     <UVerticalNavigation
       :ui="{

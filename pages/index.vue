@@ -22,38 +22,22 @@ store.lefiners = supabaseLefiner as Lefiners[]
 </script>
 
 <template>
-  <div class="main">
-    <HomeBanner />
-    <div class="wrapper">
-      <div class="page -mt-[40%]">
-        <SharedCategory class="px-5" title="Popular Live Rooms" to="/rooms" :data="store.rooms">
-          <CardsRoom
-            v-for="(item, idx) in store.rooms?.slice(0, 4)"
-            :key="idx"
-            :data="item"
-          />
-        </SharedCategory>
-        <SharedCategory class="px-5" title="Popular Live Rooms" to="/lefiners" :data="store.lefiners">
-          <CardsProfile
-            v-for="(item, idx) in store.lefiners
-              ?.slice(0, 4)
-              .filter((item) => item.id !== user?.id)"
-            :key="idx"
-            :data="item"
-          />
-        </SharedCategory>
-      </div>
-    </div>
+  <div class="page">
+    <SharedCategory class="px-5" title="Popular Live Rooms" to="/rooms" :data="store.rooms">
+      <CardsRoom
+        v-for="(item, idx) in store.rooms?.slice(0, 4)"
+        :key="idx"
+        :data="item"
+      />
+    </SharedCategory>
+    <SharedCategory class="px-5" title="Popular Live Rooms" to="/lefiners" :data="store.lefiners">
+      <CardsProfile
+        v-for="(item, idx) in store.lefiners
+          ?.slice(0, 4)
+          .filter((item) => item.id !== user?.id)"
+        :key="idx"
+        :data="item"
+      />
+    </SharedCategory>
   </div>
 </template>
-
-<style lang="postcss" scoped>
-.main {
-  @apply w-full h-full flex flex-col;
-
-  .wrapper {
-    @apply bg-gradient-to-b from-black z-10;
-
-  }
-}
-</style>

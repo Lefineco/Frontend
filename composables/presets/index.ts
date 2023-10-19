@@ -7,5 +7,6 @@ import avatar from './avatar'
 import checkbox from './checkbox'
 import modal from './modal'
 import formGroup from './form-group'
+import card from './card'
 
-export default { button, input, textarea, toast, toggle, avatar, checkbox, modal, formGroup }
+export default { button, input, textarea, toast, toggle, avatar, checkbox, modal, formGroup, card }
