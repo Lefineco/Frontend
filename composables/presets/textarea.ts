@@ -49,15 +49,15 @@ const textarea = {
   },
   color: {
     white: {
-      default: 'dark:border-transparent focus:dark:border-primary-500 bg-white/10 text-gray-900 dark:text-white focus:ring-2 focus:dark:bg-transparent focus:ring-primary-500 focus:ring-opacity-30 border focus:border-primary-500',
+      default: 'dark:border-transparent focus:dark:border-primary-500 bg-white/10 text-zinc-900 dark:text-white focus:ring-2 focus:dark:bg-transparent focus:ring-primary-500 focus:ring-opacity-30 border focus:border-primary-500',
       outline: 'dark:border-transparent focus:dark:border-primary-500 dark:text-white focus:ring-2 dark:ring-white/10 dark:bg-transparent focus:dark:ring-primary-500 focus:dark:ring-opacity-30 border focus:dark:border-primary-500',
     },
     gray: {
-      default: 'dark:border-transparent focus:dark:border-primary-500 bg-white/20 text-gray-900 dark:text-white focus:ring-2 focus:dark:bg-transparent focus:ring-primary-500 focus:ring-opacity-30 border focus:border-primary-500',
+      default: 'dark:border-transparent focus:dark:border-primary-500 bg-white/20 text-zinc-900 dark:text-white focus:ring-2 focus:dark:bg-transparent focus:ring-primary-500 focus:ring-opacity-30 border focus:border-primary-500',
       outline: 'dark:border-transparent focus:dark:border-primary-500 dark:text-white focus:ring-2 dark:ring-white/20 dark:bg-transparent focus:dark:ring-primary-500 focus:dark:ring-opacity-30 border focus:dark:border-primary-500',
     },
     red: {
-      default: 'dark:border-transparent focus:dark:border-red-500 bg-red-500/20 text-gray-900 dark:text-white focus:ring-2 focus:dark:bg-transparent focus:ring-red-500 focus:ring-opacity-30 border focus:border-red-500',
+      default: 'dark:border-transparent focus:dark:border-red-500 bg-red-500/20 text-zinc-900 dark:text-white focus:ring-2 focus:dark:bg-transparent focus:ring-red-500 focus:ring-opacity-30 border focus:border-red-500',
       outline: 'dark:text-white border dark:border-red-500/30 focus:ring-2 dark:ring-red-500/30 dark:bg-transparent focus:dark:ring-red-500 focus:dark:ring-opacity-30 border focus:dark:border-red-500',
     },
   },
@@ -67,7 +67,7 @@ const textarea = {
     none: 'bg-transparent focus:ring-0 focus:shadow-none',
   },
   icon: {
-    base: 'flex-shrink-0 text-gray-400 dark:text-gray-500',
+    base: 'flex-shrink-0 text-zinc-400 dark:text-zinc-500',
     color: 'text-{color}-500 dark:text-{color}-400',
     size: {
       '2xs': 'h-4 w-4',

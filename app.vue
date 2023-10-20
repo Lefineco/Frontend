@@ -1,34 +1,6 @@
 <script setup lang="ts">
-// const { $anime } = useNuxtApp()
-
-// onMounted(() => {
-//   $anime.set('.blob', {
-//     translateX: () => {
-//       return $anime.random(-500, window.innerWidth)
-//     },
-//     translateY: () => {
-//       return $anime.random(-500, window.innerHeight)
-//     },
-//     height: () => {
-//       return $anime.random(0, 1000)
-//     },
-//   })
-
-//   $anime({
-//     targets: '.blob',
-//     translateX: () => {
-//       return $anime.random(0, window.innerWidth)
-//     },
-//     translateY: () => {
-//       return $anime.random(0, window.innerHeight)
-//     },
-//     duration: 15000,
-//     direction: 'alternate',
-//     loop: true,
-//     easing: 'easeInOutQuad',
-//   })
-// })
 const user = useSupabaseUser()
+
 computed(() => {
   if (user.value)
     reloadNuxtApp({ force: true })

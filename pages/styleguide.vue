@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import Logo from '@/assets/logo.svg'
+import { toast } from '~/composables/helper/toast'
 
 definePageMeta({
   layout: 'blank',
 })
 
 const modal = ref(false)
+
+const toggle = ref(false)
 </script>
 
 <template>
@@ -173,13 +176,21 @@ const modal = ref(false)
           <UInput color="gray" placeholder="Input Default" />
           <UInput color="gray" placeholder="Input Outline" variant="outline" />
           <UInput color="gray" placeholder="Input Outline" loading />
-          <UInput color="gray" placeholder="Input Outline" icon="i-ph-house-fill" />
+          <UInput
+            color="gray"
+            placeholder="Input Outline"
+            icon="i-ph-house-fill"
+          />
         </div>
         <div class="flex items-center gap-5">
           <UInput color="red" placeholder="Input Default" />
           <UInput color="red" placeholder="Input Outline" variant="outline" />
           <UInput color="red" placeholder="Input Outline" loading />
-          <UInput color="red" placeholder="Input Outline" icon="i-ph-house-fill" />
+          <UInput
+            color="red"
+            placeholder="Input Outline"
+            icon="i-ph-house-fill"
+          />
         </div>
       </div>
     </UCard>
@@ -194,11 +205,19 @@ const modal = ref(false)
         </div>
         <div class="flex items-center gap-5">
           <UTextarea color="gray" placeholder="Textarea Default" />
-          <UTextarea color="gray" placeholder="Textarea Default" variant="outline" />
+          <UTextarea
+            color="gray"
+            placeholder="Textarea Default"
+            variant="outline"
+          />
         </div>
         <div class="flex items-center gap-5">
           <UTextarea color="red" placeholder="Textarea Default" />
-          <UTextarea color="red" placeholder="Textarea Default" variant="outline" />
+          <UTextarea
+            color="red"
+            placeholder="Textarea Default"
+            variant="outline"
+          />
         </div>
       </div>
     </UCard>
@@ -217,13 +236,33 @@ const modal = ref(false)
     </UCard>
     <UCard class="w-full">
       <template #header>
+        <h2>Toggle</h2>
+      </template>
+      <div class="space-y-4">
+        <div class="flex items-center gap-5">
+          <UToggle v-model="toggle" />
+          <UToggle v-model="toggle" color="emerald" />
+          <UToggle v-model="toggle" color="red" />
+          <UToggle
+            v-model="toggle"
+            color="blue"
+            on-icon="i-ph-check-bold"
+            off-icon="i-ph-x-bold"
+          />
+        </div>
+      </div>
+    </UCard>
+    <UCard class="w-full">
+      <template #header>
         <h2>Modal</h2>
       </template>
       <div class="space-y-4">
         <div class="flex items-center gap-5">
           <UButton label="Modal" variant="soft" @click="modal = true" />
           <UModal v-model="modal">
-            <UCard :ui="{ divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
+            <UCard
+              :ui="{ divide: 'divide-y divide-gray-100 dark:divide-gray-800' }"
+            >
               <template #header>
                 Modal Header
               </template>
@@ -238,11 +277,173 @@ const modal = ref(false)
     </UCard>
     <UCard class="w-full">
       <template #header>
+        <h2>Toast</h2>
+      </template>
+      <div class="space-y-4">
+        <div class="flex items-center gap-5">
+          <UButton
+            label="Toast Success"
+            variant="soft"
+            color="emerald"
+            @click="
+              () => toast('Success', 'This procces succefully', 'success', 50000)
+            "
+          />
+          <UButton
+            label="Toast Warning"
+            variant="soft"
+            color="yellow"
+            @click="() => toast('Warning', 'This procces Warning', 'warning')"
+          />
+          <UButton
+            label="Toast Error"
+            variant="soft"
+            color="red"
+            @click="() => toast('Error', 'This procces Error', 'error')"
+          />
+        </div>
+      </div>
+    </UCard>
+    <UCard class="w-full">
+      <template #header>
         <h2>Avatar</h2>
       </template>
       <div class="space-y-4">
         <div class="flex items-center gap-5">
-          <UAvatar size="xs" />
+          <UAvatar size="3xs" alt="LE" />
+          <UAvatar size="2xs" alt="LE" />
+          <UAvatar size="xs" alt="LE" />
+          <UAvatar size="sm" alt="LE" />
+          <UAvatar size="md" alt="LE" />
+          <UAvatar size="xl" alt="LE" />
+          <UAvatar size="2xl" alt="LE" />
+          <UAvatar size="3xl" alt="LE" />
+        </div>
+        <div class="flex items-center gap-5">
+          <UAvatar
+            src="https://avatars.githubusercontent.com/u/47571500"
+            size="3xs"
+            alt="LE"
+          />
+          <UAvatar
+            src="https://avatars.githubusercontent.com/u/47571500"
+            size="2xs"
+            alt="LE"
+          />
+          <UAvatar
+            src="https://avatars.githubusercontent.com/u/47571500"
+            size="xs"
+            alt="LE"
+          />
+          <UAvatar
+            src="https://avatars.githubusercontent.com/u/47571500"
+            size="sm"
+            alt="LE"
+          />
+          <UAvatar
+            src="https://avatars.githubusercontent.com/u/47571500"
+            size="md"
+            alt="LE"
+          />
+          <UAvatar
+            src="https://avatars.githubusercontent.com/u/47571500"
+            size="xl"
+            alt="LE"
+          />
+          <UAvatar
+            src="https://avatars.githubusercontent.com/u/47571500"
+            size="2xl"
+            alt="LE"
+          />
+          <UAvatar
+            src="https://avatars.githubusercontent.com/u/47571500"
+            size="3xl"
+            alt="LE"
+          />
+        </div>
+        <div class="flex items-center gap-5">
+          <UAvatar
+            chip-color="emerald"
+            chip-position="bottom-right"
+            src="https://avatars.githubusercontent.com/u/47571500"
+            size="3xs"
+            alt="LE"
+          />
+          <UAvatar
+            chip-color="emerald"
+            chip-position="bottom-right"
+            src="https://avatars.githubusercontent.com/u/47571500"
+            size="2xs"
+            alt="LE"
+          />
+          <UAvatar
+            chip-color="emerald"
+            chip-position="bottom-right"
+            src="https://avatars.githubusercontent.com/u/47571500"
+            size="xs"
+            alt="LE"
+          />
+          <UAvatar
+            chip-color="emerald"
+            chip-position="bottom-right"
+            src="https://avatars.githubusercontent.com/u/47571500"
+            size="sm"
+            alt="LE"
+          />
+          <UAvatar
+            chip-color="emerald"
+            chip-position="bottom-right"
+            src="https://avatars.githubusercontent.com/u/47571500"
+            size="md"
+            alt="LE"
+          />
+          <UAvatar
+            chip-color="emerald"
+            chip-position="bottom-right"
+            src="https://avatars.githubusercontent.com/u/47571500"
+            size="xl"
+            alt="LE"
+          />
+          <UAvatar
+            chip-color="emerald"
+            chip-position="bottom-right"
+            src="https://avatars.githubusercontent.com/u/47571500"
+            size="2xl"
+            alt="LE"
+          />
+          <UAvatar
+            chip-color="emerald"
+            chip-position="bottom-right"
+            src="https://avatars.githubusercontent.com/u/47571500"
+            size="3xl"
+            alt="LE"
+          />
+        </div>
+        <div class="flex items-center gap-5">
+          <UAvatarGroup size="sm" :max="2">
+            <UAvatar
+              src="https://avatars.githubusercontent.com/u/47571500"
+              alt="LE"
+            />
+            <UAvatar
+              src="https://lh3.googleusercontent.com/a/AAcHTtfquhuGZ0k6CnVsXbJ3aPxl8Sk1Qn6NRdCz9qBJOQ5sfMU=s96-c"
+              alt="LE"
+            />
+            <UAvatar
+              src="https://avatars.githubusercontent.com/u/47571500"
+              alt="LE"
+            />
+          </UAvatarGroup>
+        </div>
+        <div class="flex items-center gap-5">
+          <UAvatar
+            chip-color="emerald"
+            chip-position="bottom-right"
+            chip-text="9+"
+            src="https://avatars.githubusercontent.com/u/47571500"
+            size="xl"
+            alt="LE"
+          />
         </div>
       </div>
     </UCard>

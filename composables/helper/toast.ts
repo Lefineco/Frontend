@@ -2,7 +2,7 @@ export function toast(
   title: string,
   description: string,
   type: 'success' | 'error' | 'warning',
-  timeout: number = 2000,
+  timeout: number = 3000,
 ) {
   const toast = useToast()
 

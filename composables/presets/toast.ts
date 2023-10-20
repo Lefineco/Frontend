@@ -3,7 +3,7 @@ const toast = {
   container: 'relative overflow-hidden',
   title: 'text-sm font-medium text-gray-900 dark:text-white',
   description: 'mt-1 text-sm leading-4 text-gray-500 dark:text-gray-400',
-  background: 'bg-background',
+  background: 'bg-white dark:bg-gray-900',
   shadow: 'shadow-lg',
   rounded: 'rounded-lg',
   padding: 'p-4',
@@ -18,7 +18,7 @@ const toast = {
   },
   progress: {
     base: 'absolute bottom-0 end-0 start-0 h-1',
-    background: 'bg-{color}-500 dark:bg-{color}-400',
+    background: 'bg-{color}-500/20 dark:bg-{color}-400/20',
   },
   transition: {
     enterActiveClass: 'transform ease-out duration-300 transition',

@@ -1,8 +1,8 @@
 const avatar = {
-  wrapper: 'relative inline-flex items-center justify-center flex-shrink-0',
-  background: 'bg-white/20 dark:bg-white/10 backdrop-blur-sm border border-white/50 truncate',
+  wrapper: 'relative select-none inline-flex items-center justify-center flex-shrink-0 !border-0',
+  background: 'bg-white/20 dark:bg-white/10 backdrop-blur-sm truncate',
   rounded: 'rounded-full',
-  text: 'font-medium leading-none text-gray-900 dark:text-white truncate',
+  text: 'font-medium leading-none text-zinc-900 dark:text-white truncate',
   placeholder: 'font-medium leading-none text-white dark:text-white truncate',
   size: {
     '3xs': 'h-4 w-4 text-[8px]',
@@ -19,7 +19,7 @@ const avatar = {
 
   },
   chip: {
-    base: 'absolute rounded-full ring-1 ring-white dark:ring-gray-900 flex items-center justify-center text-white dark:text-gray-900 font-medium',
+    base: 'absolute rounded-full ring-1 ring-white dark:ring-zinc-900 flex items-center justify-center text-white dark:text-zinc-900 font-semibold',
     background: 'bg-{color}-500 dark:bg-{color}-400',
     position: {
       'top-right': 'top-0 right-0',
@@ -40,7 +40,7 @@ const avatar = {
     },
   },
   icon: {
-    base: 'text-gray-500 dark:text-gray-400 flex-shrink-0',
+    base: 'text-zinc-500 dark:text-zinc-400 flex-shrink-0',
     size: {
       '3xs': 'h-2 w-2',
       '2xs': 'h-2.5 w-2.5',

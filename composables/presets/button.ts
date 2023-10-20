@@ -68,7 +68,7 @@ const button = {
     size: 'sm',
     variant: 'primary',
     color: 'primary',
-    loadingIcon: 'i-ph-circle-notch',
+    loadingIcon: 'i-mdi-loading',
   },
 }
 
