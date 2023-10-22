@@ -1,5 +1,5 @@
 const button = {
-  base: 'transition-all active:scale-90 disabled:cursor-not-allowed disabled:opacity-75 disabled:active:scale-100 outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0',
+  base: 'transition-transform ease-in active:scale-95 disabled:cursor-not-allowed disabled:opacity-75 disabled:active:scale-100 outline-none focus-visible:outline-0 flex-shrink-0',
   font: 'font-bold',
   rounded: 'rounded-md',
   size: {
@@ -39,7 +39,7 @@ const button = {
   },
   variant: {
     primary:
-      'shadow-sm text-white dark:text-white bg-{color}-500 hover:bg-{color}-600 focus-visible:outline focus-visible:outline-2',
+      'shadow-sm text-white dark:text-white bg-{color}-500 hover:bg-{color}-600 focus-visible:outline focus-visible:outline-2 shadow-sm',
     soft: 'bg-{color}-500/10 disabled:bg-white/5 disabled:text-white/30 focus-visible:ring-2 focus-visible:ring-inset',
     outline:
       'ring-1 ring-inset ring-current text-{color}-500 dark:text-{color}-400 hover:bg-{color}-50 disabled:bg-transparent dark:hover:bg-{color}-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-{color}-500 dark:focus-visible:ring-{color}-400',

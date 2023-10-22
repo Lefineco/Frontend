@@ -27,8 +27,8 @@ const data2 = [
 </script>
 
 <template>
-  <div class="page grid grid-cols-12">
-    <div class="p-5 col-span-8 max-w-7xl mx-auto space-y-6">
+  <div class="page flex gap-5">
+    <div class="p-5 w-full mx-auto space-y-6">
       <FeedsFormCreate />
       <Feeds
         v-for="(item, idx) in data2"
@@ -39,11 +39,11 @@ const data2 = [
         :create-date="item.createDate"
       />
     </div>
-    <div class="col-span-3 flex flex-col space-y-4">
+    <div class="pr-5 max-w-sm w-full flex-shirnk-0 flex flex-col space-y-4">
       <div class="flex flex-col space-y-2">
-        <h2 class="font-bold font-base">
+        <span class="font-bold font-base">
           Recomennded Lefiners
-        </h2>
+        </span>
         <div class="space-y-6">
           <CardsProfile
             v-for="(item, idx) in store.lefiners?.slice(0, 4)"

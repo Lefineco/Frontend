@@ -43,9 +43,7 @@ function signInWithGoogle() {
     :validate-on="['submit']"
     @submit.prevent="onSubmit"
   >
-    <NuxtLink to="/" class="mx-auto absolute top-20">
-      <img src="~assets/logo.svg">
-    </NuxtLink>
+    <SharedLogo to="/" />
     <div class="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 px-4 flex flex-col gap-4">
       <div class="flex gap-2 items-end">
         <h1 class="text-3xl font-bold capitalize">

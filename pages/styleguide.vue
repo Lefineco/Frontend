@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Logo from '@/assets/logo.svg'
 import { toast } from '~/composables/helper/toast'
 
 definePageMeta({
@@ -13,7 +12,21 @@ const toggle = ref(false)
 
 <template>
   <UContainer class="main">
-    <img :src="Logo" alt="logo" class="h-7">
+    <SharedLogo />
+    <UCard class="w-full">
+      <template #header>
+        <h2>Logo</h2>
+      </template>
+      <div class="space-y-4">
+        <SharedLogo size="xl" />
+        <SharedLogo size="lg" />
+        <SharedLogo size="md" />
+        <SharedLogo />
+        <SharedLogo size="xs" />
+        <SharedLogo size="xs" is-non-color />
+        <SharedLogo is-non-color icon />
+      </div>
+    </UCard>
     <UCard class="w-full">
       <template #header>
         <h2>Typography</h2>
@@ -286,7 +299,7 @@ const toggle = ref(false)
             variant="soft"
             color="emerald"
             @click="
-              () => toast('Success', 'This procces succefully', 'success', 50000)
+              () => toast('Success', 'This procces succefully', 'success')
             "
           />
           <UButton

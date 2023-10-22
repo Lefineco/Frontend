@@ -7,7 +7,7 @@ const val = defineModel<string>()
     v-model="val"
     size="sm"
     icon="i-heroicons-magnifying-glass-20-solid"
-    :ui="{ icon: { trailing: { pointer: '' } } }"
+    :ui="{ icon: { trailing: { pointer: '' }, rounded: 'rounded-3xl' } }"
   >
     <template #trailing>
       <UButton

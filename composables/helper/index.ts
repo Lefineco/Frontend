@@ -1,29 +1,43 @@
-const youtubeRegExp = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
-const vimeoRegExp = /^(?:https?:\/\/)?(?:www\.)?(?:vimeo\.com\/)([0-9]+)(?:\/)?$/
+import type { VerticalNavigationLink } from '#ui/types'
+import { VIMEO_REGEXP, YOUTUBE_REGEXP } from '~/constants/regexp'
 
 function checkVideoPlatform(url: string): boolean {
-  return youtubeRegExp.test(url) || vimeoRegExp.test(url)
+  return YOUTUBE_REGEXP.test(url) || VIMEO_REGEXP.test(url)
 }
 
 function getVideoID(url: string | null): string | null {
   if (!url)
     return null
 
-  const youtubeMatch = url.match(youtubeRegExp)
+  const youtubeMatch = url.match(YOUTUBE_REGEXP)
   if (youtubeMatch)
     return youtubeMatch[1]
 
-  const vimeoMatch = url.match(vimeoRegExp)
+  const vimeoMatch = url.match(VIMEO_REGEXP)
   if (vimeoMatch)
     return vimeoMatch[1]
 
   return null
 }
 
-// type ZodType<T> = z.ZodType<T, any, any>
+type Links = Omit<VerticalNavigationLink, 'icon'> & { icon?: string[] }
 
-// function createValidationType<T>(type: ZodType<T>): ZodType<T> {
-//   return type
-// }
+function navigationLinks(links: Links[]): Omit<VerticalNavigationLink, 'icon'>[] {
+  const route = useRoute()
 
-export { checkVideoPlatform, getVideoID }
+  return computed(() => {
+    return links.map((link) => {
+      if (!link.icon)
+        return link
+
+      const isActive = link.to === route.path
+      return {
+        ...link,
+        isActive,
+        icon: link.icon[isActive ? 1 : 0],
+      }
+    })
+  }).value
+}
+
+export { checkVideoPlatform, navigationLinks, getVideoID }

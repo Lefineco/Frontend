@@ -19,7 +19,7 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <div
-    class="w-[800px] h-[400px] flex flex-col rounded-[30px] bg-[#7B7A7A1A] border border-[#7b7a7a1a]"
+    class="w-full flex flex-col rounded-[30px] bg-[#7B7A7A1A] border border-[#7b7a7a1a]"
   >
     <div class="flex flex-row items-start p-2">
       <div class="flex flex-row justify-between w-full p-4">
@@ -47,13 +47,13 @@ withDefaults(defineProps<Props>(), {
         {{ description }}
       </p>
     </div>
-    <div class="flex flex-row items-center justify-center space-x-4">
+    <div class="flex p-4 flex-row items-center justify-center space-x-4">
       <img
-        class="h-[240px] object-cover rounded-md border !border-[#7b7a7a1a]"
+        class="w-full h-[240px] object-cover rounded-md border !border-[#7b7a7a1a]"
         src="https://images.unsplash.com/photo-1693697117720-c5e098ecf350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
       >
       <img
-        class="h-[240px] object-cover rounded-md border !border-[#7b7a7a1a]"
+        class="w-full h-[240px] object-cover rounded-md border !border-[#7b7a7a1a]"
         src="https://images.unsplash.com/photo-1693697117720-c5e098ecf350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
       >
     </div>

@@ -1,23 +1,20 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import logo from '@/assets/logo.svg'
 import type { DropdownItem } from '#ui/types'
 
 const user = useSupabaseUser()
 
 const supabase = useSupabaseClient()
-const router = useRouter()
 
-async function signOut() {
-  await supabase.auth.signOut()
+function signOut() {
+  supabase.auth.signOut()
   reloadNuxtApp({ force: true })
 }
 
-// TODO: Fix this
-const items: DropdownItem[] | any = [
+const items: DropdownItem[][] = [
   [
     {
-      label: user.value ? user.value.email : '',
+      label: user.value?.email ? user.value.email : '',
       slot: 'account',
       disabled: true,
     },
@@ -32,18 +29,18 @@ const items: DropdownItem[] | any = [
   [
     {
       label: 'Changelog',
-      icon: 'i-heroicons-megaphone',
+      icon: 'i-ph-megaphone-simple',
     },
     {
       label: 'Status',
-      icon: 'i-heroicons-signal',
+      icon: 'i-ph-cell-signal-full',
     },
   ],
   [
     {
       label: 'Sign out',
       icon: 'i-ph-sign-out',
-      onclick: signOut,
+      click: signOut,
     },
   ],
 ]
@@ -54,88 +51,83 @@ const search = ref('')
 </script>
 
 <template>
-  <div
-    class="fixed top-0.5 inset-x-0 z-30 flex justify-between items-center py-5 px-4 sm:px-0 sm:py-3 space-x-5"
-  >
-    <div class="absolute inset-x-0 h-0.5 -top-0.5 bg-violet-950" />
-    <div v-if="isClicked" class="w-full">
+  <div class="header">
+    <div class="progress" />
+    <SharedLogo to="/" />
+    <div class="w-full lg:w-[500px] hidden lg:block">
       <UInputSearch
         v-model="search"
+        class="w-full"
         name="search"
         placeholder="Search Video, Lefiner or Room"
-        autofocus
-        @blur="() => (isClicked = false)"
       />
     </div>
-    <template v-else>
-      <button
-        class="flex flex-shrink-0 items-center gap-3"
-        @click="router.push('/')"
-      >
-        <img :src="logo" class="h-9">
-      </button>
-      <div class="w-full lg:w-[500px] hidden lg:block">
-        <UInputSearch
-          v-model="search"
-          class="w-full"
-          name="search"
-          placeholder="Search Video, Lefiner or Room"
-        />
-      </div>
-      <div
-        class="space-x-6 flex items-center justify-center pr-6"
+    <div
+      class="space-x-6 flex items-center justify-center pr-6"
+      :class="{ hidden: isClicked }"
+    >
+      <UIcon
+        class="hidden sm:block lg:hidden w-6 h-6 cursor-pointer"
         :class="{ hidden: isClicked }"
-      >
-        <UIcon
-          class="hidden sm:block lg:hidden w-6 h-6 cursor-pointer"
-          :class="{ hidden: isClicked }"
-          name="i-heroicons-magnifying-glass-20-solid"
-          @click="isClicked = true"
-        />
-        <ClientOnly>
-          <div v-if="user" class="flex gap-4 items-center">
-            <UButton icon="i-ph-plus" color="white" variant="soft" @click="crateRoomModal = !crateRoomModal">
-              Create Room
-            </UButton>
-            <CreateRoom v-model="crateRoomModal" />
-            <UDropdown
-              :items="items"
-              :ui="{ item: { disabled: 'cursor-text select-text' } }"
-              :popper="{ placement: 'bottom-end' }"
-            >
-              <UAvatar
-                variant="ghost"
-                :src="user.user_metadata.picture"
-                :alt="user.aud"
-              />
+        name="i-heroicons-magnifying-glass-20-solid"
+        @click="isClicked = true"
+      />
+      <ClientOnly>
+        <div v-if="user" class="flex gap-4 items-center">
+          <UButton
+            icon="i-ph-plus"
+            color="white"
+            variant="soft"
+            @click="crateRoomModal = !crateRoomModal"
+          >
+            Create Room
+          </UButton>
+          <CreateRoom v-model="crateRoomModal" />
+          <UDropdown
+            :items="items"
+            :ui="{ item: { disabled: 'cursor-text select-text' } }"
+            :popper="{ placement: 'bottom-end' }"
+          >
+            <UAvatar
+              variant="ghost"
+              :src="user.user_metadata.picture"
+              :alt="user.aud"
+            />
 
-              <template #account="{ item }">
-                <div class="text-left">
-                  <p class="text-xs">
-                    Signed in as
-                  </p>
-                  <p
-                    class="truncate w-36 font-medium text-gray-900 dark:text-white"
-                  >
-                    {{ item.label }}
-                  </p>
-                </div>
-              </template>
-            </UDropdown>
-          </div>
-          <div v-else class="space-x-4 flex">
-            <UButton to="/auth/login" label="Button">
-              Login
-            </UButton>
-            <UButton to="/auth/register" label="Button" variant="soft">
-              Register
-            </UButton>
-          </div>
-          <template #fallback>
-            <USkeleton class="h-8 w-8" :ui="{ rounded: 'rounded-full' }" />
-          </template>
-        </ClientOnly>
-      </div>
-    </template>
+            <template #account="{ item }">
+              <div class="text-left">
+                <p class="text-xs opacity-80">
+                  Signed in as
+                </p>
+                <span class="text-sm font-medium">
+                  {{ item.label }}
+                </span>
+              </div>
+            </template>
+          </UDropdown>
+        </div>
+        <div v-else class="space-x-4 flex">
+          <UButton to="/auth/login" label="Button">
+            Login
+          </UButton>
+          <UButton to="/auth/register" label="Button" variant="soft">
+            Register
+          </UButton>
+        </div>
+        <template #fallback>
+          <USkeleton class="h-8 w-8" :ui="{ rounded: 'rounded-full' }" />
+        </template>
+      </ClientOnly>
+    </div>
   </div>
 </template>
+
+<style lang="postcss" scoped>
+.header {
+  @apply fixed top-0.5 inset-x-0 z-30 flex justify-between items-center py-5 px-4 sm:px-0 sm:py-3 space-x-5;
+
+  .progress {
+    @apply absolute inset-x-0 h-0.5 -top-0.5 bg-violet-950;
+  }
+}
+</style>

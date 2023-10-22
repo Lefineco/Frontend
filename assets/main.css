@@ -13,7 +13,7 @@ body,
 }
 
 .page {
-  @apply w-full h-full mx-auto max-w-[1500px] pt-28 md:pl-24 px-2;
+  @apply w-full h-full mx-auto max-w-[1700px] pt-28 md:pl-56 px-2;
 }
 
 .no-scrollbar::-webkit-scrollbar {

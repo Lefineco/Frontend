@@ -32,9 +32,15 @@ const ownerName = owner?.users?.name || 'Le'
           size="sm"
           :alt="ownerName"
         />
-        <span class="text-sm font-medium">{{ ownerName }}</span>
+        <span class="text-sm text-left font-medium gap-1 w-36 truncate">
+          <span class="text-xs opacity-50 font-medium">Provide by</span>
+          {{ ownerName.split(' ')[0] }}
+        </span>
       </div>
-      <UIcon :name="PLATFORM[props.data.platform as Platform]" class="h-6 w-6" />
+      <UIcon
+        :name="PLATFORM[props.data.platform as Platform]"
+        class="h-6 w-6"
+      />
     </div>
     <div class="relative w-full">
       <div
@@ -56,9 +62,6 @@ const ownerName = owner?.users?.name || 'Le'
           :src="participant.users.avatar_url || ''"
           :alt="participant.users.name || 'Le'"
         />
-        <template v-if="props.data.participants?.length <= 2">
-          <UAvatar v-for="i in 3 - props.data.participants.length" :key="i" />
-        </template>
       </UAvatarGroup>
     </div>
   </button>

@@ -1,7 +1,7 @@
 const input = {
   wrapper: 'relative',
-  base: 'border-transparent relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none',
-  rounded: 'rounded-md',
+  base: 'font-medium border-transparent relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none',
+  rounded: 'rounded-xl',
   placeholder: 'placeholder:text-white/50 dark:placeholder:text-white/50',
   size: {
     '2xs': 'text-xs',

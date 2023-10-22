@@ -9,7 +9,7 @@ const value = ref('')
       variant="none"
       :ui="{
         variant: {
-          none: 'focus:ring-2 focus:ring-violet-500 p-4 rounded-t-3xl rounded-b-none',
+          none: 'text-sm font-medium focus:ring-2 focus:ring-violet-500 p-4 rounded-t-3xl rounded-b-none',
         },
       }"
       placeholder="Write something or ask..."
