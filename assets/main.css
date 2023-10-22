@@ -9,6 +9,50 @@ html,
 body,
 #lefine {
   @apply h-full w-full bg-black;
+  background: radial-gradient(
+      49.1% 52.07% at 95.73% 0%,
+      rgba(69, 5, 150, 0.3) 0%,
+      rgba(69, 5, 150, 0) 100%
+    ),
+    radial-gradient(
+      51.81% 64.89% at 9.39% 17.56%,
+      rgba(69, 5, 150, 0.3) 0%,
+      rgba(69, 5, 150, 0) 100%
+    ),
+    radial-gradient(
+      70.77% 73.42% at 98.67% 105.72%,
+      rgba(69, 5, 150, 0.2) 0%,
+      rgba(69, 5, 150, 0) 100%
+    ),
+    radial-gradient(
+      50.46% 63.85% at 0% 124.2%,
+      rgba(69, 5, 150, 0.05) 0%,
+      rgba(69, 5, 150, 0) 100%
+    ),
+    #000;
+  background: radial-gradient(
+      49.1% 52.07% at 95.73% 0%,
+      rgba(69, 5, 150, 0.3) 0%,
+      rgba(69, 5, 150, 0) 100%
+    ),
+    radial-gradient(
+      51.81% 64.89% at 9.39% 17.56%,
+      rgba(69, 5, 150, 0.3) 0%,
+      rgba(69, 5, 150, 0) 100%
+    ),
+    radial-gradient(
+      70.77% 73.42% at 98.67% 105.72%,
+      rgba(69, 5, 150, 0.2) 0%,
+      rgba(69, 5, 150, 0) 100%
+    ),
+    radial-gradient(
+      50.46% 63.85% at 0% 124.2%,
+      rgba(69, 5, 150, 0.05) 0%,
+      rgba(69, 5, 150, 0) 100%
+    ),
+    #000;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 
 }
 
