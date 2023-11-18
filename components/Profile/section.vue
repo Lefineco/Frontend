@@ -7,12 +7,12 @@
     <div class="relative w-full h-60 flex flex-col items-start justify-start  max-md:pt-6  rounded-[20px] ">
       <div class="relative overflow-hidden rounded-2xl w-full after:content-[''] after:absolute after:inset-0 after:bg-black/60 ">
         <img class="h-full w-full object-cover rounded-[20px]" src="https://images.unsplash.com/photo-1693697117720-c5e098ecf350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80">
-        <div class="flex gap-2 absolute z-50 bottom-4 right-5 lg:hidden">
+        <!-- <div class="flex gap-2 absolute z-50 bottom-4 right-5 lg:hidden">
           <UButton variant="soft" color="white">
             Cancel
           </UButton>
           <UButton>Save All</UButton>
-        </div>
+        </div> -->
       </div>
     </div>
 

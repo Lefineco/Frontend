@@ -11,7 +11,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-  css: ['~/assets/main.css', 'plyr/dist/plyr.css'],
+  css: ['~/assets/styles/main.css', 'plyr/dist/plyr.css'],
   devtools: {
     enabled: true,
 
@@ -27,7 +27,7 @@ export default defineNuxtConfig({
     '@nuxtjs/supabase',
     '@hypernym/nuxt-anime',
     '@vueuse/nuxt',
-    "@nuxt/image"
+    '@nuxt/image',
   ],
   macros: {
     setupSFC: true,

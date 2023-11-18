@@ -11,7 +11,6 @@ const isOpen = ref(false)
 const { height } = useElementSize(player)
 
 const route = useRoute()
-
 definePageMeta({
   layout: 'room',
 })
@@ -30,7 +29,7 @@ onMounted(() => {
   }
 })
 
-const roomOwner = data?.participants.find((p) => p.is_owner)?.users
+const roomOwner = data?.participants.find(p => p.is_owner)?.users
 </script>
 
 <template>
@@ -95,4 +94,6 @@ const roomOwner = data?.participants.find((p) => p.is_owner)?.users
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style scoped>
+
+</style>
