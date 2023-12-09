@@ -41,9 +41,6 @@ export default defineNuxtConfig({
       },
     },
   },
-  pinia: {
-    autoImports: ['defineStore', ['defineStore', 'definePiniaStore']],
-  },
   ui: {
     icons: ['ph', 'logos', 'mdi'],
   },
