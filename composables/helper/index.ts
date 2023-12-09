@@ -1,3 +1,4 @@
+import type { Maybe } from '@0fatihyildiz/fast-ts-utilities'
 import type { VerticalNavigationLink } from '#ui/types'
 import { VIMEO_REGEXP, YOUTUBE_REGEXP } from '~/constants/regexp'
 
@@ -5,7 +6,7 @@ function checkVideoPlatform(url: string): boolean {
   return YOUTUBE_REGEXP.test(url) || VIMEO_REGEXP.test(url)
 }
 
-function getVideoID(url: string | null): string | null {
+function getVideoID(url: Maybe<string>): string | null {
   if (!url)
     return null
 

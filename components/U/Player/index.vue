@@ -58,7 +58,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="overflow-hidden relative wrapper">
+  <div class="wrapper">
     <div ref="videoRef" class="plyr__video-embed">
       <iframe
         allowfullscreen
@@ -72,6 +72,7 @@ onMounted(() => {
 
 <style lang="postcss" scoped>
 .wrapper {
+  @apply overflow-hidden relative;
   --plyr-color-main: theme(colors.violet.500);
 }
 </style>

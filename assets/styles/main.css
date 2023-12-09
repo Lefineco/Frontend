@@ -56,12 +56,16 @@ body,
 
 }
 
+.layout {
+  @apply w-full h-full;
+}
+
 .page {
   @apply w-full h-full mx-auto max-w-[1700px] pt-28 md:pl-56 px-2;
 }
 
 .no-scrollbar::-webkit-scrollbar {
-  display: none;
+  @apply hidden;
 }
 .no-scrollbar {
   -ms-overflow-style: none; /* IE and Edge */
