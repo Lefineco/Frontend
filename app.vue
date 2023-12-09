@@ -8,11 +8,8 @@ computed(() => {
 </script>
 
 <template>
-  <div class="h-full flex flex-col">
-    <!-- <div class="blobs">
-      <div v-for="blob in 20" :key="blob" class="blob" />
-    </div> -->
-    <div class="h-full bg-black/5">
+  <div class="lefine">
+    <div class="wrapper">
       <NuxtLayout>
         <NuxtLoadingIndicator color="#6366f1" :throttle="1" :height="1" />
         <NuxtPage />
@@ -23,11 +20,11 @@ computed(() => {
 </template>
 
 <style lang="postcss" scoped>
-.blobs {
-  @apply inset-0 absolute overflow-hidden pointer-events-none;
+.lefine {
+  @apply h-full flex flex-col;
 
-  .blob {
-    @apply hidden sm:block absolute bg-primary-700/5 aspect-[1/1] rounded-full w-auto blur-3xl;
+  .wrapper {
+    @apply flex-1;
   }
 }
 </style>
