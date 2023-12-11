@@ -24,7 +24,7 @@ computed(() => {
   @apply h-full flex flex-col;
 
   .wrapper {
-    @apply flex-1;
+    @apply h-full w-full;
   }
 }
 </style>
