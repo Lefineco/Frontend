@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { Undefinable } from '@0fatihyildiz/fast-ts-utilities'
+
 import Plyr from 'plyr'
 import type { Options } from 'plyr/src/js/plyr'
 
@@ -7,9 +9,10 @@ import type { IframeHTMLAttributes } from '../../../node_modules/nuxt/dist/app/c
 
 interface Props {
   videoId: string | null
-  type: 'YOUTUBE' | 'VIMEO'
+  type: Undefinable<string>
   playerOptions?: Options
   iframeOptions?: IframeHTMLAttributes
+  isOwner?: boolean
 }
 
 const props = defineProps<Props>()
@@ -36,21 +39,32 @@ defineExpose({
   getPlayerInstance,
 })
 
+const PERMISSIONS = {
+  owner: [
+    'play-large',
+    'restart',
+    'play',
+    'progress',
+    'current-time',
+    'duration',
+    'mute',
+    'volume',
+    'fullscreen',
+  ],
+
+  participant: [
+    'play-large',
+    'play',
+    'volume',
+    'mute',
+    'current-time',
+  ],
+}
+
 onMounted(() => {
   const player = new Plyr(videoRef.value as HTMLDivElement, {
     settings: ['quality', 'speed'],
-    controls: [
-      'play-large', // The large play button in the center
-      'restart', // Restart playback
-      'play', // Play/pause playback
-      'progress', // The progress bar and scrubber for playback and buffering
-      'current-time', // The current time of playback
-      'duration', // The full duration of the media
-      'mute', // Toggle mute
-      'volume', // Volume control
-      'settings', // Settings menu
-      'fullscreen', // Toggle fullscreen
-    ],
+    controls: PERMISSIONS[props.isOwner ? 'owner' : 'participant'],
   })
 
   playerRef.value = player
@@ -58,7 +72,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="wrapper">
+  <div class="plyr__container">
     <div ref="videoRef" class="plyr__video-embed">
       <iframe
         allowfullscreen
@@ -70,9 +84,12 @@ onMounted(() => {
   </div>
 </template>
 
-<style lang="postcss" scoped>
-.wrapper {
-  @apply overflow-hidden relative;
+<style lang="postcss">
+.plyr__container {
   --plyr-color-main: theme(colors.violet.500);
+
+  .plyr {
+    @apply w-full h-full;
+  }
 }
 </style>
