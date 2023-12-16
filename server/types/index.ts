@@ -2,6 +2,12 @@ import type { Database } from './supabase'
 
 export type TableRows<T extends keyof Database['public']['Tables']> = Database['public']['Tables'][T]['Row']
 
+type ArrayOfObjects = Array<{ [key: string]: any }>
+
+export type MergeObjects<T extends ArrayOfObjects> = {
+  [K in keyof T[number]]: T[number][K];
+}
+
 export enum Platform {
   YOUTUBE = 'YOUTUBE',
   VIMEO = 'VIMEO',

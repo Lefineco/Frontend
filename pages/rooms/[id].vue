@@ -40,19 +40,19 @@ onMounted(() => {
           :type="data?.platform"
           :video-id="getVideoID(data?.url)"
           class="h-2/3 rounded-2xl overflow-hidden"
-          :is-owner="data?.participants?.find((p) => p.is_owner)?.id === user?.id"
+          :is-owner="data?.participants?.find((p) => p.is_owner)?.users?.id === user?.id"
         />
-
-        {{ JSON.stringify(data?.participants?.find((p) => p.is_owner)) }}
         <!-- ... -->
       </div>
 
       <div class="chat-container">
         <div class="p-4 flex justify-between items-center w-full border-b border-white/5">
-          <div class="text-lg flex flex-col">
-            {{ data?.title }}
+          <div class="flex flex-col w-2/3">
+            <span class="text-lg truncate">
+              {{ data?.title }}
+            </span>
 
-            <span class="text-sm w-96 truncate text-white/50">
+            <span class="text-sm w-full truncate text-white/50">
               {{ data?.description }}
             </span>
           </div>
@@ -81,7 +81,7 @@ onMounted(() => {
 
 <style lang="postcss" scoped>
 .room-page {
-  @apply flex flex-col h-full w-full;
+  @apply flex flex-col h-full w-full overflow-hidden;
 
   .wrapper {
     @apply flex h-full w-full items-start p-6 gap-8;
