@@ -39,7 +39,7 @@ function signInWithGoogle() {
     ref="form"
     :schema="loginSchema"
     :state="values"
-    class="relative w-full h-full flex flex-col items-center justify-center text-white z-0"
+    class="relative w-full h-full gap-12 flex flex-col items-center justify-center text-white z-0"
     :validate-on="['submit']"
     @submit.prevent="onSubmit"
   >
@@ -66,6 +66,7 @@ function signInWithGoogle() {
         icon="i-logos-google-icon"
         label="Sign in with Google"
         variant="soft"
+        color="white"
         block
         @click="signInWithGoogle()"
       />

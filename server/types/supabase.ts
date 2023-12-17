@@ -11,29 +11,42 @@ export interface Database {
     Tables: {
       chat: {
         Row: {
+          avatar_url: string | null
           created_at: string
           id: number
           message: string | null
-          participants: string | null
+          room_id: string | null
+          user_id: string | null
         }
         Insert: {
+          avatar_url?: string | null
           created_at?: string
           id?: number
           message?: string | null
-          participants?: string | null
+          room_id?: string | null
+          user_id?: string | null
         }
         Update: {
+          avatar_url?: string | null
           created_at?: string
           id?: number
           message?: string | null
-          participants?: string | null
+          room_id?: string | null
+          user_id?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: 'chat_participants_fkey'
-            columns: ['participants']
+            foreignKeyName: 'chat_room_id_fkey'
+            columns: ['room_id']
             isOneToOne: false
-            referencedRelation: 'participants'
+            referencedRelation: 'rooms'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'chat_user_id_fkey'
+            columns: ['user_id']
+            isOneToOne: false
+            referencedRelation: 'users'
             referencedColumns: ['id']
           },
         ]

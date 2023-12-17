@@ -34,7 +34,7 @@ async function onSubmit() {
     :schema="registerSchema"
     :state="values"
     :validate-on="['submit']"
-    class="relative w-full h-full flex items-center justify-center text-white z-0"
+    class="relative w-full h-full gap-12 flex flex-col items-center justify-center text-white z-0"
     @submit.prevent="onSubmit"
   >
     <SharedLogo to="/" />
@@ -59,6 +59,7 @@ async function onSubmit() {
       <UButton
         icon="i-logos-google-icon"
         variant="soft"
+        color="white"
         label="Sign in with Google"
         block
       />
@@ -70,8 +71,8 @@ async function onSubmit() {
       <UFormGroup name="email" size="xs">
         <UInput
           v-model="values.email"
-          icon="i-ph-user-fill"
-          placeholder="Username or Email"
+          icon="i-ph-envelope"
+          placeholder="Email"
         />
       </UFormGroup>
       <UFormGroup name="password" size="xs">

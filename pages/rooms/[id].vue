@@ -73,7 +73,7 @@ onMounted(() => {
           </UAvatarGroup>
         </div>
 
-        <RoomChat :room-id="data?.id" />
+        <RoomChat :room-id="data?.id || 'Lefine'" />
       </div>
     </div>
   </div>
@@ -81,13 +81,13 @@ onMounted(() => {
 
 <style lang="postcss" scoped>
 .room-page {
-  @apply flex flex-col h-full w-full overflow-hidden;
+  @apply flex flex-col h-full w-full;
 
   .wrapper {
-    @apply flex h-full w-full items-start p-6 gap-8;
+    @apply flex overflow-hidden h-full w-full p-6 gap-8;
 
     .player-container {
-      @apply h-full w-2/3;
+      @apply h-full w-2/3 overflow-hidden;
     }
 
     .chat-container {

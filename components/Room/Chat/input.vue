@@ -1,28 +1,35 @@
 <script setup lang="ts">
-const emit = defineEmits(['message'])
-const inputValue = ref('')
+interface Props {
+  sendMessage: (message: string) => void
+}
 
-const dataset = computed(() => ({
-  message: inputValue.value,
-  uuid: 'berke',
-}))
+const props = defineProps<Props>()
 
-function sendData() {
-  if (inputValue.value !== '') {
-    emit('message', dataset.value)
-    inputValue.value = ''
-  }
+const messageVal = ref('')
+
+async function sendData() {
+  props.sendMessage(messageVal.value)
+
+  if (messageVal.value !== '')
+    messageVal.value = ''
 }
 </script>
 
 <template>
-  <div>
-    <UInput v-model="inputValue" variant="solid" placeholder="Write Something..." :ui="{ icon: { trailing: { pointer: '' }, leading: { pointer: '' } } }" class="!px-12" @keyup.enter="sendData">
+  <div class="px-4">
+    <UInput
+      v-model="messageVal"
+      variant="solid"
+      placeholder="Write Something..."
+      size="md"
+      :ui="{ base: '!px-12 !text-sm', icon: { trailing: { pointer: '' }, leading: { pointer: '' } } }"
+      @keyup.enter="sendData"
+    >
       <template #leading>
-        <UButton class="text-gray-600" variant="text" icon="i-ph-smiley" />
+        <UButton variant="soft" color="white" icon="i-ph-smiley" />
       </template>
       <template #trailing>
-        <UButton class="text-gray-600 hover:text-white" variant="text" icon="i-ph-paper-plane-tilt-fill" @click="sendData" />
+        <UButton variant="soft" color="white" icon="i-ph-paper-plane-tilt-fill" @click="sendData" />
       </template>
     </UInput>
   </div>
