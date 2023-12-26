@@ -4,6 +4,8 @@ export type TableRows<T extends keyof Database['public']['Tables']> = Database['
 
 type ArrayOfObjects = Array<{ [key: string]: any }>
 
+export type ArrayElement<T> = T extends (infer U)[] ? U : never
+
 export type MergeObjects<T extends ArrayOfObjects> = {
   [K in keyof T[number]]: T[number][K];
 }

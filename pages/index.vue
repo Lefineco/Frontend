@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import type { Lefiners, Room } from '~/server/types'
 import type { Database } from '~/server/types/supabase'
 import { useGeneralStore } from '~/store'
 
 const supabase = useSupabaseClient<Database>()
 const user = useSupabaseUser()
 const store = useGeneralStore()
+
+export type SupabaseRooms = typeof supabaseRooms
+export type SupabaseLefiner = typeof supabaseLefiner
 
 const { data: supabaseRooms } = await supabase
   .from('rooms')
@@ -16,9 +18,8 @@ const { data: supabaseLefiner } = await supabase
   .select('*, follows!follows_following_id_fkey(follower_id)')
   .filter('name', 'neq', null)
 
-// TODO: maybe Fix this
-store.rooms = supabaseRooms as Room[]
-store.lefiners = supabaseLefiner as Lefiners[]
+store.rooms = supabaseRooms
+store.lefiners = supabaseLefiner
 </script>
 
 <template>
@@ -30,7 +31,7 @@ store.lefiners = supabaseLefiner as Lefiners[]
         :data="item"
       />
     </SharedCategory>
-    <SharedCategory class="px-5" title="Popular Live Rooms" to="/lefiners" :data="store.lefiners">
+    <SharedCategory class="px-5" title="Popular Lefiners" to="/lefiners" :data="store.lefiners">
       <CardsProfile
         v-for="(item, idx) in store.lefiners
           ?.slice(0, 4)

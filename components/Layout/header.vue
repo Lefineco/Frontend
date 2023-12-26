@@ -34,6 +34,7 @@ const items: DropdownItem[][] = [
     {
       label: 'Status',
       icon: 'i-ph-cell-signal-full',
+      href: 'https://lefine.statuspage.io/',
     },
   ],
   [
@@ -107,10 +108,10 @@ const search = ref('')
           </UDropdown>
         </div>
         <div v-else class="space-x-4 flex">
-          <UButton to="/auth/login" label="Button">
+          <UButton to="/auth/login" label="Button" color="white">
             Login
           </UButton>
-          <UButton to="/auth/register" label="Button" variant="soft">
+          <UButton to="/auth/register" label="Button" variant="soft" color="white">
             Register
           </UButton>
         </div>
@@ -124,7 +125,7 @@ const search = ref('')
 
 <style lang="postcss" scoped>
 .header {
-  @apply fixed top-0.5 inset-x-0 z-30 flex justify-between items-center py-5 px-4 sm:px-0 sm:py-3 space-x-5;
+  @apply border-b border-white/5 w-full flex justify-between items-center py-5 px-4 sm:px-0 sm:py-3 space-x-5;
 
   .progress {
     @apply absolute inset-x-0 h-0.5 -top-0.5 bg-violet-950;

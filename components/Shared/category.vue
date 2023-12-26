@@ -40,7 +40,7 @@ defineProps<Props>()
     @apply flex justify-between items-start;
 
     .title {
-        @apply md:text-xl font-medium;
+        @apply md:text-lg font-medium;
     }
   }
   .content {

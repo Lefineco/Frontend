@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import type { Form } from '#ui/types'
 import { useRouter } from 'vue-router'
 import { forgotPasswordSchema } from './schema'
 import type { ForgotPasswordSchema } from './schema'
+import type { Form } from '#ui/types'
 import useAsync from '@/composables/helper/async'
 import useAuth from '@/composables/service/auth'
 
 const { forgotPassword } = useAuth()
 const { loading, makeAsyncOperation } = useAsync()
 
-const form = ref<Form<ForgotPasswordSchema>>(null) // Başlangıçta form değeri null olarak atanıyor
+const form = ref<Form<ForgotPasswordSchema>>()
 const values = ref<Partial<ForgotPasswordSchema>>({
   password: undefined,
 })

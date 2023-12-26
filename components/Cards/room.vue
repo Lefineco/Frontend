@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import type { Platform, Room } from '~/server/types'
+import type { SupabaseRooms } from '~/pages/index.vue'
+import type { ArrayElement, Platform } from '~/server/types'
 
 interface Props {
-  data: Room
+  data: ArrayElement<SupabaseRooms>
 }
 
 const props = defineProps<Props>()
@@ -58,9 +59,9 @@ const ownerName = owner?.users?.name || 'Le'
       >
         <UAvatar
           v-for="participant in props.data.participants"
-          :key="participant.id"
-          :src="participant.users.avatar_url || ''"
-          :alt="participant.users.name || 'Le'"
+          :key="participant.users?.id"
+          :src="participant.users?.avatar_url || ''"
+          :alt="participant.users?.name || ''"
         />
       </UAvatarGroup>
     </div>

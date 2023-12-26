@@ -28,7 +28,7 @@ const data2 = [
 
 <template>
   <div class="page flex gap-5">
-    <div class="p-5 w-full mx-auto space-y-6">
+    <div class="w-full mx-auto space-y-6">
       <FeedsFormCreate />
       <Feeds
         v-for="(item, idx) in data2"
@@ -41,16 +41,11 @@ const data2 = [
     </div>
     <div class="pr-5 max-w-sm w-full flex-shirnk-0 flex flex-col space-y-4">
       <div class="flex flex-col space-y-2">
-        <span class="font-bold font-base">
-          Recomennded Lefiners
-        </span>
-        <div class="space-y-6">
-          <CardsProfile
-            v-for="(item, idx) in store.lefiners?.slice(0, 4)"
-            :key="idx"
-            :data="item"
-          />
-        </div>
+        <CardsProfile
+          v-for="(item, idx) in store.lefiners?.slice(0, 4)"
+          :key="idx"
+          :data="item"
+        />
       </div>
     </div>
   </div>

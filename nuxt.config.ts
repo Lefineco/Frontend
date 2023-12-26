@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   app: {
     rootTag: 'main',
     rootId: 'lefine',
+    pageTransition: { name: 'page', mode: 'out-in' },
     head: {
       title: 'Lefine',
       meta: [

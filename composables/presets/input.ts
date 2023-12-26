@@ -49,7 +49,7 @@ const input = {
   },
   color: {
     white: {
-      solid: 'bg-white/10 text-zinc-900 dark:text-white focus:ring-2 focus:dark:bg-transparent focus:ring-primary-500 focus:ring-opacity-30 border focus:border-primary-500',
+      solid: 'bg-white/5 text-zinc-900 dark:text-white focus:ring-2 focus:dark:bg-transparent focus:ring-primary-500 focus:ring-opacity-30 border focus:border-primary-500',
       outline: 'dark:text-white focus:ring-2 dark:ring-white/10 dark:bg-transparent focus:dark:ring-primary-500 focus:dark:ring-opacity-30 border focus:dark:border-primary-500',
     },
     gray: {

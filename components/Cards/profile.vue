@@ -1,18 +1,19 @@
 <script setup lang="ts">
-import type { Lefiners } from '~/server/types'
 import { useFollow, useUnfollow } from '@/composables/service/profile'
 import { PRIMARY, SECONDARY } from '~/constants/colors'
 import { key } from '~/composables/helper/random'
+import type { SupabaseLefiner } from '~/pages/index.vue'
+import type { ArrayElement } from '~/server/types'
 
 interface Props {
-  data: Lefiners
+  data: ArrayElement<SupabaseLefiner>
 }
 const props = defineProps<Props>()
 
 const user = useSupabaseUser()
 const isFollower = computed(() =>
   Boolean(
-    props.data.follows?.at(0)?.follower_id === user.value?.id && user.value?.id,
+    props.data?.follows?.at(0)?.follower_id === user.value?.id && user.value?.id,
   ),
 )
 

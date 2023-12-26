@@ -1,8 +1,8 @@
-import type { Lefiners, Room } from '~/server/types'
+import type { SupabaseLefiner, SupabaseRooms } from '~/pages/index.vue'
 
 interface State {
-  rooms: Room[] | null
-  lefiners: Lefiners[] | null
+  rooms: SupabaseRooms
+  lefiners: SupabaseLefiner
 }
 
 export const useGeneralStore = defineStore('general', {
