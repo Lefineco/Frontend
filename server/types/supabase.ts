@@ -60,7 +60,22 @@ export interface Database {
           following_id?: string
           id?: number
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: 'follows_follower_id_fkey'
+            columns: ['follower_id']
+            isOneToOne: false
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'follows_following_id_fkey'
+            columns: ['following_id']
+            isOneToOne: false
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
+          },
+        ]
       }
       participants: {
         Row: {
@@ -136,8 +151,10 @@ export interface Database {
       rooms: {
         Row: {
           created_at: string
+          current_time: number | null
           description: string | null
           id: string
+          on_play: boolean
           platform: string
           thumbnail: string | null
           title: string | null
@@ -145,8 +162,10 @@ export interface Database {
         }
         Insert: {
           created_at?: string
+          current_time?: number | null
           description?: string | null
           id?: string
+          on_play?: boolean
           platform?: string
           thumbnail?: string | null
           title?: string | null
@@ -154,8 +173,10 @@ export interface Database {
         }
         Update: {
           created_at?: string
+          current_time?: number | null
           description?: string | null
           id?: string
+          on_play?: boolean
           platform?: string
           thumbnail?: string | null
           title?: string | null

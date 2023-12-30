@@ -45,8 +45,8 @@ function groupMessages(messages: Chat[]): GroupedMessages[] {
   return userMessages
 }
 
-const chatChannel = supabase
-  .channel(props.roomId)
+const roomChannel = supabase
+  .channel(`chat_${props.roomId}`)
   .on(
     'postgres_changes',
     {
@@ -92,7 +92,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  supabase.removeChannel(chatChannel)
+  supabase.removeChannel(roomChannel)
 })
 </script>
 

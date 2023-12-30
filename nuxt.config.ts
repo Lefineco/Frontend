@@ -52,6 +52,7 @@ export default defineNuxtConfig({
   },
   experimental: {
     typedPages: true,
+    treeshakeClientOnly: true,
   },
   typescript: {
     strict: true,

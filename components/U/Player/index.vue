@@ -58,6 +58,7 @@ const PERMISSIONS = {
     'volume',
     'mute',
     'current-time',
+    'duration',
   ],
 }
 
