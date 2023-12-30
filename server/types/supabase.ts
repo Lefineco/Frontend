@@ -42,13 +42,6 @@ export interface Database {
             referencedRelation: 'rooms'
             referencedColumns: ['id']
           },
-          {
-            foreignKeyName: 'chat_user_id_fkey'
-            columns: ['user_id']
-            isOneToOne: false
-            referencedRelation: 'users'
-            referencedColumns: ['id']
-          },
         ]
       }
       follows: {
@@ -67,22 +60,7 @@ export interface Database {
           following_id?: string
           id?: number
         }
-        Relationships: [
-          {
-            foreignKeyName: 'follows_follower_id_fkey'
-            columns: ['follower_id']
-            isOneToOne: false
-            referencedRelation: 'users'
-            referencedColumns: ['id']
-          },
-          {
-            foreignKeyName: 'follows_following_id_fkey'
-            columns: ['following_id']
-            isOneToOne: false
-            referencedRelation: 'users'
-            referencedColumns: ['id']
-          },
-        ]
+        Relationships: []
       }
       participants: {
         Row: {
@@ -118,6 +96,38 @@ export interface Database {
             foreignKeyName: 'participants_user_id_fkey'
             columns: ['user_id']
             isOneToOne: false
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          full_name: string | null
+          id: string
+          updated_at: string | null
+          username: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          full_name?: string | null
+          id: string
+          updated_at?: string | null
+          username?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          full_name?: string | null
+          id?: string
+          updated_at?: string | null
+          username?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'profiles_id_fkey'
+            columns: ['id']
+            isOneToOne: true
             referencedRelation: 'users'
             referencedColumns: ['id']
           },
@@ -152,38 +162,6 @@ export interface Database {
           url?: string | null
         }
         Relationships: []
-      }
-      users: {
-        Row: {
-          avatar_url: string | null
-          email: string | null
-          id: string
-          name: string | null
-          username: string | null
-        }
-        Insert: {
-          avatar_url?: string | null
-          email?: string | null
-          id: string
-          name?: string | null
-          username?: string | null
-        }
-        Update: {
-          avatar_url?: string | null
-          email?: string | null
-          id?: string
-          name?: string | null
-          username?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: 'users_id_fkey'
-            columns: ['id']
-            isOneToOne: true
-            referencedRelation: 'users'
-            referencedColumns: ['id']
-          },
-        ]
       }
     }
     Views: {

@@ -16,7 +16,7 @@ const player = ref()
 
 const { data } = await supabase
   .from('rooms')
-  .select('*, participants(id, is_owner, users(*))')
+  .select('*, participants(id, is_owner, profiles(*))')
   .filter('id', 'eq', route.params.id)
   .single()
 
@@ -40,7 +40,7 @@ onMounted(() => {
           :type="data?.platform"
           :video-id="getVideoID(data?.url)"
           class="h-2/3 rounded-2xl overflow-hidden"
-          :is-owner="data?.participants?.find((p) => p.is_owner)?.users?.id === user?.id"
+          :is-owner="data?.participants?.find((p) => p.is_owner)?.profiles?.id === user?.id"
         />
         <!-- ... -->
       </div>
@@ -61,8 +61,8 @@ onMounted(() => {
             <UAvatar
               v-for="participant in data?.participants"
               :key="participant.id"
-              :src="participant.users?.avatar_url || ''"
-              :alt="participant.users?.name || 'Le'"
+              :src="participant.profiles?.avatar_url || ''"
+              :alt="participant.profiles?.full_name || 'Le'"
             />
             <template v-if="data?.participants?.length ?? 0 <= 2">
               <UAvatar

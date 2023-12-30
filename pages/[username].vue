@@ -1,7 +1,13 @@
 <script setup lang="ts">
 definePageMeta({
   middleware: 'auth',
+  // validate(route) {
+  //   return route.params.username === 'admin'
+  // },
 })
+
+// const route = useRoute<'username'>()
+// const { username } = route.params
 </script>
 
 <template>

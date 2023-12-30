@@ -8,9 +8,9 @@ const store = useGeneralStore()
 
 if (!store.lefiners?.length) {
   const { data } = await supabase
-    .from('users')
+    .from('profiles')
     .select('*')
-    .filter('name', 'neq', null)
+    .filter('full_name', 'neq', null)
 
   store.lefiners = data as Lefiners[]
 }

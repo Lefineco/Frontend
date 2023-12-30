@@ -11,12 +11,12 @@ export type SupabaseLefiner = typeof supabaseLefiner
 
 const { data: supabaseRooms } = await supabase
   .from('rooms')
-  .select('*, participants(is_owner, users(*))')
+  .select('*, participants(is_owner, profiles(*))')
 
 const { data: supabaseLefiner } = await supabase
-  .from('users')
+  .from('profiles')
   .select('*, follows!follows_following_id_fkey(follower_id)')
-  .filter('name', 'neq', null)
+  .filter('full_name', 'neq', null)
 
 store.rooms = supabaseRooms
 store.lefiners = supabaseLefiner

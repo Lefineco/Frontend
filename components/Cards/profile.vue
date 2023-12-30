@@ -26,7 +26,7 @@ function setFollow(val: boolean | undefined, load: boolean) {
   followLoad.value = load
 }
 
-const KEY = props.data.name || props.data.id
+const KEY = props.data.full_name || props.data.id
 </script>
 
 <template>
@@ -50,10 +50,10 @@ const KEY = props.data.name || props.data.id
         <UAvatar
           :src="data.avatar_url || ''"
           size="md"
-          :alt="data?.name || ''"
+          :alt="data?.full_name || ''"
         />
         <div class="flex flex-col items-center lg:items-start">
-          <span class="text-sm font-medium capitalize">{{ data.name }}</span>
+          <span class="text-sm font-medium capitalize">{{ data.full_name }}</span>
           <span class="text-xs text-zinc-400">Recommended</span>
         </div>
       </div>

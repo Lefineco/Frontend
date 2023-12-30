@@ -18,7 +18,7 @@ const PLATFORM = {
 const owner = props.data.participants.find(
   participant => participant.is_owner,
 )
-const ownerName = owner?.users?.name || 'Le'
+const ownerName = owner?.profiles?.full_name || 'Le'
 </script>
 
 <template>
@@ -29,7 +29,7 @@ const ownerName = owner?.users?.name || 'Le'
     <div class="w-full flex justify-between py-2 px-2">
       <div class="flex items-center justify-center gap-3">
         <UAvatar
-          :src="owner?.users?.avatar_url || ''"
+          :src="owner?.profiles?.avatar_url || ''"
           size="sm"
           :alt="ownerName"
         />
@@ -59,9 +59,9 @@ const ownerName = owner?.users?.name || 'Le'
       >
         <UAvatar
           v-for="participant in props.data.participants"
-          :key="participant.users?.id"
-          :src="participant.users?.avatar_url || ''"
-          :alt="participant.users?.name || ''"
+          :key="participant.profiles?.id"
+          :src="participant.profiles?.avatar_url || ''"
+          :alt="participant.profiles?.full_name || ''"
         />
       </UAvatarGroup>
     </div>

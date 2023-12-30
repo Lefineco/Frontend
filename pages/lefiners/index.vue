@@ -9,9 +9,9 @@ const user = useSupabaseUser()
 
 if (!store.lefiners?.length) {
   const { data } = await supabase
-    .from('users')
+    .from('profiles')
     .select('*, follows!follows_following_id_fkey(follower_id)')
-    .filter('name', 'neq', null)
+    .filter('full_name', 'neq', null)
 
   store.lefiners = data as Lefiners[]
 }

@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
     rootTag: 'main',
@@ -53,7 +52,6 @@ export default defineNuxtConfig({
   },
   experimental: {
     typedPages: true,
-    typescriptBundlerResolution: true,
   },
   typescript: {
     strict: true,

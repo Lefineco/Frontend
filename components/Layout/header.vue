@@ -30,6 +30,7 @@ const items: DropdownItem[][] = [
     {
       label: 'Changelog',
       icon: 'i-ph-megaphone-simple',
+      href: 'https://github.com/Lefineco/Frontend/releases',
     },
     {
       label: 'Status',

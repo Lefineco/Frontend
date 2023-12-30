@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { Room } from '~/server/types'
 import type { Database } from '~/server/types/supabase'
 import { useGeneralStore } from '~/store'
 
@@ -9,9 +8,9 @@ const store = useGeneralStore()
 if (!store.rooms?.length) {
   const { data } = await supabase
     .from('rooms')
-    .select('*, participants(is_owner, users(*))')
+    .select('*, participants(is_owner, profiles(*))')
 
-  store.rooms = data as Room[]
+  store.rooms = data
 }
 </script>
 

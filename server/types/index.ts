@@ -31,13 +31,13 @@ export interface CreateRoomBody {
 }
 
 export interface Participants extends TableRows<'participants'> {
-  users: TableRows<'users'>
+  users: TableRows<'profiles'>
 }
 
 export interface Room extends TableRows<'rooms'> {
   participants: Participants[]
 }
 
-export interface Lefiners extends TableRows<'users'> {
+export interface Lefiners extends TableRows<'profiles'> {
   follows: TableRows<'follows'>[]
 }
