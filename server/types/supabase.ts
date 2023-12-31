@@ -42,6 +42,13 @@ export interface Database {
             referencedRelation: 'rooms'
             referencedColumns: ['id']
           },
+          {
+            foreignKeyName: 'chat_user_id_fkey'
+            columns: ['user_id']
+            isOneToOne: false
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
+          },
         ]
       }
       follows: {
@@ -151,7 +158,7 @@ export interface Database {
       rooms: {
         Row: {
           created_at: string
-          current_time: number | null
+          current_time: number
           description: string | null
           id: string
           on_play: boolean
@@ -162,7 +169,7 @@ export interface Database {
         }
         Insert: {
           created_at?: string
-          current_time?: number | null
+          current_time: number
           description?: string | null
           id?: string
           on_play?: boolean
@@ -173,7 +180,7 @@ export interface Database {
         }
         Update: {
           created_at?: string
-          current_time?: number | null
+          current_time?: number
           description?: string | null
           id?: string
           on_play?: boolean

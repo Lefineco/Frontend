@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { PreviewData } from './types'
-import type { VideoPreviewContent } from '~/server/types'
+import type { TableRows, VideoPreviewContent } from '~/server/types'
 import { checkVideoPlatform } from '@/composables/helper'
 import type { RoomSchema } from '~/server/validation'
 import { useJoinRoom } from '@/composables/service/room'
@@ -9,8 +9,6 @@ const isOpen = defineModel<boolean>()
 const url = ref('')
 const deboundedUrl = refDebounced(url, 1000)
 const previewData = ref<PreviewData | null>(null)
-
-const router = useRouter()
 const user = useSupabaseUser()
 
 const previewVideo = watch([deboundedUrl], async () => {
@@ -48,22 +46,19 @@ const values = ref<Partial<RoomSchema>>({
 })
 
 async function createRoom() {
-  const { data } = await useFetch('/api/create/room', {
+  const { data } = await useFetch<{ data: TableRows<'rooms'> }>('/api/create/room', {
     method: 'POST',
     body: JSON.stringify({
       ...previewData.value?.data,
       title: values.value.title || previewData.value?.data?.title,
+      current_time: 0,
+      on_play: false,
     }),
   })
 
   if (data.value) {
     isOpen.value = false
-    await useJoinRoom(
-      (data.value.data as any)?.id,
-      user.value?.id as string,
-      true,
-    )
-    router.push(`/rooms/${(data.value.data as any).id}`)
+    await useJoinRoom(data.value.data.id, user.value?.id, true)
   }
 }
 

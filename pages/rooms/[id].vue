@@ -49,7 +49,7 @@ async function onSeeked() {
     .eq('id', route.params.id)
 }
 
-watch(realtimeResponse, () => {
+const realtimeResponseWatch = watch(realtimeResponse, () => {
   if (realtimeResponse.value?.on_play !== undefined && !is_owner) {
     const playerInstance = player.value?.getPlayerInstance()
 
@@ -77,7 +77,6 @@ onMounted(async () => {
         filter: `id=eq.${route.params.id}`,
       },
       (payload) => {
-        console.log(payload)
         realtimeResponse.value = payload.new
       },
     )
@@ -99,6 +98,7 @@ onMounted(async () => {
 
 onUnmounted(() => {
   supabase.removeChannel(roomChannel)
+  realtimeResponseWatch()
 })
 </script>
 
@@ -115,7 +115,6 @@ onUnmounted(() => {
           class="h-2/3 rounded-2xl overflow-hidden"
           :is-owner="is_owner"
         />
-        <!-- ... -->
       </div>
 
       <div class="chat-container">
@@ -132,20 +131,7 @@ onUnmounted(() => {
             </span>
           </div>
 
-          <UAvatarGroup size="sm" :max="3">
-            <UAvatar
-              v-for="participant in data?.participants"
-              :key="participant.id"
-              :src="participant.profiles?.avatar_url || ''"
-              :alt="participant.profiles?.full_name || 'Le'"
-            />
-            <template v-if="data?.participants?.length ?? 0 <= 2">
-              <UAvatar
-                v-for="i in 3 - (data?.participants?.length ?? 0)"
-                :key="i"
-              />
-            </template>
-          </UAvatarGroup>
+          <RoomParticipants v-if="data" :participants="data.participants" />
         </div>
 
         <RoomChat :room-id="data?.id || 'Lefine'" />

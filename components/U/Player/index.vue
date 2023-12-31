@@ -41,8 +41,7 @@ defineExpose({
 
 const PERMISSIONS = {
   owner: [
-    'play-large',
-    'restart',
+    // 'play-large',
     'play',
     'progress',
     'current-time',
@@ -53,7 +52,6 @@ const PERMISSIONS = {
   ],
 
   participant: [
-    'play-large',
     'play',
     'volume',
     'mute',
@@ -79,7 +77,7 @@ onMounted(() => {
         allowfullscreen
         allowtransparency
         :src="src"
-        :="props.iframeOptions"
+        v-bind="props.iframeOptions"
       />
     </div>
   </div>
