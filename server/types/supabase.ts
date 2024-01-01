@@ -169,7 +169,7 @@ export interface Database {
         }
         Insert: {
           created_at?: string
-          current_time: number
+          current_time?: number
           description?: string | null
           id?: string
           on_play?: boolean
