@@ -18,7 +18,8 @@ const PLATFORM = {
 const owner = props.data.participants.find(
   participant => participant.is_owner,
 )
-const ownerName = owner?.profiles?.full_name || 'Le'
+
+const ownerName = owner?.profiles?.full_name || ''
 </script>
 
 <template>

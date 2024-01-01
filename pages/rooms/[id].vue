@@ -31,14 +31,14 @@ const is_owner
 async function onPlay() {
   return supabase
     .from('rooms')
-    .update({ on_play: true })
+    .update({ on_play: true, current_time: player.value?.getPlayerInstance().currentTime })
     .eq('id', route.params.id)
 }
 
 async function onPause() {
   return supabase
     .from('rooms')
-    .update({ on_play: false })
+    .update({ on_play: false, current_time: player.value?.getPlayerInstance().currentTime })
     .eq('id', route.params.id)
 }
 
@@ -86,6 +86,8 @@ onMounted(async () => {
     const playerInstance = player.value?.getPlayerInstance()
 
     playerInstance.autoplay = true
+
+    playerInstance.currentTime = data.current_time
 
     if (!is_owner)
       return false

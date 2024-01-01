@@ -58,7 +58,7 @@ async function createRoom() {
 
   if (data.value) {
     isOpen.value = false
-    await useJoinRoom(data.value.data.id, user.value?.id, true)
+    useJoinRoom(data.value.data.id, user.value?.id, true)
   }
 }
 

@@ -41,12 +41,10 @@ export async function useLeaveRoom(
   if (!room_id)
     return toast('Error!', 'Room id is not valid!', 'error')
 
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from('participants')
     .delete()
     .match({ user_id, room_id })
-
-  console.log(data)
 
   if (error)
     return toast(error.message, error.message, 'error')
