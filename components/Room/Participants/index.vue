@@ -33,6 +33,7 @@ if (user.value) {
 
 onMounted(async () => {
   participants.value = await getParticipants()
+  console.log(participants.value)
 
   roomChannel = supabase
     .channel(`participants_${route.params.id}`)
@@ -62,28 +63,38 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <UPopover>
+  <UPopover :popper="{ placement: 'bottom-end' }">
     <UButton
       color="black"
       label=""
       trailing-icon="i-heroicons-chevron-down-20-solid"
     >
-      <UAvatarGroup size="sm" :max="3">
+      <UAvatarGroup size="sm" :max="2">
         <template v-for="participant in participants" :key="participant.id">
           <UAvatar
+            size="sm"
             v-if="participant.profiles"
             :src="participant.profiles.avatar_url || ''"
             :alt="participant.profiles.full_name || ''"
           />
         </template>
-        <template v-if="(participants?.length ?? 0) <= 2">
-          <UAvatar v-for="i in 3 - (participants?.length ?? 0)" :key="i" />
-        </template>
       </UAvatarGroup>
     </UButton>
     <template #panel>
-      <div class="p-4">
-        <Placeholder class="h-20 w-48" />
+      <div class="p-4 flex gap-3 flex-col">
+        <div
+          class="flex gap-3 items-center"
+          v-for="participant in participants"
+          :key="participant.id"
+        >
+          <UAvatar
+            v-if="participant.profiles"
+            :src="participant.profiles.avatar_url || ''"
+            :alt="participant.profiles.full_name || ''"
+          /><span class="w-36 truncate">
+            {{ participant.profiles.full_name }}
+          </span>
+        </div>
       </div>
     </template>
   </UPopover>

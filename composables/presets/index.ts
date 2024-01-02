@@ -9,5 +9,19 @@ import modal from './modal'
 import formGroup from './form-group'
 import card from './card'
 import dropdown from './dropdown'
+import popover from './popover'
 
-export default { button, input, textarea, notification, toggle, avatar, checkbox, modal, formGroup, card, dropdown }
+export default {
+  button,
+  input,
+  textarea,
+  notification,
+  toggle,
+  avatar,
+  checkbox,
+  modal,
+  formGroup,
+  card,
+  dropdown,
+  popover,
+}
