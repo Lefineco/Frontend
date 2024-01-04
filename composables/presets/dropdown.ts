@@ -3,7 +3,7 @@ const dropdwon = {
   container: 'z-20',
   width: 'w-48',
   height: '',
-  background: 'bg-white dark:bg-white/10 backdrop-blur-sm',
+  background: 'bg-white dark:bg-white/10 backdrop-blur-lg',
   shadow: 'shadow-lg',
   rounded: 'rounded-md',
   ring: '',
