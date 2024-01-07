@@ -20,10 +20,9 @@ if (!store.rooms?.length) {
       class="p-5"
       title="All Live Rooms"
       to="/rooms"
-      :data="store.rooms"
       all
     >
-      <CardsRoom v-for="(item, idx) in store.rooms" :key="idx" :data="item" />
+      <SharedCardsRoom v-for="(item, idx) in store.rooms" :key="idx" :data="item" />
     </SharedCategory>
   </div>
 </template>

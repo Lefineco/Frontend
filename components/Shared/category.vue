@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import type { Lefiners, Room } from '~/server/types'
-
 interface Props {
-  data?: Lefiners[] | Room[]
+  length: number
   title: string
   to: string // TODO: route path type
   all?: boolean
 }
 
-defineProps<Props>()
+withDefaults(defineProps<Props>(), {
+  length: 0,
+})
 </script>
 
 <template>
@@ -18,7 +18,7 @@ defineProps<Props>()
         {{ title }}
       </p>
       <UButton
-        v-if="!all && (data?.length ?? 0) > 4"
+        v-if="all && length > 4"
         trailing
         variant="soft"
         color="white"

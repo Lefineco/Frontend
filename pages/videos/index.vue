@@ -31,7 +31,7 @@ const data = [
       </p>
 
       <div class="py-7 grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-4">
-        <CardsVideos v-for="(item, idx) in data" :key="idx" :name="item.firstName" />
+        <SharedCardsVideos v-for="(item, idx) in data" :key="idx" :name="item.firstName" />
       </div>
     </div>
   </div>

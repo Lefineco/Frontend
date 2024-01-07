@@ -25,7 +25,7 @@ if (!store.lefiners?.length) {
       to="/lefiners"
       :data="store.lefiners"
     >
-      <CardsProfile
+      <SharedCardsProfile
         v-for="(item, idx) in store.lefiners?.filter(
           (item) => item.id !== user?.id,
         )"

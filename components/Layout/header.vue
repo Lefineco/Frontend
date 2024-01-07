@@ -84,7 +84,7 @@ const search = ref('')
           >
             Create Room
           </UButton>
-          <CreateRoom v-model="crateRoomModal" />
+          <RoomCreate v-model="crateRoomModal" />
           <UDropdown
             :items="items"
             :ui="{ item: { disabled: 'cursor-text select-text' } }"

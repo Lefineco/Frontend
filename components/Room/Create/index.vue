@@ -17,7 +17,7 @@ const previewVideo = watch([deboundedUrl], async () => {
   if (!checkVideoPlatform(url.value))
     return null
 
-  const { data, pending, error, refresh }
+  const { data, error }
     = await useFetch<VideoPreviewContent | null>('/api/scrape/video', {
       method: 'POST',
       body: JSON.stringify({
@@ -27,9 +27,7 @@ const previewVideo = watch([deboundedUrl], async () => {
 
   previewData.value = {
     data: data.value,
-    pending: pending.value,
     error: error.value?.message,
-    refresh,
   }
 })
 
@@ -90,7 +88,7 @@ onUnmounted(() => {
             />
           </div>
         </template>
-        <CreateRoomPreview
+        <RoomCreatePreview
           v-if="deboundedUrl && checkVideoPlatform(deboundedUrl)"
           class="mb-4"
           :preview-data="previewData"

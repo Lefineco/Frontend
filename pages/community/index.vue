@@ -41,7 +41,7 @@ const data2 = [
     </div>
     <div class="pr-5 max-w-sm w-full flex-shirnk-0 flex flex-col space-y-4">
       <div class="flex flex-col space-y-2">
-        <CardsProfile
+        <SharedCardsProfile
           v-for="(item, idx) in store.lefiners?.slice(0, 4)"
           :key="idx"
           :data="item"

@@ -25,14 +25,14 @@ store.lefiners = supabaseLefiner
 <template>
   <div class="page">
     <SharedCategory class="px-5" title="Popular Live Rooms" to="/rooms" :data="store.rooms">
-      <CardsRoom
+      <SharedCardsRoom
         v-for="(item, idx) in store.rooms?.slice(0, 4)"
         :key="idx"
         :data="item"
       />
     </SharedCategory>
     <SharedCategory class="px-5" title="Popular Lefiners" to="/lefiners" :data="store.lefiners">
-      <CardsProfile
+      <SharedCardsProfile
         v-for="(item, idx) in store.lefiners
           ?.slice(0, 4)
           .filter((item) => item.id !== user?.id)"
