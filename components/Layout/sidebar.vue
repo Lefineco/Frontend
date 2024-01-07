@@ -3,17 +3,17 @@ import { navigationLinks } from '~/composables/helper'
 
 const links = [
   {
-    label: 'Feed',
+    label: '',
     icon: ['i-ph-play-circle', 'i-ph-play-circle-fill'],
     to: '/',
   },
   {
-    label: 'Community',
+    label: '',
     icon: ['i-ph-users-three', 'i-ph-users-three-fill'],
     to: '/community',
   },
   {
-    label: 'Messages',
+    label: '',
     icon: ['i-ph-chat-teardrop-dots', 'i-ph-chat-teardrop-dots-fill'],
     to: '/messages',
   },
@@ -41,6 +41,6 @@ const links = [
 
 <style lang="postcss" scoped>
 .sidebar {
-  @apply border-r border-white/5 space-y-6 h-full w-full max-w-[16rem] pt-5 px-0 hidden md:flex items-start flex-col;
+  @apply border-r border-white/5 space-y-6 h-full w-full max-w-[4rem] pt-5 px-0 hidden md:flex items-start flex-col;
 }
 </style>

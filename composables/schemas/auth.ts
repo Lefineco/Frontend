@@ -6,9 +6,9 @@ export const loginSchema = z.object({
 })
 
 export const registerSchema = z.object({
-  email: z.string().nonempty('This is required').email('Invalid email'),
-  password: z.string().nonempty('This is required').min(8, 'Must be at least 8 characters'),
-  passwordConfirm: z.string().nonempty('This is required').min(8, 'Must be at least 8 characters'),
+  email: z.string().email('Invalid email'),
+  password: z.string().min(8, 'Must be at least 8 characters'),
+  passwordConfirm: z.string().min(8, 'Must be at least 8 characters'),
 }).refine(schema => schema.password === schema.passwordConfirm, {
   message: 'Passwords don\'t match',
   path: ['passwordConfirm'],

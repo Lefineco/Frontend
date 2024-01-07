@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import type { Lefiners, Room } from '~/server/types'
+
 interface Props {
-  data?: any // FIXME: any
+  data?: Lefiners[] | Room[]
   title: string
   to: string // TODO: route path type
   all?: boolean
