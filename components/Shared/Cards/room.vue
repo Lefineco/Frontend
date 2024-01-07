@@ -24,7 +24,7 @@ const ownerName = owner?.profiles?.full_name || ''
 
 <template>
   <button
-    class="relative overflow-hidden w-90 h-90 flex flex-col items-center justify-center"
+    class="relative overflow-hidden w-90 h-90 aspect-1/1 flex flex-col items-center justify-center"
     @click="router.push(`/rooms/${props.data.id}`)"
   >
     <div class="w-full flex justify-between py-2 px-2">
@@ -33,6 +33,7 @@ const ownerName = owner?.profiles?.full_name || ''
           :src="owner?.profiles?.avatar_url || ''"
           size="sm"
           :alt="ownerName"
+          class="relative border border-white z-10 after:-z-10 after:content-[''] after:absolute after:w-2/3 after:h-2/3 after:bg-white/60 after:rounded-full after:animate-ping"
         />
         <span class="text-sm text-left font-medium gap-1 w-36 truncate">
           <span class="text-xs opacity-50 font-medium">Provide by</span>
@@ -45,9 +46,7 @@ const ownerName = owner?.profiles?.full_name || ''
       />
     </div>
     <div class="relative w-full">
-      <div
-        class="relative overflow-hidden rounded-2xl w-full after:content-[''] after:absolute after:inset-0 after:bg-black/60"
-      >
+      <div class="relative overflow-hidden rounded-2xl h-48 w-full after:content-[''] after:absolute after:inset-0 after:bg-black/60">
         <img
           class="w-full h-full object-cover rounded-[20px]"
           :src="props.data.thumbnail || ''"

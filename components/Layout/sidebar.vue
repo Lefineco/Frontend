@@ -27,7 +27,7 @@ const links = [
         wrapper: 'relative space-y-3 w-full',
         base: 'pl-4 before:w-5 before:!bg-transparent text-xs font-medium',
         active:
-          'font-semibold before:bg-gradient-to-r before:from-primary/20 before:border-l-2 before:h-10 before:top-1/2 before:-translate-y-1/2 before:rounded-none before:!border-l-primary',
+          'font-semibold before:bg-gradient-to-l before:from-primary/10 before:border-r-2 before:h-10 before:w-full before:top-1/2 before:-translate-y-1/2 before:rounded-none before:!border-r-primary',
         icon: {
           base: 'flex-shrink-0 w-5 h-5 m-1',
           inactive:

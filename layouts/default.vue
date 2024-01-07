@@ -10,6 +10,6 @@
 
 <style lang="postcss" scoped>
   .wrapper {
-    @apply flex h-full items-start overflow-y-auto;
+    @apply flex h-full items-start overflow-y-auto max-w-[1700px] mx-auto;
   }
 </style>

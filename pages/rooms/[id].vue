@@ -110,13 +110,19 @@ onUnmounted(() => {
 
     <div class="wrapper">
       <div class="player-container">
-        <UPlayer
-          ref="player"
-          :type="data?.platform"
-          :video-id="getVideoID(data?.url)"
-          class="h-2/3 rounded-2xl overflow-hidden"
-          :is-owner="is_owner"
-        />
+        <ClientOnly>
+          <UPlayer
+            ref="player"
+            :type="data?.platform"
+            :video-id="getVideoID(data?.url)"
+            class="h-2/3 rounded-2xl overflow-hidden"
+            :is-owner="is_owner"
+          />
+
+          <template #fallback>
+            <div class="h-2/3 rounded-2xl overflow-hidden w-full bg-white/5 animate-pulse" />
+          </template>
+        </ClientOnly>
       </div>
 
       <div class="chat-container">
