@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import type { RouteRecordName } from '~/types'
+
 interface Props {
   length: number
   title: string
-  to: string // TODO: route path type
+  to: RouteRecordName
   all?: boolean
 }
 

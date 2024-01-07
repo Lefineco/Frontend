@@ -22,7 +22,7 @@ if (!store.lefiners?.length) {
     <SharedCategory
       class="p-5"
       title="All Lefiners"
-      to="/lefiners"
+      to="lefiners"
       :data="store.lefiners"
     >
       <SharedCardsProfile
