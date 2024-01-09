@@ -42,5 +42,9 @@ const links = [
 <style lang="postcss" scoped>
 .sidebar {
   @apply border-r border-white/5 space-y-6 h-full w-full max-w-[4rem] pt-5 px-0 hidden md:flex items-start flex-col;
+
+  nav {
+    @apply sticky top-5;
+  }
 }
 </style>

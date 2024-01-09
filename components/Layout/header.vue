@@ -126,7 +126,7 @@ const search = ref('')
 
 <style lang="postcss" scoped>
 .header {
-  @apply border-b border-white/5 w-full flex justify-between items-center py-5 px-4 sm:px-0 sm:py-3 space-x-5;
+  @apply border-b border-white/5 w-full flex justify-between items-center py-5 px-4 sm:px-0 sm:py-3 space-x-5 max-w-[1700px] mx-auto;
 
   .progress {
     @apply absolute inset-x-0 h-0.5 -top-0.5 bg-violet-950;

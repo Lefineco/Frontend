@@ -5,7 +5,7 @@ import { roomSchema } from '~/server/validation'
 export default defineEventHandler(async (event) => {
   const supabase = await serverSupabaseClient(event)
 
-  const body = await zh.useValidatedBody(event, roomSchema)
+  const body = await zh.useValidatedBody(event as any, roomSchema)
 
   const { data, error } = await supabase
     .from('rooms')

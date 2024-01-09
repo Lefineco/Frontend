@@ -4,19 +4,19 @@ import { Platform } from '../types'
 const roomSchema = z.object({
   thumbnail: z
     .string()
-    .min(1, { message: 'Thumbnail en az 1 karakter olmalıdır.' })
-    .nonempty({ message: 'Thumbnail alanı gereklidir.' }),
+    .min(1, { message: 'Thumbnail en az 1 karakter olmalıdır.' }),
+
   title: z
     .string()
-    .min(1, { message: 'Name en az 1 karakter olmalıdır.' })
-    .nonempty({ message: 'Name alanı gereklidir.' }),
+    .min(1, { message: 'Name en az 1 karakter olmalıdır.' }),
+
   description: z
     .string()
     .min(1, { message: 'Description en az 1 karakter olmalıdır.' }),
   url: z
     .string()
-    .url({ message: 'Geçersiz video URL.' })
-    .nonempty({ message: 'Video URL gereklidir.' }),
+    .url({ message: 'Geçersiz video URL.' }),
+
   platform: z.nativeEnum(Platform),
 })
 

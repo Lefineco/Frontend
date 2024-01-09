@@ -1,7 +1,5 @@
 import type { AuthError } from '@supabase/supabase-js'
-import type { LoginSchema, RegisterSchema } from '@/composables/schemas/auth'
-import type { ForgotPasswordSchema } from '@/components/Auth/Forgot/PasswordReset/schema'
-import type { ForgotPasswordEmailSchema } from '@/components/Auth/Forgot/Email/schema'
+import type { ForgotPasswordEmailSchema, ForgotPasswordSchema, LoginSchema, RegisterSchema } from '@/composables/schemas/auth'
 
 function useAuth() {
   const supabase = useSupabaseClient()
@@ -56,6 +54,7 @@ function useAuth() {
     }
     loading.value = false
   }
+
   const forgotPasswordEmailSchemas = async (payload: ForgotPasswordEmailSchema) => {
     loading.value = true
     const { error } = await supabase.auth.resetPasswordForEmail(payload.email)
