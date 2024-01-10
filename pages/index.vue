@@ -18,8 +18,8 @@ const { data: supabaseLefiner } = await supabase
   .select('*, follows!follows_following_id_fkey(follower_id)')
   .filter('full_name', 'neq', null)
 
-store.rooms = supabaseRooms
-store.lefiners = supabaseLefiner
+store.rooms = supabaseRooms?.sort((a, b) => a.participants.length - b.participants.length) || []
+store.lefiners = supabaseLefiner?.sort((a, b) => b.follows.length - a.follows.length) || []
 </script>
 
 <template>

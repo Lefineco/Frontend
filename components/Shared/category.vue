@@ -20,7 +20,7 @@ withDefaults(defineProps<Props>(), {
         {{ title }}
       </p>
       <UButton
-        v-if="all && length > 4"
+        v-if="!all && length > 4"
         trailing
         variant="soft"
         color="white"

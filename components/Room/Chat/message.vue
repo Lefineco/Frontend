@@ -23,10 +23,7 @@ const timeAgo = (time: string) => useTimeAgo(new Date(time)).value
       class="sticky top-0"
     />
     <TransitionGroup name="message" tag="div" class="messageWrapper">
-      <template
-        v-for="messages in props.data[1]"
-        :key="messages.id"
-      >
+      <template v-for="messages in props.data[1]" :key="messages.id">
         <div
           v-if="messages.message"
           :data-current-time="timeAgo(messages.created_at)"
@@ -44,7 +41,7 @@ const timeAgo = (time: string) => useTimeAgo(new Date(time)).value
   @apply flex relative gap-2;
 
   .messageWrapper {
-    @apply flex flex-col gap-2;
+    @apply flex flex-col gap-2 max-w-[80%] w-full overflow-hidden;
   }
   &.me {
     @apply flex-row-reverse;
@@ -58,13 +55,17 @@ const timeAgo = (time: string) => useTimeAgo(new Date(time)).value
   }
   &.you {
     @apply flex-row;
-    .message {
-      @apply after:right-0 bg-gray-700/80 first:rounded-tl-3xl first:rounded-bl-xl last:rounded-bl-3xl last:rounded-tl-xl rounded-l-xl rounded-r-3xl;
+
+    .messageWrapper {
+      @apply items-start;
+      .message {
+        @apply after:right-0 bg-gray-700/80 first:rounded-tl-3xl first:rounded-bl-xl last:rounded-bl-3xl last:rounded-tl-xl rounded-l-xl rounded-r-3xl;
+      }
     }
   }
 
   .message {
-    @apply transition-all text-sm after:text-xs gap-2 px-5 py-2.5 max-w-[80%] whitespace-pre-wrap relative;
+    @apply transition-all text-sm after:text-xs gap-2 px-5 py-2.5 max-w-full break-all;
   }
 }
 </style>

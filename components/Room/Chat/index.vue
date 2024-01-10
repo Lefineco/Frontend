@@ -15,6 +15,7 @@ const props = defineProps<Props>()
 const supabase = useSupabaseClient<Database>()
 const user = useSupabaseUser()
 const chatMessages = ref<Chat[]>([])
+const EMPTY_STRING_REGEXP = /^[\s\uFEFF\xA0]+$/
 
 const chat = ref<HTMLDivElement | null>(null)
 
@@ -72,8 +73,13 @@ async function sendMessage(message: string) {
     )
   }
 
-  if (message === '')
-    return false
+  if (EMPTY_STRING_REGEXP.test(message)) {
+    return toast(
+      'You cannot send an empty message',
+      'Please type something and try again',
+      'error',
+    )
+  }
 
   const { error } = await supabase
     .from('chat')
