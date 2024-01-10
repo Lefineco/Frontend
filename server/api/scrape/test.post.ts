@@ -35,7 +35,7 @@ async function scrapeData(url: string): Promise<string | undefined | null> {
       return videoSrc
     })
 
-    console.log(videoSrc)
+    // console.log(videoSrc)
 
     await browser.close()
 

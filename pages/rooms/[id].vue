@@ -10,13 +10,9 @@ definePageMeta({
 let roomChannel: RealtimeChannel
 
 const route = useRoute<'rooms-id'>()
-
 const user = useSupabaseUser()
-
 const supabase = useSupabaseClient<Database>()
-
 const player = ref()
-
 const realtimeResponse = ref()
 
 const { data } = await supabase
@@ -111,7 +107,7 @@ onUnmounted(() => {
     <div class="wrapper">
       <div class="player-container">
         <ClientOnly>
-          <UPlayer
+          <SharedPlayer
             ref="player"
             :type="data?.platform"
             :video-id="getVideoID(data?.url)"
@@ -150,7 +146,7 @@ onUnmounted(() => {
 
 <style lang="postcss" scoped>
 .room-page {
-  @apply flex flex-col h-full w-full;
+  @apply flex flex-col h-full w-full max-w-[1700px] mx-auto;
 
   .wrapper {
     @apply flex overflow-hidden h-full w-full p-6 gap-8;

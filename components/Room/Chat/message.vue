@@ -9,7 +9,7 @@ interface Props {
 const props = defineProps<Props>()
 const user = useSupabaseUser()
 const me = props.data[0] === user?.value?.id
-const timeAgo = useTimeAgo(new Date(2021, 0, 1))
+const timeAgo = (time: string) => useTimeAgo(new Date(time)).value
 </script>
 
 <template>
@@ -23,14 +23,18 @@ const timeAgo = useTimeAgo(new Date(2021, 0, 1))
       class="sticky top-0"
     />
     <TransitionGroup name="message" tag="div" class="messageWrapper">
-      <div
+      <template
         v-for="messages in props.data[1]"
         :key="messages.id"
-        :data-current-time="timeAgo"
-        :class="twMerge('message', me ? 'me' : 'you')"
       >
-        {{ messages.message }}
-      </div>
+        <div
+          v-if="messages.message"
+          :data-current-time="timeAgo(messages.created_at)"
+          :class="twMerge('message', me ? 'me' : 'you')"
+        >
+          {{ messages.message }}
+        </div>
+      </template>
     </TransitionGroup>
   </div>
 </template>
@@ -60,7 +64,7 @@ const timeAgo = useTimeAgo(new Date(2021, 0, 1))
   }
 
   .message {
-    @apply transition-all text-sm after:text-xs w-fit gap-2 px-5 py-2.5;
+    @apply transition-all text-sm after:text-xs gap-2 px-5 py-2.5 max-w-[80%] whitespace-pre-wrap relative;
   }
 }
 </style>

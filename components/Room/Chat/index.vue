@@ -16,6 +16,8 @@ const supabase = useSupabaseClient<Database>()
 const user = useSupabaseUser()
 const chatMessages = ref<Chat[]>([])
 
+const chat = ref<HTMLDivElement | null>(null)
+
 const { data: initialChat, error } = await supabase
   .from('chat')
   .select('*')
@@ -89,6 +91,10 @@ async function sendMessage(message: string) {
 
 onMounted(() => {
   chatMessages.value = initialChat || []
+
+  chat.value?.addEventListener('DOMNodeInserted', () => {
+    chat.value?.scrollTo(0, chat.value.scrollHeight)
+  })
 })
 
 onUnmounted(() => {
@@ -98,7 +104,7 @@ onUnmounted(() => {
 
 <template>
   <div class="chat">
-    <div class="messages">
+    <div ref="chat" class="messages">
       <template
         v-for="messagesGroup in groupMessages(chatMessages)"
         :key="messagesGroup[0]"

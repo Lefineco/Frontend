@@ -83,7 +83,7 @@ function signInWithGoogle() {
         />
       </UFormGroup>
       <UFormGroup name="password" size="xs">
-        <UInputPassword v-model="values.password" placeholder="Password" />
+        <SharedInputPassword v-model="values.password" placeholder="Password" />
       </UFormGroup>
 
       <div class="flex items-center justify-between text-sm">

@@ -57,7 +57,7 @@ const search = ref('')
     <div class="progress" />
     <SharedLogo to="/" />
     <div class="w-full lg:w-[500px] hidden lg:block">
-      <UInputSearch
+      <SharedInputSearch
         v-model="search"
         class="w-full"
         name="search"

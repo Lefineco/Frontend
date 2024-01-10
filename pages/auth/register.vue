@@ -7,7 +7,6 @@ import type { RegisterSchema } from '~/composables/schemas/auth'
 
 definePageMeta({
   layout: 'blank',
-  // middleware: 'auth',
 })
 
 const { signUp } = useAuth()
@@ -76,10 +75,10 @@ async function onSubmit() {
         />
       </UFormGroup>
       <UFormGroup name="password" size="xs">
-        <UInputPassword v-model="values.password" placeholder="Password" />
+        <SharedInputPassword v-model="values.password" placeholder="Password" />
       </UFormGroup>
       <UFormGroup name="passwordConfirm" size="xs">
-        <UInputPassword
+        <SharedInputPassword
           v-model="values.passwordConfirm"
           placeholder="Confirm Password"
         />
