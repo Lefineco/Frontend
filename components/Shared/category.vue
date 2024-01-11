@@ -15,15 +15,15 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <div class="category">
-    <div class="head" :class="all && 'justify-start'">
+    <div class="head">
       <p class="title">
         {{ title }}
       </p>
       <UButton
         v-if="!all && length > 4"
         trailing
-        variant="soft"
-        color="white"
+        variant="link"
+        color="gray"
         icon="i-ph-arrow-right"
         v-bind="{ to }"
       >
@@ -41,7 +41,7 @@ withDefaults(defineProps<Props>(), {
   @apply w-full;
 
   .head {
-    @apply flex justify-between items-start;
+    @apply flex gap-2 items-start;
 
     .title {
         @apply md:text-lg font-medium;

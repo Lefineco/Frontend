@@ -2,7 +2,7 @@
   <div class="layout">
     <LayoutHeader />
     <div class="wrapper">
-      <LayoutSidebar class="w-20 p-4" />
+      <!-- <LayoutSidebar class="w-20 p-4" /> -->
       <slot />
     </div>
   </div>

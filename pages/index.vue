@@ -34,7 +34,7 @@ store.lefiners = supabaseLefiner?.sort((a, b) => b.follows.length - a.follows.le
     <SharedCategory class="px-5" title="Popular Lefiners" to="lefiners" :length="store.lefiners?.length">
       <SharedCardsProfile
         v-for="(item, idx) in store.lefiners
-          ?.slice(0, 4)
+          ?.slice(0, 5)
           .filter((item) => item.id !== user?.id)"
         :key="idx"
         :data="item"
