@@ -68,33 +68,34 @@ const ownerName = owner?.profiles?.full_name || ''
   </button>
 </template>
 
-
 <style lang="postcss" scoped>
 .button {
   @apply relative flex flex-col items-center justify-center;
+  .button-header {
+    @apply w-full flex justify-between py-2 px-2;
+  }
+  .button-info-container{
+    @apply flex items-center justify-center gap-3;
+  }
 }
-.button-header {
-  @apply w-full flex justify-between py-2 px-2;
-}
-.button-info-container{
-  @apply flex items-center justify-center gap-3;
-}
+
 .user-avatar{
-  @apply relative border border-white z-10 after:-z-10 after:content-[''] after:absolute after:inset-0 after:bg-white/20 after:rounded-full after:animate-ping;
+  @apply relative border border-white z-10 after:-z-10 after:content-[''] after:absolute after:inset-0 after:bg-white/20 after:rounded-full  after:animate-ping;
+
 }
 .provide-text{
   @apply text-sm text-left font-medium gap-1 w-36 truncate;
-}
-.provide-text-user-name{
-  @apply text-xs opacity-50 font-medium;
-}
-.video-img-container{
-  @apply relative overflow-hidden rounded-2xl h-48 w-full after:content-[''] after:absolute after:inset-0 after:bg-black/60;
-}
-.video-img{
-  @apply w-full h-full object-cover rounded-[20px];
+  .provide-text-user-name{
+    @apply text-xs opacity-50 font-medium;
+  }
 }
 .user-avatar-bottom{
   @apply absolute bottom-5 right-5 -space-x-1;
+}
+.video-img-container{
+  @apply relative overflow-hidden rounded-2xl h-48 w-full after:content-[''] after:absolute after:inset-0 after:bg-black/60;
+  .video-img{
+    @apply w-full h-full object-cover rounded-[20px];
+  }
 }
 </style>
