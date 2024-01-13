@@ -1,14 +1,14 @@
 <script setup lang="ts">
 definePageMeta({
-  middleware: 'auth',
+	middleware: 'auth',
 })
 </script>
 
 <template>
-  <div class="page">
-    <ProfileSection />
-    <ProfileSettings />
-  </div>
+	<div class="page">
+		<ProfileSection />
+		<ProfileSettings />
+	</div>
 </template>
 
 <style lang="postcss" scoped>
