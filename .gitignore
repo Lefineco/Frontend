@@ -8,6 +8,9 @@ dist
 # Node dependencies
 node_modules
 
+# pnpm-lock
+pnpm-lock.yaml
+
 # Logs
 logs
 *.log
