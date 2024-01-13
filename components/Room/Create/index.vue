@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import type { PreviewData } from './types'
-import type { TableRows, VideoPreviewContent } from '~/server/types'
+import type { VideoPreviewContent } from '~/server/types'
 import { checkVideoPlatform } from '@/composables/helper'
 import type { RoomSchema } from '~/server/validation'
-import { useJoinRoom } from '@/composables/service/room'
+import type { Database } from '~/server/types/supabase'
+import { useJoinRoom } from '~/composables/service/room'
 
 const isOpen = defineModel<boolean>()
 const url = ref('')
 const deboundedUrl = refDebounced(url, 1000)
 const previewData = ref<PreviewData | null>(null)
 const user = useSupabaseUser()
+const supabase = useSupabaseClient<Database>()
 
 const previewVideo = watch([deboundedUrl], async () => {
   previewData.value = null
@@ -44,21 +46,34 @@ const values = ref<Partial<RoomSchema>>({
 })
 
 async function createRoom() {
-  const { data } = await useFetch<{ data: TableRows<'rooms'> }>('/api/create/room', {
-    method: 'POST',
-    body: JSON.stringify({
-      ...previewData.value?.data,
-      title: values.value.title || previewData.value?.data?.title,
-      current_time: 0,
-      on_play: false,
-    }),
-  })
+  const { data } = await supabase
+    .from('rooms')
+    .insert([
+      {
+        ...previewData.value?.data,
+        title: values.value.title || previewData.value?.data?.title,
+      },
+    ])
+    .select()
+    .single()
 
-  if (data.value) {
+  if (data) {
     isOpen.value = false
-    useJoinRoom(data.value.data.id, user.value?.id, true)
+    useJoinRoom(data.id, user.value?.id, true)
   }
 }
+
+//   const { data } = await useFetch<{ data: TableRows<'rooms'> }>('/api/create/room', {
+//     method: 'POST',
+//     body: JSON.stringify({
+//       ...previewData.value?.data,
+//       title: values.value.title || previewData.value?.data?.title,
+//       current_time: 0,
+//       on_play: false,
+//     }),
+//   })
+
+// }
 
 onUnmounted(() => {
   previewVideo()
