@@ -3,11 +3,12 @@ const user = useSupabaseUser()
 const colorMode = useColorMode()
 
 computed(() => {
-	if(colorMode.value === 'light')
-		colorMode.preference = 'dark'
-
 	if (user.value)
 		reloadNuxtApp({ force: true })
+})
+
+onMounted(() => {
+	colorMode.preference = 'dark'
 })
 </script>
 
