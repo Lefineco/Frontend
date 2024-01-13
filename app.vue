@@ -3,7 +3,8 @@ const user = useSupabaseUser()
 const colorMode = useColorMode()
 
 computed(() => {
-	colorMode.value = 'dark'
+	if(colorMode.value === 'light')
+		colorMode.preference = 'dark'
 
 	if (user.value)
 		reloadNuxtApp({ force: true })
