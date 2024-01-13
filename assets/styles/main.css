@@ -2,6 +2,7 @@
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,300,400&display=swap');
 @import './reset.css';
 @import './styles.css';
+
 * {
   @apply font-['Satoshi',sans-serif];
 }

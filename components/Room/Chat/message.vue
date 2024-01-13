@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge'
 import type { GroupedMessages } from './index.vue'
 
 interface Props {
-  data: GroupedMessages
+	data: GroupedMessages
 }
 
 const props = defineProps<Props>()
@@ -13,27 +13,27 @@ const timeAgo = (time: string) => useTimeAgo(new Date(time)).value
 </script>
 
 <template>
-  <div class="messageGroup" :class="twMerge('message', me ? 'me' : 'you')">
-    <UAvatar
-      v-if="!me"
-      :src="props.data[1][0].avatar_url || ''"
-      size="xs"
-      :rounded="true"
-      :ui="{ base: 'inline-block' }"
-      class="sticky top-0"
-    />
-    <TransitionGroup name="message" tag="div" class="messageWrapper">
-      <template v-for="messages in props.data[1]" :key="messages.id">
-        <div
-          v-if="messages.message"
-          :data-current-time="timeAgo(messages.created_at)"
-          :class="twMerge('message', me ? 'me' : 'you')"
-        >
-          {{ messages.message }}
-        </div>
-      </template>
-    </TransitionGroup>
-  </div>
+	<div class="messageGroup" :class="twMerge('message', me ? 'me' : 'you')">
+		<UAvatar
+			v-if="!me"
+			:src="props.data[1][0].avatar_url || ''"
+			size="xs"
+			:rounded="true"
+			:ui="{ base: 'inline-block' }"
+			class="sticky top-0"
+		/>
+		<TransitionGroup name="message" tag="div" class="messageWrapper">
+			<template v-for="messages in props.data[1]" :key="messages.id">
+				<div
+					v-if="messages.message"
+					:data-current-time="timeAgo(messages.created_at)"
+					:class="twMerge('message', me ? 'me' : 'you')"
+				>
+					{{ messages.message }}
+				</div>
+			</template>
+		</TransitionGroup>
+	</div>
 </template>
 
 <style lang="postcss" scoped>
@@ -65,7 +65,7 @@ const timeAgo = (time: string) => useTimeAgo(new Date(time)).value
   }
 
   .message {
-    @apply transition-all text-sm after:text-xs gap-2 px-5 py-2.5 max-w-full break-all;
+    @apply transition-all text-sm after:text-xs gap-2 px-5 py-2.5 max-w-full break-words;
   }
 }
 </style>

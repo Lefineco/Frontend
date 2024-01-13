@@ -3,20 +3,21 @@ import type { SupabaseRooms } from '~/pages/index.vue'
 import type { ArrayElement, Platform } from '~/server/types'
 
 interface Props {
-  data: ArrayElement<SupabaseRooms>
+	data: ArrayElement<SupabaseRooms>
 }
 
 const props = defineProps<Props>()
 const router = useRouter()
 
+// TODO: change icons
 const PLATFORM = {
-  YOUTUBE: 'i-mdi-youtube',
-  VIMEO: 'i-mdi-vimeo',
-  TWITCH: 'i-mdi-twitch',
+	YOUTUBE: 'i-logos-youtube-icon',
+	VIMEO: 'i-logos-vimeo-icon',
+	TWITCH: 'i-logos-twitch',
 }
 
 const owner = props.data.participants.find(
-  participant => participant.is_owner,
+	participant => participant.is_owner,
 )
 
 const ownerName = owner?.profiles?.full_name || ''

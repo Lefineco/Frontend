@@ -6,24 +6,24 @@ import type { SupabaseLefiner } from '~/pages/index.vue'
 import type { ArrayElement } from '~/server/types'
 
 interface Props {
-  data: ArrayElement<SupabaseLefiner>
+	data: ArrayElement<SupabaseLefiner>
 }
 const props = defineProps<Props>()
 
 const user = useSupabaseUser()
 const isFollower = computed(() =>
-  Boolean(
-    props.data?.follows?.at(0)?.follower_id === user.value?.id && user.value?.id,
-  ),
+	Boolean(
+		props.data?.follows?.at(0)?.follower_id === user.value?.id && user.value?.id,
+	),
 )
 
 const follow = ref(isFollower.value)
 const followLoad = ref(false)
 
 function setFollow(val: boolean | undefined, load: boolean) {
-  if (val !== undefined)
-    follow.value = val
-  followLoad.value = load
+	if (val !== undefined)
+		follow.value = val
+	followLoad.value = load
 }
 
 const KEY = props.data.full_name || props.data.id

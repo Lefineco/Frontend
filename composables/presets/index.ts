@@ -12,16 +12,16 @@ import dropdown from './dropdown'
 import popover from './popover'
 
 export default {
-  button,
-  input,
-  textarea,
-  notification,
-  toggle,
-  avatar,
-  checkbox,
-  modal,
-  formGroup,
-  card,
-  dropdown,
-  popover,
+	button,
+	input,
+	textarea,
+	notification,
+	toggle,
+	avatar,
+	checkbox,
+	modal,
+	formGroup,
+	card,
+	dropdown,
+	popover,
 }

@@ -2,38 +2,38 @@
 import type { RouteRecordName } from '~/types'
 
 interface Props {
-  length: number
-  title: string
-  to: RouteRecordName
-  all?: boolean
+	length: number
+	title: string
+	to: RouteRecordName
+	all?: boolean
 }
 
 withDefaults(defineProps<Props>(), {
-  length: 0,
+	length: 0,
 })
 </script>
 
 <template>
-  <div class="category">
-    <div class="head">
-      <p class="title">
-        {{ title }}
-      </p>
-      <UButton
-        v-if="!all && length > 4"
-        trailing
-        variant="link"
-        color="gray"
-        icon="i-ph-arrow-right"
-        v-bind="{ to }"
-      >
-        Daha Fazla
-      </UButton>
-    </div>
-    <div class="content">
-      <slot />
-    </div>
-  </div>
+	<div class="category">
+		<div class="head">
+			<p class="title">
+				{{ title }}
+			</p>
+			<UButton
+				v-if="!all && length > 4"
+				trailing
+				variant="link"
+				color="gray"
+				icon="i-ph-arrow-right"
+				v-bind="{ to }"
+			>
+				Daha Fazla
+			</UButton>
+		</div>
+		<div class="content">
+			<slot />
+		</div>
+	</div>
 </template>
 
 <style lang="postcss" scoped>

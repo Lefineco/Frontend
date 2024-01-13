@@ -1,6 +1,6 @@
 {
-    "recommendations": [
-        "antfu.iconify",
-        "vivaxy.vscode-conventional-commits"
-    ]
+	"recommendations": [
+		"antfu.iconify",
+		"vivaxy.vscode-conventional-commits"
+	]
 }

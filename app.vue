@@ -1,22 +1,25 @@
 <script setup lang="ts">
 const user = useSupabaseUser()
+const colorMode = useColorMode()
 
 computed(() => {
-  if (user.value)
-    reloadNuxtApp({ force: true })
+	colorMode.value = 'dark'
+
+	if (user.value)
+		reloadNuxtApp({ force: true })
 })
 </script>
 
 <template>
-  <div class="lefine">
-    <div class="wrapper">
-      <NuxtLayout>
-        <NuxtLoadingIndicator color="#6366f1" :throttle="1" :height="1" />
-        <NuxtPage />
-      </NuxtLayout>
-    </div>
-    <UNotifications />
-  </div>
+	<div class="lefine">
+		<div class="wrapper">
+			<NuxtLayout>
+				<NuxtLoadingIndicator color="#6366f1" :throttle="1" :height="1" />
+				<NuxtPage />
+			</NuxtLayout>
+		</div>
+		<UNotifications />
+	</div>
 </template>
 
 <style lang="postcss" scoped>
