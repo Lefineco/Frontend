@@ -46,7 +46,14 @@ const newMessage = computed(() => {
 		return `${newMessageCount} New messages`
 })
 
-onMounted(handleBottom)
+onMounted(() => {
+	props.chatInstance?.addEventListener('DOMNodeInserted', () => {
+		if (!isScrolledToBottom.value && !isClickedHandleBottom.value)
+			handleBottom()
+	})
+
+	handleBottom()
+})
 </script>
 
 <template>

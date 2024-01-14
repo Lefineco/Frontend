@@ -1,14 +1,9 @@
 <script setup lang="ts">
 const user = useSupabaseUser()
-const colorMode = useColorMode()
 
 computed(() => {
 	if (user.value)
 		reloadNuxtApp({ force: true })
-})
-
-onMounted(() => {
-	colorMode.preference = 'dark'
 })
 </script>
 

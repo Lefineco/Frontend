@@ -21,24 +21,19 @@ const chatStore = useChatStore()
 const chatMessages = ref<Chat[]>([])
 const EMPTY_STRING_REGEXP = /^[\s\uFEFF\xA0]+$/
 const chat = ref<HTMLDivElement | null>(null)
+const messageHistoryLimit = ref(20)
 
-async function getChatData() {
-	const initialChat = await useAsyncData(
-		'mountains',
-		async () => {
-			const { data } = await supabase
-				.from('chat')
-				.select('*')
-				.filter('room_id', 'eq', props.roomId).limit(50)
+const { data: initialChat, error } = await useAsyncData(
+	'mountains',
+	async () => {
+		const { data } = await supabase
+			.from('chat')
+			.select('*')
+			.filter('room_id', 'eq', props.roomId).limit(messageHistoryLimit.value).order('created_at', { ascending: false })
 
-			return data
-		},
-	)
-
-	return initialChat
-}
-
-const { data: initialChat, error } = await getChatData()
+		return data
+	},
+)
 
 if (error.value)
 	toast('Failed to fetch chat messages', error.value?.message || '', 'error')
@@ -135,10 +130,17 @@ async function sendMessage(message: string) {
 
 useInfiniteScroll(
 	chat,
-	() => {
+	async () => {
+		messageHistoryLimit.value += 20
 
+		const { data } = await supabase
+			.from('chat')
+			.select('*')
+			.filter('room_id', 'eq', props.roomId).limit(messageHistoryLimit.value).order('created_at', { ascending: false })
+
+		chatMessages.value = data || []
 	},
-	{ distance: 10 },
+	{ distance: 2, direction: 'top', behavior: 'smooth' },
 )
 
 onMounted(() => {
@@ -155,11 +157,9 @@ onUnmounted(() => {
 		<ClientOnly>
 			<div ref="chat" class="messages">
 				<RoomChatMessage
-					v-for="messagesGroup in groupMessages(chatMessages)"
-					:key="messagesGroup[0]"
+					v-for="messagesGroup in groupMessages(chatMessages)" :key="messagesGroup[0]"
 					:data="messagesGroup"
 				/>
-				<div id="anchor" />
 			</div>
 
 			<RoomChatScrollAction v-if="chat" :chat-instance="chat" />
@@ -173,16 +173,7 @@ onUnmounted(() => {
 	@apply overflow-hidden relative flex flex-col w-full h-full pb-4;
 
 	.messages {
-		@apply w-full overflow-y-auto px-4 flex flex-col gap-6 py-4;
-
-		#anchor {
-			@apply h-[1px];
-			overflow-anchor: auto;
-		}
-	}
-
-	.messages * {
-		overflow-anchor: none;
+		@apply w-full h-full overflow-y-scroll px-4 flex flex-col gap-4 py-4
 	}
 }
 </style>

@@ -9,10 +9,9 @@ interface Props {
 const props = defineProps<Props>()
 const router = useRouter()
 
-// TODO: change icons
 const PLATFORM = {
-	YOUTUBE: 'i-logos-youtube-icon',
-	VIMEO: 'i-logos-vimeo-icon',
+	YOUTUBE: 'i-lefine-platform-youtube',
+	VIMEO: 'i-lefine-platform-vimeo',
 	TWITCH: 'i-logos-twitch',
 }
 
@@ -43,7 +42,7 @@ const ownerName = owner?.profiles?.full_name || ''
       </div>
       <UIcon
         :name="PLATFORM[props.data.platform as Platform]"
-        class="h-6 w-6"
+        class="w-20"
       />
     </div>
     <div class="relative w-full">

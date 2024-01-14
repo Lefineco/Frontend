@@ -1,3 +1,6 @@
+import { getIconCollections } from '@egoist/tailwindcss-icons'
+import platform from './composables/icons/platform'
+
 export default defineNuxtConfig({
 	app: {
 		rootTag: 'main',
@@ -17,6 +20,9 @@ export default defineNuxtConfig({
 			'postcss-nested': {},
 			'postcss-mixins': {},
 		},
+	},
+	colorMode: {
+		preference: 'dark',
 	},
 	devtools: {
 		enabled: true,
@@ -46,8 +52,25 @@ export default defineNuxtConfig({
 			},
 		},
 	},
+	// ui: {
+	// 	icons: ['ph', 'logos'],
+	// },
 	ui: {
-		icons: ['ph', 'logos'],
+		icons: {
+			// might solve stretch bug on generate, see https://github.com/egoist/tailwindcss-icons/issues/23
+			extraProperties: {
+				'-webkit-mask-size': 'contain',
+				'-webkit-mask-position': 'center',
+			},
+			collections: {
+				lefine: {
+					icons: {
+						...platform
+					},
+				},
+				...getIconCollections(['ph', 'logos']),
+			},
+		},
 	},
 	supabase: {
 		redirect: false,
