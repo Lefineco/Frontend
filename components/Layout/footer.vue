@@ -3,7 +3,9 @@
 </script>
 
 <template>
-	<div />
+  <UDivider>
+    <SharedLogo size="xs" is-non-color class="opacity-60"/>
+  </UDivider>
 </template>
 
 <style lang="postcss" scoped>

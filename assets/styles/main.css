@@ -62,7 +62,7 @@ body,
 }
 
 .page {
-  @apply w-full h-full mx-auto px-2 py-5;
+  @apply w-full h-full mx-auto max-w-[1700px] px-2 py-5;
 }
 
 .no-scrollbar::-webkit-scrollbar {

@@ -32,3 +32,11 @@ p {
         @apply divide-white/5 dark:divide-white/5
     }
 }
+
+.header .navigation {
+	@apply relative space-y-3 flex items-center;
+
+	ul {
+		@apply flex h-full items-center;
+	}
+}

@@ -22,13 +22,26 @@ const chatMessages = ref<Chat[]>([])
 const EMPTY_STRING_REGEXP = /^[\s\uFEFF\xA0]+$/
 const chat = ref<HTMLDivElement | null>(null)
 
-const { data: initialChat, error } = await supabase
-	.from('chat')
-	.select('*')
-	.filter('room_id', 'eq', props.roomId)
+async function getChatData() {
+	const initialChat = await useAsyncData(
+		'mountains',
+		async () => {
+			const { data } = await supabase
+				.from('chat')
+				.select('*')
+				.filter('room_id', 'eq', props.roomId).limit(50)
 
-if (error)
-	toast('Failed to fetch chat messages', error.message, 'error')
+			return data
+		},
+	)
+
+	return initialChat
+}
+
+const { data: initialChat, error } = await getChatData()
+
+if (error.value)
+	toast('Failed to fetch chat messages', error.value?.message || '', 'error')
 
 function groupMessages(messages: Chat[]): GroupedMessages[] {
 	messages.sort(
@@ -120,8 +133,16 @@ async function sendMessage(message: string) {
 		toast('Message failed to send', error.message, 'error')
 }
 
+useInfiniteScroll(
+	chat,
+	() => {
+
+	},
+	{ distance: 10 },
+)
+
 onMounted(() => {
-	chatMessages.value = initialChat || []
+	chatMessages.value = initialChat.value || []
 })
 
 onUnmounted(() => {
@@ -138,6 +159,7 @@ onUnmounted(() => {
 					:key="messagesGroup[0]"
 					:data="messagesGroup"
 				/>
+				<div id="anchor" />
 			</div>
 
 			<RoomChatScrollAction v-if="chat" :chat-instance="chat" />
@@ -151,7 +173,16 @@ onUnmounted(() => {
 	@apply overflow-hidden relative flex flex-col w-full h-full pb-4;
 
 	.messages {
-		@apply w-full h-full overflow-y-scroll px-4 flex flex-col gap-4 py-4
+		@apply w-full overflow-y-auto px-4 flex flex-col gap-6 py-4;
+
+		#anchor {
+			@apply h-[1px];
+			overflow-anchor: auto;
+		}
+	}
+
+	.messages * {
+		overflow-anchor: none;
 	}
 }
 </style>
