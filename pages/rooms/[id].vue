@@ -123,14 +123,14 @@ onUnmounted(() => {
 
 			<div class="chat-container">
 				<div
-					class="p-4 flex justify-between items-center w-full border-b border-white/5"
+					class="chat-header"
 				>
-					<div class="flex flex-col w-2/3">
-						<span class="text-lg truncate">
+					<div class="chat-header-text-box">
+						<span class="chat-header-title">
 							{{ data?.title }}
 						</span>
 
-						<span class="text-sm w-full truncate text-white/50">
+						<span class="chat-header-text">
 							{{ data?.description }}
 						</span>
 					</div>
@@ -158,6 +158,19 @@ onUnmounted(() => {
     .chat-container {
       @apply flex flex-col h-full w-1/3 bg-white/5 rounded-2xl;
     }
+	.chat-header{
+		@apply p-4 flex justify-between items-center w-full border-b border-white/5
+
+	}
+	.chat-header-text-box{
+		@apply flex flex-col w-2/3
+	}
+	.chat-header-title{
+		@apply text-lg truncate
+	}
+	.chat-header-text{
+		@apply text-sm w-full truncate text-white/50
+	}
   }
 }
 </style>

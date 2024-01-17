@@ -39,17 +39,17 @@ function signInWithGoogle() {
 		ref="form"
 		:schema="loginSchema"
 		:state="values"
-		class="relative w-full h-full gap-12 flex flex-col items-center justify-center text-white z-0"
+		class="container"
 		:validate-on="['submit']"
 		@submit.prevent="onSubmit"
 	>
 		<SharedLogo to="/" />
-		<div class="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 px-4 flex flex-col gap-4">
-			<div class="flex gap-2 items-end">
-				<h1 class="text-3xl font-bold capitalize">
+		<div class="form">
+			<div class="header-box">
+				<h1 class="header-title">
 					Login
 				</h1>
-				<span class="text-sm text-gray-400">or</span>
+				<span class="sub-text">or</span>
 				<NuxtLink
 					to="register"
 					class="text-[#BFA8FC] underline font-semibold capitalize"
@@ -58,7 +58,7 @@ function signInWithGoogle() {
 				</NuxtLink>
 			</div>
 
-			<p class="text-sm text-gray-400">
+			<p class="sub-text">
 				How do I get started blazein dolor at?
 			</p>
 
@@ -71,7 +71,7 @@ function signInWithGoogle() {
 				@click="signInWithGoogle()"
 			/>
 
-			<p class="text-sm text-gray-400">
+			<p class="sub-text">
 				or
 			</p>
 
@@ -86,9 +86,9 @@ function signInWithGoogle() {
 				<SharedInputPassword v-model="values.password" placeholder="Password" />
 			</UFormGroup>
 
-			<div class="flex items-center justify-between text-sm">
+			<div class="footer-box">
 				<UCheckbox label="Remember me" />
-				<NuxtLink to="/auth/forgot" class="text-primary-300 font-medium text-xs">
+				<NuxtLink to="/auth/forgot" class="forgot-password">
 					Forgot Password?
 				</NuxtLink>
 			</div>
@@ -97,3 +97,28 @@ function signInWithGoogle() {
 		</div>
 	</UForm>
 </template>
+
+<style lang="postcss" scoped>
+.container{
+	@apply relative w-full h-full gap-12 flex flex-col items-center justify-center text-white z-0
+
+}
+.form{
+	@apply w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 px-4 flex flex-col gap-4
+}
+.header-box{
+	@apply flex gap-2 items-end
+}
+.header-title{
+	@apply text-3xl font-bold capitalize
+}
+.sub-text{
+	@apply text-sm text-gray-400
+}
+.footer-box{
+	@apply flex items-center justify-between text-sm
+}
+.forgot-password{
+	@apply text-primary-300 font-medium text-xs
+}
+</style>

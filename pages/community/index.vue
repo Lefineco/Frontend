@@ -17,8 +17,8 @@ if (!store.lefiners?.length) {
 
 const data2 = [
 	{
-		name: 'Cans',
-		createDate: '2 Days Ago',
+		name: 'Reşat Akkus',
+		createDate: '3 Days Ago',
 		description: 'Deneme Canim',
 		avatar: 'https',
 		viewers: 't',
@@ -28,7 +28,7 @@ const data2 = [
 
 <template>
 	<div class="page flex gap-5">
-		<div class="w-full mx-auto space-y-6">
+		<div class="community-box">
 			<FeedsFormCreate />
 			<Feeds
 				v-for="(item, idx) in data2"
@@ -39,8 +39,8 @@ const data2 = [
 				:create-date="item.createDate"
 			/>
 		</div>
-		<div class="pr-5 max-w-sm w-full flex-shirnk-0 flex flex-col space-y-4">
-			<div class="flex flex-col space-y-2">
+		<div class="recommend-user-container">
+			<div class="recommend-user-box">
 				<SharedCardsProfile
 					v-for="(item, idx) in store.lefiners?.slice(0, 4)"
 					:key="idx"
@@ -51,4 +51,14 @@ const data2 = [
 	</div>
 </template>
 
-<style scoped></style>
+<style lang="postcss" scoped>
+.community-box{
+	@apply w-full mx-auto space-y-6
+}
+.recommend-user-container{
+	@apply pr-5 max-w-sm w-full flex-shrink-0 flex flex-col space-y-4
+}
+.recommend-user-box{
+	@apply flex flex-col space-y-2
+}
+</style>
