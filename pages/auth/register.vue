@@ -33,25 +33,25 @@ async function onSubmit() {
 		:schema="registerSchema"
 		:state="values"
 		:validate-on="['submit']"
-		class="relative w-full h-full gap-12 flex flex-col items-center justify-center text-white z-0"
+		class="container"
 		@submit.prevent="onSubmit"
 	>
 		<SharedLogo to="/" />
-		<div class="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 px-4 flex flex-col gap-4">
-			<div class="flex gap-2 items-end">
-				<h1 class="text-3xl font-bold capitalize">
+		<div class="header">
+			<div class="header-box">
+				<h1 class="register-title">
 					Register
 				</h1>
-				<span class="text-sm text-gray-400">or</span>
+				<span class="sub-text">or</span>
 				<NuxtLink
 					to="login"
-					class="text-[#BFA8FC] underline font-semibold capitalize"
+					class="login-title"
 				>
 					Login
 				</NuxtLink>
 			</div>
 
-			<p class="text-sm text-gray-400">
+			<p class="sub-text">
 				How do I get started blazein dolor at?
 			</p>
 
@@ -63,7 +63,7 @@ async function onSubmit() {
 				block
 			/>
 
-			<p class="text-sm text-gray-400">
+			<p class="sub-text">
 				or
 			</p>
 
@@ -84,7 +84,7 @@ async function onSubmit() {
 				/>
 			</UFormGroup>
 
-			<div class="flex items-center justify-between text-sm">
+			<div class="footer">
 				<UCheckbox label="Remember me" />
 				<NuxtLink to="/auth/forgot" class="text-[#BFA8FC]">
 					Forgot Password?
@@ -95,3 +95,27 @@ async function onSubmit() {
 		</div>
 	</UForm>
 </template>
+
+<style lang="postcss" scoped>
+.container{
+@apply relative w-full h-full gap-12 flex flex-col items-center justify-center text-white z-0
+}
+.sub-text{
+	@apply text-sm text-gray-400
+}
+.header{
+	@apply w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 px-4 flex flex-col gap-4
+}
+.header-box{
+	@apply flex gap-2 items-end
+}
+.register-title{
+	@apply text-3xl font-bold capitalize
+}
+.login-title{
+	@apply text-[#BFA8FC] underline font-semibold capitalize
+}
+.footer{
+	@apply flex items-center justify-between text-sm
+}
+</style>
