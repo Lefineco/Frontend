@@ -31,34 +31,28 @@ const data2 = [
 		<div class="community-box">
 			<FeedsFormCreate />
 			<Feeds
-				v-for="(item, idx) in data2"
-				:key="idx"
-				:name="item.name"
-				:avatar="item.avatar"
-				:viewers="item.viewers"
+				v-for="(item, idx) in data2" :key="idx" :name="item.name" :avatar="item.avatar" :viewers="item.viewers"
 				:create-date="item.createDate"
 			/>
 		</div>
-		<div class="recommend-user-container">
-			<div class="recommend-user-box">
-				<SharedCardsProfile
-					v-for="(item, idx) in store.lefiners?.slice(0, 4)"
-					:key="idx"
-					:data="item"
-				/>
+		<div class="user-container">
+			<div class="user-box">
+				<SharedCardsProfile v-for="(item, idx) in store.lefiners?.slice(0, 4)" :key="idx" :data="item" />
 			</div>
 		</div>
 	</div>
 </template>
 
 <style lang="postcss" scoped>
-.community-box{
+.community-box {
 	@apply w-full mx-auto space-y-6
 }
-.recommend-user-container{
-	@apply pr-5 max-w-sm w-full flex-shrink-0 flex flex-col space-y-4
-}
-.recommend-user-box{
-	@apply flex flex-col space-y-2
+
+.user-container {
+	@apply pr-5 max-w-sm w-full flex-shrink-0 flex flex-col space-y-4;
+
+	.user-box {
+		@apply flex flex-col space-y-2
+	}
 }
 </style>
