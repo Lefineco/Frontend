@@ -34,9 +34,9 @@ const KEY = props.data.full_name || props.data.id
 		<div class="profile-card" :style="{ background: `linear-gradient(${SECONDARY[key(KEY)]}, ${PRIMARY[key(KEY)]})` }">
 			<!-- TODO: supabase col -->
 			<!-- <img
-        class="h-full w-full object-cover rounded-[20px]"
-        src="https://images.unsplash.com/photo-1693697117720-c5e098ecf350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
-      > -->
+			class="h-full w-full object-cover rounded-[20px]"
+			src="https://images.unsplash.com/photo-1693697117720-c5e098ecf350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
+		> -->
 		</div>
 		<div class="profile-bottom-container">
 			<div class="profile-info">
@@ -47,13 +47,15 @@ const KEY = props.data.full_name || props.data.id
 				</div>
 			</div>
 			<ClientOnly>
-				<UButton class="m-3 backdrop-blur-sm" :variant="follow ? 'outline' : 'soft'" color="white" size="sm"
+				<UButton
+					class="m-3 backdrop-blur-sm" :variant="follow ? 'outline' : 'soft'" color="white" size="sm"
 					:loading="followLoad" @click="() => {
-							follow
-								? useUnfollow(data?.id, setFollow)
-								: useFollow(data?.id, setFollow)
-						}
-						">
+						follow
+							? useUnfollow(data?.id, setFollow)
+							: useFollow(data?.id, setFollow)
+					}
+					"
+				>
 					{{ follow ? 'Unfollow' : 'Follow' }}
 				</UButton>
 				<template #fallback>
