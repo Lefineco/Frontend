@@ -33,7 +33,7 @@ async function onSubmit() {
 		:schema="registerSchema"
 		:state="values"
 		:validate-on="['submit']"
-		class="container"
+		class="register-container"
 		@submit.prevent="onSubmit"
 	>
 		<SharedLogo to="/" />
@@ -97,8 +97,8 @@ async function onSubmit() {
 </template>
 
 <style lang="postcss" scoped>
-.container{
-@apply relative w-full h-full gap-12 flex flex-col items-center justify-center text-white z-0
+.register-container{
+	@apply relative w-full h-full gap-12 flex flex-col items-center justify-center text-white z-0
 }
 .sub-text{
 	@apply text-sm text-gray-400

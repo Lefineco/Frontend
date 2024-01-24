@@ -39,7 +39,7 @@ function signInWithGoogle() {
 		ref="form"
 		:schema="loginSchema"
 		:state="values"
-		class="container"
+		class="login-container"
 		:validate-on="['submit']"
 		@submit.prevent="onSubmit"
 	>
@@ -99,7 +99,7 @@ function signInWithGoogle() {
 </template>
 
 <style lang="postcss" scoped>
-.container{
+.login-container{
 	@apply relative w-full h-full gap-12 flex flex-col items-center justify-center text-white z-0
 
 }
