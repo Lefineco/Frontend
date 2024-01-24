@@ -125,7 +125,7 @@ async function sendMessage(message: string) {
 		toast('Message failed to send', error.message, 'error')
 }
 
-async function fetchMoreMessages() {
+async function fetchMessages() {
 	const { from, to } = useGetFromAndTo(pageSize.value, CHAT_MESSAGE_SIZE)
 
 	const { data, error } = await supabase
@@ -146,7 +146,7 @@ async function fetchMoreMessages() {
 const firstMessage = computed(() => chatMessages.value?.find((item) => item.index === 0))
 
 onMounted(() => {
-	fetchMoreMessages()
+	fetchMessages()
 })
 
 onUnmounted(() => {
@@ -159,7 +159,7 @@ onUnmounted(() => {
 		<ClientOnly>
 			<div ref="chat" class="messages">
 				<div v-if="!firstMessage && chatMessages?.length">
-					<UButton class="loadMore" @click="fetchMoreMessages" color="white" variant="soft">
+					<UButton class="loadMore" @click="fetchMessages" color="white" variant="soft">
 						<UIcon name="i-ph-arrow-up" />
 						<span>Load messages</span>
 					</UButton>
