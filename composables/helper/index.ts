@@ -41,4 +41,15 @@ function navigationLinks(links: Links[]): Omit<VerticalNavigationLink, 'icon'>[]
 	}).value
 }
 
-export { checkVideoPlatform, navigationLinks, getVideoID }
+function useGetFromAndTo(page: number, ITEMS_PER_PAGE: number) {
+	const from = ref(page * ITEMS_PER_PAGE)
+
+	const to = ref(from.value + ITEMS_PER_PAGE)
+
+	if (from.value > 0)
+		from.value += 1
+
+	return { from, to }
+}
+
+export { checkVideoPlatform, navigationLinks, getVideoID, useGetFromAndTo }

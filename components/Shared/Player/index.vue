@@ -73,22 +73,17 @@ onMounted(() => {
 <template>
 	<div class="plyr__container">
 		<div ref="videoRef" class="plyr__video-embed">
-			<iframe
-				allowfullscreen
-				allowtransparency
-				:src="src"
-				v-bind="props.iframeOptions"
-			/>
+			<iframe allowfullscreen allowtransparency :src="src" v-bind="props.iframeOptions" />
 		</div>
 	</div>
 </template>
 
 <style lang="postcss">
 .plyr__container {
-  --plyr-color-main: theme(colors.violet.500);
+	--plyr-color-main: theme(colors.violet.500);
 
-  .plyr {
-    @apply w-full h-full;
-  }
+	.plyr {
+		@apply w-full h-full;
+	}
 }
 </style>

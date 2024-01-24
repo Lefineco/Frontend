@@ -114,7 +114,7 @@ const links = [
 							:items="items" :ui="{ item: { disabled: 'cursor-text select-text' } }"
 							:popper="{ placement: 'bottom-end' }"
 						>
-							<UAvatar variant="ghost" :src="user.user_metadata.picture" :alt="user.aud" />
+							<UAvatar variant="ghost" :src="user.user_metadata.picture" :alt="user.user_metadata.name" />
 
 							<template #account="{ item }">
 								<div class="text-left">

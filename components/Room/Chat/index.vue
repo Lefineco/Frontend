@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useGetFromAndTo } from '~/composables/helper';
 import { toast } from '~/composables/helper/toast'
 
 import type { TableRows } from '~/server/types'
@@ -18,27 +19,18 @@ const supabase = useSupabaseClient<Database>()
 const user = useSupabaseUser()
 const chatStore = useChatStore()
 
-const chatMessages = ref<Chat[]>([])
+const chatMessages = ref<Chat[] | null>()
 const EMPTY_STRING_REGEXP = /^[\s\uFEFF\xA0]+$/
 const chat = ref<HTMLDivElement | null>(null)
-const messageHistoryLimit = ref(20)
 
-const { data: initialChat, error } = await useAsyncData(
-	'mountains',
-	async () => {
-		const { data } = await supabase
-			.from('chat')
-			.select('*')
-			.filter('room_id', 'eq', props.roomId).limit(messageHistoryLimit.value).order('created_at', { ascending: false })
+const CHAT_MESSAGE_SIZE = 50
 
-		return data
-	},
-)
-
-if (error.value)
-	toast('Failed to fetch chat messages', error.value?.message || '', 'error')
+const pageSize = ref(0)
 
 function groupMessages(messages: Chat[]): GroupedMessages[] {
+	if (!messages)
+		return []
+
 	messages.sort(
 		(a, b) =>
 			new Date(a.created_at).getTime() - new Date(b.created_at).getTime(),
@@ -73,7 +65,7 @@ const roomChannel = supabase
 			filter: `room_id=eq.${props.roomId}`,
 		},
 		(payload) => {
-			chatMessages.value = [...chatMessages.value, payload.new] as Chat[]
+			chatMessages.value = [...(chatMessages.value || []), payload.new] as Chat[]
 
 			if (payload.eventType === 'INSERT' && payload.new.user_id !== user.value?.id)
 				chatStore.newMessage++
@@ -83,7 +75,8 @@ const roomChannel = supabase
 
 async function sendMessage(message: string) {
 	if (!user.value) {
-		return toast(
+		// eslint-disable-next-line no-console
+		return console.log(
 			'You must be logged in to send a message',
 			'Please login and try again',
 			'error',
@@ -91,7 +84,8 @@ async function sendMessage(message: string) {
 	}
 
 	if (EMPTY_STRING_REGEXP.test(message)) {
-		return toast(
+		// eslint-disable-next-line no-console
+		return console.log(
 			'You cannot send an empty message',
 			'Please type something and try again',
 			'error',
@@ -99,7 +93,8 @@ async function sendMessage(message: string) {
 	}
 
 	if (message.length > 500) {
-		return toast(
+		// eslint-disable-next-line no-console
+		return console.log(
 			'Your message is too long',
 			'Please shorten your message and try again',
 			'error',
@@ -107,7 +102,8 @@ async function sendMessage(message: string) {
 	}
 
 	if (message.length < 1) {
-		return toast(
+		// eslint-disable-next-line no-console
+		return console.log(
 			'Your message is too short',
 			'Please lengthen your message and try again',
 			'error',
@@ -121,6 +117,7 @@ async function sendMessage(message: string) {
 			avatar_url: user.value.user_metadata.avatar_url,
 			room_id: props.roomId,
 			user_id: user.value.id,
+			index: chatMessages.value?.at(chatMessages.value.length)?.index || 0
 		})
 		.select()
 
@@ -128,23 +125,28 @@ async function sendMessage(message: string) {
 		toast('Message failed to send', error.message, 'error')
 }
 
-useInfiniteScroll(
-	chat,
-	async () => {
-		messageHistoryLimit.value += 20
+async function fetchMoreMessages() {
+	const { from, to } = useGetFromAndTo(pageSize.value, CHAT_MESSAGE_SIZE)
 
-		const { data } = await supabase
-			.from('chat')
-			.select('*')
-			.filter('room_id', 'eq', props.roomId).limit(messageHistoryLimit.value).order('created_at', { ascending: false })
+	const { data, error } = await supabase
+		.from('chat')
+		.select('*')
+		.filter('room_id', 'eq', props.roomId)
+		.order('created_at', { ascending: false })
+		.range(from.value, to.value)
 
-		chatMessages.value = data || []
-	},
-	{ distance: 2, direction: 'top', behavior: 'smooth' },
-)
+	if (error)
+		toast('Failed to fetch more messages', error.message, 'error')
+
+	pageSize.value += 1
+
+	chatMessages.value = [...(data || []), ...(chatMessages.value || [])]
+}
+
+const firstMessage = computed(() => chatMessages.value?.find((item) => item.index === 0))
 
 onMounted(() => {
-	chatMessages.value = initialChat.value || []
+	fetchMoreMessages()
 })
 
 onUnmounted(() => {
@@ -156,8 +158,15 @@ onUnmounted(() => {
 	<div class="chat">
 		<ClientOnly>
 			<div ref="chat" class="messages">
+				<div v-if="!firstMessage && chatMessages?.length">
+					<UButton class="loadMore" @click="fetchMoreMessages" color="white" variant="soft">
+						<UIcon name="i-ph-arrow-up" />
+						<span>Load messages</span>
+					</UButton>
+				</div>
+	
 				<RoomChatMessage
-					v-for="messagesGroup in groupMessages(chatMessages)" :key="messagesGroup[0]"
+					v-for="messagesGroup in groupMessages(chatMessages || [])" :key="messagesGroup[0]"
 					:data="messagesGroup"
 				/>
 			</div>
@@ -173,7 +182,11 @@ onUnmounted(() => {
 	@apply overflow-hidden relative flex flex-col w-full h-full pb-4;
 
 	.messages {
-		@apply w-full h-full overflow-y-scroll px-4 flex flex-col gap-4 py-4
+		@apply w-full h-full overflow-y-scroll px-4 flex flex-col gap-4 py-4;
+
+		.loadMore {
+			@apply relative left-1/2 -translate-x-1/2 z-10 rounded-full;
+		}
 	}
 }
 </style>
