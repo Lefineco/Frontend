@@ -11,7 +11,6 @@ computed(() => {
 	<div class="lefine">
 		<div class="wrapper">
 			<NuxtLayout>
-				<NuxtLoadingIndicator color="#6366f1" :throttle="1" :height="1" />
 				<NuxtPage />
 			</NuxtLayout>
 		</div>

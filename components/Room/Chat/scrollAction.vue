@@ -51,6 +51,8 @@ onMounted(() => {
 		if (!isScrolledToBottom.value && !isClickedHandleBottom.value)
 			handleBottom()
 	})
+
+	handleBottom()
 })
 </script>
 

@@ -110,6 +110,8 @@ async function sendMessage(message: string) {
 		)
 	}
 
+	let lastMessageIndex = chatMessages.value?.at(chatMessages.value.length - 1)?.index || 0
+
 	const { error } = await supabase
 		.from('chat')
 		.insert({
@@ -117,7 +119,7 @@ async function sendMessage(message: string) {
 			avatar_url: user.value.user_metadata.avatar_url,
 			room_id: props.roomId,
 			user_id: user.value.id,
-			index: chatMessages.value?.at(chatMessages.value.length)?.index || 0
+			index: lastMessageIndex++,
 		})
 		.select()
 
