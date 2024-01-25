@@ -5,6 +5,8 @@ computed(() => {
 	if (user.value)
 		reloadNuxtApp({ force: true })
 })
+
+
 </script>
 
 <template>
@@ -14,16 +16,17 @@ computed(() => {
 				<NuxtPage />
 			</NuxtLayout>
 		</div>
-		<UNotifications />
+
+		<SharedNotification />
 	</div>
 </template>
 
 <style lang="postcss" scoped>
 .lefine {
-  @apply h-full flex flex-col;
+	@apply h-full flex flex-col;
 
-  .wrapper {
-    @apply h-full w-full;
-  }
+	.wrapper {
+		@apply h-full w-full;
+	}
 }
 </style>

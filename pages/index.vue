@@ -25,6 +25,7 @@ store.lefiners = supabaseLefiner?.sort((a, b) => b.follows.length - a.follows.le
 
 <template>
 	<div class="page">
+		<HomeBanner />
 		<SharedCategory class="px-5" title="Popular Live Rooms" to="rooms" :length="store.rooms?.length">
 			<SharedCardsRoom
 				v-for="(item, idx) in store.rooms?.slice(0, 4)"

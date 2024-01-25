@@ -51,7 +51,8 @@ const items: DropdownItem[][] = [
 
 const isClicked = ref(false)
 const crateRoomModal = ref(false)
-const search = ref('')
+
+// const search = ref('')
 
 const links = [
 	{
@@ -64,11 +65,6 @@ const links = [
 		icon: ['i-ph-users-three', 'i-ph-users-three-fill'],
 		to: '/community',
 	},
-	{
-		label: 'Messages',
-		icon: ['i-ph-chat-teardrop-dots', 'i-ph-chat-teardrop-dots-fill'],
-		to: '/messages',
-	},
 ]
 </script>
 
@@ -79,25 +75,25 @@ const links = [
 
 			<div class="flex gap-12 items-center">
 				<SharedLogo to="/" />
-	
+
 				<UVerticalNavigation
 					:ui="{
-						base: 'pl-4 before:w-5 before:!bg-transparent text-xs font-medium',
-						active: 'font-semibold before:bg-gradient-to-b before:from-primary/10 before:border-t-2 before:h-10 before:w-full before:top-1/2 before:-translate-y-1/2 before:rounded-none before:!border-t-primary',
+						base: 'transition pl-4 before:w-5 before:!bg-transparent text-xs font-semibold',
+						active: 'before:bg-primary before:h-1.5 before:w-1.5 before:top-1/2 before:-translate-y-1/2 before:rounded-none',
 						icon: {
-							base: 'flex-shrink-0 w-5 h-5 m-1',
-							inactive: 'text-white/50 group-hover:!text-white/50 dark:group-hover:text-gray-200',
+							base: 'transition flex-shrink-0 w-5 h-5 m-1',
+							inactive: 'text-white/50 dark:group-hover:text-gray-200',
 						},
 					}" class="navigation" :links="navigationLinks(links)"
 				/>
 			</div>
 
-			<div class="w-full lg:w-[500px] hidden lg:block">
+			<!-- <div class="w-full lg:w-[500px] hidden lg:block">
 				<SharedInputSearch
 					v-model="search" class="w-full" name="search"
 					placeholder="Search Video, Lefiner or Room"
 				/>
-			</div>
+			</div> -->
 
 			<div class="space-x-6 flex items-center justify-center pr-6" :class="{ hidden: isClicked }">
 				<UIcon

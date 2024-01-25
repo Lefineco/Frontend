@@ -14,7 +14,17 @@ export default defineNuxtConfig({
 			],
 		},
 	},
-	css: ['~/assets/styles/main.css', 'plyr/dist/plyr.css'],
+	css: [
+		'~/assets/styles/main.css',
+		'plyr/dist/plyr.css',
+		'notivue/notifications.css',
+		'notivue/animations.css',
+	],
+	notivue: {
+		position: 'bottom-right',
+		enqueue: true,
+		limit: 5
+	},
 	postcss: {
 		plugins: {
 			'postcss-nested': {},
@@ -39,6 +49,7 @@ export default defineNuxtConfig({
 		'@nuxtjs/supabase',
 		'@vueuse/nuxt',
 		'@nuxt/image',
+		'notivue/nuxt',
 	],
 	macros: {
 		setupSFC: true,
@@ -52,9 +63,6 @@ export default defineNuxtConfig({
 			},
 		},
 	},
-	// ui: {
-	// 	icons: ['ph', 'logos'],
-	// },
 	ui: {
 		icons: {
 			// might solve stretch bug on generate, see https://github.com/egoist/tailwindcss-icons/issues/23
@@ -65,7 +73,7 @@ export default defineNuxtConfig({
 			collections: {
 				lefine: {
 					icons: {
-						...platform
+						...platform,
 					},
 				},
 				...getIconCollections(['ph', 'logos']),
