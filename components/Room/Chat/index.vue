@@ -2,7 +2,7 @@
 import { toast } from '~/composables/helper/toast'
 
 import type { Database } from '~/server/types/supabase'
-import { useChatStore } from '~/store/chat'
+import { useChatStore, useMessageHistory } from '~/store/chat'
 
 interface Props {
 	roomId: string
@@ -23,7 +23,7 @@ const supabase = useSupabaseClient<Database>()
 const user = useSupabaseUser()
 const chatStore = useChatStore()
 
-const chatMessages = ref<Chat[] | null>(null)
+const chatMessages = useMessageHistory()
 const EMPTY_STRING_REGEXP = /^[\s\uFEFF\xA0]+$/
 const chat = ref<HTMLDivElement | null>(null)
 
@@ -59,7 +59,7 @@ const roomChannel = supabase.channel(props.roomId)
 roomChannel.on('broadcast', {
 	event: 'chat',
 }, (res) => {
-	chatMessages.value = [...(chatMessages.value || []), res.payload] as Chat[]
+	chatMessages.chatHistory = [...(chatMessages.chatHistory || []), res.payload] as Chat[]
 
 	if (res.event === 'chat' && res.payload.user_id !== user.value?.id)
 		chatStore.newMessage++
@@ -95,7 +95,7 @@ async function sendMessage(message: string) {
 		loading: true,
 	}
 
-	chatMessages.value = [...(chatMessages.value || []), payload]
+	chatMessages.chatHistory = [...(chatMessages.chatHistory || []), payload]
 
 	const serverResponse = await roomChannel.send({
 		type: 'broadcast',
@@ -104,7 +104,7 @@ async function sendMessage(message: string) {
 		payload,
 	})
 
-	chatMessages.value = chatMessages.value?.map((item) => {
+	chatMessages.chatHistory = chatMessages.chatHistory?.map((item) => {
 		if (item.loading)
 			item.loading = false
 
@@ -114,6 +114,13 @@ async function sendMessage(message: string) {
 	if (serverResponse === 'error')
 		toast('Message failed to send', 'Please try again', 'error')
 }
+
+onMounted(() => {
+	if (chatMessages.roomId !== props.roomId) {
+		chatMessages.roomId = props.roomId
+		chatMessages.chatHistory = []
+	}
+})
 
 onUnmounted(() => {
 	supabase.removeChannel(roomChannel)
@@ -125,7 +132,7 @@ onUnmounted(() => {
 		<ClientOnly>
 			<div ref="chat" class="messages">
 				<RoomChatMessage
-					v-for="messagesGroup in groupMessages(chatMessages || [])" :key="messagesGroup[0]"
+					v-for="messagesGroup in groupMessages(chatMessages.chatHistory || [])" :key="messagesGroup[0]"
 					:data="messagesGroup"
 				/>
 			</div>

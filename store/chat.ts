@@ -5,7 +5,7 @@ interface StateChatStore {
 }
 
 interface StateMessageHistory {
-    roomId: string
+    roomId: string | null
     chatHistory: Chat[] | null
 }
 
