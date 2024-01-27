@@ -1,16 +1,7 @@
 <template>
-	<div class="layout">
+	<div>
 		<LayoutHeader />
-		<div class="wrapper">
-			<!-- <LayoutSidebar class="w-20 p-4" /> -->
-			<slot />
-		</div>
-		<LayoutFooter />
+		<slot />
 	</div>
+	<!-- <LayoutFooter /> -->
 </template>
-
-<style lang="postcss" scoped>
-  .wrapper {
-    @apply flex h-full items-start overflow-y-auto mx-auto;
-  }
-</style>

@@ -15,6 +15,7 @@ const PLATFORM = {
 	TWITCH: 'i-logos-twitch',
 }
 
+
 const owner = props.data.participants.find(
 	participant => participant.is_owner,
 )
@@ -36,7 +37,7 @@ const ownerName = owner?.profiles?.full_name || ''
 		</div>
 		<div class="relative w-full">
 			<div class="video-img-container">
-				<img class="video-img" :src="props.data.thumbnail || ''">
+				<NuxtImg class="video-img" :src="props.data.thumbnail || ' '" />
 			</div>
 			<UAvatarGroup class="user-avatar-bottom" size="xs" :max="3">
 				<UAvatar

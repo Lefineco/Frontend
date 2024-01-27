@@ -9,7 +9,7 @@
 html,
 body,
 #lefine {
-  @apply h-full w-full bg-black overflow-hidden;
+  @apply h-full w-full bg-black;
   background: radial-gradient(
       49.1% 52.07% at 95.73% 0%,
       rgba(69, 5, 150, 0.1) 0%,
@@ -58,11 +58,11 @@ body,
 }
 
 .layout {
-  @apply w-full h-full overflow-hidden;
+  @apply w-full h-full;
 }
 
 .page {
-  @apply w-full h-full mx-auto max-w-[1700px] px-2 pt-5 after:content-[''] after:pb-24;
+  @apply w-full mx-auto max-w-[1700px] px-2 pt-5 after:content-[''] after:pb-24;
 }
 
 .no-scrollbar::-webkit-scrollbar {

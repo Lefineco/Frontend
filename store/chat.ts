@@ -1,9 +1,25 @@
-interface State {
+import type { Chat } from "~/components/Room/Chat/index.vue"
+
+interface StateChatStore {
     newMessage: number
 }
 
+interface StateMessageHistory {
+    roomId: string
+    chatHistory: Chat[] | null
+}
+
 export const useChatStore = defineStore('chat', {
-	state: (): State => ({
+	state: (): StateChatStore => ({
         newMessage: 0,
 	}),
+})
+
+
+export const useMessageHistory = defineStore('messageHistory', {
+    state: (): StateMessageHistory => ({
+        roomId: '',
+        chatHistory: null,
+    }),
+    persist: true,
 })

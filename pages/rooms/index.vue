@@ -16,15 +16,14 @@ if (!store.rooms?.length) {
 
 <template>
 	<div class="page">
-		<SharedCategory
-			class="p-5"
-			title="All Live Rooms"
-			to="rooms"
-			all
-		>
+		<SharedCategory class="p-5" title="All Live Rooms" to="rooms" all>
 			<SharedCardsRoom v-for="(item, idx) in store.rooms" :key="idx" :data="item" />
 		</SharedCategory>
 	</div>
 </template>
 
-<style scoped></style>
+<style lang="postcss" scoped>
+.page {
+	@apply h-full;
+}
+</style>

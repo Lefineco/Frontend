@@ -27,7 +27,7 @@ const timeAgo = (time: string) => useTimeAgo(new Date(time)).value
 				<div
 					v-if="messages.message"
 					:data-current-time="timeAgo(messages.created_at)"
-					:class="twMerge('message', me ? 'me' : 'you')"
+					:class="twMerge('message', me ? 'me' : 'you', messages.loading && 'loading')"
 				>
 					{{ messages.message }}
 				</div>
@@ -50,6 +50,10 @@ const timeAgo = (time: string) => useTimeAgo(new Date(time)).value
       @apply items-end;
       .message {
         @apply bg-purple-400/20 first:rounded-tr-3xl first:rounded-br-xl last:rounded-br-3xl last:rounded-tr-xl rounded-r-xl rounded-l-3xl;
+
+        &.loading {
+          @apply opacity-50;
+        }
       }
     }
   }

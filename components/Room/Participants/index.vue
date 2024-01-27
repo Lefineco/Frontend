@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { RealtimeChannel } from '@supabase/supabase-js'
 import { useJoinRoom, useLeaveRoom } from '~/composables/service/room'
 import type { Database } from '~/server/types/supabase'
 
@@ -8,8 +7,6 @@ const supabase = useSupabaseClient<Database>()
 const user = useSupabaseUser()
 const profile = ref()
 const participants = ref()
-
-let roomChannel: RealtimeChannel
 
 async function getParticipants() {
 	const { data } = await supabase
@@ -34,22 +31,6 @@ if (user.value) {
 onMounted(async () => {
 	participants.value = await getParticipants()
 
-	roomChannel = supabase
-		.channel(`participants_${route.params.id}`)
-		.on(
-			'postgres_changes',
-			{
-				event: '*',
-				schema: 'public',
-				table: 'participants',
-				filter: `room_id=eq.${route.params.id}`,
-			},
-			async () => {
-				participants.value = await getParticipants()
-			},
-		)
-		.subscribe()
-
 	if (profile.value)
 		return
 
@@ -58,44 +39,18 @@ onMounted(async () => {
 
 onUnmounted(() => {
 	useLeaveRoom(route.params.id, user.value?.id)
-	supabase.removeChannel(roomChannel)
 })
 </script>
 
 <template>
-	<UPopover :popper="{ placement: 'bottom-end' }">
-		<UButton
-			color="black"
-			label=""
-			trailing-icon="i-ph-caret-down"
-		>
-			<UAvatarGroup size="sm" :max="2">
-				<template v-for="participant in participants" :key="participant.id">
-					<UAvatar
-						v-if="participant.profiles"
-						size="sm"
-						:src="participant.profiles.avatar_url || ''"
-						:alt="participant.profiles.full_name || ''"
-					/>
-				</template>
-			</UAvatarGroup>
-		</UButton>
-		<template #panel>
-			<div class="p-4 flex gap-3 flex-col">
-				<div
-					v-for="participant in participants"
-					:key="participant.id"
-					class="flex gap-3 items-center"
-				>
-					<UAvatar
-						v-if="participant.profiles"
-						:src="participant.profiles.avatar_url || ''"
-						:alt="participant.profiles.full_name || ''"
-					/><span class="w-36 truncate">
-						{{ participant.profiles.full_name }}
-					</span>
-				</div>
-			</div>
+	<UAvatarGroup size="sm" :max="2">
+		<template v-for="participant in participants" :key="participant.id">
+			<UAvatar
+				v-if="participant.profiles"
+				size="sm"
+				:src="participant.profiles.avatar_url || ''"
+				:alt="participant.profiles.full_name || ''"
+			/>
 		</template>
-	</UPopover>
+	</UAvatarGroup>
 </template>
