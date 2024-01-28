@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useImageIsLoaded } from '~/composables/helper'
 import type { SupabaseRooms } from '~/pages/index.vue'
 import type { ArrayElement, Platform } from '~/server/types'
 
@@ -8,19 +9,28 @@ interface Props {
 
 const props = defineProps<Props>()
 const router = useRouter()
+const imgIsLoaded = ref(false)
 
 const PLATFORM = {
 	YOUTUBE: 'i-lefine-platform-youtube',
 	VIMEO: 'i-lefine-platform-vimeo',
-	TWITCH: 'i-logos-twitch',
 }
-
 
 const owner = props.data.participants.find(
 	participant => participant.is_owner,
 )
 
 const ownerName = owner?.profiles?.full_name || ''
+
+const image = props.data.thumbnail || ''
+
+onMounted(async () => {
+	const img = document.createElement('img')
+
+	img.src = props.data.thumbnail || ''
+
+	imgIsLoaded.value = await useImageIsLoaded(image || '')
+})
 </script>
 
 <template>
@@ -37,7 +47,7 @@ const ownerName = owner?.profiles?.full_name || ''
 		</div>
 		<div class="relative w-full">
 			<div class="video-img-container">
-				<NuxtImg class="video-img" :src="props.data.thumbnail || ' '" />
+				<NuxtImg class="video-img" :src="imgIsLoaded ? image : 'room_thumbnail.png'" />
 			</div>
 			<UAvatarGroup class="user-avatar-bottom" size="xs" :max="3">
 				<UAvatar

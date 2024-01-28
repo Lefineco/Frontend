@@ -52,4 +52,21 @@ function useGetFromAndTo(page: number, ITEMS_PER_PAGE: number) {
 	return { from, to }
 }
 
-export { checkVideoPlatform, navigationLinks, getVideoID, useGetFromAndTo }
+
+async function useImageIsLoaded(src: string): Promise<boolean> {
+	return new Promise((resolve) => {
+		const img = document.createElement('img');
+
+		img.onload = () => {
+			resolve(true);
+		};
+
+		img.onerror = () => {
+			resolve(false);
+		};
+
+		img.src = src;
+	});
+}
+
+export { checkVideoPlatform, navigationLinks, getVideoID, useImageIsLoaded, useGetFromAndTo }
