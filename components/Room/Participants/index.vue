@@ -10,6 +10,12 @@ const participants = ref()
 
 const participantsPresence = supabase.channel(route.params.id)
 
+const userPresence = {
+	user_id: user.value?.id,
+	room_id: route.params.id,
+	online_at: new Date().toISOString(),
+}
+
 async function getParticipants() {
 	const { data } = await supabase
 		.from('participants')
@@ -36,7 +42,16 @@ onMounted(async () => {
 	participantsPresence.on('presence', { event: 'sync' }, () => {
 		const newState = participantsPresence.presenceState()
 		console.log('sync', newState)
-	}).subscribe()
+	}).subscribe(async (status) => {
+		if (status !== 'SUBSCRIBED')
+			return
+
+		participantsPresence.track(userPresence)
+	})
+
+	window.addEventListener('unload', () => {
+		participantsPresence.untrack()
+	})
 })
 </script>
 
@@ -44,9 +59,7 @@ onMounted(async () => {
 	<UAvatarGroup size="sm" :max="2">
 		<template v-for="participant in participants" :key="participant.id">
 			<UAvatar
-				v-if="participant.profiles"
-				size="sm"
-				:src="participant.profiles.avatar_url || ''"
+				v-if="participant.profiles" size="sm" :src="participant.profiles.avatar_url || ''"
 				:alt="participant.profiles.full_name || ''"
 			/>
 		</template>
