@@ -29,7 +29,7 @@ onMounted(async () => {
 			.filter('room_id', 'eq', route.params.id)
 			.single()
 
-		isOwner.value = data?.is_owner || false
+		isOwner.value = Boolean(data?.is_owner)
 	}
 
 	participantsPresence.on('presence', { event: 'sync' }, () => {
