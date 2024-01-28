@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { useJoinRoom, useLeaveRoom } from '~/composables/service/room'
 import type { Database } from '~/server/types/supabase'
 
 const route = useRoute<'rooms-id'>()
 const supabase = useSupabaseClient<Database>()
 const user = useSupabaseUser()
-const profile = ref()
 const participants = ref()
+const isOwner = ref(false)
 
 const participantsPresence = supabase.channel(route.params.id)
 
@@ -14,34 +13,28 @@ const userPresence = {
 	user_id: user.value?.id,
 	room_id: route.params.id,
 	online_at: new Date().toISOString(),
-}
-
-async function getParticipants() {
-	const { data } = await supabase
-		.from('participants')
-		.select('id, is_owner, profiles(*)')
-		.filter('room_id', 'eq', route.params.id)
-
-	return data
-}
-
-if (user.value) {
-	const { data } = await supabase
-		.from('participants')
-		.select('is_owner, profiles(*)')
-		.filter('user_id', 'eq', user.value.id)
-		.filter('room_id', 'eq', route.params.id)
-		.single()
-
-	profile.value = data
+	profiles: {
+		name: user.value?.user_metadata.full_name,
+		avatar_url: user.value?.user_metadata.avatar_url,
+	},
+	isOwner: isOwner.value,
 }
 
 onMounted(async () => {
-	participants.value = await getParticipants()
+	if (user.value) {
+		const { data } = await supabase
+			.from('participants')
+			.select('is_owner, profiles(*)')
+			.filter('user_id', 'eq', user.value.id)
+			.filter('room_id', 'eq', route.params.id)
+			.single()
+
+		isOwner.value = data?.is_owner || false
+	}
 
 	participantsPresence.on('presence', { event: 'sync' }, () => {
 		const newState = participantsPresence.presenceState()
-		console.log('sync', newState)
+		participants.value = Object.values(newState).map(value => value[0])
 	}).subscribe(async (status) => {
 		if (status !== 'SUBSCRIBED')
 			return
@@ -53,11 +46,15 @@ onMounted(async () => {
 		participantsPresence.untrack()
 	})
 })
+
+onUnmounted(() => {
+	supabase.removeChannel(participantsPresence)
+})
 </script>
 
 <template>
 	<UAvatarGroup size="sm" :max="2">
-		<template v-for="participant in participants" :key="participant.id">
+		<template v-for="participant in participants" :key="participant.presence_ref">
 			<UAvatar
 				v-if="participant.profiles" size="sm" :src="participant.profiles.avatar_url || ''"
 				:alt="participant.profiles.full_name || ''"
