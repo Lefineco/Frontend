@@ -59,7 +59,7 @@ const roomChannel = supabase.channel(props.roomId)
 roomChannel.on('broadcast', {
 	event: 'chat',
 }, (res) => {
-	chatMessages.chatHistory = [...(chatMessages.chatHistory || []), res.payload] as Chat[]
+	chatMessages.chatHistory = [...(chatMessages.chatHistory || []), res.payload]
 
 	if (res.event === 'chat' && res.payload.user_id !== user.value?.id)
 		chatStore.newMessage++

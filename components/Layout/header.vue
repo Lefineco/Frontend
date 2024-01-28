@@ -86,8 +86,8 @@ defineShortcuts({
 
 				<UVerticalNavigation
 					:ui="{
-						base: 'transition pl-4 before:w-5 before:!bg-transparent text-xs font-semibold',
-						active: 'before:bg-primary before:h-1.5 before:w-1.5 before:top-1/2 before:-translate-y-1/2 before:rounded-none',
+						base: 'transition before:!bg-transparent text-xs font-semibold',
+						active: '',
 						icon: {
 							base: 'transition flex-shrink-0 w-5 h-5 m-1',
 							inactive: 'text-white/50 dark:group-hover:text-gray-200',
