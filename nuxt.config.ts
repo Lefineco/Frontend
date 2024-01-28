@@ -80,6 +80,9 @@ export default defineNuxtConfig({
 			},
 		},
 	},
+	image: {
+		dir: 'assets/media',
+	},
 	supabase: {
 		redirect: false,
 	},
