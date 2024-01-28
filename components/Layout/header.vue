@@ -49,7 +49,6 @@ const items: DropdownItem[][] = [
 	],
 ]
 
-const isClicked = ref(false)
 const crateRoomModal = ref(false)
 
 // const search = ref('')
@@ -66,6 +65,15 @@ const links = [
 		to: '/community',
 	},
 ]
+
+defineShortcuts({
+	meta_k: {
+		usingInput: true,
+		handler: () => {
+			crateRoomModal.value = true
+		},
+	}
+})
 </script>
 
 <template>
@@ -88,22 +96,12 @@ const links = [
 				/>
 			</div>
 
-			<!-- <div class="w-full lg:w-[500px] hidden lg:block">
-				<SharedInputSearch
-					v-model="search" class="w-full" name="search"
-					placeholder="Search Video, Lefiner or Room"
-				/>
-			</div> -->
-
-			<div class="space-x-6 flex items-center justify-center pr-6" :class="{ hidden: isClicked }">
-				<UIcon
-					class="hidden sm:block lg:hidden w-6 h-6 cursor-pointer" :class="{ hidden: isClicked }"
-					name="i-ph-magnifying-glass" @click="isClicked = true"
-				/>
+			<div class="space-x-6 flex items-center justify-center pr-6">
 				<ClientOnly>
 					<div v-if="user" class="flex gap-4 items-center">
-						<UButton icon="i-ph-plus" color="white" variant="soft" @click="crateRoomModal = !crateRoomModal">
+						<UButton color="white" variant="soft" @click="crateRoomModal = !crateRoomModal">
 							Create Room
+							<UKbd>⌘ + K</UKbd>
 						</UButton>
 						<RoomCreate v-model="crateRoomModal" />
 						<UDropdown

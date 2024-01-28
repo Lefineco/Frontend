@@ -8,6 +8,8 @@ const user = useSupabaseUser()
 const profile = ref()
 const participants = ref()
 
+const participantsPresence = supabase.channel(route.params.id)
+
 async function getParticipants() {
 	const { data } = await supabase
 		.from('participants')
@@ -31,14 +33,10 @@ if (user.value) {
 onMounted(async () => {
 	participants.value = await getParticipants()
 
-	if (profile.value)
-		return
-
-	useJoinRoom(route.params.id, user.value?.id, false)
-})
-
-onUnmounted(() => {
-	useLeaveRoom(route.params.id, user.value?.id)
+	participantsPresence.on('presence', { event: 'sync' }, () => {
+		const newState = participantsPresence.presenceState()
+		console.log('sync', newState)
+	}).subscribe()
 })
 </script>
 

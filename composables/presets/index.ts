@@ -10,6 +10,7 @@ import formGroup from './form-group'
 import card from './card'
 import dropdown from './dropdown'
 import popover from './popover'
+import kbd from './kbd'
 
 export default {
 	button,
@@ -24,4 +25,5 @@ export default {
 	card,
 	dropdown,
 	popover,
+	kbd,
 }

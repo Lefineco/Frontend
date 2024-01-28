@@ -61,6 +61,9 @@ const realtimeResponseWatch = watch(realtimeResponse, () => {
 	}
 })
 
+
+// TODO; replace realtime Table to Brodcast Channel and Sync Function
+
 onMounted(async () => {
 	roomChannel = supabase
 		.channel(`player_${route.params.id}`)
@@ -107,8 +110,10 @@ onUnmounted(() => {
 		<div class="wrapper">
 			<div class="player-container">
 				<ClientOnly>
-					<SharedPlayer ref="player" :type="data?.platform" :video-id="getVideoID(data?.url)"
-						class="h-2/3 rounded-2xl overflow-hidden" :is-owner="is_owner" />
+					<SharedPlayer
+						ref="player" :type="data?.platform" :video-id="getVideoID(data?.url)"
+						class="h-2/3 rounded-2xl overflow-hidden" :is-owner="is_owner"
+					/>
 
 					<template #fallback>
 						<div class="h-2/3 rounded-2xl overflow-hidden w-full bg-white/5 animate-pulse" />
