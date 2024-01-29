@@ -24,25 +24,16 @@ const { data } = await supabase
 const is_owner
 	= data?.participants?.find(p => p.is_owner)?.profiles?.id === user.value?.id
 
-async function onPlay() {
-	return supabase
-		.from('rooms')
-		.update({ on_play: true, current_time: player.value?.getPlayerInstance().currentTime })
-		.eq('id', route.params.id)
-}
-
-async function onPause() {
-	return supabase
-		.from('rooms')
-		.update({ on_play: false, current_time: player.value?.getPlayerInstance().currentTime })
-		.eq('id', route.params.id)
-}
-
-async function onSeeked() {
-	return supabase
-		.from('rooms')
-		.update({ current_time: player.value?.getPlayerInstance().currentTime })
-		.eq('id', route.params.id)
+async function onChange() {
+	// TODO; replace realtime Table to Brodcast Channel and Sync Function
+	roomChannel.send({
+		type: 'broadcast',
+		event: 'player',
+		payload: {
+			on_play: true,
+			current_time: player.value?.getPlayerInstance().currentTime,
+		},
+	})
 }
 
 const realtimeResponseWatch = watch(realtimeResponse, () => {
@@ -61,10 +52,11 @@ const realtimeResponseWatch = watch(realtimeResponse, () => {
 	}
 })
 
-
 // TODO; replace realtime Table to Brodcast Channel and Sync Function
 
 onMounted(async () => {
+	const playerInstance = await player.value?.getPlayerInstance()
+
 	roomChannel = supabase
 		.channel(`player_${route.params.id}`)
 		.on(
@@ -81,19 +73,29 @@ onMounted(async () => {
 		)
 		.subscribe()
 
+	roomChannel = supabase.channel(route.params.id)
+
+	roomChannel.on('broadcast', {
+		event: 'player',
+	}, (res) => {
+		realtimeResponse.value = res.payload
+	}).subscribe()
+
 	if (data?.url) {
-		const playerInstance = player.value?.getPlayerInstance()
-
-		playerInstance.autoplay = true
-
-		playerInstance.currentTime = data.current_time
+		try {
+			playerInstance.autoplay = true
+			playerInstance.currentTime = data.current_time
+			playerInstance.on('play', onChange)
+			playerInstance.on('pause', onChange)
+			playerInstance.on('seeked', onChange)
+		}
+		catch (error) {
+			// eslint-disable-next-line no-console
+			console.debug(error)
+		}
 
 		if (!is_owner)
 			return false
-
-		playerInstance.on('play', onPlay)
-		playerInstance.on('pause', onPause)
-		playerInstance.on('seeked', onSeeked)
 	}
 })
 

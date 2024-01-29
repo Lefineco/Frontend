@@ -17,9 +17,10 @@ const { data: supabaseRooms } = await supabase
 const { data: supabaseLefiner } = await supabase
 	.from('profiles')
 	.select('*, follows!follows_following_id_fkey(follower_id)')
-	.filter('full_name', 'neq', null).filter('id', 'neq', (user.value?.id || EMPTY_UUID))
+	.neq('full_name', null)
+	.neq('id', (user.value?.id || EMPTY_UUID))
 
-store.rooms = supabaseRooms?.sort((a, b) => a.participants.length - b.participants.length) || []
+store.rooms = supabaseRooms?.filter(item => item.participants.length > 0).sort((a, b) => a.participants.length - b.participants.length) || []
 store.lefiners = supabaseLefiner?.sort((a, b) => b.follows.length - a.follows.length) || []
 </script>
 

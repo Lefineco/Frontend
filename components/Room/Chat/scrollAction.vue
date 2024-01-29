@@ -46,13 +46,28 @@ const newMessage = computed(() => {
 		return `${newMessageCount} New messages`
 })
 
+let observer: MutationObserver
+
 onMounted(() => {
-	props.chatInstance?.addEventListener('DOMNodeInserted', () => {
-		if (!isScrolledToBottom.value && !isClickedHandleBottom.value)
-			handleBottom()
+	const targetElement = props.chatInstance
+
+	observer = new MutationObserver((mutations) => {
+		mutations.forEach((mutation) => {
+			if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+				if (!isScrolledToBottom.value && !isClickedHandleBottom.value)
+					handleBottom()
+			}
+		})
 	})
 
+	observer.observe(targetElement, { childList: true, subtree: true })
+
 	handleBottom()
+})
+
+onUnmounted(() => {
+	if (observer)
+		observer.disconnect()
 })
 </script>
 
@@ -60,8 +75,8 @@ onMounted(() => {
 	<transition :css="false" @enter="messageTransition.enter" @leave="messageTransition.leave">
 		<template v-if="isScrolledToBottom && !isClickedHandleBottom">
 			<UButton
-				v-if="newMessage" :label="newMessage" variant="primary" color="primary" size="xs" class="action new-message"
-				trailing-icon="i-ph-arrow-down-bold" @click="handleBottom"
+				v-if="newMessage" :label="newMessage" variant="primary" color="primary" size="xs"
+				class="action new-message" trailing-icon="i-ph-arrow-down-bold" @click="handleBottom"
 			/>
 
 			<UButton
