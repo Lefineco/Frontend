@@ -23,7 +23,7 @@ export default defineNuxtConfig({
 	notivue: {
 		position: 'bottom-right',
 		enqueue: true,
-		limit: 5
+		limit: 5,
 	},
 	postcss: {
 		plugins: {
@@ -50,6 +50,7 @@ export default defineNuxtConfig({
 		'@vueuse/nuxt',
 		'@nuxt/image',
 		'notivue/nuxt',
+		'@nuxtjs/partytown',
 	],
 	macros: {
 		setupSFC: true,

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { RealtimeChannel } from '@supabase/supabase-js'
+// import type { RealtimeChannel } from '@supabase/supabase-js'
 import { getVideoID } from '~/composables/helper'
 import type { Database } from '~/server/types/supabase'
 
@@ -7,101 +7,78 @@ definePageMeta({
 	layout: 'blank',
 })
 
-let roomChannel: RealtimeChannel
-
 const route = useRoute<'rooms-id'>()
 const user = useSupabaseUser()
 const supabase = useSupabaseClient<Database>()
 const player = ref()
-const realtimeResponse = ref()
 
-const { data } = await supabase
-	.from('rooms')
-	.select('*, participants(id, is_owner, profiles(*))')
-	.filter('id', 'eq', route.params.id)
-	.single()
+const { data } = await useAsyncData(
+	'rooms',
+	async () => {
+		const { data } = await supabase
+			.from('rooms')
+			.select('*, participants(id, is_owner, profiles(*))')
+			.filter('id', 'eq', route.params.id)
+			.single()
 
-const is_owner
-	= data?.participants?.find(p => p.is_owner)?.profiles?.id === user.value?.id
+		return data
+	},
+)
 
-async function onChange() {
-	// TODO; replace realtime Table to Brodcast Channel and Sync Function
+const is_owner = ref(false)
+
+const roomChannel = supabase.channel(route.params.id)
+
+function onChange() {
 	roomChannel.send({
 		type: 'broadcast',
 		event: 'player',
 		payload: {
-			on_play: true,
+			on_play: player.value?.getPlayerInstance().playing,
 			current_time: player.value?.getPlayerInstance().currentTime,
 		},
 	})
 }
 
-const realtimeResponseWatch = watch(realtimeResponse, () => {
-	if (realtimeResponse.value?.on_play !== undefined && !is_owner) {
-		const playerInstance = player.value?.getPlayerInstance()
+// const realtimeResponseWatch = watch(realtimeResponse, () => {
+// 	if (realtimeResponse.value?.on_play !== undefined && !is_owner) {
+// 		const playerInstance = player.value?.getPlayerInstance()
 
-		if (realtimeResponse.value.on_play)
-			playerInstance.play()
-		else playerInstance.pause()
-	}
+// 		if (realtimeResponse.value.on_play)
+// 			playerInstance.play()
+// 		else playerInstance.pause()
+// 	}
 
-	if (realtimeResponse.value?.current_time !== undefined && !is_owner) {
-		const playerInstance = player.value?.getPlayerInstance()
+// 	if (realtimeResponse.value?.current_time !== undefined && !is_owner) {
+// 		const playerInstance = player.value?.getPlayerInstance()
 
-		playerInstance.currentTime = realtimeResponse.value.current_time
-	}
+// 		playerInstance.currentTime = realtimeResponse.value.current_time
+// 	}
+// })
+
+const playerInstance = watchEffect(() => {
+	if (!player.value?.getPlayerInstance())
+		return false
+
+	player.value.getPlayerInstance().on('play', onChange)
+	player.value.getPlayerInstance().on('pause', onChange)
+	player.value.getPlayerInstance().on('seeked', onChange)
 })
 
-// TODO; replace realtime Table to Brodcast Channel and Sync Function
-
-onMounted(async () => {
-	const playerInstance = await player.value?.getPlayerInstance()
-
-	roomChannel = supabase
-		.channel(`player_${route.params.id}`)
-		.on(
-			'postgres_changes',
-			{
-				event: '*',
-				schema: 'public',
-				table: 'rooms',
-				filter: `id=eq.${route.params.id}`,
-			},
-			(payload) => {
-				realtimeResponse.value = payload.new
-			},
-		)
-		.subscribe()
-
-	roomChannel = supabase.channel(route.params.id)
-
+onMounted(() => {
 	roomChannel.on('broadcast', {
 		event: 'player',
 	}, (res) => {
-		realtimeResponse.value = res.payload
+		// eslint-disable-next-line no-console
+		console.log(res)
 	}).subscribe()
 
-	if (data?.url) {
-		try {
-			playerInstance.autoplay = true
-			playerInstance.currentTime = data.current_time
-			playerInstance.on('play', onChange)
-			playerInstance.on('pause', onChange)
-			playerInstance.on('seeked', onChange)
-		}
-		catch (error) {
-			// eslint-disable-next-line no-console
-			console.debug(error)
-		}
-
-		if (!is_owner)
-			return false
-	}
+	is_owner.value = data.value?.participants?.find(p => p.is_owner)?.profiles?.id === user.value?.id
 })
 
 onUnmounted(() => {
 	supabase.removeChannel(roomChannel)
-	realtimeResponseWatch()
+	playerInstance()
 })
 </script>
 
@@ -138,7 +115,7 @@ onUnmounted(() => {
 					<RoomParticipants v-if="data" :participants="data.participants" />
 				</div>
 
-				<RoomChat :room-id="data?.id || 'Lefine'" />
+				<RoomChat />
 			</div>
 		</div>
 	</div>

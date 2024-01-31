@@ -2,6 +2,7 @@
 import { useImageIsLoaded } from '~/composables/helper'
 import type { SupabaseRooms } from '~/pages/index.vue'
 import type { ArrayElement, Platform } from '~/server/types'
+import { PLATFORM } from '~/constants/general'
 
 interface Props {
 	data: ArrayElement<SupabaseRooms>
@@ -10,11 +11,6 @@ interface Props {
 const props = defineProps<Props>()
 const router = useRouter()
 const imgIsLoaded = ref(false)
-
-const PLATFORM = {
-	YOUTUBE: 'i-lefine-platform-youtube',
-	VIMEO: 'i-lefine-platform-vimeo',
-}
 
 const owner = props.data.participants.find(
 	participant => participant.is_owner,
@@ -34,7 +30,7 @@ onMounted(async () => {
 </script>
 
 <template>
-	<button class="button" @click="router.push(`/rooms/${props.data.id}`)">
+	<UButton class="button" variant="ghost" color="white" @click="router.push(`/rooms/${props.data.id}`)">
 		<div class="button-header">
 			<div class="button-info-container">
 				<UAvatar :src="owner?.profiles?.avatar_url || ''" size="xs" :alt="ownerName" class="user-avatar" />
@@ -43,11 +39,11 @@ onMounted(async () => {
 					{{ ownerName.split(' ')[0] }}
 				</span>
 			</div>
-			<UIcon :name="PLATFORM[props.data.platform as Platform]" class="w-20" />
+			<UIcon :name="PLATFORM[props.data.platform as Platform]" class="w-16 h-4" />
 		</div>
 		<div class="relative w-full">
 			<div class="video-img-container">
-				<NuxtImg class="video-img" :src="imgIsLoaded ? image : 'room_thumbnail.png'" />
+				<NuxtImg class="video-img" :src="imgIsLoaded ? image : 'room_thumbnail.png'" loading="lazy" preload />
 			</div>
 			<UAvatarGroup class="user-avatar-bottom" size="xs" :max="3">
 				<UAvatar
@@ -56,12 +52,12 @@ onMounted(async () => {
 				/>
 			</UAvatarGroup>
 		</div>
-	</button>
+	</UButton>
 </template>
 
 <style lang="postcss" scoped>
 .button {
-	@apply relative flex flex-col items-center justify-center;
+	@apply relative rounded-3xl transition-all duration-200 hover:z-10 hover:scale-110 hover:bg-white/5 flex flex-col items-center justify-center;
 
 	.button-header {
 		@apply w-full flex justify-between py-2 px-2;

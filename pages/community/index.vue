@@ -21,7 +21,6 @@ const data2 = [
 		createDate: '3 Days Ago',
 		description: 'Deneme Canim',
 		avatar: 'https',
-		viewers: 't',
 	},
 ]
 </script>
@@ -30,10 +29,13 @@ const data2 = [
 	<div class="page flex gap-5">
 		<div class="community-box">
 			<FeedsFormCreate />
-			<Feeds
-				v-for="(item, idx) in data2" :key="idx" :name="item.name" :avatar="item.avatar" :viewers="item.viewers"
-				:create-date="item.createDate"
-			/>
+			<template v-for="(item, idx) in data2">
+				<Feeds
+					v-if="item"
+					:key="idx" 
+					:data="item"
+				/>
+			</template>
 		</div>
 		<div class="user-container">
 			<div class="user-box">

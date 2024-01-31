@@ -1,12 +1,9 @@
 <script lang="ts" setup>
+import type { RealtimeChannel } from '@supabase/supabase-js'
 import { toast } from '~/composables/helper/toast'
 
 import type { Database } from '~/server/types/supabase'
 import { useChatStore, useMessageHistory } from '~/store/chat'
-
-interface Props {
-	roomId: string
-}
 
 export interface Chat {
 	message: string
@@ -18,14 +15,15 @@ export interface Chat {
 
 export type GroupedMessages = [string, Chat[]]
 
-const props = defineProps<Props>()
 const supabase = useSupabaseClient<Database>()
 const user = useSupabaseUser()
 const chatStore = useChatStore()
+const route = useRoute<'rooms-id'>()
 
 const chatMessages = useMessageHistory()
 const EMPTY_STRING_REGEXP = /^[\s\uFEFF\xA0]+$/
 const chat = ref<HTMLDivElement | null>(null)
+const connectionsStatus = ref<'SUBSCRIBED' | 'TIMED_OUT' | 'CLOSED' | 'CHANNEL_ERROR'>()
 
 function groupMessages(messages: Chat[]): GroupedMessages[] {
 	if (!messages)
@@ -54,16 +52,7 @@ function groupMessages(messages: Chat[]): GroupedMessages[] {
 	return userMessages
 }
 
-const roomChannel = supabase.channel(props.roomId)
-
-roomChannel.on('broadcast', {
-	event: 'chat',
-}, (res) => {
-	chatMessages.chatHistory = [...(chatMessages.chatHistory || []), res.payload]
-
-	if (res.event === 'chat' && res.payload.user_id !== user.value?.id)
-		chatStore.newMessage++
-}).subscribe()
+const roomChannel = supabase.channel(route.params.id)
 
 async function sendMessage(message: string) {
 	if (EMPTY_STRING_REGEXP.test(message) || message.length < 1)
@@ -100,7 +89,6 @@ async function sendMessage(message: string) {
 	const serverResponse = await roomChannel.send({
 		type: 'broadcast',
 		event: 'chat',
-		self: true,
 		payload,
 	})
 
@@ -116,14 +104,24 @@ async function sendMessage(message: string) {
 }
 
 onMounted(() => {
-	if (chatMessages.roomId !== props.roomId) {
-		chatMessages.roomId = props.roomId
+	if (chatMessages.roomId !== route.params.id) {
+		chatMessages.roomId = route.params.id
 		chatMessages.chatHistory = []
 	}
-})
 
-onUnmounted(() => {
-	supabase.removeChannel(roomChannel)
+	roomChannel.on('broadcast', {
+		event: 'chat',
+	}, (res) => {
+		chatMessages.chatHistory = [...(chatMessages.chatHistory || []), res.payload]
+
+		// eslint-disable-next-line no-console
+		console.log('res', res)
+
+		if (res.event === 'chat' && res.payload.user_id !== user.value?.id)
+			chatStore.newMessage++
+	}).subscribe((status) => {
+		connectionsStatus.value = status
+	})
 })
 </script>
 
@@ -132,8 +130,8 @@ onUnmounted(() => {
 		<ClientOnly>
 			<div ref="chat" class="messages">
 				<RoomChatMessage
-					v-for="messagesGroup in groupMessages(chatMessages.chatHistory || [])" :key="messagesGroup[0]"
-					:data="messagesGroup"
+					v-for="messagesGroup in groupMessages(chatMessages.chatHistory || [])"
+					:key="messagesGroup[0]" :data="messagesGroup"
 				/>
 			</div>
 

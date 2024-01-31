@@ -2,7 +2,7 @@
 import type { RouteRecordName } from '~/types'
 
 interface Props {
-	length: number
+	length?: number
 	title: string
 	to: RouteRecordName
 	all?: boolean

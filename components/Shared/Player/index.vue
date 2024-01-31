@@ -41,7 +41,7 @@ defineExpose({
 
 const PERMISSIONS = {
 	owner: [
-		// 'play-large',
+		'play-large',
 		'play',
 		'progress',
 		'current-time',
@@ -61,7 +61,10 @@ const PERMISSIONS = {
 }
 
 onMounted(() => {
-	const player = new Plyr(videoRef.value as HTMLDivElement, {
+	if (!videoRef.value)
+		return
+
+	const player = new Plyr(videoRef.value, {
 		settings: ['quality', 'speed'],
 		controls: PERMISSIONS[props.isOwner ? 'owner' : 'participant'],
 	})

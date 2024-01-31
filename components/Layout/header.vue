@@ -141,7 +141,7 @@ defineShortcuts({
 
 <style lang="postcss" scoped>
 .header {
-	@apply border-b border-white/5 sm:py-3 w-full space-x-5;
+	@apply border-b border-white/10 sm:py-3 w-full space-x-5;
 
 	.wrapper {
 		@apply max-w-[1700px] mx-auto flex justify-between items-center px-6;
