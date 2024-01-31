@@ -1,6 +1,9 @@
 <script setup lang="ts">
-import { useJoinRoom } from '~/composables/service/room';
+import { useJoinRoom } from '~/composables/service/room'
+import type { TableRows } from '~/server/types'
 import type { Database } from '~/server/types/supabase'
+
+type Participant = TableRows<'participants'>
 
 const route = useRoute<'rooms-id'>()
 const supabase = useSupabaseClient<Database>()
@@ -42,7 +45,7 @@ onMounted(async () => {
 
 		participantsPresence.track(userPresence)
 
-		if (user.value)
+		if (participants.value?.some((participant: Participant) => participant.user_id === user.value?.id) && user.value)
 			useJoinRoom(route.params.id, user.value.id, participants.value.length ? false : isOwner.value)
 	})
 
