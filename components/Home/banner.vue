@@ -37,8 +37,8 @@
 				<NuxtImg
 					class="absolute left-0 top-0 w-[50rem] max-w-none rounded-2xl bg-white/5 ring-1 ring-white/10" quality="50" 
 					src="banner.gif" 
+					fetchpriority="eager"
 					fit="cover"
-					preload
 					alt="App screenshot" width="1824" height="1080"
 				/>
 			</div>

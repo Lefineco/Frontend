@@ -12,6 +12,12 @@ export default defineNuxtConfig({
 				{ charset: 'utf-8' },
 				{ name: 'viewport', content: 'width=device-width,initial-scale=1' },
 			],
+			htmlAttrs: {
+				lang: 'en',
+			},
+			link: [
+				{ rel: 'dns-prefetch', href: 'https://api.fontshare.com' },
+			],
 		},
 	},
 	css: [
@@ -29,6 +35,7 @@ export default defineNuxtConfig({
 		plugins: {
 			'postcss-nested': {},
 			'postcss-mixins': {},
+			'cssnano': {}
 		},
 	},
 	colorMode: {
@@ -51,6 +58,9 @@ export default defineNuxtConfig({
 		'@nuxt/image',
 		'notivue/nuxt',
 		'@nuxtjs/partytown',
+		'@nuxtjs/fontaine',
+		'nuxt-capo',
+		'nuxt-rollbar',
 	],
 	macros: {
 		setupSFC: true,

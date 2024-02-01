@@ -8,7 +8,7 @@ import { PLATFORM } from '~/constants/general'
 			Platforms available on Lefine
 		</h2>
 		<div class="logo-cloud__logos">
-			<UIcon v-for="(name, index) in Object.values(PLATFORM)" :key="index" :name="name" class="w-48 h-8" />
+			<UIcon v-for="(name, index) in Object.values(PLATFORM)" :key="index" :name="name" class="w-28 h-6 mx-auto" />
 		</div>
 	</div>
 </template>
