@@ -1,12 +1,6 @@
 import type { Database } from '~/server/types/supabase'
 import { toast } from '@/composables/helper/toast'
 
-const supabase = useSupabaseClient<Database>()
-
-export function roomChannel(roomId: string) {
-	return supabase.channel(roomId)
-}
-
 export async function useJoinRoom(
 	room_id: string,
 	user_id: string | undefined,
