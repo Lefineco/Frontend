@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-// import type { RealtimeChannel } from '@supabase/supabase-js'
 import { getVideoID } from '~/composables/helper'
 import type { Database } from '~/server/types/supabase'
 
@@ -27,7 +26,7 @@ const { data } = await useAsyncData(
 
 const is_owner = ref(false)
 
-const roomChannel = supabase.channel(route.params.id)
+const roomChannel = supabase.channel(`player_${route.params.id}`)
 
 function onChange() {
 	roomChannel.send({
@@ -56,6 +55,16 @@ function onChange() {
 // 	}
 // })
 
+function getPlayerResponse(data: { current_time: number, on_play: boolean }) {
+	const playerInstance = player.value?.getPlayerInstance()
+
+	if (data.on_play)
+		playerInstance?.play()
+	else playerInstance?.pause()
+
+	playerInstance.currentTime = data.current_time
+}
+
 const playerInstance = watchEffect(() => {
 	if (!player.value?.getPlayerInstance())
 		return false
@@ -68,16 +77,13 @@ const playerInstance = watchEffect(() => {
 onMounted(() => {
 	roomChannel.on('broadcast', {
 		event: 'player',
-	}, (res) => {
-		// eslint-disable-next-line no-console
-		console.log(res)
-	}).subscribe()
+	}, res => getPlayerResponse(res.payload)).subscribe()
 
 	is_owner.value = data.value?.participants?.find(p => p.is_owner)?.profiles?.id === user.value?.id
 })
 
 onUnmounted(() => {
-	supabase.removeChannel(roomChannel)
+	supabase.removeAllChannels()
 	playerInstance()
 })
 </script>
@@ -89,10 +95,8 @@ onUnmounted(() => {
 		<div class="wrapper">
 			<div class="player-container">
 				<ClientOnly>
-					<SharedPlayer
-						ref="player" :type="data?.platform" :video-id="getVideoID(data?.url)"
-						class="h-2/3 rounded-2xl overflow-hidden" :is-owner="is_owner"
-					/>
+					<SharedPlayer ref="player" :type="data?.platform" :video-id="getVideoID(data?.url)"
+						class="h-2/3 rounded-2xl overflow-hidden" :is-owner="is_owner" />
 
 					<template #fallback>
 						<div class="h-2/3 rounded-2xl overflow-hidden w-full bg-white/5 animate-pulse" />

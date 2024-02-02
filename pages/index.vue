@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useGetSupabaseAssetsURL } from '~/composables/helper';
 import { EMPTY_UUID } from '~/constants/general'
 import type { Database } from '~/server/types/supabase'
 import { useGeneralStore } from '~/store'
@@ -22,6 +23,7 @@ const { data: supabaseLefiner } = await supabase
 
 store.rooms = supabaseRooms?.filter(item => item.participants.length > 0).sort((a, b) => a.participants.length - b.participants.length) || []
 store.lefiners = supabaseLefiner?.sort((a, b) => b.follows.length - a.follows.length) || []
+
 </script>
 
 <template>
@@ -36,18 +38,16 @@ store.lefiners = supabaseLefiner?.sort((a, b) => b.follows.length - a.follows.le
 						:key="idx"
 						:data="item"
 					/>
-					<USkeleton v-for="idx in (4 - store.rooms.length)" :key="idx" class="room_skeleton" :style="{opacity: idx * 0.1}" :ui="{ rounded: 'rounded-3xl' }" />
+					<USkeleton v-for="idx in (4 - store.rooms.length)" :key="idx" class="room_skeleton" :style="{ opacity: idx * 0.1 }" :ui="{ rounded: 'rounded-3xl' }" />
 				</template>
 
 				<template v-else>
-					<USkeleton v-for="idx in 4" :key="idx" class="room_skeleton" :style="{opacity: idx * 0.1}" :ui="{ rounded: 'rounded-3xl' }" />
+					<USkeleton v-for="idx in 4" :key="idx" class="room_skeleton" :style="{ opacity: idx * 0.1 }" :ui="{ rounded: 'rounded-3xl' }" />
 				</template>
 			</SharedCategory>
 			<SharedCategory class="px-5" title="Popular Lefiners" to="lefiners" :length="store.lefiners?.length">
 				<SharedCardsProfile
-					v-for="(item, idx) in store.lefiners
-						?.slice(0, 4)
-						.filter((item) => item.id !== user?.id)"
+					v-for="(item, idx) in store.lefiners?.slice(0, 4).filter((item) => item.id !== user?.id)"
 					:key="idx"
 					:data="item"
 				/>
@@ -56,9 +56,8 @@ store.lefiners = supabaseLefiner?.sort((a, b) => b.follows.length - a.follows.le
 	</div>
 </template>
 
-
 <style lang="postcss" scoped>
 .room_skeleton {
-	@apply h-[250px] w-[360px]
+	@apply h-[250px]
 }
 </style>

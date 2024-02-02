@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { useGetSupabaseAssetsURL } from '~/composables/helper';
+
+const banner = await useGetSupabaseAssetsURL('banner.gif')
+</script>
+
 <template>
 	<div class="banner">
 		<div class="banner__wrapper">
@@ -16,9 +22,9 @@
 			</svg>
 			<div class="banner__wrapper__content">
 				<h2 class="title">
-					Sync Your Movie Moments,<br>
-					Experience it<br>
-					Together with Lefine!
+					Sync Your Movie Moments, 
+					<br>
+					Experience Together
 				</h2>
 				<p class="description">
 					Connect with friends around the world thanks to Lefine. Come together with friends from different
@@ -36,7 +42,7 @@
 			<div class="relative mt-36 h-80 lg:mt-8">
 				<NuxtImg
 					class="absolute left-0 top-0 w-[50rem] max-w-none rounded-2xl bg-white/5 ring-1 ring-white/10" quality="50" 
-					src="banner.gif" 
+					:src="banner" 
 					fetchpriority="eager"
 					fit="cover"
 					alt="App screenshot" width="1824" height="1080"

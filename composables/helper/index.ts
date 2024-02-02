@@ -1,6 +1,7 @@
 import type { Maybe } from '@0fatihyildiz/fast-ts-utilities'
 import type { VerticalNavigationLink } from '#ui/types'
 import { VIMEO_REGEXP, YOUTUBE_REGEXP } from '~/constants/regexp'
+import type { Database } from '~/server/types/supabase'
 
 function checkVideoPlatform(url: string): boolean {
 	return YOUTUBE_REGEXP.test(url) || VIMEO_REGEXP.test(url)
@@ -52,21 +53,31 @@ function useGetFromAndTo(page: number, ITEMS_PER_PAGE: number) {
 	return { from, to }
 }
 
-
 async function useImageIsLoaded(src: string): Promise<boolean> {
 	return new Promise((resolve) => {
-		const img = document.createElement('img');
+		const img = document.createElement('img')
 
 		img.onload = () => {
-			resolve(true);
-		};
+			resolve(true)
+		}
 
 		img.onerror = () => {
-			resolve(false);
-		};
+			resolve(false)
+		}
 
-		img.src = src;
-	});
+		img.src = src
+	})
 }
 
-export { checkVideoPlatform, navigationLinks, getVideoID, useImageIsLoaded, useGetFromAndTo }
+async function useGetSupabaseAssetsURL(fileName: string): Promise<string> {
+	const supabase = useSupabaseClient<Database>()
+
+	const { data } = supabase
+		.storage
+		.from('assets')
+		.getPublicUrl(fileName)
+
+	return data.publicUrl
+}
+
+export { checkVideoPlatform, navigationLinks, getVideoID, useImageIsLoaded, useGetFromAndTo, useGetSupabaseAssetsURL }

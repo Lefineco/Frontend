@@ -3,15 +3,14 @@ import { useJoinRoom } from '~/composables/service/room'
 import type { TableRows } from '~/server/types'
 import type { Database } from '~/server/types/supabase'
 
-type Participant = TableRows<'participants'>
-
 const route = useRoute<'rooms-id'>()
 const supabase = useSupabaseClient<Database>()
 const user = useSupabaseUser()
 const participants = ref()
+const myPresence = ref()
 const isOwner = ref(false)
 
-const participantsPresence = supabase.channel(route.params.id)
+const participantsPresence = supabase.channel(`presence_${route.params.id}`)
 
 const userPresence = {
 	user_id: user.value?.id,
@@ -33,6 +32,7 @@ onMounted(async () => {
 			.filter('room_id', 'eq', route.params.id)
 			.single()
 
+		myPresence.value = data
 		isOwner.value = Boolean(data?.is_owner)
 	}
 
@@ -45,8 +45,8 @@ onMounted(async () => {
 
 		participantsPresence.track(userPresence)
 
-		if (participants.value?.some((participant: Participant) => participant.user_id === user.value?.id) && user.value)
-			useJoinRoom(route.params.id, user.value.id, participants.value.length ? false : isOwner.value)
+		if (!myPresence.value)
+			useJoinRoom(route.params.id, user.value?.id, (isOwner.value ? true : !participants.value?.length))
 	})
 
 	window.addEventListener('unload', () => {
@@ -64,7 +64,7 @@ onUnmounted(() => {
 		<template v-for="participant in participants" :key="participant.presence_ref">
 			<UAvatar
 				v-if="participant.profiles" size="sm" :src="participant.profiles.avatar_url || ''"
-				:alt="participant.profiles.full_name || ''"
+				:alt="participant.profiles.name || ''"
 			/>
 		</template>
 	</UAvatarGroup>

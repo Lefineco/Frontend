@@ -74,10 +74,6 @@ export default defineNuxtConfig({
 			},
 		},
 	},
-	rollbar: {
-		clientAccessToken: 'bacea743efbe4479851fbb3b55db48ba',
-		mode: 'client',
-	},
 	ui: {
 		icons: {
 			// might solve stretch bug on generate, see https://github.com/egoist/tailwindcss-icons/issues/23
@@ -107,6 +103,7 @@ export default defineNuxtConfig({
 	experimental: {
 		typedPages: true,
 		treeshakeClientOnly: true,
+		sharedPrerenderData: true,
 	},
 	typescript: {
 		strict: true,
