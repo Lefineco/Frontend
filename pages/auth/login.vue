@@ -10,8 +10,6 @@ definePageMeta({
 	// middleware: 'auth',
 })
 
-const { signIn } = useAuth()
-const { loading, makeAsyncOperation } = useAsync()
 const supabase = useSupabaseClient()
 
 const form = ref<Form<LoginSchema> | null>(null)
@@ -19,14 +17,9 @@ const values = ref<Partial<LoginSchema>>({
 	email: undefined,
 	password: undefined,
 })
-
 async function onSubmit() {
 	await form.value?.validate()
-	makeAsyncOperation(async () => {
-		await signIn(values.value as LoginSchema)
-	})
 }
-
 function signInWithGoogle() {
 	supabase.auth.signInWithOAuth({
 		provider: 'google',
@@ -93,7 +86,7 @@ function signInWithGoogle() {
 				</NuxtLink>
 			</div>
 
-			<UButton label="Sign In" block type="submit" :loading="loading" />
+			<UButton label="Sign In" block type="submit" />
 		</div>
 	</UForm>
 </template>
