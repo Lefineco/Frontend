@@ -2,6 +2,6 @@
 	<div>
 		<LayoutHeader />
 		<slot />
+		<LayoutFooter />
 	</div>
-	<!-- <LayoutFooter /> -->
 </template>

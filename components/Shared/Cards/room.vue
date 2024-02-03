@@ -30,7 +30,10 @@ onMounted(async () => {
 </script>
 
 <template>
-	<UButton class="button" variant="ghost" color="white" @click="router.push(`/rooms/${props.data.id}`)">
+	<UButton class="button group" variant="ghost" color="white" @click="router.push(`/rooms/${props.data.id}`)">
+		<span class="transition-opacity duration-300 opacity-0 group-hover:opacity-100 pointer-events-none absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-4">
+			<UIcon name="i-ph-play-fill" class="w-8 h-8" />
+		</span>
 		<div class="button-header">
 			<div class="button-info-container">
 				<UAvatar :src="owner?.profiles?.avatar_url || ''" size="xs" :alt="ownerName" class="user-avatar" />

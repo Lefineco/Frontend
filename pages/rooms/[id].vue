@@ -39,24 +39,12 @@ function onChange() {
 	})
 }
 
-// const realtimeResponseWatch = watch(realtimeResponse, () => {
-// 	if (realtimeResponse.value?.on_play !== undefined && !is_owner) {
-// 		const playerInstance = player.value?.getPlayerInstance()
-
-// 		if (realtimeResponse.value.on_play)
-// 			playerInstance.play()
-// 		else playerInstance.pause()
-// 	}
-
-// 	if (realtimeResponse.value?.current_time !== undefined && !is_owner) {
-// 		const playerInstance = player.value?.getPlayerInstance()
-
-// 		playerInstance.currentTime = realtimeResponse.value.current_time
-// 	}
-// })
 
 function getPlayerResponse(data: { current_time: number, on_play: boolean }) {
 	const playerInstance = player.value?.getPlayerInstance()
+
+	if (is_owner.value)
+		return
 
 	if (data.on_play)
 		playerInstance?.play()
@@ -95,8 +83,10 @@ onUnmounted(() => {
 		<div class="wrapper">
 			<div class="player-container">
 				<ClientOnly>
-					<SharedPlayer ref="player" :type="data?.platform" :video-id="getVideoID(data?.url)"
-						class="h-2/3 rounded-2xl overflow-hidden" :is-owner="is_owner" />
+					<SharedPlayer
+						ref="player" :type="data?.platform" :video-id="getVideoID(data?.url)"
+						class="h-2/3 rounded-2xl overflow-hidden" :is-owner="is_owner"
+					/>
 
 					<template #fallback>
 						<div class="h-2/3 rounded-2xl overflow-hidden w-full bg-white/5 animate-pulse" />

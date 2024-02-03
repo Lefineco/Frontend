@@ -87,7 +87,7 @@ export default defineNuxtConfig({
 						...platform,
 					},
 				},
-				...getIconCollections(['ph', 'logos']),
+				...getIconCollections(['ph', 'logos', 'simple-icons']),
 			},
 		},
 	},
