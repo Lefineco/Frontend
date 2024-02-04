@@ -1,3 +1,4 @@
+import alert from './alert'
 import button from './button'
 import input from './input'
 import textarea from './textarea'
@@ -13,6 +14,7 @@ import popover from './popover'
 import kbd from './kbd'
 
 export default {
+	alert,
 	button,
 	input,
 	textarea,

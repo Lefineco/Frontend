@@ -5,8 +5,6 @@ computed(() => {
 	if (user.value)
 		reloadNuxtApp({ force: true })
 })
-
-
 </script>
 
 <template>

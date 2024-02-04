@@ -37,7 +37,7 @@ const FOOTER_URLS = [
 
 <style lang="postcss" scoped>
 .footer {
-  @apply mt-32 flex-none;
+  @apply mt-32 flex-none order-last;
 
   &__wrapper {
     @apply mx-auto w-full;

@@ -3,29 +3,18 @@ import type { ForgotPasswordEmailSchema, ForgotPasswordSchema, LoginSchema, Regi
 
 function useAuth() {
 	const supabase = useSupabaseClient()
-	const toast = useToast()
 	const router = useRouter()
 	const loading = ref(false)
 
-	const errorToast = (error: AuthError | null) => {
-		return toast.add({
-			id: 'error',
-			title: error?.name,
-			description: error?.message,
-			icon: 'i-octicon-desktop-download-24',
-			timeout: 2000,
-			color: 'red',
-		})
-	}
+	const errorToast = (error: AuthError | null) => push.error({
+		title: error?.name,
+		message: error?.message,
+	})
 
-	const successToast = (title: string) =>
-		toast.add({
-			id: 'success',
-			title,
-			icon: 'i-octicon-desktop-download-24',
-			timeout: 2000,
-			color: 'green',
-		})
+	const successToast = (title: string) => push.success({
+		title,
+		message: 'Welcome back!',
+	})
 
 	const signIn = async (payload: LoginSchema) => {
 		loading.value = true

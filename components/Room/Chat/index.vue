@@ -59,21 +59,17 @@ async function sendMessage(message: string) {
 		return false
 
 	if (!user.value) {
-		// eslint-disable-next-line no-console
-		return console.log(
-			'You must be logged in to send a message',
-			'Please login and try again',
-			'error',
-		)
+		return push.error({
+			title: 'You must be logged in to send a message',
+			message: 'Please login and try again',
+		})
 	}
 
 	if (message.length > 500) {
-		// eslint-disable-next-line no-console
-		return console.log(
-			'Your message is too long',
-			'Please shorten your message and try again',
-			'error',
-		)
+		return push.error({
+			title: 'Your message is too long',
+			message: 'Please shorten your message and try again',
+		})
 	}
 
 	const payload = {
