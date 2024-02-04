@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import { useGetSupabaseAssetsURL } from '~/composables/helper';
+import { push } from 'notivue'
+import { useGetSupabaseAssetsURL } from '~/composables/helper'
 
-const banner = await useGetSupabaseAssetsURL('banner.gif')
+const hero = await useGetSupabaseAssetsURL('banner.gif')
 </script>
 
 <template>
-	<div class="banner">
-		<div class="banner__wrapper">
+	<div class="hero">
+		<div class="hero__wrapper">
 			<svg
 				viewBox="0 0 1024 1024"
-				class="banner__wrapper__background"
+				class="hero__wrapper__background"
 				aria-hidden="true"
 			>
 				<circle cx="512" cy="512" r="512" fill="url(#759c1415-0410-454c-8f7c-9a820de03641)" fill-opacity="0.7" />
@@ -20,9 +21,9 @@ const banner = await useGetSupabaseAssetsURL('banner.gif')
 					</radialGradient>
 				</defs>
 			</svg>
-			<div class="banner__wrapper__content">
+			<div class="hero__wrapper__content">
 				<h2 class="title">
-					Sync Your Movie Moments, 
+					Sync Your Movie Moments,
 					<br>
 					Experience Together
 				</h2>
@@ -34,27 +35,33 @@ const banner = await useGetSupabaseAssetsURL('banner.gif')
 					<UButton color="white" variant="soft" size="md" to="/rooms">
 						Explore Rooms
 					</UButton>
-					<UButton variant="link" size="md" color="white">
+					<UButton
+						variant="link" size="md" color="white" @click="push.promise({
+							
+							title: 'Coming Soon',
+							message: 'This feature is coming soon!',
+						})"
+					>
 						Create Room
 					</UButton>
 				</div>
 			</div>
 			<div class="relative mt-36 h-80 lg:mt-8">
 				<NuxtImg
-					class="absolute left-0 top-0 w-[50rem] max-w-none rounded-2xl bg-white/5 ring-1 ring-white/10" quality="50" 
-					:src="banner" 
+					class="absolute left-0 top-0 w-[50rem] max-w-none rounded-2xl bg-white/5 ring-1 ring-white/10" quality="50"
+					:src="hero"
 					fetchpriority="eager"
 					fit="cover"
 					alt="App screenshot" width="1824" height="1080"
 				/>
 			</div>
 		</div>
-		<hr class="banner__divider">
+		<hr class="hero__divider">
 	</div>
 </template>
 
 <style lang="postcss" scoped>
-.banner {
+.hero {
 	@apply mx-auto sm:px-6 lg:px-4 pt-6 pb-24;
 
 	&__wrapper {
@@ -64,7 +71,7 @@ const banner = await useGetSupabaseAssetsURL('banner.gif')
 			@apply mx-auto max-w-xl text-center lg:mx-0 lg:flex-auto lg:py-24 lg:text-left;
 
 			.title {
-				@apply text-3xl font-bold !leading-[1.2] tracking-tight text-white sm:text-5xl;
+				@apply bg-clip-text text-transparent bg-gradient-to-b from-white to-primary-500 text-3xl font-bold !leading-[1.2] tracking-tight sm:text-5xl;
 			}
 
 			.description {

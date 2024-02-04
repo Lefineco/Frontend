@@ -23,12 +23,11 @@ const { data: supabaseLefiner } = await supabase
 
 store.rooms = supabaseRooms?.filter(item => item.participants.length > 0).sort((a, b) => a.participants.length - b.participants.length) || []
 store.lefiners = supabaseLefiner?.sort((a, b) => b.follows.length - a.follows.length) || []
-
 </script>
 
 <template>
 	<div class="page">
-		<HomeBanner />
+		<HomeHero />
 		<HomeLogoCloud />
 		<div class="flex flex-col gap-12 pt-48">
 			<SharedCategory class="px-5" title="Popular Live Rooms" to="rooms" :length="store.rooms?.length">
