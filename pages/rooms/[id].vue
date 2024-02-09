@@ -83,10 +83,12 @@ onUnmounted(() => {
 		<div class="wrapper">
 			<div class="player-container">
 				<ClientOnly>
-					<SharedPlayer
+					<!-- <RoomPlayer
 						ref="player" :type="data?.platform" :video-id="getVideoID(data?.url)"
 						class="h-2/3 rounded-2xl overflow-hidden" :is-owner="is_owner"
-					/>
+					/> -->
+
+					<RoomPlayer :id="getVideoID(data?.url)" :type="data?.platform" />
 
 					<template #fallback>
 						<div class="h-2/3 rounded-2xl overflow-hidden w-full bg-white/5 animate-pulse" />
@@ -123,7 +125,7 @@ onUnmounted(() => {
 		@apply flex overflow-hidden h-full w-full p-6 gap-8;
 
 		.player-container {
-			@apply h-full w-2/3 overflow-hidden;
+			@apply h-full w-2/3;
 		}
 
 		.chat-container {

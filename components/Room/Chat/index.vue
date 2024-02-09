@@ -13,7 +13,13 @@ export interface Chat {
 	loading: boolean
 }
 
+interface Props {
+	preview?: boolean
+}
+
 export type GroupedMessages = [string, Chat[]]
+
+defineProps<Props>()
 
 const supabase = useSupabaseClient<Database>()
 const user = useSupabaseUser()
@@ -122,7 +128,7 @@ onMounted(() => {
 </script>
 
 <template>
-	<div class="chat">
+	<div class="chat" :class="{preview}">
 		<ClientOnly>
 			<div ref="chat" class="messages">
 				<RoomChatMessage
@@ -132,7 +138,7 @@ onMounted(() => {
 			</div>
 
 			<RoomChatScrollAction v-if="chat" :chat-instance="chat" />
-			<RoomChatInput :send-message="sendMessage" />
+			<RoomChatInput v-if="!preview" :send-message="sendMessage" />
 		</ClientOnly>
 	</div>
 </template>
@@ -147,6 +153,11 @@ onMounted(() => {
 		.loadMore {
 			@apply relative left-1/2 -translate-x-1/2 z-10 rounded-full;
 		}
+	}
+
+
+	&.preview {
+		@apply absolute z-10 pointer-events-none;
 	}
 }
 </style>
