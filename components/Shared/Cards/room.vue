@@ -36,7 +36,7 @@ onMounted(async () => {
 		</span>
 		<div class="button-header">
 			<div class="button-info-container">
-				<UAvatar :src="owner?.profiles?.avatar_url || ''" size="xs" :alt="ownerName" class="user-avatar" />
+				<UAvatar :src="owner?.profiles?.avatar_url || ''" size="xs" :alt="ownerName" />
 				<span class="provide-text">
 					<span class="provide-text-user-name">Provide by</span>
 					{{ ownerName.split(' ')[0] }}
@@ -73,10 +73,6 @@ onMounted(async () => {
 	.button-info-container {
 		@apply flex items-center justify-center gap-3;
 	}
-}
-
-.user-avatar {
-	@apply relative border border-white z-10
 }
 
 .provide-text {
