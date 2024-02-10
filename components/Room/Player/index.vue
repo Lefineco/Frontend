@@ -4,7 +4,7 @@ import 'vidstack/player'
 import 'vidstack/player/ui'
 import 'vidstack/icons'
 
-import { type MediaCanPlayEvent, type MediaProviderChangeEvent, isHLSProvider } from 'vidstack'
+import { type MediaCanPlayEvent, type MediaProviderChangeEvent, MediaRemoteControl, isHLSProvider } from 'vidstack'
 import type { MediaPlayerElement } from 'vidstack/elements'
 
 const props = defineProps<{
@@ -13,6 +13,8 @@ const props = defineProps<{
 }>()
 
 let src: string
+
+// const remote = new MediaRemoteControl()
 
 switch (props.type) {
 	case 'VIMEO':
@@ -24,22 +26,23 @@ switch (props.type) {
 		break
 }
 
-
 const $player = ref<MediaPlayerElement>()
 
 function onProviderChange(event: MediaProviderChangeEvent) {
 	const provider = event.detail
-	// We can configure provider's here.
+
 	if (isHLSProvider(provider))
 		provider.config = {}
 }
-
-// We can listen for the `can-play` event to be notified when the player is ready.
 
 function onCanPlay(event: MediaCanPlayEvent) {
 	// eslint-disable-next-line no-console
 	console.log('The player is ready to play', event)
 }
+
+onMounted(() => {
+
+})
 
 onUnmounted(() => {
 	$player.value?.destroy()
@@ -48,11 +51,12 @@ onUnmounted(() => {
 
 <template>
 	<media-player
-		ref="$player"
-		keep-alive class="media-player"
 		v-if="src"
+		ref="$player" keep-alive
+		class="media-player"
 		:src="src"
 		@provider-change="onProviderChange" @can-play="onCanPlay"
+		:picture-in-picture="false"
 	>
 		<media-provider>
 			<media-poster

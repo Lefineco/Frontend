@@ -30,7 +30,7 @@ const KEY = props.data.full_name || props.data.id
 </script>
 
 <template>
-	<div class="profile-container">
+	<UButton class="profile-container" variant="link" color="white">
 		<div class="profile-card" :style="{ background: `linear-gradient(${SECONDARY[key(KEY)]}, ${PRIMARY[key(KEY)]})` }">
 			<!-- TODO: supabase col -->
 			<!-- <img class="h-full w-full object-cover rounded-[20px]" src="https://images.unsplash.com/photo-1693697117720-c5e098ecf350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"> -->
@@ -60,12 +60,12 @@ const KEY = props.data.full_name || props.data.id
 				</template>
 			</ClientOnly>
 		</div>
-	</div>
+	</UButton>
 </template>
 
 <style lang="postcss" scoped>
 .profile-container {
-	@apply relative h-36 w-full flex flex-col items-center justify-center rounded-[20px]
+	@apply relative p-0 h-36 w-full flex flex-col items-center justify-center rounded-[20px]
 }
 
 .profile-card {

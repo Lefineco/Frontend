@@ -1,6 +1,6 @@
 import { getIconCollections } from '@egoist/tailwindcss-icons'
+import { vite as vidstack } from 'vidstack/plugins'
 import platform from './composables/icons/platform'
-import { vite as vidstack } from 'vidstack/plugins';
 
 export default defineNuxtConfig({
 	app: {
@@ -28,7 +28,6 @@ export default defineNuxtConfig({
 	},
 	css: [
 		'~/assets/styles/main.css',
-		'plyr/dist/plyr.css',
 		'notivue/notifications.css',
 		'notivue/animations.css',
 	],

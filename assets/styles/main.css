@@ -6,55 +6,57 @@
 * {
   @apply font-['Satoshi',sans-serif];
 }
-html,
+
+html {
+  background: radial-gradient(
+    49.1% 52.07% at 95.73% 0%,
+    rgba(69, 5, 150, 0.1) 0%,
+    rgba(69, 5, 150, 0) 100%
+  ),
+  radial-gradient(
+    51.81% 64.89% at 9.39% 17.56%,
+    rgba(69, 5, 150, 0.1) 0%,
+    rgba(69, 5, 150, 0) 100%
+  ),
+  radial-gradient(
+    70.77% 73.42% at 98.67% 105.72%,
+    rgba(69, 5, 150, 0.1) 0%,
+    rgba(69, 5, 150, 0) 100%
+  ),
+  radial-gradient(
+    50.46% 63.85% at 0% 124.2%,
+    rgba(69, 5, 150, 0.05) 0%,
+    rgba(69, 5, 150, 0) 100%
+  ),
+  #000;
+background: radial-gradient(
+    49.1% 52.07% at 95.73% 0%,
+    rgba(69, 5, 150, 0.1) 0%,
+    rgba(69, 5, 150, 0) 100%
+  ),
+  radial-gradient(
+    51.81% 64.89% at 9.39% 17.56%,
+    rgba(69, 5, 150, 0.1) 0%,
+    rgba(69, 5, 150, 0) 100%
+  ),
+  radial-gradient(
+    70.77% 73.42% at 98.67% 105.72%,
+    rgba(69, 5, 150, 0.1) 0%,
+    rgba(69, 5, 150, 0) 100%
+  ),
+  radial-gradient(
+    50.46% 63.85% at 0% 124.2%,
+    rgba(69, 5, 150, 0.05) 0%,
+    rgba(69, 5, 150, 0) 100%
+  ),
+  #000;
+background-repeat: no-repeat;
+background-size: 100% 100%;
+}
+
 body,
 #lefine {
-  @apply h-full w-full bg-black;
-  background: radial-gradient(
-      49.1% 52.07% at 95.73% 0%,
-      rgba(69, 5, 150, 0.1) 0%,
-      rgba(69, 5, 150, 0) 100%
-    ),
-    radial-gradient(
-      51.81% 64.89% at 9.39% 17.56%,
-      rgba(69, 5, 150, 0.1) 0%,
-      rgba(69, 5, 150, 0) 100%
-    ),
-    radial-gradient(
-      70.77% 73.42% at 98.67% 105.72%,
-      rgba(69, 5, 150, 0.1) 0%,
-      rgba(69, 5, 150, 0) 100%
-    ),
-    radial-gradient(
-      50.46% 63.85% at 0% 124.2%,
-      rgba(69, 5, 150, 0.05) 0%,
-      rgba(69, 5, 150, 0) 100%
-    ),
-    #000;
-  background: radial-gradient(
-      49.1% 52.07% at 95.73% 0%,
-      rgba(69, 5, 150, 0.1) 0%,
-      rgba(69, 5, 150, 0) 100%
-    ),
-    radial-gradient(
-      51.81% 64.89% at 9.39% 17.56%,
-      rgba(69, 5, 150, 0.1) 0%,
-      rgba(69, 5, 150, 0) 100%
-    ),
-    radial-gradient(
-      70.77% 73.42% at 98.67% 105.72%,
-      rgba(69, 5, 150, 0.1) 0%,
-      rgba(69, 5, 150, 0) 100%
-    ),
-    radial-gradient(
-      50.46% 63.85% at 0% 124.2%,
-      rgba(69, 5, 150, 0.05) 0%,
-      rgba(69, 5, 150, 0) 100%
-    ),
-    #000;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-
+  @apply h-full;
 }
 
 .layout {
@@ -62,7 +64,7 @@ body,
 }
 
 .page {
-  @apply w-full mx-auto max-w-[1700px] px-2 pt-5 after:content-[''] after:pb-24;
+  @apply w-full mx-auto max-w-[1700px] px-2 pt-5 after:content-[''] after:pb-24 min-h-[80vh];
 }
 
 .no-scrollbar::-webkit-scrollbar {

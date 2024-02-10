@@ -30,7 +30,7 @@ async function onSubmit(e: FormSubmitEvent<ForgotPasswordEmailSchema>) {
 	<UForm
 		:schema="forgotPasswordEmailSchema"
 		:state="values"
-		class="relative w-full h-full flex flex-col items-center justify-center text-white z-0"
+		class="relative w-full flex flex-col items-center justify-center text-white z-0 h-[100vh]"
 		@submit.prevent="onSubmit"
 	>
 		<NuxtLink to="/" class="mx-auto absolute top-20">

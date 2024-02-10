@@ -23,7 +23,6 @@
 		"media-icons": "^1.0.0",
 		"node-fetch": "^3.3.2",
 		"notivue": "^2.1.1",
-		"plyr": "^3.7.8",
 		"vidstack": "^1.10.5",
 		"zod": "^3.22.2"
 	},

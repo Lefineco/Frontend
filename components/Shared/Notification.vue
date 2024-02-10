@@ -2,7 +2,7 @@
 import type { NotificationType } from 'notivue'
 
 interface StatusItem {
-	color: string
+	color: 'green' | 'red' | 'blue' | 'yellow' | 'white'
 	icon: string
 }
 
@@ -50,9 +50,9 @@ const STATUS: Status = {
 			:icon="STATUS[item.type].icon" 
 			:close-button="{
 				icon: 'i-ph-x',
-				color: 'gray',
-				variant: 'ghost',
-			}" 
+				color: 'white',
+				variant: 'soft',
+			}"
 			@close="item.destroy"
 		>
 			<template #description>
