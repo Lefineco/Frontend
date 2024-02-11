@@ -64,8 +64,6 @@ export default defineNuxtConfig({
 		'notivue/nuxt',
 		'@nuxtjs/partytown',
 		'@nuxtjs/fontaine',
-		'nuxt-capo',
-		'nuxt-rollbar',
 	],
 	macros: {
 		setupSFC: true,

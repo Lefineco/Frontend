@@ -46,7 +46,7 @@ onMounted(async () => {
 		participantsPresence.track(userPresence)
 
 		if (!myPresence.value)
-			useJoinRoom(route.params.id, user.value?.id, (isOwner.value ? true : !participants.value?.length))
+			useJoinRoom(route.params.id, user.value?.id, isOwner.value)
 	})
 
 	window.addEventListener('unload', () => {

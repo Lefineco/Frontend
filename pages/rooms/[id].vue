@@ -1,7 +1,9 @@
 <script lang="ts" setup>
+import { MediaRemoteControl } from 'vidstack'
+import type { MediaPlayerElement } from 'vidstack/elements'
 import { getVideoID } from '~/composables/helper'
 import type { Database } from '~/server/types/supabase'
-import { usePlayerStore } from '~/store/player';
+import { usePlayerStore } from '~/store/player'
 
 definePageMeta({
 	layout: 'blank',
@@ -27,37 +29,42 @@ const { data } = await useAsyncData(
 
 const roomChannel = supabase.channel(`player_${route.params.id}`)
 
-// function onChange() {
-// 	roomChannel.send({
-// 		type: 'broadcast',
-// 		event: 'player',
-// 		payload: {
-// 			on_play: player.value?.getPlayerInstance().playing,
-// 			current_time: player.value?.getPlayerInstance().currentTime,
-// 		},
-// 	})
-// }
-
-
-function getPlayerResponse(_data: { current_time: number, on_play: boolean }) {
-
-	// if (playerStore.isOwner)
-	// 	return
-
-	// if (data.on_play)
-	// 	playerInstance?.play()
-	// else playerInstance?.pause()
-
-	// playerInstance.currentTime = data.current_time
+function onChange({ play, currentTime }: { play: boolean, currentTime: number }) {
+	roomChannel.send({
+		type: 'broadcast',
+		event: 'player',
+		payload: {
+			on_play: play,
+			current_time: currentTime,
+		},
+	})
 }
 
+let isPaused = true
+
+function getPlayerResponse(data: { current_time: number, on_play: boolean }) {
+	if (playerStore.isOwner)
+		return
+
+	if (data.on_play) {
+		playerStore.remote?.play()
+		isPaused = false
+	}
+	else {
+		playerStore.remote?.pause()
+		isPaused = true
+	}
+
+	if (isPaused)
+		playerStore.remote?.seek(data.current_time)
+}
 
 onMounted(() => {
 	roomChannel.on('broadcast', {
 		event: 'player',
 	}, res => getPlayerResponse(res.payload)).subscribe()
 
-	playerStore.isOwner = data.value?.participants?.find(p => p.is_owner)?.profiles?.id === user.value?.id
+	playerStore.isOwner = data.value?.participants.find(p => p.is_owner)?.profiles?.id === user.value?.id
 })
 
 onUnmounted(() => {
@@ -72,7 +79,10 @@ onUnmounted(() => {
 		<div class="wrapper">
 			<div class="player-container">
 				<ClientOnly>
-					<RoomPlayer :id="getVideoID(data?.url)" :type="data?.platform" />
+					<RoomPlayer
+						:id="getVideoID(data?.url)" :type="data?.platform" :thumbnail="data?.thumbnail"
+						@change="onChange"
+					/>
 
 					<template #fallback>
 						<div class="h-2/3 rounded-2xl overflow-hidden w-full bg-white/5 animate-pulse" />
@@ -103,7 +113,7 @@ onUnmounted(() => {
 
 <style lang="postcss" scoped>
 .room-page {
-	@apply flex flex-col h-[100vh] w-full ;
+	@apply flex flex-col h-[100vh] w-full;
 
 	.wrapper {
 		@apply max-w-[1700px] mx-auto flex overflow-hidden h-full w-full p-6 gap-8;

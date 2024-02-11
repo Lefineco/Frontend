@@ -19,11 +19,11 @@ const { thumbnails } = defineProps<{
 			<RoomPlayerActionsMuteButton tooltip-placement="top" />
 			<RoomPlayerSlidersVolumeSlider />
 			<RoomPlayerSharedTimeGroup />
-			<RoomPlayerSharedChapterTitle />
+			<RoomPlayerSharedEventsListener />
 			<div class="flex-1" />
 			<RoomPlayerActionsCaptionButton tooltip-placement="top" />
-			<!-- <RoomPlayerMenusSettingsMenu placement="top end" tooltip-placement="top" />
-			<RoomPlayerActionsPIPButton tooltip-placement="top" /> -->
+			<!-- <RoomPlayerMenusSettingsMenu placement="top end" tooltip-placement="top" /> -->
+			<RoomPlayerActionsPIPButton tooltip-placement="top" />
 			<RoomPlayerActionsFullscreenButton tooltip-placement="top end" />
 		</media-controls-group>
 	</media-controls>

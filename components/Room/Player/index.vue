@@ -4,17 +4,25 @@ import 'vidstack/player'
 import 'vidstack/player/ui'
 import 'vidstack/icons'
 
-import { type MediaCanPlayEvent, type MediaProviderChangeEvent, MediaRemoteControl, isHLSProvider } from 'vidstack'
+import { type MediaCanPlayEvent, MediaRemoteControl } from 'vidstack'
 import type { MediaPlayerElement } from 'vidstack/elements'
+import { usePlayerStore } from '~/store/player'
 
 const props = defineProps<{
 	id: string | null
 	type: string | undefined
+	thumbnail: string | undefined | null
+	onChange?: (event: { play: boolean, currentTime: number }) => void
 }>()
 
 let src: string
 
-// const remote = new MediaRemoteControl()
+const $player = ref<MediaPlayerElement>()
+
+const playerStore = usePlayerStore()
+const brandColor = computed(() => playerStore.isOwner ? '#8b5cf6' : 'rgba(255, 255, 255, 0.5)')
+
+const remote = new MediaRemoteControl()
 
 switch (props.type) {
 	case 'VIMEO':
@@ -26,23 +34,15 @@ switch (props.type) {
 		break
 }
 
-const $player = ref<MediaPlayerElement>()
+async function onCanPlay(event: MediaCanPlayEvent) {
+	$player.value?.subscribe(({ playing, currentTime }) => {
+		if (props.onChange)
+			props.onChange({ play: playing, currentTime })
+	})
 
-function onProviderChange(event: MediaProviderChangeEvent) {
-	const provider = event.detail
-
-	if (isHLSProvider(provider))
-		provider.config = {}
+	remote.setPlayer(event.target)
+	playerStore.remote = remote
 }
-
-function onCanPlay(event: MediaCanPlayEvent) {
-	// eslint-disable-next-line no-console
-	console.log('The player is ready to play', event)
-}
-
-onMounted(() => {
-
-})
 
 onUnmounted(() => {
 	$player.value?.destroy()
@@ -51,16 +51,13 @@ onUnmounted(() => {
 
 <template>
 	<media-player
-		v-if="src"
-		ref="$player" keep-alive
-		class="media-player"
-		:src="src"
-		@provider-change="onProviderChange" @can-play="onCanPlay"
-		:picture-in-picture="false"
+		v-if="src" ref="$player" keep-alive class="media-player" :src="src" :picture-in-picture="false"
+		@can-play="onCanPlay"
 	>
 		<media-provider>
 			<media-poster
 				class="absolute inset-0 block h-full w-full rounded-md opacity-0 transition-opacity data-[visible]:opacity-100 [&>img]:h-full [&>img]:w-full [&>img]:object-cover"
+				:src="thumbnail"
 			/>
 		</media-provider>
 
@@ -74,6 +71,6 @@ onUnmounted(() => {
 }
 
 .bg-media-brand {
-	@apply bg-primary-400
+	background: v-bind(brandColor);
 }
 </style>

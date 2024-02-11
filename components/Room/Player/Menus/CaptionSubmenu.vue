@@ -1,5 +1,5 @@
 <template>
-    <Submenu label="Captions">
+    <RoomPlayerMenusSubmenu label="Captions">
         <template #icon>
             <media-icon class="h-5 w-5" type="closed-captions" />
         </template>
@@ -11,5 +11,5 @@
                 </template>
             </media-captions-radio-group>
         </template>
-    </Submenu>
+    </RoomPlayerMenusSubmenu>
 </template>

@@ -49,8 +49,6 @@
 		"eslint": "npm:eslint-ts-patch@8.56.0-0",
 		"eslint-ts-patch": "8.56.0-0",
 		"nuxt": "^3.10.0",
-		"nuxt-capo": "^0.1.0",
-		"nuxt-rollbar": "^0.2.0",
 		"postcss-mixins": "^9.0.4",
 		"puppeteer": "^21.6.1",
 		"supabase": "^1.123.4",

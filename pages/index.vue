@@ -21,7 +21,7 @@ const { data: supabaseLefiner } = await supabase
 	.neq('full_name', null)
 	.neq('id', (user.value?.id || EMPTY_UUID))
 
-store.rooms = supabaseRooms?.filter(item => item.participants.length > 0).sort((a, b) => a.participants.length - b.participants.length) || []
+store.rooms = supabaseRooms?.filter(item => item.participants.length > 1).sort((a, b) => a.participants.length - b.participants.length) || []
 store.lefiners = supabaseLefiner?.sort((a, b) => b.follows.length - a.follows.length) || []
 </script>
 
