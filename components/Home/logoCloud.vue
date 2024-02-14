@@ -18,7 +18,7 @@ import { PLATFORM } from '~/constants/general'
 	@apply mx-auto max-w-5xl px-6 lg:px-8;
 
 	&__title {
-		@apply text-center text-lg font-semibold leading-8 opacity-40;
+		@apply text-center text-base font-semibold leading-8 opacity-40;
 	}
 
 	&__logos {

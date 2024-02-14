@@ -56,6 +56,8 @@
 		{ "rule": "*semi", "severity": "off" }
 	],
 
+	"html.customData": ["./node_modules/vidstack/vscode.html-data.json"],
+
 	// Enable eslint for all supported languages
 	"eslint.validate": [
 		"javascript",

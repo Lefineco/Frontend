@@ -26,35 +26,31 @@ const data2 = [
 </script>
 
 <template>
-	<div class="page flex gap-5">
+	<div class="page --community">
 		<div class="community-box">
 			<FeedsFormCreate />
 			<template v-for="(item, idx) in data2">
-				<Feeds
-					v-if="item"
-					:key="idx" 
-					:data="item"
-				/>
+				<Feeds v-if="item" :key="idx" :data="item" />
 			</template>
 		</div>
 		<div class="user-container">
-			<div class="user-box">
-				<SharedCardsProfile v-for="(item, idx) in store.lefiners?.slice(0, 4)" :key="idx" :data="item" />
-			</div>
+			<SharedCardsProfile v-for="(item, idx) in store.lefiners?.slice(0, 4)" :key="idx" :data="item" />
 		</div>
 	</div>
 </template>
 
 <style lang="postcss" scoped>
-.community-box {
-	@apply w-full mx-auto space-y-6
-}
+.page {
+	&.--community {
+		@apply flex gap-5;
 
-.user-container {
-	@apply pr-5 max-w-sm w-full flex-shrink-0 flex flex-col space-y-4;
+		.community-box {
+			@apply w-full mx-auto space-y-6
+		}
 
-	.user-box {
-		@apply flex flex-col space-y-2
+		.user-container {
+			@apply pr-5 max-w-sm w-full flex-shrink-0 flex flex-col space-y-4;
+		}
 	}
 }
 </style>

@@ -5,6 +5,7 @@ import textarea from './textarea'
 import notification from './notification'
 import toggle from './toggle'
 import avatar from './avatar'
+import avatarGroup from './avatarGroup'
 import checkbox from './checkbox'
 import modal from './modal'
 import formGroup from './form-group'
@@ -21,6 +22,7 @@ export default {
 	notification,
 	toggle,
 	avatar,
+	avatarGroup,
 	checkbox,
 	modal,
 	formGroup,

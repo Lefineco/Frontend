@@ -114,7 +114,7 @@ defineShortcuts({
 							:items="items" :ui="{ item: { disabled: 'cursor-text select-text' } }"
 							:popper="{ placement: 'bottom-end' }"
 						>
-							<UAvatar variant="ghost" :src="user.user_metadata.picture" :alt="user.user_metadata.name" />
+							<UAvatar class="avatar-frame" size="sm" :src="user.user_metadata.picture" :alt="user.user_metadata.name" />
 
 							<template #account="{ item }">
 								<div class="text-left">
@@ -155,6 +155,10 @@ defineShortcuts({
 		.progress {
 			@apply absolute inset-x-0 h-0.5 -top-0.5 bg-violet-950;
 		}
+	}
+
+	.avatar-frame {
+		@apply ring-1 ring-offset-2 ring-offset-black ring-primary-500
 	}
 }
 </style>

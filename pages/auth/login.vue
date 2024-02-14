@@ -7,7 +7,6 @@ import type { LoginSchema } from '~/composables/schemas/auth'
 
 definePageMeta({
 	layout: 'blank',
-	// middleware: 'auth',
 })
 
 const supabase = useSupabaseClient()
@@ -78,6 +77,7 @@ function signInWithGoogle() {
 
 <style lang="postcss" scoped>
 .login-container {
+
 	@apply relative w-full h-full gap-12 flex flex-col items-center justify-center text-white z-0;
 
 	.form {
@@ -103,6 +103,5 @@ function signInWithGoogle() {
 			@apply text-sm text-gray-400
 		}
 	}
-
 }
 </style>

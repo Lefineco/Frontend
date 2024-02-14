@@ -52,7 +52,7 @@ const FOOTER_URLS = [
           @apply flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm font-medium text-zinc-800 dark:text-zinc-200;
 
           .link {
-            @apply transition hover:text-primary-500 dark:hover:text-primary-400;
+            @apply transition text-white/80 hover:text-primary-500 dark:hover:text-primary-400;
           }
         }
 

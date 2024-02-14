@@ -48,7 +48,7 @@ const hero = await useGetSupabaseAssetsURL('banner.gif')
 			</div>
 			<div class="relative mt-36 h-80 lg:mt-8">
 				<NuxtImg
-					class="absolute left-0 top-0 w-[50rem] max-w-none rounded-2xl bg-white/5 ring-1 ring-white/10" quality="50"
+					class="absolute left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-0 top-0 w-[50rem] 2xl:w-[56rem] max-w-none rounded-2xl bg-white/5 ring-1 ring-white/10" quality="50"
 					:src="hero"
 					fetchpriority="eager"
 					fit="cover"
@@ -62,10 +62,10 @@ const hero = await useGetSupabaseAssetsURL('banner.gif')
 
 <style lang="postcss" scoped>
 .hero {
-	@apply mx-auto sm:px-6 lg:px-4 pt-6 pb-24;
+	@apply mx-auto pt-6 pb-24;
 
 	&__wrapper {
-		@apply relative isolate overflow-hidden pt-8 shadow-2xl lg:flex lg:gap-x-20 lg:px-6 lg:pt-0;
+		@apply relative isolate overflow-hidden pt-8 shadow-2xl pl-4 lg:flex lg:gap-x-20 lg:pt-0;
 
 		&__content {
 			@apply mx-auto max-w-xl text-center lg:mx-0 lg:flex-auto lg:py-24 lg:text-left;

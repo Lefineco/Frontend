@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useJoinRoom } from '~/composables/service/room'
+import { useJoinRoom, useLeaveRoom } from '~/composables/service/room'
 import type { TableRows } from '~/server/types'
 import type { Database } from '~/server/types/supabase'
 
@@ -41,16 +41,19 @@ onMounted(async () => {
 		participants.value = Object.values(newState).map(value => value[0])
 	}).subscribe(async (status) => {
 		if (status !== 'SUBSCRIBED')
-			return
+			return participantsPresence.untrack()
 
 		participantsPresence.track(userPresence)
 
-		if (!myPresence.value)
-			useJoinRoom(route.params.id, user.value?.id, (isOwner.value ? true : !participants.value?.length))
+		if (!myPresence.value) {
+			const isThereOwnerHere = participants.value?.some((participant: TableRows<'participants'>) => participant.is_owner)
+			useJoinRoom(route.params.id, user.value?.id, (isOwner.value ? true : !isThereOwnerHere))
+		}
 	})
 
 	window.addEventListener('unload', () => {
 		participantsPresence.untrack()
+		useLeaveRoom(route.params.id, user.value?.id)
 	})
 })
 

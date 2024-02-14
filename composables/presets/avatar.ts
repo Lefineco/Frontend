@@ -1,5 +1,5 @@
 const avatar = {
-	wrapper: 'relative select-none inline-flex items-center justify-center flex-shrink-0 !border-0 !ring-0',
+	wrapper: 'relative select-none inline-flex items-center justify-center flex-shrink-0',
 	background: 'bg-white/20 dark:bg-white/10 backdrop-blur-sm truncate',
 	rounded: 'rounded-full',
 	text: 'font-medium leading-none text-zinc-900 dark:text-white truncate',

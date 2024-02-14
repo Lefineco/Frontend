@@ -98,7 +98,7 @@ async function onSubmit() {
 
 <style lang="postcss" scoped>
 .register-container{
-	@apply relative w-full h-full gap-12 flex flex-col items-center justify-center text-white z-0
+	@apply relative w-full gap-12 flex flex-col items-center justify-center text-white z-0 h-[100vh];
 }
 .sub-text{
 	@apply text-sm text-gray-400

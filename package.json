@@ -20,9 +20,10 @@
 		"fuse.js": "^6.6.2",
 		"h3-compression": "^0.3.2",
 		"h3-zod": "^0.5.2",
+		"media-icons": "^1.0.0",
 		"node-fetch": "^3.3.2",
 		"notivue": "^2.1.1",
-		"plyr": "^3.7.8",
+		"vidstack": "^1.10.5",
 		"zod": "^3.22.2"
 	},
 	"devDependencies": {
@@ -48,12 +49,11 @@
 		"eslint": "npm:eslint-ts-patch@8.56.0-0",
 		"eslint-ts-patch": "8.56.0-0",
 		"nuxt": "^3.10.0",
-		"nuxt-capo": "^0.1.0",
-		"nuxt-rollbar": "^0.2.0",
 		"postcss-mixins": "^9.0.4",
 		"puppeteer": "^21.6.1",
 		"supabase": "^1.123.4",
 		"tailwind-merge": "^2.1.0",
+		"tailwindcss-animate": "^1.0.7",
 		"vue-tsc": "^1.8.25"
 	}
 }

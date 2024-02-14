@@ -1,6 +1,12 @@
 <script lang="ts" setup>
 import { getVideoID } from '~/composables/helper'
 import type { Database } from '~/server/types/supabase'
+import { usePlayerStore } from '~/store/player'
+
+interface PlayerResponse {
+	on_play: boolean
+	current_time: number
+}
 
 definePageMeta({
 	layout: 'blank',
@@ -9,7 +15,10 @@ definePageMeta({
 const route = useRoute<'rooms-id'>()
 const user = useSupabaseUser()
 const supabase = useSupabaseClient<Database>()
-const player = ref()
+const playerStore = usePlayerStore()
+
+const sync = ref(false)
+const playerResponse = ref<PlayerResponse>()
 
 const { data } = await useAsyncData(
 	'rooms',
@@ -24,55 +33,60 @@ const { data } = await useAsyncData(
 	},
 )
 
-const is_owner = ref(false)
-
 const roomChannel = supabase.channel(`player_${route.params.id}`)
 
-function onChange() {
+function onChange({ play, currentTime }: { play: boolean, currentTime: number }) {
+	if (!playerStore.isOwner) {
+		return () => {
+			if(playerResponse.value?.on_play && !play) {
+				playerStore?.remote?.pause()
+				sync.value = true
+			} else if (!playerResponse.value?.on_play && play) {
+				playerStore?.remote?.pause()
+				sync.value = false
+			}
+		}
+	}
+
 	roomChannel.send({
 		type: 'broadcast',
 		event: 'player',
 		payload: {
-			on_play: player.value?.getPlayerInstance().playing,
-			current_time: player.value?.getPlayerInstance().currentTime,
+			on_play: play,
+			current_time: currentTime,
 		},
 	})
 }
 
+function getPlayerResponse(data: PlayerResponse) {
+	playerResponse.value = data
 
-function getPlayerResponse(data: { current_time: number, on_play: boolean }) {
-	const playerInstance = player.value?.getPlayerInstance()
-
-	if (is_owner.value)
+	if (playerStore.isOwner)
 		return
 
-	if (data.on_play)
-		playerInstance?.play()
-	else playerInstance?.pause()
+	if (data.on_play && !sync.value) {
+		playerStore.remote?.seek(data.current_time)
+		playerStore.remote?.play()
+		sync.value = true
+	}
+	else if (!data.on_play && sync.value){
+		playerStore.remote?.pause()
+		sync.value = false
+	}
 
-	playerInstance.currentTime = data.current_time
+	// if (sync.value)
 }
-
-const playerInstance = watchEffect(() => {
-	if (!player.value?.getPlayerInstance())
-		return false
-
-	player.value.getPlayerInstance().on('play', onChange)
-	player.value.getPlayerInstance().on('pause', onChange)
-	player.value.getPlayerInstance().on('seeked', onChange)
-})
 
 onMounted(() => {
 	roomChannel.on('broadcast', {
 		event: 'player',
 	}, res => getPlayerResponse(res.payload)).subscribe()
 
-	is_owner.value = data.value?.participants?.find(p => p.is_owner)?.profiles?.id === user.value?.id
+	playerStore.isOwner = data.value?.participants.find(p => p.is_owner)?.profiles?.id === user.value?.id
 })
 
 onUnmounted(() => {
 	supabase.removeAllChannels()
-	playerInstance()
 })
 </script>
 
@@ -83,9 +97,9 @@ onUnmounted(() => {
 		<div class="wrapper">
 			<div class="player-container">
 				<ClientOnly>
-					<SharedPlayer
-						ref="player" :type="data?.platform" :video-id="getVideoID(data?.url)"
-						class="h-2/3 rounded-2xl overflow-hidden" :is-owner="is_owner"
+					<RoomPlayer
+						:id="getVideoID(data?.url)" :type="data?.platform" :thumbnail="data?.thumbnail"
+						@change="onChange"
 					/>
 
 					<template #fallback>
@@ -117,13 +131,13 @@ onUnmounted(() => {
 
 <style lang="postcss" scoped>
 .room-page {
-	@apply flex flex-col h-full w-full max-w-[1700px] mx-auto;
+	@apply flex flex-col h-[100vh] w-full;
 
 	.wrapper {
-		@apply flex overflow-hidden h-full w-full p-6 gap-8;
+		@apply max-w-[1700px] mx-auto flex overflow-hidden h-full w-full p-6 gap-8;
 
 		.player-container {
-			@apply h-full w-2/3 overflow-hidden;
+			@apply h-full w-full;
 		}
 
 		.chat-container {

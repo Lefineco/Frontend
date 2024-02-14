@@ -21,9 +21,3 @@ if (!store.rooms?.length) {
 		</SharedCategory>
 	</div>
 </template>
-
-<style lang="postcss" scoped>
-.page {
-	@apply h-full;
-}
-</style>

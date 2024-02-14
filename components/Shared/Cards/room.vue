@@ -31,12 +31,12 @@ onMounted(async () => {
 
 <template>
 	<UButton class="button group" variant="ghost" color="white" @click="router.push(`/rooms/${props.data.id}`)">
-		<span class="transition-opacity duration-300 opacity-0 group-hover:opacity-100 pointer-events-none absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-4">
+		<span class="play opacity-0 group-hover:opacity-100">
 			<UIcon name="i-ph-play-fill" class="w-8 h-8" />
 		</span>
 		<div class="button-header">
 			<div class="button-info-container">
-				<UAvatar :src="owner?.profiles?.avatar_url || ''" size="xs" :alt="ownerName" class="user-avatar" />
+				<UAvatar :src="owner?.profiles?.avatar_url || ''" size="xs" :alt="ownerName" />
 				<span class="provide-text">
 					<span class="provide-text-user-name">Provide by</span>
 					{{ ownerName.split(' ')[0] }}
@@ -62,6 +62,10 @@ onMounted(async () => {
 .button {
 	@apply relative rounded-3xl transition-all duration-200 hover:z-10 hover:scale-110 hover:bg-white/5 flex flex-col items-center justify-center;
 
+	.play {
+		@apply transition-opacity duration-300 pointer-events-none absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-4;
+	}
+
 	.button-header {
 		@apply w-full flex justify-between py-2 px-2;
 	}
@@ -69,11 +73,6 @@ onMounted(async () => {
 	.button-info-container {
 		@apply flex items-center justify-center gap-3;
 	}
-}
-
-.user-avatar {
-	@apply relative border border-white z-10 after:-z-10 after:content-[''] after:absolute after:inset-0 after:bg-white/20 after:rounded-full after:animate-ping;
-
 }
 
 .provide-text {

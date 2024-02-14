@@ -1,4 +1,5 @@
 import { getIconCollections } from '@egoist/tailwindcss-icons'
+import { vite as vidstack } from 'vidstack/plugins'
 import platform from './composables/icons/platform'
 
 export default defineNuxtConfig({
@@ -20,9 +21,13 @@ export default defineNuxtConfig({
 			],
 		},
 	},
+	vue: {
+		compilerOptions: {
+			isCustomElement: tag => tag.startsWith('media-'),
+		},
+	},
 	css: [
 		'~/assets/styles/main.css',
-		'plyr/dist/plyr.css',
 		'notivue/notifications.css',
 		'notivue/animations.css',
 	],
@@ -35,7 +40,7 @@ export default defineNuxtConfig({
 		plugins: {
 			'postcss-nested': {},
 			'postcss-mixins': {},
-			'cssnano': {}
+			'cssnano': {},
 		},
 	},
 	colorMode: {
@@ -59,8 +64,6 @@ export default defineNuxtConfig({
 		'notivue/nuxt',
 		'@nuxtjs/partytown',
 		'@nuxtjs/fontaine',
-		'nuxt-capo',
-		'nuxt-rollbar',
 	],
 	macros: {
 		setupSFC: true,
@@ -73,6 +76,9 @@ export default defineNuxtConfig({
 				propsDestructure: true,
 			},
 		},
+		plugins: [
+			vidstack({ include: /player\// }),
+		],
 	},
 	ui: {
 		icons: {

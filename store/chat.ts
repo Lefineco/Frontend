@@ -20,6 +20,5 @@ export const useMessageHistory = defineStore('messageHistory', {
     state: (): StateMessageHistory => ({
         roomId: '',
         chatHistory: null,
-    }),
-    persist: true,
+    })
 })

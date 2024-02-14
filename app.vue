@@ -8,23 +8,16 @@ computed(() => {
 </script>
 
 <template>
-	<div class="lefine">
-		<div class="wrapper">
+		<div class="application">
 			<NuxtLayout>
 				<NuxtPage />
+				<SharedNotification />
 			</NuxtLayout>
 		</div>
-
-		<SharedNotification />
-	</div>
 </template>
 
 <style lang="postcss" scoped>
-.lefine {
+.application {
 	@apply h-full flex flex-col;
-
-	.wrapper {
-		@apply h-full w-full;
-	}
 }
 </style>
