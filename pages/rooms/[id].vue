@@ -1,9 +1,12 @@
 <script lang="ts" setup>
-import { MediaRemoteControl } from 'vidstack'
-import type { MediaPlayerElement } from 'vidstack/elements'
 import { getVideoID } from '~/composables/helper'
 import type { Database } from '~/server/types/supabase'
 import { usePlayerStore } from '~/store/player'
+
+interface PlayerResponse {
+	on_play: boolean
+	current_time: number
+}
 
 definePageMeta({
 	layout: 'blank',
@@ -13,6 +16,9 @@ const route = useRoute<'rooms-id'>()
 const user = useSupabaseUser()
 const supabase = useSupabaseClient<Database>()
 const playerStore = usePlayerStore()
+
+const sync = ref(false)
+const playerResponse = ref<PlayerResponse>()
 
 const { data } = await useAsyncData(
 	'rooms',
@@ -30,6 +36,18 @@ const { data } = await useAsyncData(
 const roomChannel = supabase.channel(`player_${route.params.id}`)
 
 function onChange({ play, currentTime }: { play: boolean, currentTime: number }) {
+	if (!playerStore.isOwner) {
+		return () => {
+			if(playerResponse.value?.on_play && !play) {
+				playerStore?.remote?.pause()
+				sync.value = true
+			} else if (!playerResponse.value?.on_play && play) {
+				playerStore?.remote?.pause()
+				sync.value = false
+			}
+		}
+	}
+
 	roomChannel.send({
 		type: 'broadcast',
 		event: 'player',
@@ -40,23 +58,23 @@ function onChange({ play, currentTime }: { play: boolean, currentTime: number })
 	})
 }
 
-let isPaused = true
+function getPlayerResponse(data: PlayerResponse) {
+	playerResponse.value = data
 
-function getPlayerResponse(data: { current_time: number, on_play: boolean }) {
 	if (playerStore.isOwner)
 		return
 
-	if (data.on_play) {
+	if (data.on_play && !sync.value) {
+		playerStore.remote?.seek(data.current_time)
 		playerStore.remote?.play()
-		isPaused = false
+		sync.value = true
 	}
-	else {
+	else if (!data.on_play && sync.value){
 		playerStore.remote?.pause()
-		isPaused = true
+		sync.value = false
 	}
 
-	if (isPaused)
-		playerStore.remote?.seek(data.current_time)
+	// if (sync.value)
 }
 
 onMounted(() => {
@@ -119,7 +137,7 @@ onUnmounted(() => {
 		@apply max-w-[1700px] mx-auto flex overflow-hidden h-full w-full p-6 gap-8;
 
 		.player-container {
-			@apply h-full w-2/3;
+			@apply h-full w-full;
 		}
 
 		.chat-container {

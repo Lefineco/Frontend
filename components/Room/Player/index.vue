@@ -12,7 +12,7 @@ const props = defineProps<{
 	id: string | null
 	type: string | undefined
 	thumbnail: string | undefined | null
-	onChange?: (event: { play: boolean, currentTime: number }) => void
+	onChange?: (event: { play: boolean, currentTime: number, seekableEnd: number }) => void
 }>()
 
 let src: string
@@ -20,7 +20,7 @@ let src: string
 const $player = ref<MediaPlayerElement>()
 
 const playerStore = usePlayerStore()
-const brandColor = computed(() => playerStore.isOwner ? '#8b5cf6' : 'rgba(255, 255, 255, 0.5)')
+const brandColor = computed(() => playerStore.isOwner ? '#8b5cf6' : 'rgba(255, 255, 255, 0.5)') // TODO: if player not ready, change color to gray
 
 const remote = new MediaRemoteControl()
 
@@ -35,9 +35,9 @@ switch (props.type) {
 }
 
 async function onCanPlay(event: MediaCanPlayEvent) {
-	$player.value?.subscribe(({ playing, currentTime }) => {
+	$player.value?.subscribe(({ playing, currentTime, seekableEnd }) => {
 		if (props.onChange)
-			props.onChange({ play: playing, currentTime })
+			props.onChange({ play: playing, currentTime, seekableEnd })
 	})
 
 	remote.setPlayer(event.target)
@@ -47,6 +47,10 @@ async function onCanPlay(event: MediaCanPlayEvent) {
 onUnmounted(() => {
 	$player.value?.destroy()
 })
+
+// @seeked="onSeeked"
+// @play="onPlay"
+// @pause="onPause"
 </script>
 
 <template>
