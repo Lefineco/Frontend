@@ -9,8 +9,6 @@ definePageMeta({
 	layout: 'blank',
 })
 
-const { signIn } = useAuth()
-const { loading, makeAsyncOperation } = useAsync()
 const supabase = useSupabaseClient()
 
 const form = ref<Form<LoginSchema> | null>(null)
@@ -18,14 +16,9 @@ const values = ref<Partial<LoginSchema>>({
 	email: undefined,
 	password: undefined,
 })
-
 async function onSubmit() {
 	await form.value?.validate()
-	makeAsyncOperation(async () => {
-		await signIn(values.value as LoginSchema)
-	})
 }
-
 function signInWithGoogle() {
 	supabase.auth.signInWithOAuth({
 		provider: 'google',
@@ -77,37 +70,38 @@ function signInWithGoogle() {
 				</NuxtLink>
 			</div>
 
-			<UButton label="Sign In" block type="submit" :loading="loading" />
+			<UButton label="Sign In" block type="submit" />
 		</div>
 	</UForm>
 </template>
 
 <style lang="postcss" scoped>
 .login-container {
-	@apply relative w-full gap-12 flex flex-col items-center justify-center text-white z-0 h-[100vh];
-}
 
-.form {
-	@apply w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 px-4 flex flex-col gap-4
-}
+	@apply relative w-full h-full gap-12 flex flex-col items-center justify-center text-white z-0;
 
-.header-box {
-	@apply flex gap-2 items-end
-}
+	.form {
+		@apply w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 px-4 flex flex-col gap-4;
 
-.header-title {
-	@apply text-3xl font-bold capitalize
-}
+		.header-box {
+			@apply flex gap-2 items-end
+		}
 
-.sub-text {
-	@apply text-sm text-gray-400
-}
+		.header-title {
+			@apply text-3xl font-bold capitalize
+		}
 
-.footer-box {
-	@apply flex items-center justify-between text-sm
-}
+		.footer-box {
+			@apply flex items-center justify-between text-sm;
 
-.forgot-password {
-	@apply text-primary-300 font-medium text-xs
+			.forgot-password {
+				@apply text-primary-300 font-medium text-xs
+			}
+		}
+
+		.sub-text {
+			@apply text-sm text-gray-400
+		}
+	}
 }
 </style>
