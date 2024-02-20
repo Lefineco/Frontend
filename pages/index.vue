@@ -21,7 +21,7 @@ const { data: supabaseLefiner } = await supabase
 	.neq('full_name', null)
 	.neq('id', (user.value?.id || EMPTY_UUID))
 
-store.rooms = supabaseRooms?.filter(item => item.participants.length > 1).sort((a, b) => a.participants.length - b.participants.length) || []
+store.rooms = supabaseRooms?.sort((a, b) => a.participants.length - b.participants.length) || []
 store.lefiners = supabaseLefiner?.sort((a, b) => b.follows.length - a.follows.length) || []
 </script>
 
@@ -37,7 +37,6 @@ store.lefiners = supabaseLefiner?.sort((a, b) => b.follows.length - a.follows.le
 						:key="idx"
 						:data="item"
 					/>
-					<USkeleton v-for="idx in (4 - store.rooms.length)" :key="idx" class="room_skeleton" :style="{ opacity: idx * 0.1 }" :ui="{ rounded: 'rounded-3xl' }" />
 				</template>
 
 				<template v-else>
