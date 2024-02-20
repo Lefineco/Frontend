@@ -1,12 +1,9 @@
 <script lang="ts" setup>
+import type { PlayerListenEvents } from '~/components/Room/Player/index.vue'
 import { getVideoID } from '~/composables/helper'
 import type { Database } from '~/server/types/supabase'
+import type { BrodcastResponse } from '~/store/player'
 import { usePlayerStore } from '~/store/player'
-
-interface PlayerResponse {
-	on_play: boolean
-	current_time: number
-}
 
 definePageMeta({
 	layout: 'blank',
@@ -16,9 +13,6 @@ const route = useRoute<'rooms-id'>()
 const user = useSupabaseUser()
 const supabase = useSupabaseClient<Database>()
 const playerStore = usePlayerStore()
-
-const sync = ref(false)
-const playerResponse = ref<PlayerResponse>()
 
 const { data } = await useAsyncData(
 	'rooms',
@@ -35,18 +29,9 @@ const { data } = await useAsyncData(
 
 const roomChannel = supabase.channel(`player_${route.params.id}`)
 
-function onChange({ play, currentTime }: { play: boolean, currentTime: number }) {
-	if (!playerStore.isOwner) {
-		return () => {
-			if(playerResponse.value?.on_play && !play) {
-				playerStore?.remote?.pause()
-				sync.value = true
-			} else if (!playerResponse.value?.on_play && play) {
-				playerStore?.remote?.pause()
-				sync.value = false
-			}
-		}
-	}
+function onChange({ play, currentTime }: PlayerListenEvents) {
+	if (!playerStore.isOwner)
+		return
 
 	roomChannel.send({
 		type: 'broadcast',
@@ -54,33 +39,31 @@ function onChange({ play, currentTime }: { play: boolean, currentTime: number })
 		payload: {
 			on_play: play,
 			current_time: currentTime,
+			type: playerStore.eventType,
 		},
 	})
 }
 
-function getPlayerResponse(data: PlayerResponse) {
-	playerResponse.value = data
+function getPlayerResponse(data: BrodcastResponse) {
+	playerStore.brodcastResponse = data
 
 	if (playerStore.isOwner)
 		return
 
-	if (data.on_play && !sync.value) {
-		playerStore.remote?.seek(data.current_time)
+	if (data.on_play && playerStore.isSynced)
 		playerStore.remote?.play()
-		sync.value = true
-	}
-	else if (!data.on_play && sync.value){
+	else
 		playerStore.remote?.pause()
-		sync.value = false
-	}
 
-	// if (sync.value)
+	if (data.type)
+		playerStore.remote?.seek(data.current_time)
 }
 
 onMounted(() => {
-	roomChannel.on('broadcast', {
-		event: 'player',
-	}, res => getPlayerResponse(res.payload)).subscribe()
+	roomChannel
+		.on('broadcast', { event: 'player' }, res =>
+			getPlayerResponse(res.payload))
+		.subscribe()
 
 	playerStore.isOwner = data.value?.participants.find(p => p.is_owner)?.profiles?.id === user.value?.id
 })
@@ -134,14 +117,14 @@ onUnmounted(() => {
 	@apply flex flex-col h-[100vh] w-full;
 
 	.wrapper {
-		@apply max-w-[1700px] mx-auto flex overflow-hidden h-full w-full p-6 gap-8;
+		@apply max-w-[1700px] mx-auto flex flex-col lg:flex-row overflow-hidden h-full w-full p-6 gap-8;
 
 		.player-container {
-			@apply h-full w-full;
+			@apply w-full;
 		}
 
 		.chat-container {
-			@apply flex flex-col h-full w-1/3 bg-white/5 rounded-2xl;
+			@apply flex flex-col h-full w-full lg:w-1/3 bg-white/5 rounded-2xl;
 
 			.header {
 				@apply p-4 flex justify-between items-center w-full border-b border-white/5;

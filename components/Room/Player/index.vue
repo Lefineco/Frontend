@@ -8,11 +8,13 @@ import { type MediaCanPlayEvent, MediaRemoteControl } from 'vidstack'
 import type { MediaPlayerElement } from 'vidstack/elements'
 import { usePlayerStore } from '~/store/player'
 
+export interface PlayerListenEvents { play: boolean, currentTime: number, seekableEnd: number }
+
 const props = defineProps<{
 	id: string | null
 	type: string | undefined
 	thumbnail: string | undefined | null
-	onChange?: (event: { play: boolean, currentTime: number, seekableEnd: number }) => void
+	onChange?: (event: PlayerListenEvents) => void
 }>()
 
 let src: string
@@ -47,16 +49,13 @@ async function onCanPlay(event: MediaCanPlayEvent) {
 onUnmounted(() => {
 	$player.value?.destroy()
 })
-
-// @seeked="onSeeked"
-// @play="onPlay"
-// @pause="onPause"
 </script>
 
 <template>
 	<media-player
-		v-if="src" ref="$player" keep-alive class="media-player" :src="src" :picture-in-picture="false"
+		v-if="src" ref="$player" class="media-player" :src="src" :picture-in-picture="false"
 		@can-play="onCanPlay"
+		@seeked="() => playerStore.setEventType('SEEK')"
 	>
 		<media-provider>
 			<media-poster
@@ -71,7 +70,7 @@ onUnmounted(() => {
 
 <style lang="postcss">
 .media-player {
-	@apply w-full bg-slate-900 text-white font-sans rounded-2xl ring-media-focus data-[focus]:ring-4;
+	@apply w-full bg-slate-900 text-white font-sans rounded-2xl ring-media-focus data-[focus]:ring-4 border border-white/10 overflow-hidden;
 }
 
 .bg-media-brand {
