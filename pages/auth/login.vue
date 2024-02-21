@@ -78,7 +78,7 @@ function signInWithGoogle() {
 <style lang="postcss" scoped>
 .login-container {
 
-	@apply relative w-full h-full gap-12 flex flex-col items-center justify-center text-white z-0;
+	@apply relative w-full gap-12 flex flex-col items-center justify-center text-white z-0 h-[100vh];
 
 	.form {
 		@apply w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 px-4 flex flex-col gap-4;
