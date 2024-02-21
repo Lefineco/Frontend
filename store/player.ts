@@ -38,7 +38,7 @@ export const usePlayerStore = defineStore('player', {
 
 			setTimeout(() => {
 				this.eventType = ''
-			}, 500)
+			}, 1000)
 		},
 		setJoined() {
 			this.isJoined = true

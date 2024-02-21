@@ -22,7 +22,7 @@ let src: string
 const $player = ref<MediaPlayerElement>()
 
 const playerStore = usePlayerStore()
-const brandColor = computed(() => playerStore.isOwner ? '#8b5cf6' : 'rgba(255, 255, 255, 0.5)') // TODO: if player not ready, change color to gray
+const brandColor = computed(() => playerStore.isSynced ? '#8b5cf6' : 'rgba(255, 255, 255, 0.5)') // TODO: if player not ready, change color to gray
 
 const remote = new MediaRemoteControl()
 
@@ -53,8 +53,7 @@ onUnmounted(() => {
 
 <template>
 	<media-player
-		v-if="src" ref="$player" class="media-player" :src="src" :picture-in-picture="false"
-		@can-play="onCanPlay"
+		v-if="src" ref="$player" class="media-player" :src="src" :picture-in-picture="false" @can-play="onCanPlay"
 		@seeked="() => playerStore.setEventType('SEEK')"
 	>
 		<media-provider>
