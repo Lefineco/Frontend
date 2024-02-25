@@ -32,7 +32,7 @@ async function scrapeData(url: string): Promise<VideoPreviewContent> {
 	}
 }
 
-export default defineEventHandler(async (event) => {
-	const body = await readBody(event)
+export default defineEventHandler(async () => {
+	const body = await readBody(useEvent())
 	return scrapeData(body.url)
 })
