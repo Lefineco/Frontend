@@ -9,7 +9,6 @@ export interface BrodcastResponse {
 interface StatePlayerStore {
 	isOwner: boolean
 	isSynced: boolean
-	isJoined: boolean
 	remote: MediaRemoteControl | null
 	brodcastResponse: BrodcastResponse | null
 	eventType: PlayerEvents | ''
@@ -18,8 +17,7 @@ interface StatePlayerStore {
 export const usePlayerStore = defineStore('player', {
 	state: (): StatePlayerStore => ({
 		isOwner: false,
-		isSynced: false, // TODO: isSynced and isJoined should be in the same state
-		isJoined: false, // TODO: "
+		isSynced: false,
 		remote: null,
 		brodcastResponse: null,
 		eventType: '',
@@ -40,12 +38,11 @@ export const usePlayerStore = defineStore('player', {
 				this.eventType = ''
 			}, 1000)
 		},
-		setJoined() {
-			this.isJoined = true
-			this.isSynced = true
+		handleSync() {	
+			this.handlePlayPause()
 		},
 		handlePlayPause() {
-			this.setEventType(this.remote?.getPlayer()?.paused ? 'PAUSE' : 'PLAY')
+			this.setEventType(this.remote?.getPlayer()?.paused ? 'PLAY' : 'PAUSE')
 
 			if (this.isOwner)
 				return
