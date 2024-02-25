@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useGetSupabaseAssetsURL } from '~/composables/helper';
 import { EMPTY_UUID } from '~/constants/general'
 import type { Database } from '~/server/types/supabase'
+import type { DiscoverAPI, GenresAPI } from '~/server/types/tmbd'
 import { useGeneralStore } from '~/store'
 
 const supabase = useSupabaseClient<Database>()
@@ -13,7 +13,7 @@ export type SupabaseLefiner = typeof supabaseLefiner
 
 const { data: supabaseRooms } = await supabase
 	.from('rooms')
-	.select('*, participants(is_owner, profiles(*))')
+	.select('*, participants!inner(is_owner, profiles(*))')
 
 const { data: supabaseLefiner } = await supabase
 	.from('profiles')
@@ -21,8 +21,16 @@ const { data: supabaseLefiner } = await supabase
 	.neq('full_name', null)
 	.neq('id', (user.value?.id || EMPTY_UUID))
 
-store.rooms = supabaseRooms?.sort((a, b) => a.participants.length - b.participants.length) || []
-store.lefiners = supabaseLefiner?.sort((a, b) => b.follows.length - a.follows.length) || []
+const { data: movie } = await useFetch<DiscoverAPI>('/api/third/tmbd/discover')
+
+const { data: genres } = await useFetch<GenresAPI>('/api/third/tmbd/genres')
+
+store.setAll({
+	rooms: supabaseRooms?.sort((a, b) => a.participants.length - b.participants.length) || [],
+	lefiners: supabaseLefiner?.sort((a, b) => b.follows.length - a.follows.length) || [],
+	genres: genres.value?.data || [],
+	movies: movie.value?.data || [],
+})
 </script>
 
 <template>
@@ -43,6 +51,15 @@ store.lefiners = supabaseLefiner?.sort((a, b) => b.follows.length - a.follows.le
 					<USkeleton v-for="idx in 4" :key="idx" class="room_skeleton" :style="{ opacity: idx * 0.1 }" :ui="{ rounded: 'rounded-3xl' }" />
 				</template>
 			</SharedCategory>
+
+			<SharedCategory class="px-5" title="Popular Movies" to="movies" :length="store.lefiners?.length">
+				<SharedCardsMovie
+					v-for="(item, idx) in store.movies?.slice(0, 4)"
+					:key="idx"
+					:data="item"
+				/>
+			</SharedCategory>
+
 			<SharedCategory class="px-5" title="Popular Lefiners" to="lefiners" :length="store.lefiners?.length">
 				<SharedCardsProfile
 					v-for="(item, idx) in store.lefiners?.slice(0, 4).filter((item) => item.id !== user?.id)"

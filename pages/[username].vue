@@ -7,6 +7,6 @@
 
 <style lang="postcss" scoped>
 .page {
-  @apply flex flex-col w-full h-full p-4 md:!pt-20;
+	@apply flex flex-col w-full h-full p-4 md:!pt-20;
 }
 </style>

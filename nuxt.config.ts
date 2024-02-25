@@ -114,4 +114,12 @@ export default defineNuxtConfig({
 	typescript: {
 		strict: true,
 	},
+	nitro: {
+		experimental: {
+			asyncContext: true,
+		},
+	},
+	runtimeConfig: {
+		tmbdToken: import.meta.env.TMBD_API_KEY
+	},
 })

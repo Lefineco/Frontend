@@ -51,7 +51,7 @@ const items: DropdownItem[][] = [
 
 const crateRoomModal = ref(false)
 
-// const isOpen = ref(false)
+const isOpen = ref(false)
 
 const links = [
 	{
@@ -80,9 +80,9 @@ defineShortcuts({
 	<div class="header">
 		<div class="wrapper">
 			<div class="progress" />
-			<!-- <UModal v-model="isOpen">
+			<UModal v-model="isOpen">
 				<RoomCreateNew />
-			</UModal> -->
+			</UModal>
 
 			<div class="flex gap-12 items-center">
 				<SharedLogo to="/" />
@@ -102,9 +102,9 @@ defineShortcuts({
 			<div class="space-x-6 flex items-center justify-center pr-6">
 				<ClientOnly>
 					<div v-if="user" class="flex gap-4 items-center">
-						<!-- <UButton color="white" variant="soft" @click="isOpen = true">
+						<UButton color="white" variant="soft" @click="isOpen = true">
 							Test1
-						</UButton> -->
+						</UButton>
 						<UButton color="white" variant="soft" @click="crateRoomModal = !crateRoomModal">
 							Create Room
 							<UKbd>⌘ + K</UKbd>

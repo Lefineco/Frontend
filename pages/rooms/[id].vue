@@ -63,7 +63,10 @@ onMounted(() => {
 	roomChannel
 		.on('broadcast', { event: 'player' }, res =>
 			getPlayerResponse(res.payload))
-		.subscribe()
+		.subscribe((status) => {
+			if (status !== 'SUBSCRIBED')
+				return playerStore.isSynced = false
+		})
 
 	playerStore.isOwner = data.value?.participants.find(p => p.is_owner)?.profiles?.id === user.value?.id
 })
