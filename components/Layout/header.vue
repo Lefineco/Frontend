@@ -4,6 +4,8 @@ import type { DropdownItem } from '#ui/types'
 
 import { navigationLinks } from '~/composables/helper'
 
+defineProps<{ isRoomHeader: boolean }>()
+
 const user = useSupabaseUser()
 
 const supabase = useSupabaseClient()
@@ -77,7 +79,7 @@ defineShortcuts({
 </script>
 
 <template>
-	<div class="header">
+	<div class="header" :class="isRoomHeader && 'room'">
 		<div class="wrapper">
 			<div class="progress" />
 			<UModal v-model="isOpen">
@@ -148,6 +150,12 @@ defineShortcuts({
 <style lang="postcss" scoped>
 .header {
 	@apply border-b border-white/10 sm:py-3 w-full space-x-5;
+
+	&.room {
+		.wrapper {
+			@apply max-w-[1700px]
+		}
+	}
 
 	.wrapper {
 		@apply max-w-7xl mx-auto flex justify-between items-center px-6;

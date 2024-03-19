@@ -80,7 +80,7 @@ onUnmounted(() => {
 
 <template>
 	<div class="room-page">
-		<LayoutHeader />
+		<LayoutHeader is-room-header />
 
 		<div class="wrapper">
 			<div class="player-container">
