@@ -59,11 +59,11 @@ const links = [
 		icon: ['i-ph-play-circle', 'i-ph-play-circle-fill'],
 		to: '/',
 	},
-	{
-		label: 'Community',
-		icon: ['i-ph-users-three', 'i-ph-users-three-fill'],
-		to: '/community',
-	},
+	// {
+	// 	label: 'Community',
+	// 	icon: ['i-ph-users-three', 'i-ph-users-three-fill'],
+	// 	to: '/community',
+	// },
 ]
 
 defineShortcuts({

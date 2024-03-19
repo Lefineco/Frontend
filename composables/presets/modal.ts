@@ -5,7 +5,7 @@ const modal = {
 	padding: 'p-4 sm:p-0',
 	base: 'modal-base relative text-left rtl:text-right overflow-hidden sm:my-8 w-full flex flex-col',
 	overlay: {
-		base: 'fixed !bg-black/60 backdrop-blur-sm inset-0 transition-opacity',
+		base: 'fixed !bg-black/60 inset-0 transition-opacity',
 		transition: {
 			enter: 'ease-in-out duration-300',
 			enterFrom: 'opacity-0',

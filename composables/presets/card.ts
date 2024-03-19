@@ -1,6 +1,6 @@
 const card = {
 	base: 'overflow-hidden',
-	background: 'bg-transparent dark:bg-transparent backdrop-blur-sm py-2',
+	background: 'bg-transparent dark:bg-transparent py-2',
 	divide: 'divide-y-2 dark:divide-white/5',
 	ring: 'ring-1 dark:ring-white/10',
 	rounded: 'rounded-lg',

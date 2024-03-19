@@ -1,6 +1,6 @@
 const avatar = {
 	wrapper: 'relative select-none inline-flex items-center justify-center flex-shrink-0',
-	background: 'bg-white/20 dark:bg-white/10 backdrop-blur-sm truncate',
+	background: 'bg-white/20 dark:bg-white/10 truncate',
 	rounded: 'rounded-full',
 	text: 'font-medium leading-none text-zinc-900 dark:text-white truncate',
 	placeholder: 'font-medium leading-none text-white dark:text-white truncate',

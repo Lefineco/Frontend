@@ -4,7 +4,7 @@ const popover = {
 	trigger: 'inline-flex w-full',
 	width: '',
 	background:
-    'bg-zinc-100 dark:bg-white/10 text-zinc-900 backdrop-blur-lg dark:text-white',
+    'bg-zinc-100 dark:bg-white/10 text-zinc-900 dark:text-white',
 	shadow: 'shadow-lg',
 	rounded: 'rounded-md',
 	ring: 'ring-1 ring-gray-200 dark:ring-gray-800',

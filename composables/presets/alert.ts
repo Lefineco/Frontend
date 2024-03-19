@@ -1,5 +1,5 @@
 const alert = {
-	wrapper: 'w-full relative overflow-hidden backdrop-blur-sm',
+	wrapper: 'w-full relative overflow-hidden',
 	inner: 'w-0 flex-1',
 	title: 'text-sm font-medium',
 	description: 'mt-1 text-sm leading-4 opacity-90',
