@@ -64,7 +64,7 @@ body,
 }
 
 .page {
-  @apply w-full mx-auto max-w-[1700px] px-2 pt-5 after:content-[''] after:pb-24 min-h-[80vh];
+  @apply w-full mx-auto max-w-7xl px-2 pt-5 after:content-[''] after:pb-24 min-h-[80vh];
 }
 
 .no-scrollbar::-webkit-scrollbar {

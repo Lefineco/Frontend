@@ -41,7 +41,7 @@ store.setAll({
 			<SharedCategory class="px-5" title="Popular Live Rooms" to="rooms" :length="store.rooms?.length">
 				<template v-if="store.rooms?.length">
 					<SharedCardsRoom
-						v-for="(item, idx) in store.rooms?.slice(0, 4)"
+						v-for="(item, idx) in store.rooms?.slice(0, 3)"
 						:key="idx"
 						:data="item"
 					/>
@@ -52,17 +52,17 @@ store.setAll({
 				</template>
 			</SharedCategory>
 
-			<SharedCategory class="px-5" title="Popular Movies" to="movies" :length="store.lefiners?.length">
+			<!-- <SharedCategory class="px-5" title="Popular Movies" to="movies" :length="store.lefiners?.length">
 				<SharedCardsMovie
-					v-for="(item, idx) in store.movies?.slice(0, 4)"
+					v-for="(item, idx) in store.movies?.slice(0, 3)"
 					:key="idx"
 					:data="item"
 				/>
-			</SharedCategory>
+			</SharedCategory> -->
 
 			<SharedCategory class="px-5" title="Popular Lefiners" to="lefiners" :length="store.lefiners?.length">
 				<SharedCardsProfile
-					v-for="(item, idx) in store.lefiners?.slice(0, 4).filter((item) => item.id !== user?.id)"
+					v-for="(item, idx) in store.lefiners?.slice(0, 3).filter((item) => item.id !== user?.id)"
 					:key="idx"
 					:data="item"
 				/>

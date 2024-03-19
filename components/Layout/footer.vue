@@ -46,7 +46,7 @@ const FOOTER_URLS = [
       @apply border-t border-zinc-100 py-10 dark:border-zinc-700/40;
 
       &__content {
-        @apply relative mx-auto max-w-[1700px] px-12 flex flex-col items-center justify-between gap-6 sm:flex-row;
+        @apply relative mx-auto max-w-7xl px-12 flex flex-col items-center justify-between gap-6 sm:flex-row;
         
         .links {
           @apply flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm font-medium text-zinc-800 dark:text-zinc-200;

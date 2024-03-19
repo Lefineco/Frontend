@@ -46,15 +46,7 @@ const hero = await useGetSupabaseAssetsURL('banner.gif')
 					</UButton>
 				</div>
 			</div>
-			<div class="relative mt-36 h-80 lg:mt-8">
-				<NuxtImg
-					class="absolute left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-0 top-0 w-[50rem] 2xl:w-[56rem] max-w-none rounded-2xl bg-white/5 ring-1 ring-white/10" quality="50"
-					:src="hero"
-					fetchpriority="eager"
-					fit="cover"
-					alt="App screenshot" width="1824" height="1080"
-				/>
-			</div>
+
 		</div>
 		<hr class="hero__divider">
 	</div>
@@ -65,10 +57,10 @@ const hero = await useGetSupabaseAssetsURL('banner.gif')
 	@apply mx-auto pt-6 pb-24;
 
 	&__wrapper {
-		@apply relative isolate overflow-hidden pt-8 shadow-2xl pl-4 lg:flex lg:gap-x-20 lg:pt-0;
+		@apply relative isolate overflow-hidden pt-8 shadow-2xl pl-4 lg:flex lg:justify-center lg:gap-x-20 lg:pt-0;
 
 		&__content {
-			@apply mx-auto max-w-xl text-center lg:mx-0 lg:flex-auto lg:py-24 lg:text-left;
+			@apply mx-auto max-w-xl text-center lg:mx-0 lg:flex-auto lg:py-24 lg:text-center;
 
 			.title {
 				@apply bg-clip-text text-transparent bg-gradient-to-b from-white to-primary-500 text-3xl font-bold !leading-[1.2] tracking-tight sm:text-5xl;
@@ -79,7 +71,7 @@ const hero = await useGetSupabaseAssetsURL('banner.gif')
 			}
 
 			.actions {
-				@apply mt-10 flex items-center justify-center gap-x-6 lg:justify-start;
+				@apply mt-10 flex items-center justify-center gap-x-6;
 			}
 		}
 

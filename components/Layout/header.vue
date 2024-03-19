@@ -150,7 +150,7 @@ defineShortcuts({
 	@apply border-b border-white/10 sm:py-3 w-full space-x-5;
 
 	.wrapper {
-		@apply max-w-[1700px] mx-auto flex justify-between items-center px-6;
+		@apply max-w-7xl mx-auto flex justify-between items-center px-6;
 
 		.progress {
 			@apply absolute inset-x-0 h-0.5 -top-0.5 bg-violet-950;
