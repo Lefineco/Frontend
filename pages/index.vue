@@ -60,13 +60,13 @@ store.setAll({
 				/>
 			</SharedCategory> -->
 
-			<SharedCategory class="px-5" title="Popular Lefiners" to="lefiners" :length="store.lefiners?.length">
+			<!-- <SharedCategory class="px-5" title="Popular Lefiners" to="lefiners" :length="store.lefiners?.length">
 				<SharedCardsProfile
 					v-for="(item, idx) in store.lefiners?.slice(0, 3).filter((item) => item.id !== user?.id)"
 					:key="idx"
 					:data="item"
 				/>
-			</SharedCategory>
+			</SharedCategory> -->
 		</div>
 	</div>
 </template>
