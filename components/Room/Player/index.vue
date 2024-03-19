@@ -53,8 +53,8 @@ onUnmounted(() => {
 
 <template>
 	<media-player
-		v-if="src" ref="$player" class="media-player" :src="src" :picture-in-picture="false" @can-play="onCanPlay"
-		@seeked="() => playerStore.setEventType('SEEK')"
+		v-if="src" ref="$player" class="media-player" :src="src" :picture-in-picture="false"
+		@can-play="onCanPlay" @seeked="() => playerStore.setEventType('SEEK')"
 	>
 		<media-provider>
 			<media-poster

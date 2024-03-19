@@ -66,6 +66,8 @@ onMounted(() => {
 		.subscribe((status) => {
 			if (status !== 'SUBSCRIBED')
 				return playerStore.isSynced = false
+			else if (status === 'SUBSCRIBED')
+				return playerStore.isSynced = true
 		})
 
 	playerStore.isOwner = data.value?.participants.find(p => p.is_owner)?.profiles?.id === user.value?.id

@@ -5,7 +5,9 @@ export default defineEventHandler(async () => {
     if (!url)
         return createError('URL is required!')
 
+    const provider = makeProviders(targets.IMDB, makeStandardFetcher())
 
+    const result = await provider
     return {
         statusCode: 200,
         // data: result
