@@ -4,7 +4,7 @@ import type { DropdownItem } from '#ui/types'
 
 import { navigationLinks } from '~/composables/helper'
 
-defineProps<{ isRoomHeader: boolean }>()
+defineProps<{ isRoomHeader?: boolean }>()
 
 const user = useSupabaseUser()
 
@@ -82,10 +82,8 @@ defineShortcuts({
 	<div class="header" :class="isRoomHeader && 'room'">
 		<div class="wrapper">
 			<div class="progress" />
-			<UModal v-model="isOpen">
-				<RoomCreateNew />
-			</UModal>
 
+			<RoomCreateNew v-model="isOpen" />
 			<div class="flex gap-12 items-center">
 				<SharedLogo to="/" />
 
@@ -116,7 +114,10 @@ defineShortcuts({
 							:items="items" :ui="{ item: { disabled: 'cursor-text select-text' } }"
 							:popper="{ placement: 'bottom-end' }"
 						>
-							<UAvatar class="avatar-frame" size="sm" :src="user.user_metadata.picture" :alt="user.user_metadata.name" />
+							<UAvatar
+								class="avatar-frame" size="sm" :src="user.user_metadata.picture"
+								:alt="user.user_metadata.name"
+							/>
 
 							<template #account="{ item }">
 								<div class="text-left">
