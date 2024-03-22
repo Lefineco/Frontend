@@ -55,18 +55,18 @@ const crateRoomModal = ref(false)
 
 const searchVideoModal = ref(false)
 
-const links = [
-	{
-		label: 'Feeds',
-		icon: ['i-ph-play-circle', 'i-ph-play-circle-fill'],
-		to: '/',
-	},
-	// {
-	// 	label: 'Community',
-	// 	icon: ['i-ph-users-three', 'i-ph-users-three-fill'],
-	// 	to: '/community',
-	// },
-]
+// const links = [
+// 	{
+// 		label: 'Feeds',
+// 		icon: ['i-ph-play-circle', 'i-ph-play-circle-fill'],
+// 		to: '/',
+// 	},
+// {
+// 	label: 'Community',
+// 	icon: ['i-ph-users-three', 'i-ph-users-three-fill'],
+// 	to: '/community',
+// },
+// ]
 
 defineShortcuts({
 	meta_k: {
@@ -83,11 +83,11 @@ defineShortcuts({
 		<div class="wrapper">
 			<div class="progress" />
 
-			<RoomCreateNew v-model="searchVideoModal" />
+			<RoomSearch v-model="searchVideoModal" />
 			<div class="flex gap-12 items-center">
 				<SharedLogo to="/" />
 
-				<UVerticalNavigation
+				<!-- <UVerticalNavigation
 					:ui="{
 						base: 'transition before:!bg-transparent text-xs font-semibold',
 						active: '',
@@ -96,7 +96,7 @@ defineShortcuts({
 							inactive: 'text-white/50 dark:group-hover:text-gray-200',
 						},
 					}" class="navigation" :links="navigationLinks(links)"
-				/>
+				/> -->
 			</div>
 
 			<div class="space-x-6 flex items-center justify-center pr-6">

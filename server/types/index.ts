@@ -9,6 +9,11 @@ export enum Platform {
 	VIMEO = 'VIMEO',
 }
 
+export interface ResponseWithStatus<T> {
+	data: T
+	status: number
+} 
+
 export interface VideoPreviewContent {
 	platform: string | undefined
 	title: string | undefined
