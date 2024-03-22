@@ -31,6 +31,9 @@ export default {
 		{
 			pattern: /i-(lefine)-*/,
 		},
+		'i-simple-icons-youtube',
+		'i-simple-icons-vimeo',
+		'i-ph-film-reel-fill'
 	],
 } as TailwindConfig
 
