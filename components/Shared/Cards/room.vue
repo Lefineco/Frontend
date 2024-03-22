@@ -46,7 +46,7 @@ onMounted(async () => {
 		</div>
 		<div class="relative w-full">
 			<div class="video-img-container">
-				<NuxtImg class="video-img" :src="imgIsLoaded ? image : 'room_thumbnail.png'" loading="lazy" preload />
+				<NuxtImg class="video-img" :src="imgIsLoaded ? image : 'room_thumbnail.png'" quality="10" loading="lazy" preload />
 			</div>
 			<UAvatarGroup class="user-avatar-bottom" size="xs" :max="3">
 				<UAvatar
@@ -60,7 +60,7 @@ onMounted(async () => {
 
 <style lang="postcss" scoped>
 .button {
-	@apply relative rounded-3xl transition-all duration-200 hover:z-10 hover:scale-110 hover:bg-white/5 flex flex-col items-center justify-center;
+	@apply relative rounded-3xl transition-all duration-200 hover:bg-white/5 flex flex-col items-center justify-center;
 
 	.play {
 		@apply transition-opacity duration-300 pointer-events-none absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-4;

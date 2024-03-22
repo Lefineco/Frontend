@@ -1,8 +1,5 @@
 <script setup lang="ts">
 import { push } from 'notivue'
-import { useGetSupabaseAssetsURL } from '~/composables/helper'
-
-const hero = await useGetSupabaseAssetsURL('banner.gif')
 </script>
 
 <template>

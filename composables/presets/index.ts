@@ -13,6 +13,7 @@ import card from './card'
 import dropdown from './dropdown'
 import popover from './popover'
 import kbd from './kbd'
+import select from './select'
 
 export default {
 	alert,
@@ -30,4 +31,5 @@ export default {
 	dropdown,
 	popover,
 	kbd,
+	select
 }

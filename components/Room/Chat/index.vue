@@ -116,9 +116,6 @@ onMounted(() => {
 	}, (res) => {
 		chatMessages.chatHistory = [...(chatMessages.chatHistory || []), res.payload]
 
-		// eslint-disable-next-line no-console
-		console.log('res', res)
-
 		if (res.event === 'chat' && res.payload.user_id !== user.value?.id)
 			chatStore.newMessage++
 	}).subscribe((status) => {
