@@ -21,15 +21,15 @@ const { data: supabaseLefiner } = await supabase
 	.neq('full_name', null)
 	.neq('id', (user.value?.id || EMPTY_UUID))
 
-const { data: movie } = await useFetch<DiscoverAPI>('/api/third/tmbd/discover')
+// const { data: movie } = await useFetch<DiscoverAPI>('/api/third/tmbd/discover')
 
-const { data: genres } = await useFetch<GenresAPI>('/api/third/tmbd/genres')
+// const { data: genres } = await useFetch<GenresAPI>('/api/third/tmbd/genres')
 
 store.setAll({
 	rooms: supabaseRooms?.sort((a, b) => a.participants.length - b.participants.length) || [],
-	lefiners: supabaseLefiner?.sort((a, b) => b.follows.length - a.follows.length) || [],
-	genres: genres.value?.data || [],
-	movies: movie.value?.data || [],
+	// lefiners: supabaseLefiner?.sort((a, b) => b.follows.length - a.follows.length) || [],
+	// genres: genres.value?.data || [],
+	// movies: movie.value?.data || [],
 })
 </script>
 
