@@ -54,15 +54,33 @@ function handleVideoSelection(item: Video) {
 					<USelectMenu
 						v-model="currentSearchablePlatform" :options="availablePlatforms"
 						placeholder="Platform"
-					/>
+					>
+						<template #label>
+							<template v-if="currentSearchablePlatform?.label.length">
+								<span :class="currentSearchablePlatform.icon" class="h-4 w-4" />
+								{{ currentSearchablePlatform.label }}
+							</template>
+							<template v-else>
+								<span class="text-gray-500 dark:text-gray-400 truncate">Select labels</span>
+							</template>
+						</template>
+					</USelectMenu>
 				</div>
 
-				<RoomSearchItems v-if="videos?.videos.length" :data="videos" :selects="selectedVideos" @select="handleVideoSelection" />
+				<RoomSearchItems
+					v-if="videos?.videos.length" :data="videos" :selects="selectedVideos"
+					@select="handleVideoSelection"
+				/>
 				<RoomSearchSkeleton v-else-if="deboundedSearch && !videos" />
 				<RoomSearchEmpty v-else-if="search && deboundedSearch" />
 
-				<div class="w-full h-12 px-2 flex items-center justify-end  border-t border-white/10" v-if="selectedVideos.length">
-					<UButton variant="soft" class="w-full justify-center" color="white"> Continue </UButton>
+				<div
+					v-if="selectedVideos.length"
+					class="w-full h-12 px-2 flex items-center justify-end  border-t border-white/10"
+				>
+					<UButton variant="soft" class="w-full justify-center" color="white">
+						Continue
+					</UButton>
 				</div>
 			</UCard>
 		</UModal>

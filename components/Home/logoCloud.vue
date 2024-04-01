@@ -22,7 +22,7 @@ import { PLATFORM } from '~/constants/general'
 	}
 
 	&__logos {
-		@apply mx-auto mt-10 grid max-w-lg items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-4 sm:gap-x-3 lg:mx-0 lg:max-w-none;
+		@apply mx-auto mt-10 grid max-w-lg items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-3 sm:gap-x-3 lg:mx-0 lg:max-w-none;
 	}
 }
 </style>
