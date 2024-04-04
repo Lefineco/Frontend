@@ -19,14 +19,6 @@ store.rooms = supabaseRooms?.sort((a, b) => a.participants.length - b.participan
 	<div class="page">
 		<HomeHero />
 		<HomeLogoCloud />
-		<div class="flex gap-2">
-			<SharedEmoji :size="10" emoji="bullseye" class="w-24 h-24"/>
-			<SharedEmoji :size="10" emoji="joy" class="w-24 h-24" />
-			<SharedEmoji :size="10" emoji="love" class="w-24 h-24" />
-			<SharedEmoji :size="10" emoji="mindblown" class="w-24 h-24" />
-			<SharedEmoji :size="10" emoji="onfire" class="w-24 h-24" />
-			<SharedEmoji :size="10" emoji="tada" class="w-24 h-24" />
-		</div>
 
 		<div class="flex flex-col gap-12 pt-48">
 			<SharedCategory class="px-5" title="Popular Live Rooms" to="rooms" :length="store.rooms?.length">

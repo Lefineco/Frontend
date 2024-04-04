@@ -61,7 +61,7 @@ function groupMessages(messages: Chat[]): GroupedMessages[] {
 const roomChannel = supabase.channel(`chat_${route.params.id}`)
 
 async function sendMessage(message: string) {
-	if (EMPTY_STRING_REGEXP.test(message) || message.length < 1)
+	if (EMPTY_STRING_REGEXP.test(message) || message?.length < 1)
 		return false
 
 	if (!user.value) {
