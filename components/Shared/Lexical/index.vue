@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { $getRoot, $getSelection, type CreateEditorArgs, type EditorState, TextNode } from 'lexical'
+import { $getRoot, type CreateEditorArgs, type EditorState } from 'lexical'
 import { LexicalAutoFocusPlugin, LexicalClearEditorPlugin, LexicalComposer, LexicalContentEditable, LexicalHistoryPlugin, LexicalPlainTextPlugin } from 'lexical-vue'
 import { EmojiNode } from './emojiNode'
 import presets from '~/composables/presets'
 
 interface Props {
 	placeholder: string
+	sendMessage: (message: string) => void
 }
 
 defineProps<Props>()
@@ -19,15 +20,9 @@ const config: CreateEditorArgs = {
 	editable: true,
 }
 
-const vModel = defineModel()
-
 function onChange(editorState: EditorState) {
 	editorState.read(() => {
-		// const text = $getRoot().getTextContent()?.trim()
-		// if (text)
-		vModel.value = editorState.toJSON()
-
-		const test = $getSelection()?.getNodes()
+		
 	})
 }
 </script>
@@ -47,7 +42,7 @@ function onChange(editorState: EditorState) {
 								:class="[presets.input.base, presets.input.variant.solid, presets.input.rounded, presets.input.color.white.solid, presets.input.size.sm, presets.input.padding.lg, presets.input.leading.padding.lg, presets.input.trailing.padding.lg]"
 							/>
 							<div class="absolute right-2 inset-y-0 flex items-center z-10">
-								<slot name="trailing" />
+								<SharedLexicalSendMessage :send-message="sendMessage" />
 							</div>
 						</div>
 					</template>

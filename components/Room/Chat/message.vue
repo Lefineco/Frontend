@@ -28,9 +28,8 @@ const timeAgo = (time: string) => useTimeAgo(new Date(time)).value
 					v-if="messages.message"
 					:data-current-time="timeAgo(messages.created_at)"
 					:class="twMerge('message', me ? 'me' : 'you', messages.loading && 'loading')"
-				>
-					{{ messages.message }}
-				</div>
+					v-html="messages.message"
+				/>
 			</template>
 		</TransitionGroup>
 	</div>

@@ -1,4 +1,5 @@
-import { DecoratorNode, type EditorConfig, type LexicalCommand, type LexicalNode, type NodeKey, type SerializedLexicalNode, type Spread, createCommand } from 'lexical'
+import type { DOMExportOutput, EditorConfig, LexicalCommand, LexicalNode, NodeKey, SerializedLexicalNode, Spread, TextNode } from 'lexical'
+import { DecoratorNode, createCommand } from 'lexical'
 import type { Component } from 'vue'
 import Emoji from '@/components/Shared/emoji.vue'
 
@@ -36,6 +37,7 @@ export class EmojiNode extends DecoratorNode
 	createDOM(_config: EditorConfig): HTMLElement {
 		const div = document.createElement('div')
 		div.style.display = 'contents'
+		div.setAttribute('data-lexical-emoji', this.__emoji)
 		return div
 	}
 
@@ -47,8 +49,28 @@ export class EmojiNode extends DecoratorNode
 		}
 	}
 
-	updateDOM(): false {
+	exportDOM(): DOMExportOutput {
+		const element = document.createElement('span')
+		element.setAttribute('data-lexical-emoji', 'true')
+		element.textContent = `:${this.__emoji}:`
+		return { element }
+	}
+
+	updateDOM(
+		prevNode: TextNode,
+		dom: HTMLElement,
+		config: EditorConfig,
+	): boolean {
+		const inner = dom.firstChild
+		if (inner === null)
+			return true
+
+		super.updateDOM(prevNode, inner as HTMLElement, config)
 		return false
+	}
+
+	getTextContent(): string {
+		return this.__emoji
 	}
 
 	setURL(emoji: string): void {
@@ -62,7 +84,7 @@ export class EmojiNode extends DecoratorNode
 
 	decorate(): Component {
 		return h('div', { class: 'h-4 w-5 relative mx-1.5' }, [
-			h(Emoji, { emoji: this.__emoji, class: 'h-10 w-10 absolute top-1/2 -translate-y-1/2 -mt-1 -translate-x-1/2 left-1/2' }),
+			h(Emoji, { emoji: this.__emoji, preview: true, class: 'h-10 w-10 absolute top-1/2 -translate-y-1/2 -mt-1 -translate-x-1/2 left-1/2' }),
 		])
 	}
 }

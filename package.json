@@ -12,6 +12,7 @@
 		"postinstall": "nuxt prepare"
 	},
 	"dependencies": {
+		"@lexical/html": "0.13.1",
 		"@movie-web/providers": "^2.2.0",
 		"@rive-app/canvas": "^2.1.0",
 		"@vimeo/player": "^2.20.1",
@@ -20,7 +21,7 @@
 		"fuse.js": "^6.6.2",
 		"h3-compression": "^0.3.2",
 		"h3-zod": "^0.5.2",
-		"lexical": "^0.14.2",
+		"lexical": "0.13.1",
 		"lexical-vue": "^0.8.2",
 		"media-icons": "^1.0.0",
 		"node-fetch": "^3.3.2",

@@ -8,6 +8,7 @@ const props = defineProps<Props>()
 interface Props {
 	alignment?: Alignment
 	emoji: string
+	preview?: boolean
 }
 
 const canvas = ref<HTMLCanvasElement>()
@@ -25,16 +26,21 @@ function rive() {
 		artboard: props.emoji,
 		autoplay: false,
 		stateMachines: 'controller',
-		onLoad: () => r.play('Reveal'),
+		onLoad: () => {
+			r.play('Reveal')
+		},
 	})
 }
 
 function handleStart() {
-	r.play('play')
+	if(!props.preview)
+		r.play('Hover')
 }
 
 function handleStop() {
-	r.play('Emoji_idle')
+	r.play('No_hover')
+
+	r.play('play')
 }
 
 onMounted(() => {

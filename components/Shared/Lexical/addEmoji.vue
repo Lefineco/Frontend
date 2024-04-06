@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useLexicalComposer } from 'lexical-vue'
-import { CLEAR_EDITOR_COMMAND } from 'lexical'
+import { $getRoot, CLEAR_EDITOR_COMMAND } from 'lexical'
 import { INSERT_EMOJI_COMMAND } from './emojiNode'
 import { emojiArtboard } from '~/constants/general'
 
@@ -10,11 +10,10 @@ const emojiPopoverUI = {
 	overlay: {
 		background: 'dark:bg-black/20 backdrop-blur-sm',
 	},
-	base: 'overflow-visible'
+	base: 'overflow-visible',
 }
 
 function addEmojiToMessage(emoji: string) {
-	editor.dispatchCommand(CLEAR_EDITOR_COMMAND, undefined)
 	editor.dispatchCommand(INSERT_EMOJI_COMMAND, emoji)
 }
 </script>
