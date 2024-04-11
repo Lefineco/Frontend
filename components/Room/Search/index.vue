@@ -42,9 +42,15 @@ function handleVideoSelection(item: Video) {
 
 <template>
 	<Teleport to="body">
-		<UModal v-model="isOpen">
+		<UModal v-model="isOpen" :ui="{base: 'overflow-visible'}">
 			<UCard
-				:ui="{ divide: 'divide-y divide-gray-100 dark:divide-gray-800/50', body: { padding: 'sm:pb-4 px-0 sm:px-0 sm:py-0 flex flex-col h-full justify-between' } }"
+				:ui="{
+					divide: 'divide-y divide-gray-100 dark:divide-gray-800/50',
+					base: 'overflow-visible',
+					body: {
+						padding: 'sm:pb-4 px-0 sm:px-0 sm:py-0 flex flex-col h-full justify-between',
+					},
+				}"
 			>
 				<div class="flex gap-2 items-center px-4">
 					<UInput
