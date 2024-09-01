@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useLexicalComposer } from 'lexical-vue'
-import { clearEditorSkipCollab } from '~/composables/helper/lexical'
 
 interface Props {
 	sendMessage: (message: string) => void

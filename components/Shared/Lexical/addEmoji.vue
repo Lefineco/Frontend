@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { useLexicalComposer } from 'lexical-vue'
-import { $getRoot, CLEAR_EDITOR_COMMAND } from 'lexical'
-import { INSERT_EMOJI_COMMAND } from './emojiNode'
-import { emojiArtboard } from '~/constants/general'
+import { useLexicalComposer } from 'lexical-vue';
+import { emojiArtboard } from '~/constants/general';
+import { INSERT_EMOJI_COMMAND } from './emojiNode';
 
 const editor = useLexicalComposer()
 

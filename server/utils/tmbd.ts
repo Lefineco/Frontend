@@ -6,7 +6,7 @@ export function tmbd(): { fetch: $Fetch } {
 		baseURL: 'https://api.themoviedb.org/3',
 		headers: {
 			'Content-Type': 'application/json',
-			'Authorization': `Bearer ${useRuntimeConfig(useEvent()).tmbdToken}`,
+			Authorization: `Bearer ${useRuntimeConfig(useEvent()).tmbdToken}`,
 		},
 	})
 

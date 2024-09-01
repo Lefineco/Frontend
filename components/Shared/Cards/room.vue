@@ -21,10 +21,6 @@ const ownerName = owner?.profiles?.full_name || ''
 const image = props.data.thumbnail || ''
 
 onMounted(async () => {
-	const img = document.createElement('img')
-
-	img.src = props.data.thumbnail || ''
-
 	imgIsLoaded.value = await useImageIsLoaded(image || '')
 })
 </script>

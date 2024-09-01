@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Fit } from '@rive-app/canvas'
 import type { Database } from '~/server/types/supabase'
 import { useGeneralStore } from '~/store'
 
@@ -12,7 +11,7 @@ const { data: supabaseRooms } = await supabase
 	.from('rooms')
 	.select('*, participants!inner(is_owner, profiles(*))')
 
-store.rooms = supabaseRooms?.sort((a, b) => a.participants.length - b.participants.length) || []
+store.rooms = (supabaseRooms as Array<any>)?.sort((a, b) => a.participants.length - b.participants.length) || [];
 </script>
 
 <template>

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { $getRoot, type CreateEditorArgs, type EditorState } from 'lexical'
-import { LexicalAutoFocusPlugin, LexicalClearEditorPlugin, LexicalComposer, LexicalContentEditable, LexicalHistoryPlugin, LexicalPlainTextPlugin } from 'lexical-vue'
-import { EmojiNode } from './emojiNode'
-import presets from '~/composables/presets'
+import { type CreateEditorArgs, type EditorState } from 'lexical';
+import { LexicalAutoFocusPlugin, LexicalClearEditorPlugin, LexicalComposer, LexicalContentEditable, LexicalHistoryPlugin, LexicalPlainTextPlugin } from 'lexical-vue';
+import presets from '~/composables/presets';
+import { EmojiNode } from './emojiNode';
 
 interface Props {
 	placeholder: string
@@ -22,7 +22,7 @@ const config: CreateEditorArgs = {
 
 function onChange(editorState: EditorState) {
 	editorState.read(() => {
-		
+
 	})
 }
 </script>

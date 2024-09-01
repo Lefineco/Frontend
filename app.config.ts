@@ -2,7 +2,7 @@ import presets from '~/composables/presets'
 
 export default defineAppConfig({
 	ui: {
-		primary: 'violet',
+		primary: 'purple',
 		gray: 'zinc',
 		...presets,
 	},

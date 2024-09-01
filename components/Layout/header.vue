@@ -2,8 +2,6 @@
 import { ref } from 'vue'
 import type { DropdownItem } from '#ui/types'
 
-import { navigationLinks } from '~/composables/helper'
-
 defineProps<{ isRoomHeader?: boolean }>()
 
 const user = useSupabaseUser()
